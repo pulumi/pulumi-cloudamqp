@@ -764,14 +764,14 @@ public class Instance extends com.pulumi.resources.CustomResource {
         return this.backend;
     }
     /**
-     * Cluster name, extracted from the external hostname
+     * The cluster name of the CloudAMQP instance.
      * 
      */
     @Export(name="clusterName", refs={String.class}, tree="[0]")
     private Output<String> clusterName;
 
     /**
-     * @return Cluster name, extracted from the external hostname
+     * @return The cluster name of the CloudAMQP instance.
      * 
      */
     public Output<String> clusterName() {

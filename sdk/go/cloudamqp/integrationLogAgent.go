@@ -16,13 +16,55 @@ import (
 //
 // > **Note:** This resource is available from [v1.47.0].
 //
-// This resource allows you to create and manage agent-based log integrations for a CloudAMQP instance.
+// This resource allows you to create and manage OpenTelemetry agent-based log integrations for a CloudAMQP instance.
 // Once configured, the logs produced will be forwarded to the corresponding integration. More information
 // can be found for all supported [CloudAMQP Logs Integration].
 //
 // Only available for dedicated subscription plans.
 //
 // ## Example Usage
+//
+// <details>
+//
+//	<summary>
+//	  <b>
+//	    <i>Azure Monitor log agent integration</i>
+//	  </b>
+//	</summary>
+//
+// > **Note:** The `azureMonitor` block is available from [v1.50.0].
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewIntegrationLogAgent(ctx, "azure_monitor", &cloudamqp.IntegrationLogAgentArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				AzureMonitor: &cloudamqp.IntegrationLogAgentAzureMonitorArgs{
+//					TenantId:          pulumi.String("00000000-0000-0000-0000-000000000000"),
+//					ApplicationId:     pulumi.String("11111111-1111-1111-1111-111111111111"),
+//					ApplicationSecret: pulumi.Any(azureApplicationSecret),
+//					LogsEndpoint:      pulumi.String("https://example.region-1.ingest.monitor.azure.com/datacollectionRules/dcr-example/streams/Microsoft-OTLP-Logs/otlp/v1/logs"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
 //
 // <details>
 //
@@ -287,6 +329,112 @@ import (
 //
 //	<summary>
 //	  <b>
+//	    <i>OTLP log agent integration</i>
+//	  </b>
+//	</summary>
+//
+// > **Note:** The `otlp` block is available from [v1.50.0].
+//
+// Send logs to any OpenTelemetry-compatible backend over OTLP/HTTP, such as SigNoz or Honeycomb. Authentication can be done with headers, basic auth or OAuth2
+// client credentials.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewIntegrationLogAgent(ctx, "otlp", &cloudamqp.IntegrationLogAgentArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				Otlp: &cloudamqp.IntegrationLogAgentOtlpArgs{
+//					Endpoint: pulumi.String("https://api.honeycomb.io/v1/logs"),
+//					AuthType: pulumi.String("headers"),
+//					Headers:  pulumi.Sprintf("x-honeycomb-team: %v", honeycombApiKey),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewIntegrationLogAgent(ctx, "otlp", &cloudamqp.IntegrationLogAgentArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				Otlp: &cloudamqp.IntegrationLogAgentOtlpArgs{
+//					Endpoint: pulumi.String("https://otlp.example.com:4318/v1/logs"),
+//					AuthType: pulumi.String("basic_auth"),
+//					Username: pulumi.Any(otlpUsername),
+//					Password: pulumi.Any(otlpPassword),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := cloudamqp.NewIntegrationLogAgent(ctx, "otlp", &cloudamqp.IntegrationLogAgentArgs{
+//				InstanceId: pulumi.Any(instance.Id),
+//				Otlp: &cloudamqp.IntegrationLogAgentOtlpArgs{
+//					Endpoint:     pulumi.String("https://otlp.example.com:4318/v1/logs"),
+//					AuthType:     pulumi.String("oauth2"),
+//					ClientId:     pulumi.Any(otlpClientId),
+//					ClientSecret: pulumi.Any(otlpClientSecret),
+//					TokenUrl:     pulumi.String("https://auth.example.com/oauth2/token"),
+//					Scopes:       pulumi.String("logs:write"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// </details>
+//
+// <details>
+//
+//	<summary>
+//	  <b>
 //	    <i>Splunk log agent integration</i>
 //	  </b>
 //	</summary>
@@ -368,6 +516,8 @@ import (
 type IntegrationLogAgent struct {
 	pulumi.CustomResourceState
 
+	// Azure Monitor native OTLP log integration configuration
+	AzureMonitor IntegrationLogAgentAzureMonitorPtrOutput `pulumi:"azureMonitor"`
 	// CloudWatch OTLP log integration configuration
 	Cloudwatch IntegrationLogAgentCloudwatchPtrOutput `pulumi:"cloudwatch"`
 	// Coralogix log integration configuration
@@ -384,11 +534,13 @@ type IntegrationLogAgent struct {
 	//
 	// <details>
 	// <summary>
-	// <b>CloudWatch</b>
+	// <b>Azure Monitor</b>
 	// </summary>
 	//
-	// The following arguments are used by the `cloudwatch` block.
+	// The following arguments are used by the `azureMonitor` block.
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
+	// OTLP log integration configuration for any OpenTelemetry-compatible backend
+	Otlp IntegrationLogAgentOtlpPtrOutput `pulumi:"otlp"`
 	// Splunk HEC log integration configuration
 	Splunk IntegrationLogAgentSplunkPtrOutput `pulumi:"splunk"`
 	// Uptrace OTLP log integration configuration
@@ -428,6 +580,8 @@ func GetIntegrationLogAgent(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IntegrationLogAgent resources.
 type integrationLogAgentState struct {
+	// Azure Monitor native OTLP log integration configuration
+	AzureMonitor *IntegrationLogAgentAzureMonitor `pulumi:"azureMonitor"`
 	// CloudWatch OTLP log integration configuration
 	Cloudwatch *IntegrationLogAgentCloudwatch `pulumi:"cloudwatch"`
 	// Coralogix log integration configuration
@@ -444,11 +598,13 @@ type integrationLogAgentState struct {
 	//
 	// <details>
 	// <summary>
-	// <b>CloudWatch</b>
+	// <b>Azure Monitor</b>
 	// </summary>
 	//
-	// The following arguments are used by the `cloudwatch` block.
+	// The following arguments are used by the `azureMonitor` block.
 	InstanceId *int `pulumi:"instanceId"`
+	// OTLP log integration configuration for any OpenTelemetry-compatible backend
+	Otlp *IntegrationLogAgentOtlp `pulumi:"otlp"`
 	// Splunk HEC log integration configuration
 	Splunk *IntegrationLogAgentSplunk `pulumi:"splunk"`
 	// Uptrace OTLP log integration configuration
@@ -456,6 +612,8 @@ type integrationLogAgentState struct {
 }
 
 type IntegrationLogAgentState struct {
+	// Azure Monitor native OTLP log integration configuration
+	AzureMonitor IntegrationLogAgentAzureMonitorPtrInput
 	// CloudWatch OTLP log integration configuration
 	Cloudwatch IntegrationLogAgentCloudwatchPtrInput
 	// Coralogix log integration configuration
@@ -472,11 +630,13 @@ type IntegrationLogAgentState struct {
 	//
 	// <details>
 	// <summary>
-	// <b>CloudWatch</b>
+	// <b>Azure Monitor</b>
 	// </summary>
 	//
-	// The following arguments are used by the `cloudwatch` block.
+	// The following arguments are used by the `azureMonitor` block.
 	InstanceId pulumi.IntPtrInput
+	// OTLP log integration configuration for any OpenTelemetry-compatible backend
+	Otlp IntegrationLogAgentOtlpPtrInput
 	// Splunk HEC log integration configuration
 	Splunk IntegrationLogAgentSplunkPtrInput
 	// Uptrace OTLP log integration configuration
@@ -488,6 +648,8 @@ func (IntegrationLogAgentState) ElementType() reflect.Type {
 }
 
 type integrationLogAgentArgs struct {
+	// Azure Monitor native OTLP log integration configuration
+	AzureMonitor *IntegrationLogAgentAzureMonitor `pulumi:"azureMonitor"`
 	// CloudWatch OTLP log integration configuration
 	Cloudwatch *IntegrationLogAgentCloudwatch `pulumi:"cloudwatch"`
 	// Coralogix log integration configuration
@@ -504,11 +666,13 @@ type integrationLogAgentArgs struct {
 	//
 	// <details>
 	// <summary>
-	// <b>CloudWatch</b>
+	// <b>Azure Monitor</b>
 	// </summary>
 	//
-	// The following arguments are used by the `cloudwatch` block.
+	// The following arguments are used by the `azureMonitor` block.
 	InstanceId int `pulumi:"instanceId"`
+	// OTLP log integration configuration for any OpenTelemetry-compatible backend
+	Otlp *IntegrationLogAgentOtlp `pulumi:"otlp"`
 	// Splunk HEC log integration configuration
 	Splunk *IntegrationLogAgentSplunk `pulumi:"splunk"`
 	// Uptrace OTLP log integration configuration
@@ -517,6 +681,8 @@ type integrationLogAgentArgs struct {
 
 // The set of arguments for constructing a IntegrationLogAgent resource.
 type IntegrationLogAgentArgs struct {
+	// Azure Monitor native OTLP log integration configuration
+	AzureMonitor IntegrationLogAgentAzureMonitorPtrInput
 	// CloudWatch OTLP log integration configuration
 	Cloudwatch IntegrationLogAgentCloudwatchPtrInput
 	// Coralogix log integration configuration
@@ -533,11 +699,13 @@ type IntegrationLogAgentArgs struct {
 	//
 	// <details>
 	// <summary>
-	// <b>CloudWatch</b>
+	// <b>Azure Monitor</b>
 	// </summary>
 	//
-	// The following arguments are used by the `cloudwatch` block.
+	// The following arguments are used by the `azureMonitor` block.
 	InstanceId pulumi.IntInput
+	// OTLP log integration configuration for any OpenTelemetry-compatible backend
+	Otlp IntegrationLogAgentOtlpPtrInput
 	// Splunk HEC log integration configuration
 	Splunk IntegrationLogAgentSplunkPtrInput
 	// Uptrace OTLP log integration configuration
@@ -631,6 +799,11 @@ func (o IntegrationLogAgentOutput) ToIntegrationLogAgentOutputWithContext(ctx co
 	return o
 }
 
+// Azure Monitor native OTLP log integration configuration
+func (o IntegrationLogAgentOutput) AzureMonitor() IntegrationLogAgentAzureMonitorPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgent) IntegrationLogAgentAzureMonitorPtrOutput { return v.AzureMonitor }).(IntegrationLogAgentAzureMonitorPtrOutput)
+}
+
 // CloudWatch OTLP log integration configuration
 func (o IntegrationLogAgentOutput) Cloudwatch() IntegrationLogAgentCloudwatchPtrOutput {
 	return o.ApplyT(func(v *IntegrationLogAgent) IntegrationLogAgentCloudwatchPtrOutput { return v.Cloudwatch }).(IntegrationLogAgentCloudwatchPtrOutput)
@@ -662,12 +835,17 @@ func (o IntegrationLogAgentOutput) Grafana() IntegrationLogAgentGrafanaPtrOutput
 //
 // <details>
 // <summary>
-// <b>CloudWatch</b>
+// <b>Azure Monitor</b>
 // </summary>
 //
-// The following arguments are used by the `cloudwatch` block.
+// The following arguments are used by the `azureMonitor` block.
 func (o IntegrationLogAgentOutput) InstanceId() pulumi.IntOutput {
 	return o.ApplyT(func(v *IntegrationLogAgent) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
+}
+
+// OTLP log integration configuration for any OpenTelemetry-compatible backend
+func (o IntegrationLogAgentOutput) Otlp() IntegrationLogAgentOtlpPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgent) IntegrationLogAgentOtlpPtrOutput { return v.Otlp }).(IntegrationLogAgentOtlpPtrOutput)
 }
 
 // Splunk HEC log integration configuration

@@ -3,11 +3,13 @@
 
 package com.pulumi.cloudamqp;
 
+import com.pulumi.cloudamqp.inputs.IntegrationLogAgentAzureMonitorArgs;
 import com.pulumi.cloudamqp.inputs.IntegrationLogAgentCloudwatchArgs;
 import com.pulumi.cloudamqp.inputs.IntegrationLogAgentCoralogixArgs;
 import com.pulumi.cloudamqp.inputs.IntegrationLogAgentDatadogArgs;
 import com.pulumi.cloudamqp.inputs.IntegrationLogAgentGoogleCloudArgs;
 import com.pulumi.cloudamqp.inputs.IntegrationLogAgentGrafanaArgs;
+import com.pulumi.cloudamqp.inputs.IntegrationLogAgentOtlpArgs;
 import com.pulumi.cloudamqp.inputs.IntegrationLogAgentSplunkArgs;
 import com.pulumi.cloudamqp.inputs.IntegrationLogAgentUptraceArgs;
 import com.pulumi.core.Output;
@@ -22,6 +24,21 @@ import javax.annotation.Nullable;
 public final class IntegrationLogAgentArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final IntegrationLogAgentArgs Empty = new IntegrationLogAgentArgs();
+
+    /**
+     * Azure Monitor native OTLP log integration configuration
+     * 
+     */
+    @Import(name="azureMonitor")
+    private @Nullable Output<IntegrationLogAgentAzureMonitorArgs> azureMonitor;
+
+    /**
+     * @return Azure Monitor native OTLP log integration configuration
+     * 
+     */
+    public Optional<Output<IntegrationLogAgentAzureMonitorArgs>> azureMonitor() {
+        return Optional.ofNullable(this.azureMonitor);
+    }
 
     /**
      * CloudWatch OTLP log integration configuration
@@ -105,10 +122,10 @@ public final class IntegrationLogAgentArgs extends com.pulumi.resources.Resource
      * 
      * &lt;details&gt;
      * &lt;summary&gt;
-     * &lt;b&gt;CloudWatch&lt;/b&gt;
+     * &lt;b&gt;Azure Monitor&lt;/b&gt;
      * &lt;/summary&gt;
      * 
-     * The following arguments are used by the `cloudwatch` block.
+     * The following arguments are used by the `azureMonitor` block.
      * 
      */
     @Import(name="instanceId", required=true)
@@ -121,14 +138,29 @@ public final class IntegrationLogAgentArgs extends com.pulumi.resources.Resource
      * 
      * &lt;details&gt;
      * &lt;summary&gt;
-     * &lt;b&gt;CloudWatch&lt;/b&gt;
+     * &lt;b&gt;Azure Monitor&lt;/b&gt;
      * &lt;/summary&gt;
      * 
-     * The following arguments are used by the `cloudwatch` block.
+     * The following arguments are used by the `azureMonitor` block.
      * 
      */
     public Output<Integer> instanceId() {
         return this.instanceId;
+    }
+
+    /**
+     * OTLP log integration configuration for any OpenTelemetry-compatible backend
+     * 
+     */
+    @Import(name="otlp")
+    private @Nullable Output<IntegrationLogAgentOtlpArgs> otlp;
+
+    /**
+     * @return OTLP log integration configuration for any OpenTelemetry-compatible backend
+     * 
+     */
+    public Optional<Output<IntegrationLogAgentOtlpArgs>> otlp() {
+        return Optional.ofNullable(this.otlp);
     }
 
     /**
@@ -164,12 +196,14 @@ public final class IntegrationLogAgentArgs extends com.pulumi.resources.Resource
     private IntegrationLogAgentArgs() {}
 
     private IntegrationLogAgentArgs(IntegrationLogAgentArgs $) {
+        this.azureMonitor = $.azureMonitor;
         this.cloudwatch = $.cloudwatch;
         this.coralogix = $.coralogix;
         this.datadog = $.datadog;
         this.googleCloud = $.googleCloud;
         this.grafana = $.grafana;
         this.instanceId = $.instanceId;
+        this.otlp = $.otlp;
         this.splunk = $.splunk;
         this.uptrace = $.uptrace;
     }
@@ -190,6 +224,27 @@ public final class IntegrationLogAgentArgs extends com.pulumi.resources.Resource
 
         public Builder(IntegrationLogAgentArgs defaults) {
             $ = new IntegrationLogAgentArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param azureMonitor Azure Monitor native OTLP log integration configuration
+         * 
+         * @return builder
+         * 
+         */
+        public Builder azureMonitor(@Nullable Output<IntegrationLogAgentAzureMonitorArgs> azureMonitor) {
+            $.azureMonitor = azureMonitor;
+            return this;
+        }
+
+        /**
+         * @param azureMonitor Azure Monitor native OTLP log integration configuration
+         * 
+         * @return builder
+         * 
+         */
+        public Builder azureMonitor(IntegrationLogAgentAzureMonitorArgs azureMonitor) {
+            return azureMonitor(Output.of(azureMonitor));
         }
 
         /**
@@ -304,10 +359,10 @@ public final class IntegrationLogAgentArgs extends com.pulumi.resources.Resource
          * 
          * &lt;details&gt;
          * &lt;summary&gt;
-         * &lt;b&gt;CloudWatch&lt;/b&gt;
+         * &lt;b&gt;Azure Monitor&lt;/b&gt;
          * &lt;/summary&gt;
          * 
-         * The following arguments are used by the `cloudwatch` block.
+         * The following arguments are used by the `azureMonitor` block.
          * 
          * @return builder
          * 
@@ -324,16 +379,37 @@ public final class IntegrationLogAgentArgs extends com.pulumi.resources.Resource
          * 
          * &lt;details&gt;
          * &lt;summary&gt;
-         * &lt;b&gt;CloudWatch&lt;/b&gt;
+         * &lt;b&gt;Azure Monitor&lt;/b&gt;
          * &lt;/summary&gt;
          * 
-         * The following arguments are used by the `cloudwatch` block.
+         * The following arguments are used by the `azureMonitor` block.
          * 
          * @return builder
          * 
          */
         public Builder instanceId(Integer instanceId) {
             return instanceId(Output.of(instanceId));
+        }
+
+        /**
+         * @param otlp OTLP log integration configuration for any OpenTelemetry-compatible backend
+         * 
+         * @return builder
+         * 
+         */
+        public Builder otlp(@Nullable Output<IntegrationLogAgentOtlpArgs> otlp) {
+            $.otlp = otlp;
+            return this;
+        }
+
+        /**
+         * @param otlp OTLP log integration configuration for any OpenTelemetry-compatible backend
+         * 
+         * @return builder
+         * 
+         */
+        public Builder otlp(IntegrationLogAgentOtlpArgs otlp) {
+            return otlp(Output.of(otlp));
         }
 
         /**

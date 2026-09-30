@@ -110,18 +110,33 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Log level for the logger used for log integrations and the CloudAMQP Console log view.
+     * Log level for the log exchange only, which feeds the CloudAMQP Console log view and legacy log integrations. Prefer `logLevel`.
      * 
      */
     @Import(name="logExchangeLevel")
     private @Nullable Output<String> logExchangeLevel;
 
     /**
-     * @return Log level for the logger used for log integrations and the CloudAMQP Console log view.
+     * @return Log level for the log exchange only, which feeds the CloudAMQP Console log view and legacy log integrations. Prefer `logLevel`.
      * 
      */
     public Optional<Output<String>> logExchangeLevel() {
         return Optional.ofNullable(this.logExchangeLevel);
+    }
+
+    /**
+     * Log level for all RabbitMQ log outputs: log integrations, the CloudAMQP Console log view and the log file. Also sets `logExchangeLevel`.
+     * 
+     */
+    @Import(name="logLevel")
+    private @Nullable Output<String> logLevel;
+
+    /**
+     * @return Log level for all RabbitMQ log outputs: log integrations, the CloudAMQP Console log view and the log file. Also sets `logExchangeLevel`.
+     * 
+     */
+    public Optional<Output<String>> logLevel() {
+        return Optional.ofNullable(this.logLevel);
     }
 
     /**
@@ -333,6 +348,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         this.heartbeat = $.heartbeat;
         this.instanceId = $.instanceId;
         this.logExchangeLevel = $.logExchangeLevel;
+        this.logLevel = $.logLevel;
         this.maxMessageSize = $.maxMessageSize;
         this.messageInterceptorsTimestampOverwrite = $.messageInterceptorsTimestampOverwrite;
         this.mqttExchange = $.mqttExchange;
@@ -493,7 +509,7 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param logExchangeLevel Log level for the logger used for log integrations and the CloudAMQP Console log view.
+         * @param logExchangeLevel Log level for the log exchange only, which feeds the CloudAMQP Console log view and legacy log integrations. Prefer `logLevel`.
          * 
          * @return builder
          * 
@@ -504,13 +520,34 @@ public final class RabbitConfigurationArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param logExchangeLevel Log level for the logger used for log integrations and the CloudAMQP Console log view.
+         * @param logExchangeLevel Log level for the log exchange only, which feeds the CloudAMQP Console log view and legacy log integrations. Prefer `logLevel`.
          * 
          * @return builder
          * 
          */
         public Builder logExchangeLevel(String logExchangeLevel) {
             return logExchangeLevel(Output.of(logExchangeLevel));
+        }
+
+        /**
+         * @param logLevel Log level for all RabbitMQ log outputs: log integrations, the CloudAMQP Console log view and the log file. Also sets `logExchangeLevel`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder logLevel(@Nullable Output<String> logLevel) {
+            $.logLevel = logLevel;
+            return this;
+        }
+
+        /**
+         * @param logLevel Log level for all RabbitMQ log outputs: log integrations, the CloudAMQP Console log view and the log file. Also sets `logExchangeLevel`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder logLevel(String logLevel) {
+            return logLevel(Output.of(logLevel));
         }
 
         /**

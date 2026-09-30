@@ -456,7 +456,7 @@ export class Instance extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly backend: pulumi.Output<string>;
     /**
-     * Cluster name, extracted from the external hostname
+     * The cluster name of the CloudAMQP instance.
      */
     declare public /*out*/ readonly clusterName: pulumi.Output<string>;
     /**
@@ -666,7 +666,7 @@ export interface InstanceState {
      */
     backend?: pulumi.Input<string | undefined>;
     /**
-     * Cluster name, extracted from the external hostname
+     * The cluster name of the CloudAMQP instance.
      */
     clusterName?: pulumi.Input<string | undefined>;
     /**

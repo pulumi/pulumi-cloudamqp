@@ -36,7 +36,8 @@ type LookupInstanceResult struct {
 	// (Sensitive) The API key to secondary API handing alarms, integration etc.
 	Apikey string `pulumi:"apikey"`
 	// Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
-	Backend     string `pulumi:"backend"`
+	Backend string `pulumi:"backend"`
+	// The cluster name of the CloudAMQP instance.
 	ClusterName string `pulumi:"clusterName"`
 	// (Sensitive) Broker credentials block with information extracted from URL.
 	Credentials map[string]string `pulumi:"credentials"`
@@ -115,6 +116,7 @@ func (o LookupInstanceResultOutput) Backend() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceResult) string { return v.Backend }).(pulumi.StringOutput)
 }
 
+// The cluster name of the CloudAMQP instance.
 func (o LookupInstanceResultOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceResult) string { return v.ClusterName }).(pulumi.StringOutput)
 }

@@ -643,6 +643,15 @@ class IntegrationMetric(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
+        > **Note:** For `newrelic`/`newrelic_v2`, `datadog`/`datadog_v2`, `cloudwatch`/`cloudwatch_v2`, and
+        `stackdriver`, we recommend the newer, **Prometheus**/**OpenTelemetry**-based
+        [`IntegrationMetricPrometheus`][metric-prometheus] resource instead of this one — see its
+        `newrelic_v3`, `datadog_v3`, `cloudwatch_v3`, and `stackdriver_v2` blocks respectively. It's where new
+        metrics integration features land going forward. This resource remains fully supported for `librato`,
+        which has no Prometheus-based equivalent.
+
+        [metric-prometheus]: integration_metric_prometheus.md
+
         ## Example Usage
 
         <details>
@@ -898,8 +907,6 @@ class IntegrationMetric(pulumi.CustomResource):
         | ------------- | ------------------------------------------------------------- |
         | cloudwatch | Access key: Create an IAM user with permission to `PutMetricData` |
         | cloudwatch_v2 | Access key: Create an IAM user with permission to `PutMetricData` |
-        | cloudwatch | Assume role: Create a IAM role with the permission to `PutMetricData` |
-        | cloudwatch_v2 | Assume role: Create a IAM role with the permission to `PutMetricData` |
         | datadog | Create a Datadog API key at app.datadoghq.com |
         | datadog_v2 | Create a Datadog API key at app.datadoghq.com |
         | librato | Create a new API token (with record only permissions) here: [Librato token] |
@@ -919,8 +926,6 @@ class IntegrationMetric(pulumi.CustomResource):
         |------------------------|----------------|------------------------------------------------------|
         | Cloudwatch             | cloudwatch     | Access key: region, access_key_id, secret_access_key |
         | Cloudwatch v2          | cloudwatch_v2  | Access key: region, access_key_id, secret_access_key |
-        | Cloudwatch             | cloudwatch     | Assume role: region, iam_role, iam_external_id       |
-        | Cloudwatch v2          | cloudwatch_v2  | Assume role: region, iam_role, iam_external_id       |
         | Datadog                | datadog        | api_key, region                                      |
         | Datadog v2             | datadog_v2     | api_key, region                                      |
         | Librato                | librato        | email, api_key                                       |
@@ -972,6 +977,15 @@ class IntegrationMetric(pulumi.CustomResource):
 
         Only available for dedicated subscription plans.
 
+        > **Note:** For `newrelic`/`newrelic_v2`, `datadog`/`datadog_v2`, `cloudwatch`/`cloudwatch_v2`, and
+        `stackdriver`, we recommend the newer, **Prometheus**/**OpenTelemetry**-based
+        [`IntegrationMetricPrometheus`][metric-prometheus] resource instead of this one — see its
+        `newrelic_v3`, `datadog_v3`, `cloudwatch_v3`, and `stackdriver_v2` blocks respectively. It's where new
+        metrics integration features land going forward. This resource remains fully supported for `librato`,
+        which has no Prometheus-based equivalent.
+
+        [metric-prometheus]: integration_metric_prometheus.md
+
         ## Example Usage
 
         <details>
@@ -1227,8 +1241,6 @@ class IntegrationMetric(pulumi.CustomResource):
         | ------------- | ------------------------------------------------------------- |
         | cloudwatch | Access key: Create an IAM user with permission to `PutMetricData` |
         | cloudwatch_v2 | Access key: Create an IAM user with permission to `PutMetricData` |
-        | cloudwatch | Assume role: Create a IAM role with the permission to `PutMetricData` |
-        | cloudwatch_v2 | Assume role: Create a IAM role with the permission to `PutMetricData` |
         | datadog | Create a Datadog API key at app.datadoghq.com |
         | datadog_v2 | Create a Datadog API key at app.datadoghq.com |
         | librato | Create a new API token (with record only permissions) here: [Librato token] |
@@ -1248,8 +1260,6 @@ class IntegrationMetric(pulumi.CustomResource):
         |------------------------|----------------|------------------------------------------------------|
         | Cloudwatch             | cloudwatch     | Access key: region, access_key_id, secret_access_key |
         | Cloudwatch v2          | cloudwatch_v2  | Access key: region, access_key_id, secret_access_key |
-        | Cloudwatch             | cloudwatch     | Assume role: region, iam_role, iam_external_id       |
-        | Cloudwatch v2          | cloudwatch_v2  | Assume role: region, iam_role, iam_external_id       |
         | Datadog                | datadog        | api_key, region                                      |
         | Datadog v2             | datadog_v2     | api_key, region                                      |
         | Librato                | librato        | email, api_key                                       |

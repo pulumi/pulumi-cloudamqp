@@ -22,11 +22,13 @@ __all__ = ['IntegrationLogAgentArgs', 'IntegrationLogAgent']
 class IntegrationLogAgentArgs:
     def __init__(__self__, *,
                  instance_id: pulumi.Input[_builtins.int],
+                 azure_monitor: pulumi.Input[Optional['IntegrationLogAgentAzureMonitorArgs']] = None,
                  cloudwatch: pulumi.Input[Optional['IntegrationLogAgentCloudwatchArgs']] = None,
                  coralogix: pulumi.Input[Optional['IntegrationLogAgentCoralogixArgs']] = None,
                  datadog: pulumi.Input[Optional['IntegrationLogAgentDatadogArgs']] = None,
                  google_cloud: pulumi.Input[Optional['IntegrationLogAgentGoogleCloudArgs']] = None,
                  grafana: pulumi.Input[Optional['IntegrationLogAgentGrafanaArgs']] = None,
+                 otlp: pulumi.Input[Optional['IntegrationLogAgentOtlpArgs']] = None,
                  splunk: pulumi.Input[Optional['IntegrationLogAgentSplunkArgs']] = None,
                  uptrace: pulumi.Input[Optional['IntegrationLogAgentUptraceArgs']] = None):
         """
@@ -38,19 +40,23 @@ class IntegrationLogAgentArgs:
                
                <details>
                <summary>
-               <b>CloudWatch</b>
+               <b>Azure Monitor</b>
                </summary>
                
-               The following arguments are used by the `cloudwatch` block.
+               The following arguments are used by the `azure_monitor` block.
+        :param pulumi.Input['IntegrationLogAgentAzureMonitorArgs'] azure_monitor: Azure Monitor native OTLP log integration configuration
         :param pulumi.Input['IntegrationLogAgentCloudwatchArgs'] cloudwatch: CloudWatch OTLP log integration configuration
         :param pulumi.Input['IntegrationLogAgentCoralogixArgs'] coralogix: Coralogix log integration configuration
         :param pulumi.Input['IntegrationLogAgentDatadogArgs'] datadog: Datadog log integration configuration
         :param pulumi.Input['IntegrationLogAgentGoogleCloudArgs'] google_cloud: Google Cloud log integration configuration
         :param pulumi.Input['IntegrationLogAgentGrafanaArgs'] grafana: Grafana Cloud (Loki) log integration configuration
+        :param pulumi.Input['IntegrationLogAgentOtlpArgs'] otlp: OTLP log integration configuration for any OpenTelemetry-compatible backend
         :param pulumi.Input['IntegrationLogAgentSplunkArgs'] splunk: Splunk HEC log integration configuration
         :param pulumi.Input['IntegrationLogAgentUptraceArgs'] uptrace: Uptrace OTLP log integration configuration
         """
         pulumi.set(__self__, "instance_id", instance_id)
+        if azure_monitor is not None:
+            pulumi.set(__self__, "azure_monitor", azure_monitor)
         if cloudwatch is not None:
             pulumi.set(__self__, "cloudwatch", cloudwatch)
         if coralogix is not None:
@@ -61,6 +67,8 @@ class IntegrationLogAgentArgs:
             pulumi.set(__self__, "google_cloud", google_cloud)
         if grafana is not None:
             pulumi.set(__self__, "grafana", grafana)
+        if otlp is not None:
+            pulumi.set(__self__, "otlp", otlp)
         if splunk is not None:
             pulumi.set(__self__, "splunk", splunk)
         if uptrace is not None:
@@ -76,16 +84,28 @@ class IntegrationLogAgentArgs:
 
         <details>
         <summary>
-        <b>CloudWatch</b>
+        <b>Azure Monitor</b>
         </summary>
 
-        The following arguments are used by the `cloudwatch` block.
+        The following arguments are used by the `azure_monitor` block.
         """
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
     def instance_id(self, value: pulumi.Input[_builtins.int]):
         pulumi.set(self, "instance_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="azureMonitor")
+    def azure_monitor(self) -> pulumi.Input[Optional['IntegrationLogAgentAzureMonitorArgs']]:
+        """
+        Azure Monitor native OTLP log integration configuration
+        """
+        return pulumi.get(self, "azure_monitor")
+
+    @azure_monitor.setter
+    def azure_monitor(self, value: pulumi.Input[Optional['IntegrationLogAgentAzureMonitorArgs']]):
+        pulumi.set(self, "azure_monitor", value)
 
     @_builtins.property
     @pulumi.getter
@@ -149,6 +169,18 @@ class IntegrationLogAgentArgs:
 
     @_builtins.property
     @pulumi.getter
+    def otlp(self) -> pulumi.Input[Optional['IntegrationLogAgentOtlpArgs']]:
+        """
+        OTLP log integration configuration for any OpenTelemetry-compatible backend
+        """
+        return pulumi.get(self, "otlp")
+
+    @otlp.setter
+    def otlp(self, value: pulumi.Input[Optional['IntegrationLogAgentOtlpArgs']]):
+        pulumi.set(self, "otlp", value)
+
+    @_builtins.property
+    @pulumi.getter
     def splunk(self) -> pulumi.Input[Optional['IntegrationLogAgentSplunkArgs']]:
         """
         Splunk HEC log integration configuration
@@ -175,17 +207,20 @@ class IntegrationLogAgentArgs:
 @pulumi.input_type
 class _IntegrationLogAgentState:
     def __init__(__self__, *,
+                 azure_monitor: pulumi.Input[Optional['IntegrationLogAgentAzureMonitorArgs']] = None,
                  cloudwatch: pulumi.Input[Optional['IntegrationLogAgentCloudwatchArgs']] = None,
                  coralogix: pulumi.Input[Optional['IntegrationLogAgentCoralogixArgs']] = None,
                  datadog: pulumi.Input[Optional['IntegrationLogAgentDatadogArgs']] = None,
                  google_cloud: pulumi.Input[Optional['IntegrationLogAgentGoogleCloudArgs']] = None,
                  grafana: pulumi.Input[Optional['IntegrationLogAgentGrafanaArgs']] = None,
                  instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 otlp: pulumi.Input[Optional['IntegrationLogAgentOtlpArgs']] = None,
                  splunk: pulumi.Input[Optional['IntegrationLogAgentSplunkArgs']] = None,
                  uptrace: pulumi.Input[Optional['IntegrationLogAgentUptraceArgs']] = None):
         """
         Input properties used for looking up and filtering IntegrationLogAgent resources.
 
+        :param pulumi.Input['IntegrationLogAgentAzureMonitorArgs'] azure_monitor: Azure Monitor native OTLP log integration configuration
         :param pulumi.Input['IntegrationLogAgentCloudwatchArgs'] cloudwatch: CloudWatch OTLP log integration configuration
         :param pulumi.Input['IntegrationLogAgentCoralogixArgs'] coralogix: Coralogix log integration configuration
         :param pulumi.Input['IntegrationLogAgentDatadogArgs'] datadog: Datadog log integration configuration
@@ -197,13 +232,16 @@ class _IntegrationLogAgentState:
                
                <details>
                <summary>
-               <b>CloudWatch</b>
+               <b>Azure Monitor</b>
                </summary>
                
-               The following arguments are used by the `cloudwatch` block.
+               The following arguments are used by the `azure_monitor` block.
+        :param pulumi.Input['IntegrationLogAgentOtlpArgs'] otlp: OTLP log integration configuration for any OpenTelemetry-compatible backend
         :param pulumi.Input['IntegrationLogAgentSplunkArgs'] splunk: Splunk HEC log integration configuration
         :param pulumi.Input['IntegrationLogAgentUptraceArgs'] uptrace: Uptrace OTLP log integration configuration
         """
+        if azure_monitor is not None:
+            pulumi.set(__self__, "azure_monitor", azure_monitor)
         if cloudwatch is not None:
             pulumi.set(__self__, "cloudwatch", cloudwatch)
         if coralogix is not None:
@@ -216,10 +254,24 @@ class _IntegrationLogAgentState:
             pulumi.set(__self__, "grafana", grafana)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
+        if otlp is not None:
+            pulumi.set(__self__, "otlp", otlp)
         if splunk is not None:
             pulumi.set(__self__, "splunk", splunk)
         if uptrace is not None:
             pulumi.set(__self__, "uptrace", uptrace)
+
+    @_builtins.property
+    @pulumi.getter(name="azureMonitor")
+    def azure_monitor(self) -> pulumi.Input[Optional['IntegrationLogAgentAzureMonitorArgs']]:
+        """
+        Azure Monitor native OTLP log integration configuration
+        """
+        return pulumi.get(self, "azure_monitor")
+
+    @azure_monitor.setter
+    def azure_monitor(self, value: pulumi.Input[Optional['IntegrationLogAgentAzureMonitorArgs']]):
+        pulumi.set(self, "azure_monitor", value)
 
     @_builtins.property
     @pulumi.getter
@@ -291,16 +343,28 @@ class _IntegrationLogAgentState:
 
         <details>
         <summary>
-        <b>CloudWatch</b>
+        <b>Azure Monitor</b>
         </summary>
 
-        The following arguments are used by the `cloudwatch` block.
+        The following arguments are used by the `azure_monitor` block.
         """
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
     def instance_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def otlp(self) -> pulumi.Input[Optional['IntegrationLogAgentOtlpArgs']]:
+        """
+        OTLP log integration configuration for any OpenTelemetry-compatible backend
+        """
+        return pulumi.get(self, "otlp")
+
+    @otlp.setter
+    def otlp(self, value: pulumi.Input[Optional['IntegrationLogAgentOtlpArgs']]):
+        pulumi.set(self, "otlp", value)
 
     @_builtins.property
     @pulumi.getter
@@ -333,12 +397,14 @@ class IntegrationLogAgent(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 azure_monitor: pulumi.Input[Optional[Union['IntegrationLogAgentAzureMonitorArgs', 'IntegrationLogAgentAzureMonitorArgsDict']]] = None,
                  cloudwatch: pulumi.Input[Optional[Union['IntegrationLogAgentCloudwatchArgs', 'IntegrationLogAgentCloudwatchArgsDict']]] = None,
                  coralogix: pulumi.Input[Optional[Union['IntegrationLogAgentCoralogixArgs', 'IntegrationLogAgentCoralogixArgsDict']]] = None,
                  datadog: pulumi.Input[Optional[Union['IntegrationLogAgentDatadogArgs', 'IntegrationLogAgentDatadogArgsDict']]] = None,
                  google_cloud: pulumi.Input[Optional[Union['IntegrationLogAgentGoogleCloudArgs', 'IntegrationLogAgentGoogleCloudArgsDict']]] = None,
                  grafana: pulumi.Input[Optional[Union['IntegrationLogAgentGrafanaArgs', 'IntegrationLogAgentGrafanaArgsDict']]] = None,
                  instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 otlp: pulumi.Input[Optional[Union['IntegrationLogAgentOtlpArgs', 'IntegrationLogAgentOtlpArgsDict']]] = None,
                  splunk: pulumi.Input[Optional[Union['IntegrationLogAgentSplunkArgs', 'IntegrationLogAgentSplunkArgsDict']]] = None,
                  uptrace: pulumi.Input[Optional[Union['IntegrationLogAgentUptraceArgs', 'IntegrationLogAgentUptraceArgsDict']]] = None,
                  __props__=None):
@@ -347,13 +413,38 @@ class IntegrationLogAgent(pulumi.CustomResource):
 
         > **Note:** This resource is available from [v1.47.0].
 
-        This resource allows you to create and manage agent-based log integrations for a CloudAMQP instance.
+        This resource allows you to create and manage OpenTelemetry agent-based log integrations for a CloudAMQP instance.
         Once configured, the logs produced will be forwarded to the corresponding integration. More information
         can be found for all supported [CloudAMQP Logs Integration].
 
         Only available for dedicated subscription plans.
 
         ## Example Usage
+
+        <details>
+          <summary>
+            <b>
+              <i>Azure Monitor log agent integration</i>
+            </b>
+          </summary>
+
+        > **Note:** The `azure_monitor` block is available from [v1.50.0].
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        azure_monitor = cloudamqp.IntegrationLogAgent("azure_monitor",
+            instance_id=int(instance["id"]),
+            azure_monitor={
+                "tenant_id": "00000000-0000-0000-0000-000000000000",
+                "application_id": "11111111-1111-1111-1111-111111111111",
+                "application_secret": azure_application_secret,
+                "logs_endpoint": "https://example.region-1.ingest.monitor.azure.com/datacollectionRules/dcr-example/streams/Microsoft-OTLP-Logs/otlp/v1/logs",
+            })
+        ```
+
+        </details>
 
         <details>
           <summary>
@@ -497,6 +588,63 @@ class IntegrationLogAgent(pulumi.CustomResource):
                 "endpoint": grafana_endpoint,
                 "grafana_instance_id": grafana_instance_id,
                 "api_token": grafana_api_token,
+            })
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>OTLP log agent integration</i>
+            </b>
+          </summary>
+
+        > **Note:** The `otlp` block is available from [v1.50.0].
+
+        Send logs to any OpenTelemetry-compatible backend over OTLP/HTTP, such as SigNoz or Honeycomb. Authentication can be done with headers, basic auth or OAuth2
+        client credentials.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        otlp = cloudamqp.IntegrationLogAgent("otlp",
+            instance_id=int(instance["id"]),
+            otlp={
+                "endpoint": "https://api.honeycomb.io/v1/logs",
+                "auth_type": "headers",
+                "headers": f"x-honeycomb-team: {honeycomb_api_key}",
+            })
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        otlp = cloudamqp.IntegrationLogAgent("otlp",
+            instance_id=int(instance["id"]),
+            otlp={
+                "endpoint": "https://otlp.example.com:4318/v1/logs",
+                "auth_type": "basic_auth",
+                "username": otlp_username,
+                "password": otlp_password,
+            })
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        otlp = cloudamqp.IntegrationLogAgent("otlp",
+            instance_id=int(instance["id"]),
+            otlp={
+                "endpoint": "https://otlp.example.com:4318/v1/logs",
+                "auth_type": "oauth2",
+                "client_id": otlp_client_id,
+                "client_secret": otlp_client_secret,
+                "token_url": "https://auth.example.com/oauth2/token",
+                "scopes": "logs:write",
             })
         ```
 
@@ -554,6 +702,7 @@ class IntegrationLogAgent(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['IntegrationLogAgentAzureMonitorArgs', 'IntegrationLogAgentAzureMonitorArgsDict']] azure_monitor: Azure Monitor native OTLP log integration configuration
         :param pulumi.Input[Union['IntegrationLogAgentCloudwatchArgs', 'IntegrationLogAgentCloudwatchArgsDict']] cloudwatch: CloudWatch OTLP log integration configuration
         :param pulumi.Input[Union['IntegrationLogAgentCoralogixArgs', 'IntegrationLogAgentCoralogixArgsDict']] coralogix: Coralogix log integration configuration
         :param pulumi.Input[Union['IntegrationLogAgentDatadogArgs', 'IntegrationLogAgentDatadogArgsDict']] datadog: Datadog log integration configuration
@@ -565,10 +714,11 @@ class IntegrationLogAgent(pulumi.CustomResource):
                
                <details>
                <summary>
-               <b>CloudWatch</b>
+               <b>Azure Monitor</b>
                </summary>
                
-               The following arguments are used by the `cloudwatch` block.
+               The following arguments are used by the `azure_monitor` block.
+        :param pulumi.Input[Union['IntegrationLogAgentOtlpArgs', 'IntegrationLogAgentOtlpArgsDict']] otlp: OTLP log integration configuration for any OpenTelemetry-compatible backend
         :param pulumi.Input[Union['IntegrationLogAgentSplunkArgs', 'IntegrationLogAgentSplunkArgsDict']] splunk: Splunk HEC log integration configuration
         :param pulumi.Input[Union['IntegrationLogAgentUptraceArgs', 'IntegrationLogAgentUptraceArgsDict']] uptrace: Uptrace OTLP log integration configuration
         """
@@ -583,13 +733,38 @@ class IntegrationLogAgent(pulumi.CustomResource):
 
         > **Note:** This resource is available from [v1.47.0].
 
-        This resource allows you to create and manage agent-based log integrations for a CloudAMQP instance.
+        This resource allows you to create and manage OpenTelemetry agent-based log integrations for a CloudAMQP instance.
         Once configured, the logs produced will be forwarded to the corresponding integration. More information
         can be found for all supported [CloudAMQP Logs Integration].
 
         Only available for dedicated subscription plans.
 
         ## Example Usage
+
+        <details>
+          <summary>
+            <b>
+              <i>Azure Monitor log agent integration</i>
+            </b>
+          </summary>
+
+        > **Note:** The `azure_monitor` block is available from [v1.50.0].
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        azure_monitor = cloudamqp.IntegrationLogAgent("azure_monitor",
+            instance_id=int(instance["id"]),
+            azure_monitor={
+                "tenant_id": "00000000-0000-0000-0000-000000000000",
+                "application_id": "11111111-1111-1111-1111-111111111111",
+                "application_secret": azure_application_secret,
+                "logs_endpoint": "https://example.region-1.ingest.monitor.azure.com/datacollectionRules/dcr-example/streams/Microsoft-OTLP-Logs/otlp/v1/logs",
+            })
+        ```
+
+        </details>
 
         <details>
           <summary>
@@ -733,6 +908,63 @@ class IntegrationLogAgent(pulumi.CustomResource):
                 "endpoint": grafana_endpoint,
                 "grafana_instance_id": grafana_instance_id,
                 "api_token": grafana_api_token,
+            })
+        ```
+
+        </details>
+
+        <details>
+          <summary>
+            <b>
+              <i>OTLP log agent integration</i>
+            </b>
+          </summary>
+
+        > **Note:** The `otlp` block is available from [v1.50.0].
+
+        Send logs to any OpenTelemetry-compatible backend over OTLP/HTTP, such as SigNoz or Honeycomb. Authentication can be done with headers, basic auth or OAuth2
+        client credentials.
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        otlp = cloudamqp.IntegrationLogAgent("otlp",
+            instance_id=int(instance["id"]),
+            otlp={
+                "endpoint": "https://api.honeycomb.io/v1/logs",
+                "auth_type": "headers",
+                "headers": f"x-honeycomb-team: {honeycomb_api_key}",
+            })
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        otlp = cloudamqp.IntegrationLogAgent("otlp",
+            instance_id=int(instance["id"]),
+            otlp={
+                "endpoint": "https://otlp.example.com:4318/v1/logs",
+                "auth_type": "basic_auth",
+                "username": otlp_username,
+                "password": otlp_password,
+            })
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_cloudamqp as cloudamqp
+
+        otlp = cloudamqp.IntegrationLogAgent("otlp",
+            instance_id=int(instance["id"]),
+            otlp={
+                "endpoint": "https://otlp.example.com:4318/v1/logs",
+                "auth_type": "oauth2",
+                "client_id": otlp_client_id,
+                "client_secret": otlp_client_secret,
+                "token_url": "https://auth.example.com/oauth2/token",
+                "scopes": "logs:write",
             })
         ```
 
@@ -803,12 +1035,14 @@ class IntegrationLogAgent(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 azure_monitor: pulumi.Input[Optional[Union['IntegrationLogAgentAzureMonitorArgs', 'IntegrationLogAgentAzureMonitorArgsDict']]] = None,
                  cloudwatch: pulumi.Input[Optional[Union['IntegrationLogAgentCloudwatchArgs', 'IntegrationLogAgentCloudwatchArgsDict']]] = None,
                  coralogix: pulumi.Input[Optional[Union['IntegrationLogAgentCoralogixArgs', 'IntegrationLogAgentCoralogixArgsDict']]] = None,
                  datadog: pulumi.Input[Optional[Union['IntegrationLogAgentDatadogArgs', 'IntegrationLogAgentDatadogArgsDict']]] = None,
                  google_cloud: pulumi.Input[Optional[Union['IntegrationLogAgentGoogleCloudArgs', 'IntegrationLogAgentGoogleCloudArgsDict']]] = None,
                  grafana: pulumi.Input[Optional[Union['IntegrationLogAgentGrafanaArgs', 'IntegrationLogAgentGrafanaArgsDict']]] = None,
                  instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 otlp: pulumi.Input[Optional[Union['IntegrationLogAgentOtlpArgs', 'IntegrationLogAgentOtlpArgsDict']]] = None,
                  splunk: pulumi.Input[Optional[Union['IntegrationLogAgentSplunkArgs', 'IntegrationLogAgentSplunkArgsDict']]] = None,
                  uptrace: pulumi.Input[Optional[Union['IntegrationLogAgentUptraceArgs', 'IntegrationLogAgentUptraceArgsDict']]] = None,
                  __props__=None):
@@ -820,6 +1054,7 @@ class IntegrationLogAgent(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = IntegrationLogAgentArgs.__new__(IntegrationLogAgentArgs)
 
+            __props__.__dict__["azure_monitor"] = azure_monitor
             __props__.__dict__["cloudwatch"] = cloudwatch
             __props__.__dict__["coralogix"] = coralogix
             __props__.__dict__["datadog"] = datadog
@@ -828,6 +1063,7 @@ class IntegrationLogAgent(pulumi.CustomResource):
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
+            __props__.__dict__["otlp"] = otlp
             __props__.__dict__["splunk"] = splunk
             __props__.__dict__["uptrace"] = uptrace
         super(IntegrationLogAgent, __self__).__init__(
@@ -840,12 +1076,14 @@ class IntegrationLogAgent(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            azure_monitor: pulumi.Input[Optional[Union['IntegrationLogAgentAzureMonitorArgs', 'IntegrationLogAgentAzureMonitorArgsDict']]] = None,
             cloudwatch: pulumi.Input[Optional[Union['IntegrationLogAgentCloudwatchArgs', 'IntegrationLogAgentCloudwatchArgsDict']]] = None,
             coralogix: pulumi.Input[Optional[Union['IntegrationLogAgentCoralogixArgs', 'IntegrationLogAgentCoralogixArgsDict']]] = None,
             datadog: pulumi.Input[Optional[Union['IntegrationLogAgentDatadogArgs', 'IntegrationLogAgentDatadogArgsDict']]] = None,
             google_cloud: pulumi.Input[Optional[Union['IntegrationLogAgentGoogleCloudArgs', 'IntegrationLogAgentGoogleCloudArgsDict']]] = None,
             grafana: pulumi.Input[Optional[Union['IntegrationLogAgentGrafanaArgs', 'IntegrationLogAgentGrafanaArgsDict']]] = None,
             instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            otlp: pulumi.Input[Optional[Union['IntegrationLogAgentOtlpArgs', 'IntegrationLogAgentOtlpArgsDict']]] = None,
             splunk: pulumi.Input[Optional[Union['IntegrationLogAgentSplunkArgs', 'IntegrationLogAgentSplunkArgsDict']]] = None,
             uptrace: pulumi.Input[Optional[Union['IntegrationLogAgentUptraceArgs', 'IntegrationLogAgentUptraceArgsDict']]] = None) -> 'IntegrationLogAgent':
         """
@@ -855,6 +1093,7 @@ class IntegrationLogAgent(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['IntegrationLogAgentAzureMonitorArgs', 'IntegrationLogAgentAzureMonitorArgsDict']] azure_monitor: Azure Monitor native OTLP log integration configuration
         :param pulumi.Input[Union['IntegrationLogAgentCloudwatchArgs', 'IntegrationLogAgentCloudwatchArgsDict']] cloudwatch: CloudWatch OTLP log integration configuration
         :param pulumi.Input[Union['IntegrationLogAgentCoralogixArgs', 'IntegrationLogAgentCoralogixArgsDict']] coralogix: Coralogix log integration configuration
         :param pulumi.Input[Union['IntegrationLogAgentDatadogArgs', 'IntegrationLogAgentDatadogArgsDict']] datadog: Datadog log integration configuration
@@ -866,10 +1105,11 @@ class IntegrationLogAgent(pulumi.CustomResource):
                
                <details>
                <summary>
-               <b>CloudWatch</b>
+               <b>Azure Monitor</b>
                </summary>
                
-               The following arguments are used by the `cloudwatch` block.
+               The following arguments are used by the `azure_monitor` block.
+        :param pulumi.Input[Union['IntegrationLogAgentOtlpArgs', 'IntegrationLogAgentOtlpArgsDict']] otlp: OTLP log integration configuration for any OpenTelemetry-compatible backend
         :param pulumi.Input[Union['IntegrationLogAgentSplunkArgs', 'IntegrationLogAgentSplunkArgsDict']] splunk: Splunk HEC log integration configuration
         :param pulumi.Input[Union['IntegrationLogAgentUptraceArgs', 'IntegrationLogAgentUptraceArgsDict']] uptrace: Uptrace OTLP log integration configuration
         """
@@ -877,15 +1117,25 @@ class IntegrationLogAgent(pulumi.CustomResource):
 
         __props__ = _IntegrationLogAgentState.__new__(_IntegrationLogAgentState)
 
+        __props__.__dict__["azure_monitor"] = azure_monitor
         __props__.__dict__["cloudwatch"] = cloudwatch
         __props__.__dict__["coralogix"] = coralogix
         __props__.__dict__["datadog"] = datadog
         __props__.__dict__["google_cloud"] = google_cloud
         __props__.__dict__["grafana"] = grafana
         __props__.__dict__["instance_id"] = instance_id
+        __props__.__dict__["otlp"] = otlp
         __props__.__dict__["splunk"] = splunk
         __props__.__dict__["uptrace"] = uptrace
         return IntegrationLogAgent(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="azureMonitor")
+    def azure_monitor(self) -> pulumi.Output[Optional['outputs.IntegrationLogAgentAzureMonitor']]:
+        """
+        Azure Monitor native OTLP log integration configuration
+        """
+        return pulumi.get(self, "azure_monitor")
 
     @_builtins.property
     @pulumi.getter
@@ -937,12 +1187,20 @@ class IntegrationLogAgent(pulumi.CustomResource):
 
         <details>
         <summary>
-        <b>CloudWatch</b>
+        <b>Azure Monitor</b>
         </summary>
 
-        The following arguments are used by the `cloudwatch` block.
+        The following arguments are used by the `azure_monitor` block.
         """
         return pulumi.get(self, "instance_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def otlp(self) -> pulumi.Output[Optional['outputs.IntegrationLogAgentOtlp']]:
+        """
+        OTLP log integration configuration for any OpenTelemetry-compatible backend
+        """
+        return pulumi.get(self, "otlp")
 
     @_builtins.property
     @pulumi.getter

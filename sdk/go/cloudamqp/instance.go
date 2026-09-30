@@ -700,7 +700,7 @@ type Instance struct {
 	Apikey pulumi.StringOutput `pulumi:"apikey"`
 	// Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
 	Backend pulumi.StringOutput `pulumi:"backend"`
-	// Cluster name, extracted from the external hostname
+	// The cluster name of the CloudAMQP instance.
 	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
 	// Copy settings from one CloudAMQP instance to a new. Consists of
 	// the block documented below.
@@ -832,7 +832,7 @@ type instanceState struct {
 	Apikey *string `pulumi:"apikey"`
 	// Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
 	Backend *string `pulumi:"backend"`
-	// Cluster name, extracted from the external hostname
+	// The cluster name of the CloudAMQP instance.
 	ClusterName *string `pulumi:"clusterName"`
 	// Copy settings from one CloudAMQP instance to a new. Consists of
 	// the block documented below.
@@ -923,7 +923,7 @@ type InstanceState struct {
 	Apikey pulumi.StringPtrInput
 	// Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
 	Backend pulumi.StringPtrInput
-	// Cluster name, extracted from the external hostname
+	// The cluster name of the CloudAMQP instance.
 	ClusterName pulumi.StringPtrInput
 	// Copy settings from one CloudAMQP instance to a new. Consists of
 	// the block documented below.
@@ -1249,7 +1249,7 @@ func (o InstanceOutput) Backend() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
 }
 
-// Cluster name, extracted from the external hostname
+// The cluster name of the CloudAMQP instance.
 func (o InstanceOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.ClusterName }).(pulumi.StringOutput)
 }

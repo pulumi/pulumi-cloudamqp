@@ -18,6 +18,15 @@ namespace Pulumi.CloudAmqp
     /// 
     /// Only available for dedicated subscription plans.
     /// 
+    /// &gt; **Note:** For `Newrelic`/`NewrelicV2`, `Datadog`/`DatadogV2`, `Cloudwatch`/`CloudwatchV2`, and
+    /// `Stackdriver`, we recommend the newer, **Prometheus**/**OpenTelemetry**-based
+    /// [`cloudamqp.IntegrationMetricPrometheus`][metric-prometheus] resource instead of this one — see its
+    /// `NewrelicV3`, `DatadogV3`, `CloudwatchV3`, and `StackdriverV2` blocks respectively. It's where new
+    /// metrics integration features land going forward. This resource remains fully supported for `Librato`,
+    /// which has no Prometheus-based equivalent.
+    /// 
+    /// [metric-prometheus]: integration_metric_prometheus.md
+    /// 
     /// ## Example Usage
     /// 
     /// &lt;details&gt;
@@ -411,8 +420,6 @@ namespace Pulumi.CloudAmqp
     /// | ------------- | ------------------------------------------------------------- |
     /// | cloudwatch | Access key: Create an IAM user with permission to `PutMetricData` |
     /// | CloudwatchV2 | Access key: Create an IAM user with permission to `PutMetricData` |
-    /// | cloudwatch | Assume role: Create a IAM role with the permission to `PutMetricData` |
-    /// | CloudwatchV2 | Assume role: Create a IAM role with the permission to `PutMetricData` |
     /// | datadog | Create a Datadog API key at app.datadoghq.com |
     /// | DatadogV2 | Create a Datadog API key at app.datadoghq.com |
     /// | librato | Create a new API token (with record only permissions) here: [Librato token] |
@@ -432,8 +439,6 @@ namespace Pulumi.CloudAmqp
     /// |------------------------|----------------|------------------------------------------------------|
     /// | Cloudwatch             | cloudwatch     | Access key: region, access_key_id, SecretAccessKey |
     /// | Cloudwatch v2          | CloudwatchV2  | Access key: region, access_key_id, SecretAccessKey |
-    /// | Cloudwatch             | cloudwatch     | Assume role: region, iam_role, IamExternalId       |
-    /// | Cloudwatch v2          | CloudwatchV2  | Assume role: region, iam_role, IamExternalId       |
     /// | Datadog                | datadog        | api_key, region                                      |
     /// | Datadog v2             | DatadogV2     | api_key, region                                      |
     /// | Librato                | librato        | email, ApiKey                                       |

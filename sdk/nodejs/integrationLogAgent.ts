@@ -11,13 +11,39 @@ import * as utilities from "./utilities";
  *
  * > **Note:** This resource is available from [v1.47.0].
  *
- * This resource allows you to create and manage agent-based log integrations for a CloudAMQP instance.
+ * This resource allows you to create and manage OpenTelemetry agent-based log integrations for a CloudAMQP instance.
  * Once configured, the logs produced will be forwarded to the corresponding integration. More information
  * can be found for all supported [CloudAMQP Logs Integration].
  *
  * Only available for dedicated subscription plans.
  *
  * ## Example Usage
+ *
+ * <details>
+ *   <summary>
+ *     <b>
+ *       <i>Azure Monitor log agent integration</i>
+ *     </b>
+ *   </summary>
+ *
+ * > **Note:** The `azureMonitor` block is available from [v1.50.0].
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const azureMonitor = new cloudamqp.IntegrationLogAgent("azure_monitor", {
+ *     instanceId: Number(instance.id),
+ *     azureMonitor: {
+ *         tenantId: "00000000-0000-0000-0000-000000000000",
+ *         applicationId: "11111111-1111-1111-1111-111111111111",
+ *         applicationSecret: azureApplicationSecret,
+ *         logsEndpoint: "https://example.region-1.ingest.monitor.azure.com/datacollectionRules/dcr-example/streams/Microsoft-OTLP-Logs/otlp/v1/logs",
+ *     },
+ * });
+ * ```
+ *
+ * </details>
  *
  * <details>
  *   <summary>
@@ -178,6 +204,66 @@ import * as utilities from "./utilities";
  * <details>
  *   <summary>
  *     <b>
+ *       <i>OTLP log agent integration</i>
+ *     </b>
+ *   </summary>
+ *
+ * > **Note:** The `otlp` block is available from [v1.50.0].
+ *
+ * Send logs to any OpenTelemetry-compatible backend over OTLP/HTTP, such as SigNoz or Honeycomb. Authentication can be done with headers, basic auth or OAuth2
+ * client credentials.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const otlp = new cloudamqp.IntegrationLogAgent("otlp", {
+ *     instanceId: Number(instance.id),
+ *     otlp: {
+ *         endpoint: "https://api.honeycomb.io/v1/logs",
+ *         authType: "headers",
+ *         headers: `x-honeycomb-team: ${honeycombApiKey}`,
+ *     },
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const otlp = new cloudamqp.IntegrationLogAgent("otlp", {
+ *     instanceId: Number(instance.id),
+ *     otlp: {
+ *         endpoint: "https://otlp.example.com:4318/v1/logs",
+ *         authType: "basic_auth",
+ *         username: otlpUsername,
+ *         password: otlpPassword,
+ *     },
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as cloudamqp from "@pulumi/cloudamqp";
+ *
+ * const otlp = new cloudamqp.IntegrationLogAgent("otlp", {
+ *     instanceId: Number(instance.id),
+ *     otlp: {
+ *         endpoint: "https://otlp.example.com:4318/v1/logs",
+ *         authType: "oauth2",
+ *         clientId: otlpClientId,
+ *         clientSecret: otlpClientSecret,
+ *         tokenUrl: "https://auth.example.com/oauth2/token",
+ *         scopes: "logs:write",
+ *     },
+ * });
+ * ```
+ *
+ * </details>
+ *
+ * <details>
+ *   <summary>
+ *     <b>
  *       <i>Splunk log agent integration</i>
  *     </b>
  *   </summary>
@@ -255,6 +341,10 @@ export class IntegrationLogAgent extends pulumi.CustomResource {
     }
 
     /**
+     * Azure Monitor native OTLP log integration configuration
+     */
+    declare public readonly azureMonitor: pulumi.Output<outputs.IntegrationLogAgentAzureMonitor | undefined>;
+    /**
      * CloudWatch OTLP log integration configuration
      */
     declare public readonly cloudwatch: pulumi.Output<outputs.IntegrationLogAgentCloudwatch | undefined>;
@@ -281,12 +371,16 @@ export class IntegrationLogAgent extends pulumi.CustomResource {
      *
      * <details>
      * <summary>
-     * <b>CloudWatch</b>
+     * <b>Azure Monitor</b>
      * </summary>
      *
-     * The following arguments are used by the `cloudwatch` block.
+     * The following arguments are used by the `azureMonitor` block.
      */
     declare public readonly instanceId: pulumi.Output<number>;
+    /**
+     * OTLP log integration configuration for any OpenTelemetry-compatible backend
+     */
+    declare public readonly otlp: pulumi.Output<outputs.IntegrationLogAgentOtlp | undefined>;
     /**
      * Splunk HEC log integration configuration
      */
@@ -309,12 +403,14 @@ export class IntegrationLogAgent extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IntegrationLogAgentState | undefined;
+            resourceInputs["azureMonitor"] = state?.azureMonitor;
             resourceInputs["cloudwatch"] = state?.cloudwatch;
             resourceInputs["coralogix"] = state?.coralogix;
             resourceInputs["datadog"] = state?.datadog;
             resourceInputs["googleCloud"] = state?.googleCloud;
             resourceInputs["grafana"] = state?.grafana;
             resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["otlp"] = state?.otlp;
             resourceInputs["splunk"] = state?.splunk;
             resourceInputs["uptrace"] = state?.uptrace;
         } else {
@@ -322,12 +418,14 @@ export class IntegrationLogAgent extends pulumi.CustomResource {
             if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
+            resourceInputs["azureMonitor"] = args?.azureMonitor;
             resourceInputs["cloudwatch"] = args?.cloudwatch;
             resourceInputs["coralogix"] = args?.coralogix;
             resourceInputs["datadog"] = args?.datadog;
             resourceInputs["googleCloud"] = args?.googleCloud;
             resourceInputs["grafana"] = args?.grafana;
             resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["otlp"] = args?.otlp;
             resourceInputs["splunk"] = args?.splunk;
             resourceInputs["uptrace"] = args?.uptrace;
         }
@@ -340,6 +438,10 @@ export class IntegrationLogAgent extends pulumi.CustomResource {
  * Input properties used for looking up and filtering IntegrationLogAgent resources.
  */
 export interface IntegrationLogAgentState {
+    /**
+     * Azure Monitor native OTLP log integration configuration
+     */
+    azureMonitor?: pulumi.Input<inputs.IntegrationLogAgentAzureMonitor | undefined>;
     /**
      * CloudWatch OTLP log integration configuration
      */
@@ -367,12 +469,16 @@ export interface IntegrationLogAgentState {
      *
      * <details>
      * <summary>
-     * <b>CloudWatch</b>
+     * <b>Azure Monitor</b>
      * </summary>
      *
-     * The following arguments are used by the `cloudwatch` block.
+     * The following arguments are used by the `azureMonitor` block.
      */
     instanceId?: pulumi.Input<number | undefined>;
+    /**
+     * OTLP log integration configuration for any OpenTelemetry-compatible backend
+     */
+    otlp?: pulumi.Input<inputs.IntegrationLogAgentOtlp | undefined>;
     /**
      * Splunk HEC log integration configuration
      */
@@ -388,6 +494,10 @@ export interface IntegrationLogAgentState {
  */
 export interface IntegrationLogAgentArgs {
     /**
+     * Azure Monitor native OTLP log integration configuration
+     */
+    azureMonitor?: pulumi.Input<inputs.IntegrationLogAgentAzureMonitor | undefined>;
+    /**
      * CloudWatch OTLP log integration configuration
      */
     cloudwatch?: pulumi.Input<inputs.IntegrationLogAgentCloudwatch | undefined>;
@@ -414,12 +524,16 @@ export interface IntegrationLogAgentArgs {
      *
      * <details>
      * <summary>
-     * <b>CloudWatch</b>
+     * <b>Azure Monitor</b>
      * </summary>
      *
-     * The following arguments are used by the `cloudwatch` block.
+     * The following arguments are used by the `azureMonitor` block.
      */
     instanceId: pulumi.Input<number>;
+    /**
+     * OTLP log integration configuration for any OpenTelemetry-compatible backend
+     */
+    otlp?: pulumi.Input<inputs.IntegrationLogAgentOtlp | undefined>;
     /**
      * Splunk HEC log integration configuration
      */

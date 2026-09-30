@@ -313,6 +313,16 @@ import (
 // | --- | --- | --- | --- | --- | --- |
 // | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |
 //
+// ### logLevel
+//
+// | Type | Default | Affect | Allowed values |
+// | --- | --- | --- | --- |
+// | string | info | Applied immediately | `debug, info, warning, error, critical, none` |
+//
+// Note: Setting `logLevel` also sets `logExchangeLevel` to the same value. Do not
+// set both arguments to different values, the plan will never converge. `debug`
+// increases log volume on every output, use it for a limited period while troubleshooting.
+//
 // ### logExchangeLevel
 //
 // | Type | Default | Affect | Allowed values |
@@ -436,8 +446,10 @@ type RabbitConfiguration struct {
 	Heartbeat pulumi.IntOutput `pulumi:"heartbeat"`
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
-	// Log level for the logger used for log integrations and the CloudAMQP Console log view.
+	// Log level for the log exchange only, which feeds the CloudAMQP Console log view and legacy log integrations. Prefer `logLevel`.
 	LogExchangeLevel pulumi.StringOutput `pulumi:"logExchangeLevel"`
+	// Log level for all RabbitMQ log outputs: log integrations, the CloudAMQP Console log view and the log file. Also sets `logExchangeLevel`.
+	LogLevel pulumi.StringOutput `pulumi:"logLevel"`
 	// The largest allowed message payload size in bytes.
 	MaxMessageSize pulumi.IntOutput `pulumi:"maxMessageSize"`
 	// Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
@@ -513,8 +525,10 @@ type rabbitConfigurationState struct {
 	Heartbeat *int `pulumi:"heartbeat"`
 	// The CloudAMQP instance ID.
 	InstanceId *int `pulumi:"instanceId"`
-	// Log level for the logger used for log integrations and the CloudAMQP Console log view.
+	// Log level for the log exchange only, which feeds the CloudAMQP Console log view and legacy log integrations. Prefer `logLevel`.
 	LogExchangeLevel *string `pulumi:"logExchangeLevel"`
+	// Log level for all RabbitMQ log outputs: log integrations, the CloudAMQP Console log view and the log file. Also sets `logExchangeLevel`.
+	LogLevel *string `pulumi:"logLevel"`
 	// The largest allowed message payload size in bytes.
 	MaxMessageSize *int `pulumi:"maxMessageSize"`
 	// Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
@@ -558,8 +572,10 @@ type RabbitConfigurationState struct {
 	Heartbeat pulumi.IntPtrInput
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntPtrInput
-	// Log level for the logger used for log integrations and the CloudAMQP Console log view.
+	// Log level for the log exchange only, which feeds the CloudAMQP Console log view and legacy log integrations. Prefer `logLevel`.
 	LogExchangeLevel pulumi.StringPtrInput
+	// Log level for all RabbitMQ log outputs: log integrations, the CloudAMQP Console log view and the log file. Also sets `logExchangeLevel`.
+	LogLevel pulumi.StringPtrInput
 	// The largest allowed message payload size in bytes.
 	MaxMessageSize pulumi.IntPtrInput
 	// Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
@@ -607,8 +623,10 @@ type rabbitConfigurationArgs struct {
 	Heartbeat *int `pulumi:"heartbeat"`
 	// The CloudAMQP instance ID.
 	InstanceId int `pulumi:"instanceId"`
-	// Log level for the logger used for log integrations and the CloudAMQP Console log view.
+	// Log level for the log exchange only, which feeds the CloudAMQP Console log view and legacy log integrations. Prefer `logLevel`.
 	LogExchangeLevel *string `pulumi:"logExchangeLevel"`
+	// Log level for all RabbitMQ log outputs: log integrations, the CloudAMQP Console log view and the log file. Also sets `logExchangeLevel`.
+	LogLevel *string `pulumi:"logLevel"`
 	// The largest allowed message payload size in bytes.
 	MaxMessageSize *int `pulumi:"maxMessageSize"`
 	// Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
@@ -653,8 +671,10 @@ type RabbitConfigurationArgs struct {
 	Heartbeat pulumi.IntPtrInput
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntInput
-	// Log level for the logger used for log integrations and the CloudAMQP Console log view.
+	// Log level for the log exchange only, which feeds the CloudAMQP Console log view and legacy log integrations. Prefer `logLevel`.
 	LogExchangeLevel pulumi.StringPtrInput
+	// Log level for all RabbitMQ log outputs: log integrations, the CloudAMQP Console log view and the log file. Also sets `logExchangeLevel`.
+	LogLevel pulumi.StringPtrInput
 	// The largest allowed message payload size in bytes.
 	MaxMessageSize pulumi.IntPtrInput
 	// Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
@@ -802,9 +822,14 @@ func (o RabbitConfigurationOutput) InstanceId() pulumi.IntOutput {
 	return o.ApplyT(func(v *RabbitConfiguration) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
 }
 
-// Log level for the logger used for log integrations and the CloudAMQP Console log view.
+// Log level for the log exchange only, which feeds the CloudAMQP Console log view and legacy log integrations. Prefer `logLevel`.
 func (o RabbitConfigurationOutput) LogExchangeLevel() pulumi.StringOutput {
 	return o.ApplyT(func(v *RabbitConfiguration) pulumi.StringOutput { return v.LogExchangeLevel }).(pulumi.StringOutput)
+}
+
+// Log level for all RabbitMQ log outputs: log integrations, the CloudAMQP Console log view and the log file. Also sets `logExchangeLevel`.
+func (o RabbitConfigurationOutput) LogLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v *RabbitConfiguration) pulumi.StringOutput { return v.LogLevel }).(pulumi.StringOutput)
 }
 
 // The largest allowed message payload size in bytes.

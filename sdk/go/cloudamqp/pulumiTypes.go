@@ -246,6 +246,295 @@ func (o InstanceCopySettingArrayOutput) Index(i pulumi.IntInput) InstanceCopySet
 	}).(InstanceCopySettingOutput)
 }
 
+type IntegrationLogAgentAzureMonitor struct {
+	// Microsoft Entra Application (client) ID as a UUID.
+	ApplicationId *string `pulumi:"applicationId"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Microsoft Entra client secret value, not the secret ID. This value is write-only and will not be stored in state.
+	ApplicationSecret *string `pulumi:"applicationSecret"`
+	// Version of the write-only `applicationSecret`. Increment to trigger an update when the secret changes (default: `1`).
+	ApplicationSecretVersion *int `pulumi:"applicationSecretVersion"`
+	// Complete Azure Monitor OTLP logs endpoint. The URL must use HTTPS and end in `/otlp/v1/logs`.
+	//
+	// The integration sends broker logs through Azure Monitor native OTLP ingestion. Azure resources such
+	// as the Data Collection Endpoint (DCE), Data Collection Rule (DCR), and Microsoft Entra application
+	// must exist before configuring this resource. See the [CloudAMQP Azure Monitor setup guide] and
+	// [Azure native OTLP ingestion documentation] for setup details.
+	//
+	// Because `applicationSecret` is write-only, it cannot be recovered when importing an existing
+	// integration. Add the secret to the Terraform configuration after import. Increment
+	// `applicationSecretVersion` when rotating the configured secret.
+	//
+	// </details>
+	//
+	// <details>
+	// <summary>
+	// <b>CloudWatch</b>
+	// </summary>
+	//
+	// The following arguments are used by the `cloudwatch` block.
+	LogsEndpoint *string `pulumi:"logsEndpoint"`
+	// Microsoft Entra Directory (tenant) ID as a UUID.
+	TenantId *string `pulumi:"tenantId"`
+}
+
+// IntegrationLogAgentAzureMonitorInput is an input type that accepts IntegrationLogAgentAzureMonitorArgs and IntegrationLogAgentAzureMonitorOutput values.
+// You can construct a concrete instance of `IntegrationLogAgentAzureMonitorInput` via:
+//
+//	IntegrationLogAgentAzureMonitorArgs{...}
+type IntegrationLogAgentAzureMonitorInput interface {
+	pulumi.Input
+
+	ToIntegrationLogAgentAzureMonitorOutput() IntegrationLogAgentAzureMonitorOutput
+	ToIntegrationLogAgentAzureMonitorOutputWithContext(context.Context) IntegrationLogAgentAzureMonitorOutput
+}
+
+type IntegrationLogAgentAzureMonitorArgs struct {
+	// Microsoft Entra Application (client) ID as a UUID.
+	ApplicationId pulumi.StringPtrInput `pulumi:"applicationId"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Microsoft Entra client secret value, not the secret ID. This value is write-only and will not be stored in state.
+	ApplicationSecret pulumi.StringPtrInput `pulumi:"applicationSecret"`
+	// Version of the write-only `applicationSecret`. Increment to trigger an update when the secret changes (default: `1`).
+	ApplicationSecretVersion pulumi.IntPtrInput `pulumi:"applicationSecretVersion"`
+	// Complete Azure Monitor OTLP logs endpoint. The URL must use HTTPS and end in `/otlp/v1/logs`.
+	//
+	// The integration sends broker logs through Azure Monitor native OTLP ingestion. Azure resources such
+	// as the Data Collection Endpoint (DCE), Data Collection Rule (DCR), and Microsoft Entra application
+	// must exist before configuring this resource. See the [CloudAMQP Azure Monitor setup guide] and
+	// [Azure native OTLP ingestion documentation] for setup details.
+	//
+	// Because `applicationSecret` is write-only, it cannot be recovered when importing an existing
+	// integration. Add the secret to the Terraform configuration after import. Increment
+	// `applicationSecretVersion` when rotating the configured secret.
+	//
+	// </details>
+	//
+	// <details>
+	// <summary>
+	// <b>CloudWatch</b>
+	// </summary>
+	//
+	// The following arguments are used by the `cloudwatch` block.
+	LogsEndpoint pulumi.StringPtrInput `pulumi:"logsEndpoint"`
+	// Microsoft Entra Directory (tenant) ID as a UUID.
+	TenantId pulumi.StringPtrInput `pulumi:"tenantId"`
+}
+
+func (IntegrationLogAgentAzureMonitorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationLogAgentAzureMonitor)(nil)).Elem()
+}
+
+func (i IntegrationLogAgentAzureMonitorArgs) ToIntegrationLogAgentAzureMonitorOutput() IntegrationLogAgentAzureMonitorOutput {
+	return i.ToIntegrationLogAgentAzureMonitorOutputWithContext(context.Background())
+}
+
+func (i IntegrationLogAgentAzureMonitorArgs) ToIntegrationLogAgentAzureMonitorOutputWithContext(ctx context.Context) IntegrationLogAgentAzureMonitorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentAzureMonitorOutput)
+}
+
+func (i IntegrationLogAgentAzureMonitorArgs) ToIntegrationLogAgentAzureMonitorPtrOutput() IntegrationLogAgentAzureMonitorPtrOutput {
+	return i.ToIntegrationLogAgentAzureMonitorPtrOutputWithContext(context.Background())
+}
+
+func (i IntegrationLogAgentAzureMonitorArgs) ToIntegrationLogAgentAzureMonitorPtrOutputWithContext(ctx context.Context) IntegrationLogAgentAzureMonitorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentAzureMonitorOutput).ToIntegrationLogAgentAzureMonitorPtrOutputWithContext(ctx)
+}
+
+// IntegrationLogAgentAzureMonitorPtrInput is an input type that accepts IntegrationLogAgentAzureMonitorArgs, IntegrationLogAgentAzureMonitorPtr and IntegrationLogAgentAzureMonitorPtrOutput values.
+// You can construct a concrete instance of `IntegrationLogAgentAzureMonitorPtrInput` via:
+//
+//	        IntegrationLogAgentAzureMonitorArgs{...}
+//
+//	or:
+//
+//	        nil
+type IntegrationLogAgentAzureMonitorPtrInput interface {
+	pulumi.Input
+
+	ToIntegrationLogAgentAzureMonitorPtrOutput() IntegrationLogAgentAzureMonitorPtrOutput
+	ToIntegrationLogAgentAzureMonitorPtrOutputWithContext(context.Context) IntegrationLogAgentAzureMonitorPtrOutput
+}
+
+type integrationLogAgentAzureMonitorPtrType IntegrationLogAgentAzureMonitorArgs
+
+func IntegrationLogAgentAzureMonitorPtr(v *IntegrationLogAgentAzureMonitorArgs) IntegrationLogAgentAzureMonitorPtrInput {
+	return (*integrationLogAgentAzureMonitorPtrType)(v)
+}
+
+func (*integrationLogAgentAzureMonitorPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationLogAgentAzureMonitor)(nil)).Elem()
+}
+
+func (i *integrationLogAgentAzureMonitorPtrType) ToIntegrationLogAgentAzureMonitorPtrOutput() IntegrationLogAgentAzureMonitorPtrOutput {
+	return i.ToIntegrationLogAgentAzureMonitorPtrOutputWithContext(context.Background())
+}
+
+func (i *integrationLogAgentAzureMonitorPtrType) ToIntegrationLogAgentAzureMonitorPtrOutputWithContext(ctx context.Context) IntegrationLogAgentAzureMonitorPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentAzureMonitorPtrOutput)
+}
+
+type IntegrationLogAgentAzureMonitorOutput struct{ *pulumi.OutputState }
+
+func (IntegrationLogAgentAzureMonitorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationLogAgentAzureMonitor)(nil)).Elem()
+}
+
+func (o IntegrationLogAgentAzureMonitorOutput) ToIntegrationLogAgentAzureMonitorOutput() IntegrationLogAgentAzureMonitorOutput {
+	return o
+}
+
+func (o IntegrationLogAgentAzureMonitorOutput) ToIntegrationLogAgentAzureMonitorOutputWithContext(ctx context.Context) IntegrationLogAgentAzureMonitorOutput {
+	return o
+}
+
+func (o IntegrationLogAgentAzureMonitorOutput) ToIntegrationLogAgentAzureMonitorPtrOutput() IntegrationLogAgentAzureMonitorPtrOutput {
+	return o.ToIntegrationLogAgentAzureMonitorPtrOutputWithContext(context.Background())
+}
+
+func (o IntegrationLogAgentAzureMonitorOutput) ToIntegrationLogAgentAzureMonitorPtrOutputWithContext(ctx context.Context) IntegrationLogAgentAzureMonitorPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IntegrationLogAgentAzureMonitor) *IntegrationLogAgentAzureMonitor {
+		return &v
+	}).(IntegrationLogAgentAzureMonitorPtrOutput)
+}
+
+// Microsoft Entra Application (client) ID as a UUID.
+func (o IntegrationLogAgentAzureMonitorOutput) ApplicationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentAzureMonitor) *string { return v.ApplicationId }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Microsoft Entra client secret value, not the secret ID. This value is write-only and will not be stored in state.
+func (o IntegrationLogAgentAzureMonitorOutput) ApplicationSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentAzureMonitor) *string { return v.ApplicationSecret }).(pulumi.StringPtrOutput)
+}
+
+// Version of the write-only `applicationSecret`. Increment to trigger an update when the secret changes (default: `1`).
+func (o IntegrationLogAgentAzureMonitorOutput) ApplicationSecretVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentAzureMonitor) *int { return v.ApplicationSecretVersion }).(pulumi.IntPtrOutput)
+}
+
+// Complete Azure Monitor OTLP logs endpoint. The URL must use HTTPS and end in `/otlp/v1/logs`.
+//
+// The integration sends broker logs through Azure Monitor native OTLP ingestion. Azure resources such
+// as the Data Collection Endpoint (DCE), Data Collection Rule (DCR), and Microsoft Entra application
+// must exist before configuring this resource. See the [CloudAMQP Azure Monitor setup guide] and
+// [Azure native OTLP ingestion documentation] for setup details.
+//
+// Because `applicationSecret` is write-only, it cannot be recovered when importing an existing
+// integration. Add the secret to the Terraform configuration after import. Increment
+// `applicationSecretVersion` when rotating the configured secret.
+//
+// </details>
+//
+// <details>
+// <summary>
+// <b>CloudWatch</b>
+// </summary>
+//
+// The following arguments are used by the `cloudwatch` block.
+func (o IntegrationLogAgentAzureMonitorOutput) LogsEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentAzureMonitor) *string { return v.LogsEndpoint }).(pulumi.StringPtrOutput)
+}
+
+// Microsoft Entra Directory (tenant) ID as a UUID.
+func (o IntegrationLogAgentAzureMonitorOutput) TenantId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentAzureMonitor) *string { return v.TenantId }).(pulumi.StringPtrOutput)
+}
+
+type IntegrationLogAgentAzureMonitorPtrOutput struct{ *pulumi.OutputState }
+
+func (IntegrationLogAgentAzureMonitorPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationLogAgentAzureMonitor)(nil)).Elem()
+}
+
+func (o IntegrationLogAgentAzureMonitorPtrOutput) ToIntegrationLogAgentAzureMonitorPtrOutput() IntegrationLogAgentAzureMonitorPtrOutput {
+	return o
+}
+
+func (o IntegrationLogAgentAzureMonitorPtrOutput) ToIntegrationLogAgentAzureMonitorPtrOutputWithContext(ctx context.Context) IntegrationLogAgentAzureMonitorPtrOutput {
+	return o
+}
+
+func (o IntegrationLogAgentAzureMonitorPtrOutput) Elem() IntegrationLogAgentAzureMonitorOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentAzureMonitor) IntegrationLogAgentAzureMonitor {
+		if v != nil {
+			return *v
+		}
+		var ret IntegrationLogAgentAzureMonitor
+		return ret
+	}).(IntegrationLogAgentAzureMonitorOutput)
+}
+
+// Microsoft Entra Application (client) ID as a UUID.
+func (o IntegrationLogAgentAzureMonitorPtrOutput) ApplicationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentAzureMonitor) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApplicationId
+	}).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Microsoft Entra client secret value, not the secret ID. This value is write-only and will not be stored in state.
+func (o IntegrationLogAgentAzureMonitorPtrOutput) ApplicationSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentAzureMonitor) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ApplicationSecret
+	}).(pulumi.StringPtrOutput)
+}
+
+// Version of the write-only `applicationSecret`. Increment to trigger an update when the secret changes (default: `1`).
+func (o IntegrationLogAgentAzureMonitorPtrOutput) ApplicationSecretVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentAzureMonitor) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ApplicationSecretVersion
+	}).(pulumi.IntPtrOutput)
+}
+
+// Complete Azure Monitor OTLP logs endpoint. The URL must use HTTPS and end in `/otlp/v1/logs`.
+//
+// The integration sends broker logs through Azure Monitor native OTLP ingestion. Azure resources such
+// as the Data Collection Endpoint (DCE), Data Collection Rule (DCR), and Microsoft Entra application
+// must exist before configuring this resource. See the [CloudAMQP Azure Monitor setup guide] and
+// [Azure native OTLP ingestion documentation] for setup details.
+//
+// Because `applicationSecret` is write-only, it cannot be recovered when importing an existing
+// integration. Add the secret to the Terraform configuration after import. Increment
+// `applicationSecretVersion` when rotating the configured secret.
+//
+// </details>
+//
+// <details>
+// <summary>
+// <b>CloudWatch</b>
+// </summary>
+//
+// The following arguments are used by the `cloudwatch` block.
+func (o IntegrationLogAgentAzureMonitorPtrOutput) LogsEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentAzureMonitor) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LogsEndpoint
+	}).(pulumi.StringPtrOutput)
+}
+
+// Microsoft Entra Directory (tenant) ID as a UUID.
+func (o IntegrationLogAgentAzureMonitorPtrOutput) TenantId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentAzureMonitor) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TenantId
+	}).(pulumi.StringPtrOutput)
+}
+
 type IntegrationLogAgentCloudwatch struct {
 	// External identifier that matches the trust policy of the IAM role.
 	IamExternalId *string `pulumi:"iamExternalId"`
@@ -1305,6 +1594,341 @@ func (o IntegrationLogAgentGrafanaPtrOutput) GrafanaInstanceId() pulumi.StringPt
 			return nil
 		}
 		return v.GrafanaInstanceId
+	}).(pulumi.StringPtrOutput)
+}
+
+type IntegrationLogAgentOtlp struct {
+	// Authentication for the endpoint; none, basic_auth, headers or oauth2 (default: none)
+	AuthType *string `pulumi:"authType"`
+	// Client identifier, used when authType is oauth2
+	ClientId *string `pulumi:"clientId"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Client secret, used when authType is oauth2
+	ClientSecret *string `pulumi:"clientSecret"`
+	// Version of the write-only client_secret. Increment to trigger an update when the secret changes (default: 1).
+	ClientSecretVersion *int `pulumi:"clientSecretVersion"`
+	// Full https URL the backend receives logs on, including the path (e.g. https://otlp.example.com:4318/v1/logs)
+	Endpoint *string `pulumi:"endpoint"`
+	// Headers sent with every request, one 'key: value' pair per line. Required when authType is headers
+	Headers *string `pulumi:"headers"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Password or token, used when authType is basic_auth
+	Password *string `pulumi:"password"`
+	// Version of the write-only password. Increment to trigger an update when the password changes (default: 1).
+	PasswordVersion *int `pulumi:"passwordVersion"`
+	// Scopes requested with the OAuth2 token, space or comma separated
+	Scopes *string `pulumi:"scopes"`
+	// OAuth2 token endpoint over HTTPS, used when authType is oauth2
+	TokenUrl *string `pulumi:"tokenUrl"`
+	// Username, used when authType is basic_auth
+	Username *string `pulumi:"username"`
+}
+
+// IntegrationLogAgentOtlpInput is an input type that accepts IntegrationLogAgentOtlpArgs and IntegrationLogAgentOtlpOutput values.
+// You can construct a concrete instance of `IntegrationLogAgentOtlpInput` via:
+//
+//	IntegrationLogAgentOtlpArgs{...}
+type IntegrationLogAgentOtlpInput interface {
+	pulumi.Input
+
+	ToIntegrationLogAgentOtlpOutput() IntegrationLogAgentOtlpOutput
+	ToIntegrationLogAgentOtlpOutputWithContext(context.Context) IntegrationLogAgentOtlpOutput
+}
+
+type IntegrationLogAgentOtlpArgs struct {
+	// Authentication for the endpoint; none, basic_auth, headers or oauth2 (default: none)
+	AuthType pulumi.StringPtrInput `pulumi:"authType"`
+	// Client identifier, used when authType is oauth2
+	ClientId pulumi.StringPtrInput `pulumi:"clientId"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Client secret, used when authType is oauth2
+	ClientSecret pulumi.StringPtrInput `pulumi:"clientSecret"`
+	// Version of the write-only client_secret. Increment to trigger an update when the secret changes (default: 1).
+	ClientSecretVersion pulumi.IntPtrInput `pulumi:"clientSecretVersion"`
+	// Full https URL the backend receives logs on, including the path (e.g. https://otlp.example.com:4318/v1/logs)
+	Endpoint pulumi.StringPtrInput `pulumi:"endpoint"`
+	// Headers sent with every request, one 'key: value' pair per line. Required when authType is headers
+	Headers pulumi.StringPtrInput `pulumi:"headers"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Password or token, used when authType is basic_auth
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// Version of the write-only password. Increment to trigger an update when the password changes (default: 1).
+	PasswordVersion pulumi.IntPtrInput `pulumi:"passwordVersion"`
+	// Scopes requested with the OAuth2 token, space or comma separated
+	Scopes pulumi.StringPtrInput `pulumi:"scopes"`
+	// OAuth2 token endpoint over HTTPS, used when authType is oauth2
+	TokenUrl pulumi.StringPtrInput `pulumi:"tokenUrl"`
+	// Username, used when authType is basic_auth
+	Username pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (IntegrationLogAgentOtlpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationLogAgentOtlp)(nil)).Elem()
+}
+
+func (i IntegrationLogAgentOtlpArgs) ToIntegrationLogAgentOtlpOutput() IntegrationLogAgentOtlpOutput {
+	return i.ToIntegrationLogAgentOtlpOutputWithContext(context.Background())
+}
+
+func (i IntegrationLogAgentOtlpArgs) ToIntegrationLogAgentOtlpOutputWithContext(ctx context.Context) IntegrationLogAgentOtlpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentOtlpOutput)
+}
+
+func (i IntegrationLogAgentOtlpArgs) ToIntegrationLogAgentOtlpPtrOutput() IntegrationLogAgentOtlpPtrOutput {
+	return i.ToIntegrationLogAgentOtlpPtrOutputWithContext(context.Background())
+}
+
+func (i IntegrationLogAgentOtlpArgs) ToIntegrationLogAgentOtlpPtrOutputWithContext(ctx context.Context) IntegrationLogAgentOtlpPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentOtlpOutput).ToIntegrationLogAgentOtlpPtrOutputWithContext(ctx)
+}
+
+// IntegrationLogAgentOtlpPtrInput is an input type that accepts IntegrationLogAgentOtlpArgs, IntegrationLogAgentOtlpPtr and IntegrationLogAgentOtlpPtrOutput values.
+// You can construct a concrete instance of `IntegrationLogAgentOtlpPtrInput` via:
+//
+//	        IntegrationLogAgentOtlpArgs{...}
+//
+//	or:
+//
+//	        nil
+type IntegrationLogAgentOtlpPtrInput interface {
+	pulumi.Input
+
+	ToIntegrationLogAgentOtlpPtrOutput() IntegrationLogAgentOtlpPtrOutput
+	ToIntegrationLogAgentOtlpPtrOutputWithContext(context.Context) IntegrationLogAgentOtlpPtrOutput
+}
+
+type integrationLogAgentOtlpPtrType IntegrationLogAgentOtlpArgs
+
+func IntegrationLogAgentOtlpPtr(v *IntegrationLogAgentOtlpArgs) IntegrationLogAgentOtlpPtrInput {
+	return (*integrationLogAgentOtlpPtrType)(v)
+}
+
+func (*integrationLogAgentOtlpPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationLogAgentOtlp)(nil)).Elem()
+}
+
+func (i *integrationLogAgentOtlpPtrType) ToIntegrationLogAgentOtlpPtrOutput() IntegrationLogAgentOtlpPtrOutput {
+	return i.ToIntegrationLogAgentOtlpPtrOutputWithContext(context.Background())
+}
+
+func (i *integrationLogAgentOtlpPtrType) ToIntegrationLogAgentOtlpPtrOutputWithContext(ctx context.Context) IntegrationLogAgentOtlpPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IntegrationLogAgentOtlpPtrOutput)
+}
+
+type IntegrationLogAgentOtlpOutput struct{ *pulumi.OutputState }
+
+func (IntegrationLogAgentOtlpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IntegrationLogAgentOtlp)(nil)).Elem()
+}
+
+func (o IntegrationLogAgentOtlpOutput) ToIntegrationLogAgentOtlpOutput() IntegrationLogAgentOtlpOutput {
+	return o
+}
+
+func (o IntegrationLogAgentOtlpOutput) ToIntegrationLogAgentOtlpOutputWithContext(ctx context.Context) IntegrationLogAgentOtlpOutput {
+	return o
+}
+
+func (o IntegrationLogAgentOtlpOutput) ToIntegrationLogAgentOtlpPtrOutput() IntegrationLogAgentOtlpPtrOutput {
+	return o.ToIntegrationLogAgentOtlpPtrOutputWithContext(context.Background())
+}
+
+func (o IntegrationLogAgentOtlpOutput) ToIntegrationLogAgentOtlpPtrOutputWithContext(ctx context.Context) IntegrationLogAgentOtlpPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v IntegrationLogAgentOtlp) *IntegrationLogAgentOtlp {
+		return &v
+	}).(IntegrationLogAgentOtlpPtrOutput)
+}
+
+// Authentication for the endpoint; none, basic_auth, headers or oauth2 (default: none)
+func (o IntegrationLogAgentOtlpOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentOtlp) *string { return v.AuthType }).(pulumi.StringPtrOutput)
+}
+
+// Client identifier, used when authType is oauth2
+func (o IntegrationLogAgentOtlpOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentOtlp) *string { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Client secret, used when authType is oauth2
+func (o IntegrationLogAgentOtlpOutput) ClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentOtlp) *string { return v.ClientSecret }).(pulumi.StringPtrOutput)
+}
+
+// Version of the write-only client_secret. Increment to trigger an update when the secret changes (default: 1).
+func (o IntegrationLogAgentOtlpOutput) ClientSecretVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentOtlp) *int { return v.ClientSecretVersion }).(pulumi.IntPtrOutput)
+}
+
+// Full https URL the backend receives logs on, including the path (e.g. https://otlp.example.com:4318/v1/logs)
+func (o IntegrationLogAgentOtlpOutput) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentOtlp) *string { return v.Endpoint }).(pulumi.StringPtrOutput)
+}
+
+// Headers sent with every request, one 'key: value' pair per line. Required when authType is headers
+func (o IntegrationLogAgentOtlpOutput) Headers() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentOtlp) *string { return v.Headers }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Password or token, used when authType is basic_auth
+func (o IntegrationLogAgentOtlpOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentOtlp) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// Version of the write-only password. Increment to trigger an update when the password changes (default: 1).
+func (o IntegrationLogAgentOtlpOutput) PasswordVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentOtlp) *int { return v.PasswordVersion }).(pulumi.IntPtrOutput)
+}
+
+// Scopes requested with the OAuth2 token, space or comma separated
+func (o IntegrationLogAgentOtlpOutput) Scopes() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentOtlp) *string { return v.Scopes }).(pulumi.StringPtrOutput)
+}
+
+// OAuth2 token endpoint over HTTPS, used when authType is oauth2
+func (o IntegrationLogAgentOtlpOutput) TokenUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentOtlp) *string { return v.TokenUrl }).(pulumi.StringPtrOutput)
+}
+
+// Username, used when authType is basic_auth
+func (o IntegrationLogAgentOtlpOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IntegrationLogAgentOtlp) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type IntegrationLogAgentOtlpPtrOutput struct{ *pulumi.OutputState }
+
+func (IntegrationLogAgentOtlpPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**IntegrationLogAgentOtlp)(nil)).Elem()
+}
+
+func (o IntegrationLogAgentOtlpPtrOutput) ToIntegrationLogAgentOtlpPtrOutput() IntegrationLogAgentOtlpPtrOutput {
+	return o
+}
+
+func (o IntegrationLogAgentOtlpPtrOutput) ToIntegrationLogAgentOtlpPtrOutputWithContext(ctx context.Context) IntegrationLogAgentOtlpPtrOutput {
+	return o
+}
+
+func (o IntegrationLogAgentOtlpPtrOutput) Elem() IntegrationLogAgentOtlpOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentOtlp) IntegrationLogAgentOtlp {
+		if v != nil {
+			return *v
+		}
+		var ret IntegrationLogAgentOtlp
+		return ret
+	}).(IntegrationLogAgentOtlpOutput)
+}
+
+// Authentication for the endpoint; none, basic_auth, headers or oauth2 (default: none)
+func (o IntegrationLogAgentOtlpPtrOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentOtlp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AuthType
+	}).(pulumi.StringPtrOutput)
+}
+
+// Client identifier, used when authType is oauth2
+func (o IntegrationLogAgentOtlpPtrOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentOtlp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientId
+	}).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Client secret, used when authType is oauth2
+func (o IntegrationLogAgentOtlpPtrOutput) ClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentOtlp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientSecret
+	}).(pulumi.StringPtrOutput)
+}
+
+// Version of the write-only client_secret. Increment to trigger an update when the secret changes (default: 1).
+func (o IntegrationLogAgentOtlpPtrOutput) ClientSecretVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentOtlp) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ClientSecretVersion
+	}).(pulumi.IntPtrOutput)
+}
+
+// Full https URL the backend receives logs on, including the path (e.g. https://otlp.example.com:4318/v1/logs)
+func (o IntegrationLogAgentOtlpPtrOutput) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentOtlp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Endpoint
+	}).(pulumi.StringPtrOutput)
+}
+
+// Headers sent with every request, one 'key: value' pair per line. Required when authType is headers
+func (o IntegrationLogAgentOtlpPtrOutput) Headers() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentOtlp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Headers
+	}).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Password or token, used when authType is basic_auth
+func (o IntegrationLogAgentOtlpPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentOtlp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// Version of the write-only password. Increment to trigger an update when the password changes (default: 1).
+func (o IntegrationLogAgentOtlpPtrOutput) PasswordVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentOtlp) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PasswordVersion
+	}).(pulumi.IntPtrOutput)
+}
+
+// Scopes requested with the OAuth2 token, space or comma separated
+func (o IntegrationLogAgentOtlpPtrOutput) Scopes() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentOtlp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Scopes
+	}).(pulumi.StringPtrOutput)
+}
+
+// OAuth2 token endpoint over HTTPS, used when authType is oauth2
+func (o IntegrationLogAgentOtlpPtrOutput) TokenUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentOtlp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TokenUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+// Username, used when authType is basic_auth
+func (o IntegrationLogAgentOtlpPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IntegrationLogAgentOtlp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -5527,6 +6151,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ExtraDiskSizeNodeArrayInput)(nil)).Elem(), ExtraDiskSizeNodeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceCopySettingInput)(nil)).Elem(), InstanceCopySettingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceCopySettingArrayInput)(nil)).Elem(), InstanceCopySettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentAzureMonitorInput)(nil)).Elem(), IntegrationLogAgentAzureMonitorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentAzureMonitorPtrInput)(nil)).Elem(), IntegrationLogAgentAzureMonitorArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentCloudwatchInput)(nil)).Elem(), IntegrationLogAgentCloudwatchArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentCloudwatchPtrInput)(nil)).Elem(), IntegrationLogAgentCloudwatchArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentCoralogixInput)(nil)).Elem(), IntegrationLogAgentCoralogixArgs{})
@@ -5537,6 +6163,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentGoogleCloudPtrInput)(nil)).Elem(), IntegrationLogAgentGoogleCloudArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentGrafanaInput)(nil)).Elem(), IntegrationLogAgentGrafanaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentGrafanaPtrInput)(nil)).Elem(), IntegrationLogAgentGrafanaArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentOtlpInput)(nil)).Elem(), IntegrationLogAgentOtlpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentOtlpPtrInput)(nil)).Elem(), IntegrationLogAgentOtlpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentSplunkInput)(nil)).Elem(), IntegrationLogAgentSplunkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentSplunkPtrInput)(nil)).Elem(), IntegrationLogAgentSplunkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IntegrationLogAgentUptraceInput)(nil)).Elem(), IntegrationLogAgentUptraceArgs{})
@@ -5591,6 +6219,8 @@ func init() {
 	pulumi.RegisterOutputType(ExtraDiskSizeNodeArrayOutput{})
 	pulumi.RegisterOutputType(InstanceCopySettingOutput{})
 	pulumi.RegisterOutputType(InstanceCopySettingArrayOutput{})
+	pulumi.RegisterOutputType(IntegrationLogAgentAzureMonitorOutput{})
+	pulumi.RegisterOutputType(IntegrationLogAgentAzureMonitorPtrOutput{})
 	pulumi.RegisterOutputType(IntegrationLogAgentCloudwatchOutput{})
 	pulumi.RegisterOutputType(IntegrationLogAgentCloudwatchPtrOutput{})
 	pulumi.RegisterOutputType(IntegrationLogAgentCoralogixOutput{})
@@ -5601,6 +6231,8 @@ func init() {
 	pulumi.RegisterOutputType(IntegrationLogAgentGoogleCloudPtrOutput{})
 	pulumi.RegisterOutputType(IntegrationLogAgentGrafanaOutput{})
 	pulumi.RegisterOutputType(IntegrationLogAgentGrafanaPtrOutput{})
+	pulumi.RegisterOutputType(IntegrationLogAgentOtlpOutput{})
+	pulumi.RegisterOutputType(IntegrationLogAgentOtlpPtrOutput{})
 	pulumi.RegisterOutputType(IntegrationLogAgentSplunkOutput{})
 	pulumi.RegisterOutputType(IntegrationLogAgentSplunkPtrOutput{})
 	pulumi.RegisterOutputType(IntegrationLogAgentUptraceOutput{})

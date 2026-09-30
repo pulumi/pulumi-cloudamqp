@@ -110,6 +110,9 @@ class GetInstanceResult:
     @_builtins.property
     @pulumi.getter(name="clusterName")
     def cluster_name(self) -> _builtins.str:
+        """
+        The cluster name of the CloudAMQP instance.
+        """
         return pulumi.get(self, "cluster_name")
 
     @_builtins.property
