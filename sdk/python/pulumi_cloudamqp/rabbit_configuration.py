@@ -26,6 +26,7 @@ class RabbitConfigurationArgs:
                  consumer_timeout: pulumi.Input[Optional[_builtins.int]] = None,
                  heartbeat: pulumi.Input[Optional[_builtins.int]] = None,
                  log_exchange_level: pulumi.Input[Optional[_builtins.str]] = None,
+                 log_level: pulumi.Input[Optional[_builtins.str]] = None,
                  max_message_size: pulumi.Input[Optional[_builtins.int]] = None,
                  message_interceptors_timestamp_overwrite: pulumi.Input[Optional[_builtins.str]] = None,
                  mqtt_exchange: pulumi.Input[Optional[_builtins.str]] = None,
@@ -48,7 +49,8 @@ class RabbitConfigurationArgs:
         :param pulumi.Input[_builtins.int] connection_max: Set the maximum permissible number of connection.
         :param pulumi.Input[_builtins.int] consumer_timeout: A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds
         :param pulumi.Input[_builtins.int] heartbeat: Set the server AMQP 0-9-1 heartbeat timeout in seconds.
-        :param pulumi.Input[_builtins.str] log_exchange_level: Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        :param pulumi.Input[_builtins.str] log_exchange_level: Log level for the log exchange only, which feeds the CloudAMQP Console log view and legacy log integrations. Prefer `log_level`.
+        :param pulumi.Input[_builtins.str] log_level: Log level for all RabbitMQ log outputs: log integrations, the CloudAMQP Console log view and the log file. Also sets `log_exchange_level`.
         :param pulumi.Input[_builtins.int] max_message_size: The largest allowed message payload size in bytes.
         :param pulumi.Input[_builtins.str] message_interceptors_timestamp_overwrite: Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
         :param pulumi.Input[_builtins.str] mqtt_exchange: The exchange option determines which exchange messages from MQTT clients are published to.
@@ -78,6 +80,8 @@ class RabbitConfigurationArgs:
             pulumi.set(__self__, "heartbeat", heartbeat)
         if log_exchange_level is not None:
             pulumi.set(__self__, "log_exchange_level", log_exchange_level)
+        if log_level is not None:
+            pulumi.set(__self__, "log_level", log_level)
         if max_message_size is not None:
             pulumi.set(__self__, "max_message_size", max_message_size)
         if message_interceptors_timestamp_overwrite is not None:
@@ -181,13 +185,25 @@ class RabbitConfigurationArgs:
     @pulumi.getter(name="logExchangeLevel")
     def log_exchange_level(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        Log level for the log exchange only, which feeds the CloudAMQP Console log view and legacy log integrations. Prefer `log_level`.
         """
         return pulumi.get(self, "log_exchange_level")
 
     @log_exchange_level.setter
     def log_exchange_level(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "log_exchange_level", value)
+
+    @_builtins.property
+    @pulumi.getter(name="logLevel")
+    def log_level(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Log level for all RabbitMQ log outputs: log integrations, the CloudAMQP Console log view and the log file. Also sets `log_exchange_level`.
+        """
+        return pulumi.get(self, "log_level")
+
+    @log_level.setter
+    def log_level(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "log_level", value)
 
     @_builtins.property
     @pulumi.getter(name="maxMessageSize")
@@ -358,6 +374,7 @@ class _RabbitConfigurationState:
                  heartbeat: pulumi.Input[Optional[_builtins.int]] = None,
                  instance_id: pulumi.Input[Optional[_builtins.int]] = None,
                  log_exchange_level: pulumi.Input[Optional[_builtins.str]] = None,
+                 log_level: pulumi.Input[Optional[_builtins.str]] = None,
                  max_message_size: pulumi.Input[Optional[_builtins.int]] = None,
                  message_interceptors_timestamp_overwrite: pulumi.Input[Optional[_builtins.str]] = None,
                  mqtt_exchange: pulumi.Input[Optional[_builtins.str]] = None,
@@ -380,7 +397,8 @@ class _RabbitConfigurationState:
         :param pulumi.Input[_builtins.int] consumer_timeout: A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds
         :param pulumi.Input[_builtins.int] heartbeat: Set the server AMQP 0-9-1 heartbeat timeout in seconds.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[_builtins.str] log_exchange_level: Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        :param pulumi.Input[_builtins.str] log_exchange_level: Log level for the log exchange only, which feeds the CloudAMQP Console log view and legacy log integrations. Prefer `log_level`.
+        :param pulumi.Input[_builtins.str] log_level: Log level for all RabbitMQ log outputs: log integrations, the CloudAMQP Console log view and the log file. Also sets `log_exchange_level`.
         :param pulumi.Input[_builtins.int] max_message_size: The largest allowed message payload size in bytes.
         :param pulumi.Input[_builtins.str] message_interceptors_timestamp_overwrite: Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
         :param pulumi.Input[_builtins.str] mqtt_exchange: The exchange option determines which exchange messages from MQTT clients are published to.
@@ -411,6 +429,8 @@ class _RabbitConfigurationState:
             pulumi.set(__self__, "instance_id", instance_id)
         if log_exchange_level is not None:
             pulumi.set(__self__, "log_exchange_level", log_exchange_level)
+        if log_level is not None:
+            pulumi.set(__self__, "log_level", log_level)
         if max_message_size is not None:
             pulumi.set(__self__, "max_message_size", max_message_size)
         if message_interceptors_timestamp_overwrite is not None:
@@ -514,13 +534,25 @@ class _RabbitConfigurationState:
     @pulumi.getter(name="logExchangeLevel")
     def log_exchange_level(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        Log level for the log exchange only, which feeds the CloudAMQP Console log view and legacy log integrations. Prefer `log_level`.
         """
         return pulumi.get(self, "log_exchange_level")
 
     @log_exchange_level.setter
     def log_exchange_level(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "log_exchange_level", value)
+
+    @_builtins.property
+    @pulumi.getter(name="logLevel")
+    def log_level(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Log level for all RabbitMQ log outputs: log integrations, the CloudAMQP Console log view and the log file. Also sets `log_exchange_level`.
+        """
+        return pulumi.get(self, "log_level")
+
+    @log_level.setter
+    def log_level(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "log_level", value)
 
     @_builtins.property
     @pulumi.getter(name="maxMessageSize")
@@ -694,6 +726,7 @@ class RabbitConfiguration(pulumi.CustomResource):
                  heartbeat: pulumi.Input[Optional[_builtins.int]] = None,
                  instance_id: pulumi.Input[Optional[_builtins.int]] = None,
                  log_exchange_level: pulumi.Input[Optional[_builtins.str]] = None,
+                 log_level: pulumi.Input[Optional[_builtins.str]] = None,
                  max_message_size: pulumi.Input[Optional[_builtins.int]] = None,
                  message_interceptors_timestamp_overwrite: pulumi.Input[Optional[_builtins.str]] = None,
                  mqtt_exchange: pulumi.Input[Optional[_builtins.str]] = None,
@@ -905,6 +938,16 @@ class RabbitConfiguration(pulumi.CustomResource):
         | --- | --- | --- | --- | --- | --- |
         | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |
 
+        ### log_level
+
+        | Type | Default | Affect | Allowed values |
+        | --- | --- | --- | --- |
+        | string | info | Applied immediately | `debug, info, warning, error, critical, none` |
+
+        Note: Setting `log_level` also sets `log_exchange_level` to the same value. Do not
+        set both arguments to different values, the plan will never converge. `debug`
+        increases log volume on every output, use it for a limited period while troubleshooting.
+
         ### log_exchange_level
 
         | Type | Default | Affect | Allowed values |
@@ -1021,7 +1064,8 @@ class RabbitConfiguration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] consumer_timeout: A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds
         :param pulumi.Input[_builtins.int] heartbeat: Set the server AMQP 0-9-1 heartbeat timeout in seconds.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[_builtins.str] log_exchange_level: Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        :param pulumi.Input[_builtins.str] log_exchange_level: Log level for the log exchange only, which feeds the CloudAMQP Console log view and legacy log integrations. Prefer `log_level`.
+        :param pulumi.Input[_builtins.str] log_level: Log level for all RabbitMQ log outputs: log integrations, the CloudAMQP Console log view and the log file. Also sets `log_exchange_level`.
         :param pulumi.Input[_builtins.int] max_message_size: The largest allowed message payload size in bytes.
         :param pulumi.Input[_builtins.str] message_interceptors_timestamp_overwrite: Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
         :param pulumi.Input[_builtins.str] mqtt_exchange: The exchange option determines which exchange messages from MQTT clients are published to.
@@ -1241,6 +1285,16 @@ class RabbitConfiguration(pulumi.CustomResource):
         | --- | --- | --- | --- | --- | --- |
         | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |
 
+        ### log_level
+
+        | Type | Default | Affect | Allowed values |
+        | --- | --- | --- | --- |
+        | string | info | Applied immediately | `debug, info, warning, error, critical, none` |
+
+        Note: Setting `log_level` also sets `log_exchange_level` to the same value. Do not
+        set both arguments to different values, the plan will never converge. `debug`
+        increases log volume on every output, use it for a limited period while troubleshooting.
+
         ### log_exchange_level
 
         | Type | Default | Affect | Allowed values |
@@ -1371,6 +1425,7 @@ class RabbitConfiguration(pulumi.CustomResource):
                  heartbeat: pulumi.Input[Optional[_builtins.int]] = None,
                  instance_id: pulumi.Input[Optional[_builtins.int]] = None,
                  log_exchange_level: pulumi.Input[Optional[_builtins.str]] = None,
+                 log_level: pulumi.Input[Optional[_builtins.str]] = None,
                  max_message_size: pulumi.Input[Optional[_builtins.int]] = None,
                  message_interceptors_timestamp_overwrite: pulumi.Input[Optional[_builtins.str]] = None,
                  mqtt_exchange: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1402,6 +1457,7 @@ class RabbitConfiguration(pulumi.CustomResource):
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
             __props__.__dict__["log_exchange_level"] = log_exchange_level
+            __props__.__dict__["log_level"] = log_level
             __props__.__dict__["max_message_size"] = max_message_size
             __props__.__dict__["message_interceptors_timestamp_overwrite"] = message_interceptors_timestamp_overwrite
             __props__.__dict__["mqtt_exchange"] = mqtt_exchange
@@ -1432,6 +1488,7 @@ class RabbitConfiguration(pulumi.CustomResource):
             heartbeat: pulumi.Input[Optional[_builtins.int]] = None,
             instance_id: pulumi.Input[Optional[_builtins.int]] = None,
             log_exchange_level: pulumi.Input[Optional[_builtins.str]] = None,
+            log_level: pulumi.Input[Optional[_builtins.str]] = None,
             max_message_size: pulumi.Input[Optional[_builtins.int]] = None,
             message_interceptors_timestamp_overwrite: pulumi.Input[Optional[_builtins.str]] = None,
             mqtt_exchange: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1458,7 +1515,8 @@ class RabbitConfiguration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] consumer_timeout: A consumer that has received a message and does not acknowledge that message within the timeout in milliseconds
         :param pulumi.Input[_builtins.int] heartbeat: Set the server AMQP 0-9-1 heartbeat timeout in seconds.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[_builtins.str] log_exchange_level: Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        :param pulumi.Input[_builtins.str] log_exchange_level: Log level for the log exchange only, which feeds the CloudAMQP Console log view and legacy log integrations. Prefer `log_level`.
+        :param pulumi.Input[_builtins.str] log_level: Log level for all RabbitMQ log outputs: log integrations, the CloudAMQP Console log view and the log file. Also sets `log_exchange_level`.
         :param pulumi.Input[_builtins.int] max_message_size: The largest allowed message payload size in bytes.
         :param pulumi.Input[_builtins.str] message_interceptors_timestamp_overwrite: Sets a timestamp header on incoming messages. ***enabled_with_overwrite*** will overwrite any existing timestamps in the header.
         :param pulumi.Input[_builtins.str] mqtt_exchange: The exchange option determines which exchange messages from MQTT clients are published to.
@@ -1486,6 +1544,7 @@ class RabbitConfiguration(pulumi.CustomResource):
         __props__.__dict__["heartbeat"] = heartbeat
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["log_exchange_level"] = log_exchange_level
+        __props__.__dict__["log_level"] = log_level
         __props__.__dict__["max_message_size"] = max_message_size
         __props__.__dict__["message_interceptors_timestamp_overwrite"] = message_interceptors_timestamp_overwrite
         __props__.__dict__["mqtt_exchange"] = mqtt_exchange
@@ -1553,9 +1612,17 @@ class RabbitConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="logExchangeLevel")
     def log_exchange_level(self) -> pulumi.Output[_builtins.str]:
         """
-        Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        Log level for the log exchange only, which feeds the CloudAMQP Console log view and legacy log integrations. Prefer `log_level`.
         """
         return pulumi.get(self, "log_exchange_level")
+
+    @_builtins.property
+    @pulumi.getter(name="logLevel")
+    def log_level(self) -> pulumi.Output[_builtins.str]:
+        """
+        Log level for all RabbitMQ log outputs: log integrations, the CloudAMQP Console log view and the log file. Also sets `log_exchange_level`.
+        """
+        return pulumi.get(self, "log_level")
 
     @_builtins.property
     @pulumi.getter(name="maxMessageSize")

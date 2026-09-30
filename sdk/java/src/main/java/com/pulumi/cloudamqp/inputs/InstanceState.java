@@ -53,14 +53,14 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Cluster name, extracted from the external hostname
+     * The cluster name of the CloudAMQP instance.
      * 
      */
     @Import(name="clusterName")
     private @Nullable Output<String> clusterName;
 
     /**
-     * @return Cluster name, extracted from the external hostname
+     * @return The cluster name of the CloudAMQP instance.
      * 
      */
     public Optional<Output<String>> clusterName() {
@@ -528,7 +528,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clusterName Cluster name, extracted from the external hostname
+         * @param clusterName The cluster name of the CloudAMQP instance.
          * 
          * @return builder
          * 
@@ -539,7 +539,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param clusterName Cluster name, extracted from the external hostname
+         * @param clusterName The cluster name of the CloudAMQP instance.
          * 
          * @return builder
          * 

@@ -73,6 +73,48 @@ export interface InstanceCopySetting {
     subscriptionId: pulumi.Input<string>;
 }
 
+export interface IntegrationLogAgentAzureMonitor {
+    /**
+     * Microsoft Entra Application (client) ID as a UUID.
+     */
+    applicationId?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Microsoft Entra client secret value, not the secret ID. This value is write-only and will not be stored in state.
+     */
+    applicationSecret?: pulumi.Input<string | undefined>;
+    /**
+     * Version of the write-only `applicationSecret`. Increment to trigger an update when the secret changes (default: `1`).
+     */
+    applicationSecretVersion?: pulumi.Input<number | undefined>;
+    /**
+     * Complete Azure Monitor OTLP logs endpoint. The URL must use HTTPS and end in `/otlp/v1/logs`.
+     *
+     * The integration sends broker logs through Azure Monitor native OTLP ingestion. Azure resources such
+     * as the Data Collection Endpoint (DCE), Data Collection Rule (DCR), and Microsoft Entra application
+     * must exist before configuring this resource. See the [CloudAMQP Azure Monitor setup guide] and
+     * [Azure native OTLP ingestion documentation] for setup details.
+     *
+     * Because `applicationSecret` is write-only, it cannot be recovered when importing an existing
+     * integration. Add the secret to the Terraform configuration after import. Increment
+     * `applicationSecretVersion` when rotating the configured secret.
+     *
+     * </details>
+     *
+     * <details>
+     * <summary>
+     * <b>CloudWatch</b>
+     * </summary>
+     *
+     * The following arguments are used by the `cloudwatch` block.
+     */
+    logsEndpoint?: pulumi.Input<string | undefined>;
+    /**
+     * Microsoft Entra Directory (tenant) ID as a UUID.
+     */
+    tenantId?: pulumi.Input<string | undefined>;
+}
+
 export interface IntegrationLogAgentCloudwatch {
     /**
      * External identifier that matches the trust policy of the IAM role.
@@ -186,6 +228,55 @@ export interface IntegrationLogAgentGrafana {
      * Grafana Cloud instance ID
      */
     grafanaInstanceId?: pulumi.Input<string | undefined>;
+}
+
+export interface IntegrationLogAgentOtlp {
+    /**
+     * Authentication for the endpoint; none, basic_auth, headers or oauth2 (default: none)
+     */
+    authType?: pulumi.Input<string | undefined>;
+    /**
+     * Client identifier, used when authType is oauth2
+     */
+    clientId?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Client secret, used when authType is oauth2
+     */
+    clientSecret?: pulumi.Input<string | undefined>;
+    /**
+     * Version of the write-only client_secret. Increment to trigger an update when the secret changes (default: 1).
+     */
+    clientSecretVersion?: pulumi.Input<number | undefined>;
+    /**
+     * Full https URL the backend receives logs on, including the path (e.g. https://otlp.example.com:4318/v1/logs)
+     */
+    endpoint?: pulumi.Input<string | undefined>;
+    /**
+     * Headers sent with every request, one 'key: value' pair per line. Required when authType is headers
+     */
+    headers?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Password or token, used when authType is basic_auth
+     */
+    password?: pulumi.Input<string | undefined>;
+    /**
+     * Version of the write-only password. Increment to trigger an update when the password changes (default: 1).
+     */
+    passwordVersion?: pulumi.Input<number | undefined>;
+    /**
+     * Scopes requested with the OAuth2 token, space or comma separated
+     */
+    scopes?: pulumi.Input<string | undefined>;
+    /**
+     * OAuth2 token endpoint over HTTPS, used when authType is oauth2
+     */
+    tokenUrl?: pulumi.Input<string | undefined>;
+    /**
+     * Username, used when authType is basic_auth
+     */
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface IntegrationLogAgentSplunk {

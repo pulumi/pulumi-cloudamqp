@@ -214,6 +214,16 @@ import * as utilities from "./utilities";
  * | --- | --- | --- | --- | --- | --- |
  * | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |
  *
+ * ### logLevel
+ *
+ * | Type | Default | Affect | Allowed values |
+ * | --- | --- | --- | --- |
+ * | string | info | Applied immediately | `debug, info, warning, error, critical, none` |
+ *
+ * Note: Setting `logLevel` also sets `logExchangeLevel` to the same value. Do not
+ * set both arguments to different values, the plan will never converge. `debug`
+ * increases log volume on every output, use it for a limited period while troubleshooting.
+ *
  * ### logExchangeLevel
  *
  * | Type | Default | Affect | Allowed values |
@@ -374,9 +384,13 @@ export class RabbitConfiguration extends pulumi.CustomResource {
      */
     declare public readonly instanceId: pulumi.Output<number>;
     /**
-     * Log level for the logger used for log integrations and the CloudAMQP Console log view.
+     * Log level for the log exchange only, which feeds the CloudAMQP Console log view and legacy log integrations. Prefer `logLevel`.
      */
     declare public readonly logExchangeLevel: pulumi.Output<string>;
+    /**
+     * Log level for all RabbitMQ log outputs: log integrations, the CloudAMQP Console log view and the log file. Also sets `logExchangeLevel`.
+     */
+    declare public readonly logLevel: pulumi.Output<string>;
     /**
      * The largest allowed message payload size in bytes.
      */
@@ -452,6 +466,7 @@ export class RabbitConfiguration extends pulumi.CustomResource {
             resourceInputs["heartbeat"] = state?.heartbeat;
             resourceInputs["instanceId"] = state?.instanceId;
             resourceInputs["logExchangeLevel"] = state?.logExchangeLevel;
+            resourceInputs["logLevel"] = state?.logLevel;
             resourceInputs["maxMessageSize"] = state?.maxMessageSize;
             resourceInputs["messageInterceptorsTimestampOverwrite"] = state?.messageInterceptorsTimestampOverwrite;
             resourceInputs["mqttExchange"] = state?.mqttExchange;
@@ -477,6 +492,7 @@ export class RabbitConfiguration extends pulumi.CustomResource {
             resourceInputs["heartbeat"] = args?.heartbeat;
             resourceInputs["instanceId"] = args?.instanceId;
             resourceInputs["logExchangeLevel"] = args?.logExchangeLevel;
+            resourceInputs["logLevel"] = args?.logLevel;
             resourceInputs["maxMessageSize"] = args?.maxMessageSize;
             resourceInputs["messageInterceptorsTimestampOverwrite"] = args?.messageInterceptorsTimestampOverwrite;
             resourceInputs["mqttExchange"] = args?.mqttExchange;
@@ -525,9 +541,13 @@ export interface RabbitConfigurationState {
      */
     instanceId?: pulumi.Input<number | undefined>;
     /**
-     * Log level for the logger used for log integrations and the CloudAMQP Console log view.
+     * Log level for the log exchange only, which feeds the CloudAMQP Console log view and legacy log integrations. Prefer `logLevel`.
      */
     logExchangeLevel?: pulumi.Input<string | undefined>;
+    /**
+     * Log level for all RabbitMQ log outputs: log integrations, the CloudAMQP Console log view and the log file. Also sets `logExchangeLevel`.
+     */
+    logLevel?: pulumi.Input<string | undefined>;
     /**
      * The largest allowed message payload size in bytes.
      */
@@ -613,9 +633,13 @@ export interface RabbitConfigurationArgs {
      */
     instanceId: pulumi.Input<number>;
     /**
-     * Log level for the logger used for log integrations and the CloudAMQP Console log view.
+     * Log level for the log exchange only, which feeds the CloudAMQP Console log view and legacy log integrations. Prefer `logLevel`.
      */
     logExchangeLevel?: pulumi.Input<string | undefined>;
+    /**
+     * Log level for all RabbitMQ log outputs: log integrations, the CloudAMQP Console log view and the log file. Also sets `logExchangeLevel`.
+     */
+    logLevel?: pulumi.Input<string | undefined>;
     /**
      * The largest allowed message payload size in bytes.
      */

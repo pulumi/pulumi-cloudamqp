@@ -24,6 +24,10 @@ public final class GetInstanceResult {
      * 
      */
     private String backend;
+    /**
+     * @return The cluster name of the CloudAMQP instance.
+     * 
+     */
     private String clusterName;
     /**
      * @return (Sensitive) Broker credentials block with information extracted from URL.
@@ -121,6 +125,10 @@ public final class GetInstanceResult {
     public String backend() {
         return this.backend;
     }
+    /**
+     * @return The cluster name of the CloudAMQP instance.
+     * 
+     */
     public String clusterName() {
         return this.clusterName;
     }

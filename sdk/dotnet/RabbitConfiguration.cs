@@ -270,6 +270,16 @@ namespace Pulumi.CloudAmqp
     /// | --- | --- | --- | --- | --- | --- |
     /// | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |
     /// 
+    /// ### LogLevel
+    /// 
+    /// | Type | Default | Affect | Allowed values |
+    /// | --- | --- | --- | --- |
+    /// | string | info | Applied immediately | `debug, info, warning, error, critical, none` |
+    /// 
+    /// Note: Setting `LogLevel` also sets `LogExchangeLevel` to the same value. Do not
+    /// set both arguments to different values, the plan will never converge. `Debug`
+    /// increases log volume on every output, use it for a limited period while troubleshooting.
+    /// 
     /// ### LogExchangeLevel
     /// 
     /// | Type | Default | Affect | Allowed values |
@@ -417,10 +427,16 @@ namespace Pulumi.CloudAmqp
         public Output<int> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        /// Log level for the log exchange only, which feeds the CloudAMQP Console log view and legacy log integrations. Prefer `LogLevel`.
         /// </summary>
         [Output("logExchangeLevel")]
         public Output<string> LogExchangeLevel { get; private set; } = null!;
+
+        /// <summary>
+        /// Log level for all RabbitMQ log outputs: log integrations, the CloudAMQP Console log view and the log file. Also sets `LogExchangeLevel`.
+        /// </summary>
+        [Output("logLevel")]
+        public Output<string> LogLevel { get; private set; } = null!;
 
         /// <summary>
         /// The largest allowed message payload size in bytes.
@@ -585,10 +601,16 @@ namespace Pulumi.CloudAmqp
         public Input<int> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        /// Log level for the log exchange only, which feeds the CloudAMQP Console log view and legacy log integrations. Prefer `LogLevel`.
         /// </summary>
         [Input("logExchangeLevel")]
         public Input<string>? LogExchangeLevel { get; set; }
+
+        /// <summary>
+        /// Log level for all RabbitMQ log outputs: log integrations, the CloudAMQP Console log view and the log file. Also sets `LogExchangeLevel`.
+        /// </summary>
+        [Input("logLevel")]
+        public Input<string>? LogLevel { get; set; }
 
         /// <summary>
         /// The largest allowed message payload size in bytes.
@@ -715,10 +737,16 @@ namespace Pulumi.CloudAmqp
         public Input<int>? InstanceId { get; set; }
 
         /// <summary>
-        /// Log level for the logger used for log integrations and the CloudAMQP Console log view.
+        /// Log level for the log exchange only, which feeds the CloudAMQP Console log view and legacy log integrations. Prefer `LogLevel`.
         /// </summary>
         [Input("logExchangeLevel")]
         public Input<string>? LogExchangeLevel { get; set; }
+
+        /// <summary>
+        /// Log level for all RabbitMQ log outputs: log integrations, the CloudAMQP Console log view and the log file. Also sets `LogExchangeLevel`.
+        /// </summary>
+        [Input("logLevel")]
+        public Input<string>? LogLevel { get; set; }
 
         /// <summary>
         /// The largest allowed message payload size in bytes.

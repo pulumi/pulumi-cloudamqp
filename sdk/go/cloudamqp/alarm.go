@@ -22,7 +22,7 @@ import (
 // By setting `noDefaultAlarms` to *true* in `Instance`. This will create the instance
 // without default alarms and avoid the need to import them to get full control.
 //
-// Available for all subscription plans, but `lemur`and `tiger`are limited to fewer alarm types. The
+// Available for all subscription plans, but `lemur`and `tiger` are limited to fewer alarm types. The
 // limited types supported can be seen in the table below in [Alarm Type Reference].
 //
 // ## Example Usage

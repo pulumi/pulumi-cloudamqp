@@ -6,11 +6,13 @@ package com.pulumi.cloudamqp;
 import com.pulumi.cloudamqp.IntegrationLogAgentArgs;
 import com.pulumi.cloudamqp.Utilities;
 import com.pulumi.cloudamqp.inputs.IntegrationLogAgentState;
+import com.pulumi.cloudamqp.outputs.IntegrationLogAgentAzureMonitor;
 import com.pulumi.cloudamqp.outputs.IntegrationLogAgentCloudwatch;
 import com.pulumi.cloudamqp.outputs.IntegrationLogAgentCoralogix;
 import com.pulumi.cloudamqp.outputs.IntegrationLogAgentDatadog;
 import com.pulumi.cloudamqp.outputs.IntegrationLogAgentGoogleCloud;
 import com.pulumi.cloudamqp.outputs.IntegrationLogAgentGrafana;
+import com.pulumi.cloudamqp.outputs.IntegrationLogAgentOtlp;
 import com.pulumi.cloudamqp.outputs.IntegrationLogAgentSplunk;
 import com.pulumi.cloudamqp.outputs.IntegrationLogAgentUptrace;
 import com.pulumi.core.Output;
@@ -26,13 +28,62 @@ import javax.annotation.Nullable;
  * 
  * &gt; **Note:** This resource is available from [v1.47.0].
  * 
- * This resource allows you to create and manage agent-based log integrations for a CloudAMQP instance.
+ * This resource allows you to create and manage OpenTelemetry agent-based log integrations for a CloudAMQP instance.
  * Once configured, the logs produced will be forwarded to the corresponding integration. More information
  * can be found for all supported [CloudAMQP Logs Integration].
  * 
  * Only available for dedicated subscription plans.
  * 
  * ## Example Usage
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;Azure Monitor log agent integration&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * &gt; **Note:** The `azureMonitor` block is available from [v1.50.0].
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.IntegrationLogAgent;
+ * import com.pulumi.cloudamqp.IntegrationLogAgentArgs;
+ * import com.pulumi.cloudamqp.inputs.IntegrationLogAgentAzureMonitorArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var azureMonitor = new IntegrationLogAgent("azureMonitor", IntegrationLogAgentArgs.builder()
+ *             .instanceId(instance.id())
+ *             .azureMonitor(IntegrationLogAgentAzureMonitorArgs.builder()
+ *                 .tenantId("00000000-0000-0000-0000-000000000000")
+ *                 .applicationId("11111111-1111-1111-1111-111111111111")
+ *                 .applicationSecret(azureApplicationSecret)
+ *                 .logsEndpoint("https://example.region-1.ingest.monitor.azure.com/datacollectionRules/dcr-example/streams/Microsoft-OTLP-Logs/otlp/v1/logs")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
  * 
  * &lt;details&gt;
  *   &lt;summary&gt;
@@ -332,6 +383,135 @@ import javax.annotation.Nullable;
  * &lt;details&gt;
  *   &lt;summary&gt;
  *     &lt;b&gt;
+ *       &lt;i&gt;OTLP log agent integration&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * &gt; **Note:** The `otlp` block is available from [v1.50.0].
+ * 
+ * Send logs to any OpenTelemetry-compatible backend over OTLP/HTTP, such as SigNoz or Honeycomb. Authentication can be done with headers, basic auth or OAuth2
+ * client credentials.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.IntegrationLogAgent;
+ * import com.pulumi.cloudamqp.IntegrationLogAgentArgs;
+ * import com.pulumi.cloudamqp.inputs.IntegrationLogAgentOtlpArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var otlp = new IntegrationLogAgent("otlp", IntegrationLogAgentArgs.builder()
+ *             .instanceId(instance.id())
+ *             .otlp(IntegrationLogAgentOtlpArgs.builder()
+ *                 .endpoint("https://api.honeycomb.io/v1/logs")
+ *                 .authType("headers")
+ *                 .headers(String.format("x-honeycomb-team: %s", honeycombApiKey))
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.IntegrationLogAgent;
+ * import com.pulumi.cloudamqp.IntegrationLogAgentArgs;
+ * import com.pulumi.cloudamqp.inputs.IntegrationLogAgentOtlpArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var otlp = new IntegrationLogAgent("otlp", IntegrationLogAgentArgs.builder()
+ *             .instanceId(instance.id())
+ *             .otlp(IntegrationLogAgentOtlpArgs.builder()
+ *                 .endpoint("https://otlp.example.com:4318/v1/logs")
+ *                 .authType("basic_auth")
+ *                 .username(otlpUsername)
+ *                 .password(otlpPassword)
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.IntegrationLogAgent;
+ * import com.pulumi.cloudamqp.IntegrationLogAgentArgs;
+ * import com.pulumi.cloudamqp.inputs.IntegrationLogAgentOtlpArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var otlp = new IntegrationLogAgent("otlp", IntegrationLogAgentArgs.builder()
+ *             .instanceId(instance.id())
+ *             .otlp(IntegrationLogAgentOtlpArgs.builder()
+ *                 .endpoint("https://otlp.example.com:4318/v1/logs")
+ *                 .authType("oauth2")
+ *                 .clientId(otlpClientId)
+ *                 .clientSecret(otlpClientSecret)
+ *                 .tokenUrl("https://auth.example.com/oauth2/token")
+ *                 .scopes("logs:write")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
  *       &lt;i&gt;Splunk log agent integration&lt;/i&gt;
  *     &lt;/b&gt;
  *   &lt;/summary&gt;
@@ -430,6 +610,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="cloudamqp:index/integrationLogAgent:IntegrationLogAgent")
 public class IntegrationLogAgent extends com.pulumi.resources.CustomResource {
     /**
+     * Azure Monitor native OTLP log integration configuration
+     * 
+     */
+    @Export(name="azureMonitor", refs={IntegrationLogAgentAzureMonitor.class}, tree="[0]")
+    private Output</* @Nullable */ IntegrationLogAgentAzureMonitor> azureMonitor;
+
+    /**
+     * @return Azure Monitor native OTLP log integration configuration
+     * 
+     */
+    public Output<Optional<IntegrationLogAgentAzureMonitor>> azureMonitor() {
+        return Codegen.optional(this.azureMonitor);
+    }
+    /**
      * CloudWatch OTLP log integration configuration
      * 
      */
@@ -506,10 +700,10 @@ public class IntegrationLogAgent extends com.pulumi.resources.CustomResource {
      * 
      * &lt;details&gt;
      * &lt;summary&gt;
-     * &lt;b&gt;CloudWatch&lt;/b&gt;
+     * &lt;b&gt;Azure Monitor&lt;/b&gt;
      * &lt;/summary&gt;
      * 
-     * The following arguments are used by the `cloudwatch` block.
+     * The following arguments are used by the `azureMonitor` block.
      * 
      */
     @Export(name="instanceId", refs={Integer.class}, tree="[0]")
@@ -522,14 +716,28 @@ public class IntegrationLogAgent extends com.pulumi.resources.CustomResource {
      * 
      * &lt;details&gt;
      * &lt;summary&gt;
-     * &lt;b&gt;CloudWatch&lt;/b&gt;
+     * &lt;b&gt;Azure Monitor&lt;/b&gt;
      * &lt;/summary&gt;
      * 
-     * The following arguments are used by the `cloudwatch` block.
+     * The following arguments are used by the `azureMonitor` block.
      * 
      */
     public Output<Integer> instanceId() {
         return this.instanceId;
+    }
+    /**
+     * OTLP log integration configuration for any OpenTelemetry-compatible backend
+     * 
+     */
+    @Export(name="otlp", refs={IntegrationLogAgentOtlp.class}, tree="[0]")
+    private Output</* @Nullable */ IntegrationLogAgentOtlp> otlp;
+
+    /**
+     * @return OTLP log integration configuration for any OpenTelemetry-compatible backend
+     * 
+     */
+    public Output<Optional<IntegrationLogAgentOtlp>> otlp() {
+        return Codegen.optional(this.otlp);
     }
     /**
      * Splunk HEC log integration configuration

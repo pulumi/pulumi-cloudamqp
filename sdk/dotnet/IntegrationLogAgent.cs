@@ -14,13 +14,47 @@ namespace Pulumi.CloudAmqp
     /// 
     /// &gt; **Note:** This resource is available from [v1.47.0].
     /// 
-    /// This resource allows you to create and manage agent-based log integrations for a CloudAMQP instance.
+    /// This resource allows you to create and manage OpenTelemetry agent-based log integrations for a CloudAMQP instance.
     /// Once configured, the logs produced will be forwarded to the corresponding integration. More information
     /// can be found for all supported [CloudAMQP Logs Integration].
     /// 
     /// Only available for dedicated subscription plans.
     /// 
     /// ## Example Usage
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
+    ///       &lt;i&gt;Azure Monitor log agent integration&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// &gt; **Note:** The `AzureMonitor` block is available from [v1.50.0].
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var azureMonitor = new CloudAmqp.IntegrationLogAgent("azure_monitor", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         AzureMonitor = new CloudAmqp.Inputs.IntegrationLogAgentAzureMonitorArgs
+    ///         {
+    ///             TenantId = "00000000-0000-0000-0000-000000000000",
+    ///             ApplicationId = "11111111-1111-1111-1111-111111111111",
+    ///             ApplicationSecret = azureApplicationSecret,
+    ///             LogsEndpoint = "https://example.region-1.ingest.monitor.azure.com/datacollectionRules/dcr-example/streams/Microsoft-OTLP-Logs/otlp/v1/logs",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
     /// 
     /// &lt;details&gt;
     ///   &lt;summary&gt;
@@ -233,6 +267,90 @@ namespace Pulumi.CloudAmqp
     /// &lt;details&gt;
     ///   &lt;summary&gt;
     ///     &lt;b&gt;
+    ///       &lt;i&gt;OTLP log agent integration&lt;/i&gt;
+    ///     &lt;/b&gt;
+    ///   &lt;/summary&gt;
+    /// 
+    /// &gt; **Note:** The `Otlp` block is available from [v1.50.0].
+    /// 
+    /// Send logs to any OpenTelemetry-compatible backend over OTLP/HTTP, such as SigNoz or Honeycomb. Authentication can be done with headers, basic auth or OAuth2
+    /// client credentials.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var otlp = new CloudAmqp.IntegrationLogAgent("otlp", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Otlp = new CloudAmqp.Inputs.IntegrationLogAgentOtlpArgs
+    ///         {
+    ///             Endpoint = "https://api.honeycomb.io/v1/logs",
+    ///             AuthType = "headers",
+    ///             Headers = $"x-honeycomb-team: {honeycombApiKey}",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var otlp = new CloudAmqp.IntegrationLogAgent("otlp", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Otlp = new CloudAmqp.Inputs.IntegrationLogAgentOtlpArgs
+    ///         {
+    ///             Endpoint = "https://otlp.example.com:4318/v1/logs",
+    ///             AuthType = "basic_auth",
+    ///             Username = otlpUsername,
+    ///             Password = otlpPassword,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using CloudAmqp = Pulumi.CloudAmqp;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var otlp = new CloudAmqp.IntegrationLogAgent("otlp", new()
+    ///     {
+    ///         InstanceId = instance.Id,
+    ///         Otlp = new CloudAmqp.Inputs.IntegrationLogAgentOtlpArgs
+    ///         {
+    ///             Endpoint = "https://otlp.example.com:4318/v1/logs",
+    ///             AuthType = "oauth2",
+    ///             ClientId = otlpClientId,
+    ///             ClientSecret = otlpClientSecret,
+    ///             TokenUrl = "https://auth.example.com/oauth2/token",
+    ///             Scopes = "logs:write",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// &lt;/details&gt;
+    /// 
+    /// &lt;details&gt;
+    ///   &lt;summary&gt;
+    ///     &lt;b&gt;
     ///       &lt;i&gt;Splunk log agent integration&lt;/i&gt;
     ///     &lt;/b&gt;
     ///   &lt;/summary&gt;
@@ -301,6 +419,12 @@ namespace Pulumi.CloudAmqp
     public partial class IntegrationLogAgent : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Azure Monitor native OTLP log integration configuration
+        /// </summary>
+        [Output("azureMonitor")]
+        public Output<Outputs.IntegrationLogAgentAzureMonitor?> AzureMonitor { get; private set; } = null!;
+
+        /// <summary>
         /// CloudWatch OTLP log integration configuration
         /// </summary>
         [Output("cloudwatch")]
@@ -337,13 +461,19 @@ namespace Pulumi.CloudAmqp
         /// 
         /// &lt;details&gt;
         /// &lt;summary&gt;
-        /// &lt;b&gt;CloudWatch&lt;/b&gt;
+        /// &lt;b&gt;Azure Monitor&lt;/b&gt;
         /// &lt;/summary&gt;
         /// 
-        /// The following arguments are used by the `Cloudwatch` block.
+        /// The following arguments are used by the `AzureMonitor` block.
         /// </summary>
         [Output("instanceId")]
         public Output<int> InstanceId { get; private set; } = null!;
+
+        /// <summary>
+        /// OTLP log integration configuration for any OpenTelemetry-compatible backend
+        /// </summary>
+        [Output("otlp")]
+        public Output<Outputs.IntegrationLogAgentOtlp?> Otlp { get; private set; } = null!;
 
         /// <summary>
         /// Splunk HEC log integration configuration
@@ -404,6 +534,12 @@ namespace Pulumi.CloudAmqp
     public sealed class IntegrationLogAgentArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Azure Monitor native OTLP log integration configuration
+        /// </summary>
+        [Input("azureMonitor")]
+        public Input<Inputs.IntegrationLogAgentAzureMonitorArgs>? AzureMonitor { get; set; }
+
+        /// <summary>
         /// CloudWatch OTLP log integration configuration
         /// </summary>
         [Input("cloudwatch")]
@@ -440,13 +576,19 @@ namespace Pulumi.CloudAmqp
         /// 
         /// &lt;details&gt;
         /// &lt;summary&gt;
-        /// &lt;b&gt;CloudWatch&lt;/b&gt;
+        /// &lt;b&gt;Azure Monitor&lt;/b&gt;
         /// &lt;/summary&gt;
         /// 
-        /// The following arguments are used by the `Cloudwatch` block.
+        /// The following arguments are used by the `AzureMonitor` block.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<int> InstanceId { get; set; } = null!;
+
+        /// <summary>
+        /// OTLP log integration configuration for any OpenTelemetry-compatible backend
+        /// </summary>
+        [Input("otlp")]
+        public Input<Inputs.IntegrationLogAgentOtlpArgs>? Otlp { get; set; }
 
         /// <summary>
         /// Splunk HEC log integration configuration
@@ -468,6 +610,12 @@ namespace Pulumi.CloudAmqp
 
     public sealed class IntegrationLogAgentState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Azure Monitor native OTLP log integration configuration
+        /// </summary>
+        [Input("azureMonitor")]
+        public Input<Inputs.IntegrationLogAgentAzureMonitorGetArgs>? AzureMonitor { get; set; }
+
         /// <summary>
         /// CloudWatch OTLP log integration configuration
         /// </summary>
@@ -505,13 +653,19 @@ namespace Pulumi.CloudAmqp
         /// 
         /// &lt;details&gt;
         /// &lt;summary&gt;
-        /// &lt;b&gt;CloudWatch&lt;/b&gt;
+        /// &lt;b&gt;Azure Monitor&lt;/b&gt;
         /// &lt;/summary&gt;
         /// 
-        /// The following arguments are used by the `Cloudwatch` block.
+        /// The following arguments are used by the `AzureMonitor` block.
         /// </summary>
         [Input("instanceId")]
         public Input<int>? InstanceId { get; set; }
+
+        /// <summary>
+        /// OTLP log integration configuration for any OpenTelemetry-compatible backend
+        /// </summary>
+        [Input("otlp")]
+        public Input<Inputs.IntegrationLogAgentOtlpGetArgs>? Otlp { get; set; }
 
         /// <summary>
         /// Splunk HEC log integration configuration

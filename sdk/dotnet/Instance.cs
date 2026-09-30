@@ -607,7 +607,7 @@ namespace Pulumi.CloudAmqp
         public Output<string> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// Cluster name, extracted from the external hostname
+        /// The cluster name of the CloudAMQP instance.
         /// </summary>
         [Output("clusterName")]
         public Output<string> ClusterName { get; private set; } = null!;
@@ -985,7 +985,7 @@ namespace Pulumi.CloudAmqp
         public Input<string>? Backend { get; set; }
 
         /// <summary>
-        /// Cluster name, extracted from the external hostname
+        /// The cluster name of the CloudAMQP instance.
         /// </summary>
         [Input("clusterName")]
         public Input<string>? ClusterName { get; set; }

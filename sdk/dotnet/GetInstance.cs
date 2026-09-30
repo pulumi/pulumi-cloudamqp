@@ -80,6 +80,9 @@ namespace Pulumi.CloudAmqp
         /// Information if the CloudAMQP instance runs either RabbitMQ or LavinMQ.
         /// </summary>
         public readonly string Backend;
+        /// <summary>
+        /// The cluster name of the CloudAMQP instance.
+        /// </summary>
         public readonly string ClusterName;
         /// <summary>
         /// (Sensitive) Broker credentials block with information extracted from URL.

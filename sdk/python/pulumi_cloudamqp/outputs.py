@@ -18,11 +18,13 @@ from . import outputs
 __all__ = [
     'ExtraDiskSizeNode',
     'InstanceCopySetting',
+    'IntegrationLogAgentAzureMonitor',
     'IntegrationLogAgentCloudwatch',
     'IntegrationLogAgentCoralogix',
     'IntegrationLogAgentDatadog',
     'IntegrationLogAgentGoogleCloud',
     'IntegrationLogAgentGrafana',
+    'IntegrationLogAgentOtlp',
     'IntegrationLogAgentSplunk',
     'IntegrationLogAgentUptrace',
     'IntegrationMetricPrometheusAzureMonitor',
@@ -164,6 +166,136 @@ class InstanceCopySetting(dict):
         from.
         """
         return pulumi.get(self, "subscription_id")
+
+
+@pulumi.output_type
+class IntegrationLogAgentAzureMonitor(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "applicationId":
+            suggest = "application_id"
+        elif key == "applicationSecret":
+            suggest = "application_secret"
+        elif key == "applicationSecretVersion":
+            suggest = "application_secret_version"
+        elif key == "logsEndpoint":
+            suggest = "logs_endpoint"
+        elif key == "tenantId":
+            suggest = "tenant_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in IntegrationLogAgentAzureMonitor. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        IntegrationLogAgentAzureMonitor.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        IntegrationLogAgentAzureMonitor.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 application_id: Optional[_builtins.str] = None,
+                 application_secret: Optional[_builtins.str] = None,
+                 application_secret_version: Optional[_builtins.int] = None,
+                 logs_endpoint: Optional[_builtins.str] = None,
+                 tenant_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str application_id: Microsoft Entra Application (client) ID as a UUID.
+        :param _builtins.str application_secret: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Microsoft Entra client secret value, not the secret ID. This value is write-only and will not be stored in state.
+        :param _builtins.int application_secret_version: Version of the write-only `application_secret`. Increment to trigger an update when the secret changes (default: `1`).
+        :param _builtins.str logs_endpoint: Complete Azure Monitor OTLP logs endpoint. The URL must use HTTPS and end in `/otlp/v1/logs`.
+               
+               The integration sends broker logs through Azure Monitor native OTLP ingestion. Azure resources such
+               as the Data Collection Endpoint (DCE), Data Collection Rule (DCR), and Microsoft Entra application
+               must exist before configuring this resource. See the [CloudAMQP Azure Monitor setup guide] and
+               [Azure native OTLP ingestion documentation] for setup details.
+               
+               Because `application_secret` is write-only, it cannot be recovered when importing an existing
+               integration. Add the secret to the Terraform configuration after import. Increment
+               `application_secret_version` when rotating the configured secret.
+               
+               </details>
+               
+               <details>
+               <summary>
+               <b>CloudWatch</b>
+               </summary>
+               
+               The following arguments are used by the `cloudwatch` block.
+        :param _builtins.str tenant_id: Microsoft Entra Directory (tenant) ID as a UUID.
+        """
+        if application_id is not None:
+            pulumi.set(__self__, "application_id", application_id)
+        if application_secret is not None:
+            pulumi.set(__self__, "application_secret", application_secret)
+        if application_secret_version is not None:
+            pulumi.set(__self__, "application_secret_version", application_secret_version)
+        if logs_endpoint is not None:
+            pulumi.set(__self__, "logs_endpoint", logs_endpoint)
+        if tenant_id is not None:
+            pulumi.set(__self__, "tenant_id", tenant_id)
+
+    @_builtins.property
+    @pulumi.getter(name="applicationId")
+    def application_id(self) -> Optional[_builtins.str]:
+        """
+        Microsoft Entra Application (client) ID as a UUID.
+        """
+        return pulumi.get(self, "application_id")
+
+    @_builtins.property
+    @pulumi.getter(name="applicationSecret")
+    def application_secret(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Microsoft Entra client secret value, not the secret ID. This value is write-only and will not be stored in state.
+        """
+        return pulumi.get(self, "application_secret")
+
+    @_builtins.property
+    @pulumi.getter(name="applicationSecretVersion")
+    def application_secret_version(self) -> Optional[_builtins.int]:
+        """
+        Version of the write-only `application_secret`. Increment to trigger an update when the secret changes (default: `1`).
+        """
+        return pulumi.get(self, "application_secret_version")
+
+    @_builtins.property
+    @pulumi.getter(name="logsEndpoint")
+    def logs_endpoint(self) -> Optional[_builtins.str]:
+        """
+        Complete Azure Monitor OTLP logs endpoint. The URL must use HTTPS and end in `/otlp/v1/logs`.
+
+        The integration sends broker logs through Azure Monitor native OTLP ingestion. Azure resources such
+        as the Data Collection Endpoint (DCE), Data Collection Rule (DCR), and Microsoft Entra application
+        must exist before configuring this resource. See the [CloudAMQP Azure Monitor setup guide] and
+        [Azure native OTLP ingestion documentation] for setup details.
+
+        Because `application_secret` is write-only, it cannot be recovered when importing an existing
+        integration. Add the secret to the Terraform configuration after import. Increment
+        `application_secret_version` when rotating the configured secret.
+
+        </details>
+
+        <details>
+        <summary>
+        <b>CloudWatch</b>
+        </summary>
+
+        The following arguments are used by the `cloudwatch` block.
+        """
+        return pulumi.get(self, "logs_endpoint")
+
+    @_builtins.property
+    @pulumi.getter(name="tenantId")
+    def tenant_id(self) -> Optional[_builtins.str]:
+        """
+        Microsoft Entra Directory (tenant) ID as a UUID.
+        """
+        return pulumi.get(self, "tenant_id")
 
 
 @pulumi.output_type
@@ -602,6 +734,176 @@ class IntegrationLogAgentGrafana(dict):
         Grafana Cloud instance ID
         """
         return pulumi.get(self, "grafana_instance_id")
+
+
+@pulumi.output_type
+class IntegrationLogAgentOtlp(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "authType":
+            suggest = "auth_type"
+        elif key == "clientId":
+            suggest = "client_id"
+        elif key == "clientSecret":
+            suggest = "client_secret"
+        elif key == "clientSecretVersion":
+            suggest = "client_secret_version"
+        elif key == "passwordVersion":
+            suggest = "password_version"
+        elif key == "tokenUrl":
+            suggest = "token_url"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in IntegrationLogAgentOtlp. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        IntegrationLogAgentOtlp.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        IntegrationLogAgentOtlp.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 auth_type: Optional[_builtins.str] = None,
+                 client_id: Optional[_builtins.str] = None,
+                 client_secret: Optional[_builtins.str] = None,
+                 client_secret_version: Optional[_builtins.int] = None,
+                 endpoint: Optional[_builtins.str] = None,
+                 headers: Optional[_builtins.str] = None,
+                 password: Optional[_builtins.str] = None,
+                 password_version: Optional[_builtins.int] = None,
+                 scopes: Optional[_builtins.str] = None,
+                 token_url: Optional[_builtins.str] = None,
+                 username: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str auth_type: Authentication for the endpoint; none, basic_auth, headers or oauth2 (default: none)
+        :param _builtins.str client_id: Client identifier, used when auth_type is oauth2
+        :param _builtins.str client_secret: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Client secret, used when auth_type is oauth2
+        :param _builtins.int client_secret_version: Version of the write-only client_secret. Increment to trigger an update when the secret changes (default: 1).
+        :param _builtins.str endpoint: Full https URL the backend receives logs on, including the path (e.g. https://otlp.example.com:4318/v1/logs)
+        :param _builtins.str headers: Headers sent with every request, one 'key: value' pair per line. Required when auth_type is headers
+        :param _builtins.str password: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Password or token, used when auth_type is basic_auth
+        :param _builtins.int password_version: Version of the write-only password. Increment to trigger an update when the password changes (default: 1).
+        :param _builtins.str scopes: Scopes requested with the OAuth2 token, space or comma separated
+        :param _builtins.str token_url: OAuth2 token endpoint over HTTPS, used when auth_type is oauth2
+        :param _builtins.str username: Username, used when auth_type is basic_auth
+        """
+        if auth_type is not None:
+            pulumi.set(__self__, "auth_type", auth_type)
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if client_secret is not None:
+            pulumi.set(__self__, "client_secret", client_secret)
+        if client_secret_version is not None:
+            pulumi.set(__self__, "client_secret_version", client_secret_version)
+        if endpoint is not None:
+            pulumi.set(__self__, "endpoint", endpoint)
+        if headers is not None:
+            pulumi.set(__self__, "headers", headers)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if password_version is not None:
+            pulumi.set(__self__, "password_version", password_version)
+        if scopes is not None:
+            pulumi.set(__self__, "scopes", scopes)
+        if token_url is not None:
+            pulumi.set(__self__, "token_url", token_url)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> Optional[_builtins.str]:
+        """
+        Authentication for the endpoint; none, basic_auth, headers or oauth2 (default: none)
+        """
+        return pulumi.get(self, "auth_type")
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[_builtins.str]:
+        """
+        Client identifier, used when auth_type is oauth2
+        """
+        return pulumi.get(self, "client_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Client secret, used when auth_type is oauth2
+        """
+        return pulumi.get(self, "client_secret")
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecretVersion")
+    def client_secret_version(self) -> Optional[_builtins.int]:
+        """
+        Version of the write-only client_secret. Increment to trigger an update when the secret changes (default: 1).
+        """
+        return pulumi.get(self, "client_secret_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def endpoint(self) -> Optional[_builtins.str]:
+        """
+        Full https URL the backend receives logs on, including the path (e.g. https://otlp.example.com:4318/v1/logs)
+        """
+        return pulumi.get(self, "endpoint")
+
+    @_builtins.property
+    @pulumi.getter
+    def headers(self) -> Optional[_builtins.str]:
+        """
+        Headers sent with every request, one 'key: value' pair per line. Required when auth_type is headers
+        """
+        return pulumi.get(self, "headers")
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> Optional[_builtins.str]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Password or token, used when auth_type is basic_auth
+        """
+        return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordVersion")
+    def password_version(self) -> Optional[_builtins.int]:
+        """
+        Version of the write-only password. Increment to trigger an update when the password changes (default: 1).
+        """
+        return pulumi.get(self, "password_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def scopes(self) -> Optional[_builtins.str]:
+        """
+        Scopes requested with the OAuth2 token, space or comma separated
+        """
+        return pulumi.get(self, "scopes")
+
+    @_builtins.property
+    @pulumi.getter(name="tokenUrl")
+    def token_url(self) -> Optional[_builtins.str]:
+        """
+        OAuth2 token endpoint over HTTPS, used when auth_type is oauth2
+        """
+        return pulumi.get(self, "token_url")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> Optional[_builtins.str]:
+        """
+        Username, used when auth_type is basic_auth
+        """
+        return pulumi.get(self, "username")
 
 
 @pulumi.output_type

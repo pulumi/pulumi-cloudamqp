@@ -13,6 +13,15 @@ import * as utilities from "./utilities";
  *
  * Only available for dedicated subscription plans.
  *
+ * > **Note:** For `newrelic`/`newrelicV2`, `datadog`/`datadogV2`, `cloudwatch`/`cloudwatchV2`, and
+ * `stackdriver`, we recommend the newer, **Prometheus**&#47;**OpenTelemetry**-based
+ * [`cloudamqp.IntegrationMetricPrometheus`][metric-prometheus] resource instead of this one — see its
+ * `newrelicV3`, `datadogV3`, `cloudwatchV3`, and `stackdriverV2` blocks respectively. It's where new
+ * metrics integration features land going forward. This resource remains fully supported for `librato`,
+ * which has no Prometheus-based equivalent.
+ *
+ * [metric-prometheus]: integration_metric_prometheus.md
+ *
  * ## Example Usage
  *
  * <details>
@@ -307,8 +316,6 @@ import * as utilities from "./utilities";
  * | ------------- | ------------------------------------------------------------- |
  * | cloudwatch | Access key: Create an IAM user with permission to `PutMetricData` |
  * | cloudwatchV2 | Access key: Create an IAM user with permission to `PutMetricData` |
- * | cloudwatch | Assume role: Create a IAM role with the permission to `PutMetricData` |
- * | cloudwatchV2 | Assume role: Create a IAM role with the permission to `PutMetricData` |
  * | datadog | Create a Datadog API key at app.datadoghq.com |
  * | datadogV2 | Create a Datadog API key at app.datadoghq.com |
  * | librato | Create a new API token (with record only permissions) here: [Librato token] |
@@ -328,8 +335,6 @@ import * as utilities from "./utilities";
  * |------------------------|----------------|------------------------------------------------------|
  * | Cloudwatch             | cloudwatch     | Access key: region, access_key_id, secretAccessKey |
  * | Cloudwatch v2          | cloudwatchV2  | Access key: region, access_key_id, secretAccessKey |
- * | Cloudwatch             | cloudwatch     | Assume role: region, iam_role, iamExternalId       |
- * | Cloudwatch v2          | cloudwatchV2  | Assume role: region, iam_role, iamExternalId       |
  * | Datadog                | datadog        | api_key, region                                      |
  * | Datadog v2             | datadogV2     | api_key, region                                      |
  * | Librato                | librato        | email, apiKey                                       |

@@ -19,6 +19,14 @@ import (
 //
 // Only available for dedicated subscription plans.
 //
+// > **Note:** For `cloudwatch`, `coralogix`, `datadog`, `stackdriver` (Google Cloud), and `splunk`, we
+// recommend the newer, **OpenTelemetry**-based [`IntegrationLogAgent`][log-agent] resource instead
+// of this one. It delivers structured log data and is where new log integration features land going
+// forward. This resource remains fully supported for integrations without an agent-based equivalent
+// (Papertrail, Loggly, Logentries, DataSet/Scalyr, Azure Monitor).
+//
+// [log-agent]: integration_log_agent.md
+//
 // ## Example Usage
 //
 // <details>

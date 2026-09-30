@@ -350,6 +350,16 @@ import javax.annotation.Nullable;
  * | --- | --- | --- | --- | --- | --- |
  * | int | 134217728 | 1 | 536870912 | bytes | Only effects new channels |
  * 
+ * ### logLevel
+ * 
+ * | Type | Default | Affect | Allowed values |
+ * | --- | --- | --- | --- |
+ * | string | info | Applied immediately | `debug, info, warning, error, critical, none` |
+ * 
+ * Note: Setting `logLevel` also sets `logExchangeLevel` to the same value. Do not
+ * set both arguments to different values, the plan will never converge. `debug`
+ * increases log volume on every output, use it for a limited period while troubleshooting.
+ * 
  * ### logExchangeLevel
  * 
  * | Type | Default | Affect | Allowed values |
@@ -545,18 +555,32 @@ public class RabbitConfiguration extends com.pulumi.resources.CustomResource {
         return this.instanceId;
     }
     /**
-     * Log level for the logger used for log integrations and the CloudAMQP Console log view.
+     * Log level for the log exchange only, which feeds the CloudAMQP Console log view and legacy log integrations. Prefer `logLevel`.
      * 
      */
     @Export(name="logExchangeLevel", refs={String.class}, tree="[0]")
     private Output<String> logExchangeLevel;
 
     /**
-     * @return Log level for the logger used for log integrations and the CloudAMQP Console log view.
+     * @return Log level for the log exchange only, which feeds the CloudAMQP Console log view and legacy log integrations. Prefer `logLevel`.
      * 
      */
     public Output<String> logExchangeLevel() {
         return this.logExchangeLevel;
+    }
+    /**
+     * Log level for all RabbitMQ log outputs: log integrations, the CloudAMQP Console log view and the log file. Also sets `logExchangeLevel`.
+     * 
+     */
+    @Export(name="logLevel", refs={String.class}, tree="[0]")
+    private Output<String> logLevel;
+
+    /**
+     * @return Log level for all RabbitMQ log outputs: log integrations, the CloudAMQP Console log view and the log file. Also sets `logExchangeLevel`.
+     * 
+     */
+    public Output<String> logLevel() {
+        return this.logLevel;
     }
     /**
      * The largest allowed message payload size in bytes.

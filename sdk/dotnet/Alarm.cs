@@ -20,7 +20,7 @@ namespace Pulumi.CloudAmqp
     /// By setting `NoDefaultAlarms` to *true* in `cloudamqp.Instance`. This will create the instance
     /// without default alarms and avoid the need to import them to get full control.
     /// 
-    /// Available for all subscription plans, but `Lemur`and `Tiger`are limited to fewer alarm types. The
+    /// Available for all subscription plans, but `Lemur`and `Tiger` are limited to fewer alarm types. The
     /// limited types supported can be seen in the table below in [Alarm Type Reference].
     /// 
     /// ## Example Usage
