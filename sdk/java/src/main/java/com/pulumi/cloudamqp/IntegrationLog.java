@@ -24,11 +24,11 @@ import javax.annotation.Nullable;
  * 
  * Only available for dedicated subscription plans.
  * 
- * &gt; **Note:** For `cloudwatch`, `coralogix`, `datadog`, `stackdriver` (Google Cloud), and `splunk`, we
+ * &gt; **Note:** For `azure monitor`, `cloudwatch`, `coralogix`, `datadog`, `stackdriver` (Google Cloud), and `splunk`, we
  * recommend the newer, **OpenTelemetry**-based [`cloudamqp.IntegrationLogAgent`][log-agent] resource instead
  * of this one. It delivers structured log data and is where new log integration features land going
  * forward. This resource remains fully supported for integrations without an agent-based equivalent
- * (Papertrail, Loggly, Logentries, DataSet/Scalyr, Azure Monitor).
+ * (Papertrail, Loggly, Logentries, DataSet/Scalyr).
  * 
  * [log-agent]: integration_log_agent.md
  * 

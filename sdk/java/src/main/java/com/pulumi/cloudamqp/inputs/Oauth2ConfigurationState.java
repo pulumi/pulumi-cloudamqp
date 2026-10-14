@@ -57,6 +57,7 @@ public final class Oauth2ConfigurationState extends com.pulumi.resources.Resourc
 
     /**
      * Disable static username/password management interface access.
+     * RabbitMQ only.
      * 
      */
     @Import(name="disableBasicAuth")
@@ -64,6 +65,7 @@ public final class Oauth2ConfigurationState extends com.pulumi.resources.Resourc
 
     /**
      * @return Disable static username/password management interface access.
+     * RabbitMQ only.
      * 
      */
     public Optional<Output<Boolean>> disableBasicAuth() {
@@ -103,14 +105,54 @@ public final class Oauth2ConfigurationState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * OAuth2 client ID used for token validation.
+     * How long JWKS signing keys are cached before being re-fetched
+     * from the identity provider, in seconds. Between 0 and 86400. LavinMQ only.
+     * 
+     */
+    @Import(name="jwksCacheTtl")
+    private @Nullable Output<Integer> jwksCacheTtl;
+
+    /**
+     * @return How long JWKS signing keys are cached before being re-fetched
+     * from the identity provider, in seconds. Between 0 and 86400. LavinMQ only.
+     * 
+     */
+    public Optional<Output<Integer>> jwksCacheTtl() {
+        return Optional.ofNullable(this.jwksCacheTtl);
+    }
+
+    /**
+     * Space-separated OAuth2 scopes requested during management UI
+     * SSO login, used together with `oauthClientId`. Requires LavinMQ 2.9.1 or newer.
+     * LavinMQ only.
+     * 
+     */
+    @Import(name="mgmtScopes")
+    private @Nullable Output<String> mgmtScopes;
+
+    /**
+     * @return Space-separated OAuth2 scopes requested during management UI
+     * SSO login, used together with `oauthClientId`. Requires LavinMQ 2.9.1 or newer.
+     * LavinMQ only.
+     * 
+     */
+    public Optional<Output<String>> mgmtScopes() {
+        return Optional.ofNullable(this.mgmtScopes);
+    }
+
+    /**
+     * OAuth2 client ID used for token validation. For LavinMQ,
+     * this is the client ID for management UI SSO login, which requires
+     * LavinMQ 2.9.0 or newer.
      * 
      */
     @Import(name="oauthClientId")
     private @Nullable Output<String> oauthClientId;
 
     /**
-     * @return OAuth2 client ID used for token validation.
+     * @return OAuth2 client ID used for token validation. For LavinMQ,
+     * this is the client ID for management UI SSO login, which requires
+     * LavinMQ 2.9.0 or newer.
      * 
      */
     public Optional<Output<String>> oauthClientId() {
@@ -238,7 +280,8 @@ public final class Oauth2ConfigurationState extends com.pulumi.resources.Resourc
 
     /**
      * Whether to verify the audience claim in the JWT
-     * token. Defaults to true.
+     * token. When not set, RabbitMQ is configured with false and LavinMQ
+     * uses the API default, true.
      * 
      */
     @Import(name="verifyAud")
@@ -246,7 +289,8 @@ public final class Oauth2ConfigurationState extends com.pulumi.resources.Resourc
 
     /**
      * @return Whether to verify the audience claim in the JWT
-     * token. Defaults to true.
+     * token. When not set, RabbitMQ is configured with false and LavinMQ
+     * uses the API default, true.
      * 
      */
     public Optional<Output<Boolean>> verifyAud() {
@@ -261,6 +305,8 @@ public final class Oauth2ConfigurationState extends com.pulumi.resources.Resourc
         this.disableBasicAuth = $.disableBasicAuth;
         this.instanceId = $.instanceId;
         this.issuer = $.issuer;
+        this.jwksCacheTtl = $.jwksCacheTtl;
+        this.mgmtScopes = $.mgmtScopes;
         this.oauthClientId = $.oauthClientId;
         this.oauthScopes = $.oauthScopes;
         this.preferredUsernameClaims = $.preferredUsernameClaims;
@@ -351,6 +397,7 @@ public final class Oauth2ConfigurationState extends com.pulumi.resources.Resourc
 
         /**
          * @param disableBasicAuth Disable static username/password management interface access.
+         * RabbitMQ only.
          * 
          * @return builder
          * 
@@ -362,6 +409,7 @@ public final class Oauth2ConfigurationState extends com.pulumi.resources.Resourc
 
         /**
          * @param disableBasicAuth Disable static username/password management interface access.
+         * RabbitMQ only.
          * 
          * @return builder
          * 
@@ -415,7 +463,57 @@ public final class Oauth2ConfigurationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param oauthClientId OAuth2 client ID used for token validation.
+         * @param jwksCacheTtl How long JWKS signing keys are cached before being re-fetched
+         * from the identity provider, in seconds. Between 0 and 86400. LavinMQ only.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jwksCacheTtl(@Nullable Output<Integer> jwksCacheTtl) {
+            $.jwksCacheTtl = jwksCacheTtl;
+            return this;
+        }
+
+        /**
+         * @param jwksCacheTtl How long JWKS signing keys are cached before being re-fetched
+         * from the identity provider, in seconds. Between 0 and 86400. LavinMQ only.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jwksCacheTtl(Integer jwksCacheTtl) {
+            return jwksCacheTtl(Output.of(jwksCacheTtl));
+        }
+
+        /**
+         * @param mgmtScopes Space-separated OAuth2 scopes requested during management UI
+         * SSO login, used together with `oauthClientId`. Requires LavinMQ 2.9.1 or newer.
+         * LavinMQ only.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mgmtScopes(@Nullable Output<String> mgmtScopes) {
+            $.mgmtScopes = mgmtScopes;
+            return this;
+        }
+
+        /**
+         * @param mgmtScopes Space-separated OAuth2 scopes requested during management UI
+         * SSO login, used together with `oauthClientId`. Requires LavinMQ 2.9.1 or newer.
+         * LavinMQ only.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mgmtScopes(String mgmtScopes) {
+            return mgmtScopes(Output.of(mgmtScopes));
+        }
+
+        /**
+         * @param oauthClientId OAuth2 client ID used for token validation. For LavinMQ,
+         * this is the client ID for management UI SSO login, which requires
+         * LavinMQ 2.9.0 or newer.
          * 
          * @return builder
          * 
@@ -426,7 +524,9 @@ public final class Oauth2ConfigurationState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param oauthClientId OAuth2 client ID used for token validation.
+         * @param oauthClientId OAuth2 client ID used for token validation. For LavinMQ,
+         * this is the client ID for management UI SSO login, which requires
+         * LavinMQ 2.9.0 or newer.
          * 
          * @return builder
          * 
@@ -620,7 +720,8 @@ public final class Oauth2ConfigurationState extends com.pulumi.resources.Resourc
 
         /**
          * @param verifyAud Whether to verify the audience claim in the JWT
-         * token. Defaults to true.
+         * token. When not set, RabbitMQ is configured with false and LavinMQ
+         * uses the API default, true.
          * 
          * @return builder
          * 
@@ -632,7 +733,8 @@ public final class Oauth2ConfigurationState extends com.pulumi.resources.Resourc
 
         /**
          * @param verifyAud Whether to verify the audience claim in the JWT
-         * token. Defaults to true.
+         * token. When not set, RabbitMQ is configured with false and LavinMQ
+         * uses the API default, true.
          * 
          * @return builder
          * 
