@@ -21,9 +21,14 @@ import javax.annotation.Nullable;
 /**
  * &lt;!-- markdownlint-disable MD033 --&gt;
  * 
- * This resource allows you to configure OAuth2 authentication for your RabbitMQ instance.
+ * This resource allows you to configure OAuth2 authentication for your RabbitMQ or LavinMQ instance.
  * 
- * Only available for dedicated subscription plans running ***RabbitMQ***.
+ * Only available for dedicated subscription plans running ***RabbitMQ*** or ***LavinMQ***. LavinMQ
+ * requires version 2.7.0 or newer.
+ * 
+ * The resource looks up which broker the instance runs when creating or updating the configuration.
+ * Some attributes are only supported by one of the brokers, see Broker support.
+ * Setting an attribute the broker doesn&#39;t support fails the apply with an error.
  * 
  * ## Example Usage
  * 
@@ -175,6 +180,118 @@ import javax.annotation.Nullable;
  * 
  * &lt;/details&gt;
  * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;LavinMQ OAuth2 configuration&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Oauth2Configuration;
+ * import com.pulumi.cloudamqp.Oauth2ConfigurationArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var oauth2Config = new Oauth2Configuration("oauth2Config", Oauth2ConfigurationArgs.builder()
+ *             .instanceId(instance.id())
+ *             .issuer("https://auth.example.com/realms/lavinmq")
+ *             .resourceServerId("lavinmq")
+ *             .verifyAud(true)
+ *             .preferredUsernameClaims("preferred_username")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * &lt;details&gt;
+ *   &lt;summary&gt;
+ *     &lt;b&gt;
+ *       &lt;i&gt;LavinMQ OAuth2 configuration with management UI SSO login&lt;/i&gt;
+ *     &lt;/b&gt;
+ *   &lt;/summary&gt;
+ * 
+ * Requires LavinMQ 2.9.0 or newer, and 2.9.1 or newer for `mgmtScopes`.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.cloudamqp.Oauth2Configuration;
+ * import com.pulumi.cloudamqp.Oauth2ConfigurationArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var oauth2Config = new Oauth2Configuration("oauth2Config", Oauth2ConfigurationArgs.builder()
+ *             .instanceId(instance.id())
+ *             .issuer("https://auth.example.com/realms/lavinmq")
+ *             .resourceServerId("lavinmq")
+ *             .additionalScopesKeys("roles")
+ *             .oauthClientId("lavinmq-mgmt")
+ *             .mgmtScopes("openid profile email")
+ *             .jwksCacheTtl(3600)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * &lt;/details&gt;
+ * 
+ * ## Broker support
+ * 
+ * | Attribute                   | RabbitMQ | LavinMQ                           |
+ * |-----------------------------|----------|-----------------------------------|
+ * | `resourceServerId`        | Yes      | Yes                               |
+ * | `issuer`                    | Yes      | Yes                               |
+ * | `preferredUsernameClaims` | Yes      | Yes                               |
+ * | `additionalScopesKey`     | Yes      | Yes                               |
+ * | `scopePrefix`              | Yes      | Yes                               |
+ * | `verifyAud`                | Yes      | Yes                               |
+ * | `audience`                  | Yes      | Yes                               |
+ * | `oauthClientId`           | Yes      | Yes, LavinMQ 2.9.0 or newer       |
+ * | `scopeAliases`             | Yes      | No                                |
+ * | `oauthScopes`              | Yes      | No                                |
+ * | `disableBasicAuth`        | Yes      | No                                |
+ * | `jwksCacheTtl`            | No       | Yes                               |
+ * | `mgmtScopes`               | No       | Yes, LavinMQ 2.9.1 or newer       |
+ * 
+ * The CloudAMQP API requires LavinMQ 2.7.0 or newer for OAuth2 configuration.
+ * 
  * ## Dependency
  * 
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -187,6 +304,9 @@ import javax.annotation.Nullable;
  * * Only one OAuth2 configuration can exist per instance. Creating a new configuration will replace
  *   any existing configuration.
  * * After a configuration has been applied, a restart of RabbitMQ is required for the changes to take effect.
+ * * For LavinMQ with `oauthClientId` set, the management UI base URL used for the SSO login callback
+ *   defaults to the instance hostname. Overriding it (`mgmtBaseUrl` in the API) is not supported by
+ *   this resource.
  * 
  */
 @ResourceType(type="cloudamqp:index/oauth2Configuration:Oauth2Configuration")
@@ -227,6 +347,7 @@ public class Oauth2Configuration extends com.pulumi.resources.CustomResource {
     }
     /**
      * Disable static username/password management interface access.
+     * RabbitMQ only.
      * 
      */
     @Export(name="disableBasicAuth", refs={Boolean.class}, tree="[0]")
@@ -234,6 +355,7 @@ public class Oauth2Configuration extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Disable static username/password management interface access.
+     * RabbitMQ only.
      * 
      */
     public Output<Boolean> disableBasicAuth() {
@@ -270,14 +392,52 @@ public class Oauth2Configuration extends com.pulumi.resources.CustomResource {
         return this.issuer;
     }
     /**
-     * OAuth2 client ID used for token validation.
+     * How long JWKS signing keys are cached before being re-fetched
+     * from the identity provider, in seconds. Between 0 and 86400. LavinMQ only.
+     * 
+     */
+    @Export(name="jwksCacheTtl", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> jwksCacheTtl;
+
+    /**
+     * @return How long JWKS signing keys are cached before being re-fetched
+     * from the identity provider, in seconds. Between 0 and 86400. LavinMQ only.
+     * 
+     */
+    public Output<Optional<Integer>> jwksCacheTtl() {
+        return Codegen.optional(this.jwksCacheTtl);
+    }
+    /**
+     * Space-separated OAuth2 scopes requested during management UI
+     * SSO login, used together with `oauthClientId`. Requires LavinMQ 2.9.1 or newer.
+     * LavinMQ only.
+     * 
+     */
+    @Export(name="mgmtScopes", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> mgmtScopes;
+
+    /**
+     * @return Space-separated OAuth2 scopes requested during management UI
+     * SSO login, used together with `oauthClientId`. Requires LavinMQ 2.9.1 or newer.
+     * LavinMQ only.
+     * 
+     */
+    public Output<Optional<String>> mgmtScopes() {
+        return Codegen.optional(this.mgmtScopes);
+    }
+    /**
+     * OAuth2 client ID used for token validation. For LavinMQ,
+     * this is the client ID for management UI SSO login, which requires
+     * LavinMQ 2.9.0 or newer.
      * 
      */
     @Export(name="oauthClientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oauthClientId;
 
     /**
-     * @return OAuth2 client ID used for token validation.
+     * @return OAuth2 client ID used for token validation. For LavinMQ,
+     * this is the client ID for management UI SSO login, which requires
+     * LavinMQ 2.9.0 or newer.
      * 
      */
     public Output<Optional<String>> oauthClientId() {
@@ -397,7 +557,8 @@ public class Oauth2Configuration extends com.pulumi.resources.CustomResource {
     }
     /**
      * Whether to verify the audience claim in the JWT
-     * token. Defaults to true.
+     * token. When not set, RabbitMQ is configured with false and LavinMQ
+     * uses the API default, true.
      * 
      */
     @Export(name="verifyAud", refs={Boolean.class}, tree="[0]")
@@ -405,7 +566,8 @@ public class Oauth2Configuration extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Whether to verify the audience claim in the JWT
-     * token. Defaults to true.
+     * token. When not set, RabbitMQ is configured with false and LavinMQ
+     * uses the API default, true.
      * 
      */
     public Output<Boolean> verifyAud() {
