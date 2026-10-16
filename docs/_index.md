@@ -69,12 +69,12 @@ const cpuAlarm = new cloudamqp.Alarm("cpu_alarm", {
 });
 // Configure firewall
 const firewall = new cloudamqp.SecurityFirewall("firewall", {
-    instanceId: instance.id.apply(x =>Number(x)),
     rules: [{
         ip: "10.54.72.0/0",
         ports: [4567],
         services: ["AMQPS"],
     }],
+    instanceId: instance.id.apply(x =>Number(x)),
 });
 // Cloudwatch metrics integration
 const cloudwatch = new cloudamqp.IntegrationMetric("cloudwatch", {
@@ -126,12 +126,12 @@ cpu_alarm = cloudamqp.Alarm("cpu_alarm",
     recipients=[recipient01.id.apply(lambda x: int(x))])
 # Configure firewall
 firewall = cloudamqp.SecurityFirewall("firewall",
-    instance_id=instance.id.apply(lambda x: int(x)),
     rules=[{
         "ip": "10.54.72.0/0",
         "ports": [4567],
         "services": ["AMQPS"],
-    }])
+    }],
+    instance_id=instance.id.apply(lambda x: int(x)))
 # Cloudwatch metrics integration
 cloudwatch = cloudamqp.IntegrationMetric("cloudwatch",
     instance_id=instance.id.apply(lambda x: int(x)),
@@ -201,7 +201,6 @@ return await Deployment.RunAsync(() =>
     // Configure firewall
     var firewall = new CloudAmqp.SecurityFirewall("firewall", new()
     {
-        InstanceId = instance.Id,
         Rules = new[]
         {
             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
@@ -217,6 +216,7 @@ return await Deployment.RunAsync(() =>
                 },
             },
         },
+        InstanceId = instance.Id,
     });
 
     // Cloudwatch metrics integration
@@ -297,7 +297,6 @@ func main() {
 		}
 		// Configure firewall
 		_, err = cloudamqp.NewSecurityFirewall(ctx, "firewall", &cloudamqp.SecurityFirewallArgs{
-			InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 			Rules: cloudamqp.SecurityFirewallRuleArray{
 				&cloudamqp.SecurityFirewallRuleArgs{
 					Ip: pulumi.String("10.54.72.0/0"),
@@ -309,6 +308,7 @@ func main() {
 					},
 				},
 			},
+			InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 		})
 		if err != nil {
 			return err
@@ -379,13 +379,13 @@ resources:
   firewall:
     type: cloudamqp:SecurityFirewall
     properties:
-      instanceId: ${instance.id}
       rules:
         - ip: 10.54.72.0/0
           ports:
             - 4567
           services:
             - AMQPS
+      instanceId: ${instance.id}
   # Cloudwatch metrics integration
   cloudwatch:
     type: cloudamqp:IntegrationMetric
@@ -469,12 +469,12 @@ public class App {
 
         // Configure firewall
         var firewall = new SecurityFirewall("firewall", SecurityFirewallArgs.builder()
-            .instanceId(instance.id())
             .rules(SecurityFirewallRuleArgs.builder()
                 .ip("10.54.72.0/0")
                 .ports(4567)
                 .services("AMQPS")
                 .build())
+            .instanceId(instance.id())
             .build());
 
         // Cloudwatch metrics integration
@@ -526,12 +526,12 @@ resource "cloudamqp_alarm" "cpu_alarm" {
 }
 # Configure firewall
 resource "cloudamqp_securityfirewall" "firewall" {
-  instance_id = cloudamqp_instance.instance.id
   rules {
     ip       = "10.54.72.0/0"
     ports    = [4567]
     services = ["AMQPS"]
   }
+  instance_id = cloudamqp_instance.instance.id
 }
 # Cloudwatch metrics integration
 resource "cloudamqp_integrationmetric" "cloudwatch" {
