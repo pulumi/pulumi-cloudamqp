@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var rabbitmqDelayedMessageExchange = new PluginCommunity("rabbitmqDelayedMessageExchange", PluginCommunityArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("rabbitmq_delayed_message_exchange")
  *             .enabled(true)
  *             .build());

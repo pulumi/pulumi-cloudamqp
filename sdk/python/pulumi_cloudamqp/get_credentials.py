@@ -96,7 +96,7 @@ def get_credentials(instance_id: Optional[_builtins.int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    credentials = cloudamqp.get_credentials(instance_id=int(instance["id"]))
+    credentials = cloudamqp.get_credentials(instance_id=instance["id"])
     ```
 
     ## Dependency
@@ -147,7 +147,7 @@ def get_credentials_output(instance_id: pulumi.Input[Optional[_builtins.int]] = 
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    credentials = cloudamqp.get_credentials(instance_id=int(instance["id"]))
+    credentials = cloudamqp.get_credentials(instance_id=instance["id"])
     ```
 
     ## Dependency

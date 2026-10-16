@@ -66,7 +66,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) }{{@code
  *         // New recipient
  *         var recipient01 = new Notification("recipient01", NotificationArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .type("email")
  *             .value("alarm}{@literal @}{@code example.com")
  *             .name("alarm")
@@ -74,7 +74,7 @@ import javax.annotation.Nullable;
  * 
  *         // New cpu alarm
  *         var cpuAlarm = new Alarm("cpuAlarm", AlarmArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .type("cpu")
  *             .enabled(true)
  *             .reminderInterval(600)
@@ -85,7 +85,7 @@ import javax.annotation.Nullable;
  * 
  *         // New memory alarm
  *         var memoryAlarm = new Alarm("memoryAlarm", AlarmArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .type("memory")
  *             .enabled(true)
  *             .reminderInterval(600)
@@ -137,7 +137,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) }{{@code
  *         // New recipient
  *         var recipient01 = new Notification("recipient01", NotificationArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .type("email")
  *             .value("alarm}{@literal @}{@code example.com")
  *             .name("alarm")
@@ -145,7 +145,7 @@ import javax.annotation.Nullable;
  * 
  *         // Update existing notice alarm
  *         var notice = new Alarm("notice", AlarmArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .type("notice")
  *             .enabled(true)
  *             .recipients(recipient01.id())
@@ -191,14 +191,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var diskAutoscale = new Alarm("diskAutoscale", AlarmArgs.builder()
- *             .instanceId(example.id())
+ *             .instanceId(example.get("id"))
  *             .type("disk_auto_resize")
  *             .enabled(true)
  *             .valueThreshold(5)
  *             .valueCalculation("percentage")
  *             .timeThreshold(600)
  *             .allowDowntime(false)
- *             .recipients(recipient.id())
+ *             .recipients(recipient.get("id"))
  *             .build());
  * 
  *     }

@@ -191,16 +191,16 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var example = new PrivateEndpoint("example", PrivateEndpointArgs.builder()
- *             .name("example-endpoint")
- *             .location(exampleAzurermResourceGroup.location())
- *             .resourceGroupName(exampleAzurermResourceGroup.name())
- *             .subnetId(subnet.id())
  *             .privateServiceConnection(Arrays.asList(Map.ofEntries(
  *                 Map.entry("name", "example-privateserviceconnection"),
- *                 Map.entry("privateConnectionResourceAlias", vpcConnect.serviceName()),
+ *                 Map.entry("privateConnectionResourceAlias", vpcConnect.get("serviceName")),
  *                 Map.entry("isManualConnection", true),
  *                 Map.entry("requestMessage", "PL")
  *             )))
+ *             .name("example-endpoint")
+ *             .location(exampleAzurermResourceGroup.get("location"))
+ *             .resourceGroupName(exampleAzurermResourceGroup.get("name"))
+ *             .subnetId(subnet.get("id"))
  *             .build());
  * 
  *     }
@@ -337,7 +337,6 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var firewallSettings = new SecurityFirewall("firewallSettings", SecurityFirewallArgs.builder()
- *             .instanceId(instance.id())
  *             .rules(            
  *                 SecurityFirewallRuleArgs.builder()
  *                     .description("Custom PrivateLink setup")
@@ -354,6 +353,7 @@ import javax.annotation.Nullable;
  *                     .ports()
  *                     .services("HTTPS")
  *                     .build())
+ *             .instanceId(instance.id())
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(vpcConnect)
  *                 .build());

@@ -650,7 +650,7 @@ class ExtraDiskSize(pulumi.CustomResource):
             allow_downtime: pulumi.Input[Optional[_builtins.bool]] = None,
             extra_disk_size: pulumi.Input[Optional[_builtins.int]] = None,
             instance_id: pulumi.Input[Optional[_builtins.int]] = None,
-            nodes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ExtraDiskSizeNodeArgs', 'ExtraDiskSizeNodeArgsDict']]]]] = None,
+            nodes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ExtraDiskSizeNodeArgs', 'ExtraDiskSizeNodeArgsDict', 'outputs.ExtraDiskSizeNode']]]]] = None,
             sleep: pulumi.Input[Optional[_builtins.int]] = None,
             timeout: pulumi.Input[Optional[_builtins.int]] = None) -> 'ExtraDiskSize':
         """
@@ -665,7 +665,7 @@ class ExtraDiskSize(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] extra_disk_size: Extra disk size in GB. Supported values: 0, 25, 50, 100,
                250, 500, 1000, 2000
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ExtraDiskSizeNodeArgs', 'ExtraDiskSizeNodeArgsDict']]]] nodes: An array of node information. Each `nodes` block consists of the fields documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ExtraDiskSizeNodeArgs', 'ExtraDiskSizeNodeArgsDict', 'outputs.ExtraDiskSizeNode']]]] nodes: An array of node information. Each `nodes` block consists of the fields documented below.
         :param pulumi.Input[_builtins.int] sleep: Configurable sleep time in seconds between retries for resizing the
                disk. Default set to 30 seconds.
         :param pulumi.Input[_builtins.int] timeout: Configurable timeout time in seconds for resizing the disk. Default

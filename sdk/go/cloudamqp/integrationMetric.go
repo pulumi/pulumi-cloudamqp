@@ -341,9 +341,9 @@ import (
 //			_, err = cloudamqp.NewIntegrationMetric(ctx, "stackdriver", &cloudamqp.IntegrationMetricArgs{
 //				InstanceId:  pulumi.Any(instance.Id),
 //				Name:        pulumi.String("stackdriver"),
-//				ProjectId:   invokeJsondecode.Result.ProjectId,
-//				PrivateKey:  invokeJsondecode1.Result.PrivateKey,
-//				ClientEmail: invokeJsondecode2.Result.ClientEmail,
+//				ProjectId:   invokeJsondecode.Result.ProjectId.(pulumi.String),
+//				PrivateKey:  invokeJsondecode1.Result.PrivateKey.(pulumi.String),
+//				ClientEmail: invokeJsondecode2.Result.ClientEmail.(pulumi.String),
 //			})
 //			if err != nil {
 //				return err
@@ -465,9 +465,9 @@ import (
 //			_, err = cloudamqp.NewIntegrationMetric(ctx, "stackdriver", &cloudamqp.IntegrationMetricArgs{
 //				InstanceId:  pulumi.Any(instance.Id),
 //				Name:        pulumi.String("stackdriver"),
-//				ProjectId:   invokeJsondecode.Result.ProjectId,
-//				PrivateKey:  invokeJsondecode1.Result.PrivateKey,
-//				ClientEmail: invokeJsondecode2.Result.ClientEmail,
+//				ProjectId:   invokeJsondecode.Result.ProjectId.(pulumi.String),
+//				PrivateKey:  invokeJsondecode1.Result.PrivateKey.(pulumi.String),
+//				ClientEmail: invokeJsondecode2.Result.ClientEmail.(pulumi.String),
 //			})
 //			if err != nil {
 //				return err

@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var rabbitmqConfig = new RabbitConfiguration("rabbitmqConfig", RabbitConfigurationArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .heartbeat(0)
  *             .build());
  * 
@@ -99,7 +99,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var rabbitmqConfig = new RabbitConfiguration("rabbitmqConfig", RabbitConfigurationArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .channelMax(0)
  *             .connectionMax(-1)
  *             .consumerTimeout(7200000)
@@ -153,7 +153,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var rabbitmqConfig = new RabbitConfiguration("rabbitmqConfig", RabbitConfigurationArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .channelMax(0)
  *             .connectionMax(-1)
  *             .consumerTimeout(7200000)
@@ -166,11 +166,11 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         final var listNodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *         var nodeAction = new NodeActions("nodeAction", NodeActionsArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .action("cluster.restart")
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(rabbitmqConfig)
@@ -216,7 +216,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var rabbitConfig = new RabbitConfiguration("rabbitConfig", RabbitConfigurationArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .logExchangeLevel("info")
  *             .build());
  * 
@@ -270,8 +270,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var rabbitmqConfig = new RabbitConfiguration("rabbitmqConfig", RabbitConfigurationArgs.builder()
- *             .instanceId(instance.id())
- *             .mqttVhost(instance.vhost())
+ *             .instanceId(instance.get("id"))
+ *             .mqttVhost(instance.get("vhost"))
  *             .mqttExchange("amq.topic")
  *             .mqttSslCertLogin(true)
  *             .mqttMaxSessionExpiryIntervalSeconds(1800)
@@ -280,11 +280,11 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *         var nodeAction = new NodeActions("nodeAction", NodeActionsArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .nodeName(nodes.nodes()[0].name())
  *             .action("restart")
  *             .build(), CustomResourceOptions.builder()

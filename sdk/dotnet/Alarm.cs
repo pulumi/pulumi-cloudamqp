@@ -60,7 +60,7 @@ namespace Pulumi.CloudAmqp
     ///         TimeThreshold = 600,
     ///         Recipients = new[]
     ///         {
-    ///             recipient01.Id,
+    ///             recipient01.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         },
     ///     });
     /// 
@@ -75,7 +75,7 @@ namespace Pulumi.CloudAmqp
     ///         TimeThreshold = 600,
     ///         Recipients = new[]
     ///         {
-    ///             recipient01.Id,
+    ///             recipient01.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         },
     ///     });
     /// 
@@ -119,7 +119,7 @@ namespace Pulumi.CloudAmqp
     ///         Enabled = true,
     ///         Recipients = new[]
     ///         {
-    ///             recipient01.Id,
+    ///             recipient01.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         },
     ///     });
     /// 

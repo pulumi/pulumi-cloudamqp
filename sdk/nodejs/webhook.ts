@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const webhookQueue = new cloudamqp.Webhook("webhook_queue", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     vhost: instance.vhost,
  *     queue: "webhook-queue",
  *     webhookUri: "https://example.com/webhook?key=secret",
@@ -54,7 +54,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const webhookQueue = new cloudamqp.Webhook("webhook_queue", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     vhost: instance.vhost,
  *     queue: "webhook-queue",
  *     webhookUri: "https://example.com/webhook?key=secret",
@@ -89,7 +89,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const webhookQueue = new cloudamqp.Webhook("webhook_queue", {
- *   instanceId: Number(instance.id),
+ *   instanceId: instance.id,
  *   vhost: instance.vhost,
  *   queue: "webhook-queue",
  *   webhookUri: "https://example.com/webhook?key=secret",

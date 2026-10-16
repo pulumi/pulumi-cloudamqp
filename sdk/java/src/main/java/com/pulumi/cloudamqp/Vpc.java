@@ -68,7 +68,7 @@ import javax.annotation.Nullable;
  *             .region("amazon-web-services::us-east-1")
  *             .nodes(1)
  *             .tags()
- *             .vpcId(vpcCloudamqVpc.id())
+ *             .vpcId(vpcCloudamqVpc.get("id"))
  *             .keepAssociatedVpc(true)
  *             .build());
  * 

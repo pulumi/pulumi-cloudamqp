@@ -99,10 +99,10 @@ import * as utilities from "./utilities";
  *
  * // Retrieve latest possible upgradable versions for RabbitMQ and Erlang
  * const versions = cloudamqp.getUpgradableVersions({
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  * });
  * // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
- * const upgrade = new cloudamqp.UpgradeRabbitmq("upgrade", {instanceId: Number(instance.id)});
+ * const upgrade = new cloudamqp.UpgradeRabbitmq("upgrade", {instanceId: instance.id});
  * ```
  *
  * ```typescript
@@ -111,7 +111,7 @@ import * as utilities from "./utilities";
  *
  * // Retrieve latest possible upgradable versions for RabbitMQ and Erlang
  * const versions = cloudamqp.getUpgradableVersions({
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  * });
  * ```
  *
@@ -123,10 +123,10 @@ import * as utilities from "./utilities";
  *
  * // Retrieve latest possible upgradable versions for RabbitMQ and Erlang
  * const versions = cloudamqp.getUpgradableVersions({
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  * });
  * // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
- * const upgrade = new cloudamqp.UpgradeRabbitmq("upgrade", {instanceId: Number(instance.id)});
+ * const upgrade = new cloudamqp.UpgradeRabbitmq("upgrade", {instanceId: instance.id});
  * ```
  *
  * </details>

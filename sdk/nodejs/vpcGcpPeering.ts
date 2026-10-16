@@ -145,12 +145,11 @@ import * as utilities from "./utilities";
  *
  * // VPC peering configuration
  * const vpcPeeringRequest = new cloudamqp.VpcGcpPeering("vpc_peering_request", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     peerNetworkUri: peerNetworkUri,
  * });
  * // Firewall rules
  * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
- *     instanceId: Number(instance.id),
  *     rules: [
  *         {
  *             ip: peerSubnet,
@@ -178,6 +177,7 @@ import * as utilities from "./utilities";
  *             ],
  *         },
  *     ],
+ *     instanceId: instance.id,
  * }, {
  *     dependsOn: [vpcPeeringRequest],
  * });
@@ -203,7 +203,6 @@ import * as utilities from "./utilities";
  * });
  * // Firewall rules
  * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
- *     instanceId: Number(instance.id),
  *     rules: [
  *         {
  *             ip: peerSubnet,
@@ -225,6 +224,7 @@ import * as utilities from "./utilities";
  *             description: "MGMT interface",
  *         },
  *     ],
+ *     instanceId: instance.id,
  * }, {
  *     dependsOn: [vpcPeeringRequest],
  * });

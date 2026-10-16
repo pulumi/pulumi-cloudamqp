@@ -47,11 +47,11 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var trustStore = new CloudAmqp.TrustStore("trust_store", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         Http = new CloudAmqp.Inputs.TrustStoreHttpArgs
     ///         {
     ///             Url = "https://example.com/trust-store-certs",
     ///         },
+    ///         InstanceId = instance.Id,
     ///         RefreshInterval = 30,
     ///     });
     /// 

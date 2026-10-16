@@ -109,7 +109,6 @@ import * as utilities from "./utilities";
  *     allowedPrincipals: ["arn:aws:iam::aws-account-id:user/user-name"],
  * });
  * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
- *     instanceId: instance.id.apply(x =>Number(x)),
  *     rules: [
  *         {
  *             description: "Custom PrivateLink setup",
@@ -130,6 +129,7 @@ import * as utilities from "./utilities";
  *             services: ["HTTPS"],
  *         },
  *     ],
+ *     instanceId: instance.id.apply(x =>Number(x)),
  * }, {
  *     dependsOn: [privatelink],
  * });

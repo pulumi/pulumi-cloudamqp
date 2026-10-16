@@ -472,11 +472,10 @@ class VpcGcpPeering(pulumi.CustomResource):
 
         # VPC peering configuration
         vpc_peering_request = cloudamqp.VpcGcpPeering("vpc_peering_request",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             peer_network_uri=peer_network_uri)
         # Firewall rules
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=int(instance["id"]),
             rules=[
                 {
                     "ip": peer_subnet,
@@ -504,6 +503,7 @@ class VpcGcpPeering(pulumi.CustomResource):
                     ],
                 },
             ],
+            instance_id=instance["id"],
             opts = pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
         ```
 
@@ -526,7 +526,6 @@ class VpcGcpPeering(pulumi.CustomResource):
             peer_network_uri=peer_network_uri)
         # Firewall rules
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=int(instance["id"]),
             rules=[
                 {
                     "ip": peer_subnet,
@@ -548,6 +547,7 @@ class VpcGcpPeering(pulumi.CustomResource):
                     "description": "MGMT interface",
                 },
             ],
+            instance_id=instance["id"],
             opts = pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
         ```
 
@@ -746,11 +746,10 @@ class VpcGcpPeering(pulumi.CustomResource):
 
         # VPC peering configuration
         vpc_peering_request = cloudamqp.VpcGcpPeering("vpc_peering_request",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             peer_network_uri=peer_network_uri)
         # Firewall rules
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=int(instance["id"]),
             rules=[
                 {
                     "ip": peer_subnet,
@@ -778,6 +777,7 @@ class VpcGcpPeering(pulumi.CustomResource):
                     ],
                 },
             ],
+            instance_id=instance["id"],
             opts = pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
         ```
 
@@ -800,7 +800,6 @@ class VpcGcpPeering(pulumi.CustomResource):
             peer_network_uri=peer_network_uri)
         # Firewall rules
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=int(instance["id"]),
             rules=[
                 {
                     "ip": peer_subnet,
@@ -822,6 +821,7 @@ class VpcGcpPeering(pulumi.CustomResource):
                     "description": "MGMT interface",
                 },
             ],
+            instance_id=instance["id"],
             opts = pulumi.ResourceOptions(depends_on=[vpc_peering_request]))
         ```
 

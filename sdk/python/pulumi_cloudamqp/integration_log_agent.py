@@ -397,16 +397,16 @@ class IntegrationLogAgent(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 azure_monitor: pulumi.Input[Optional[Union['IntegrationLogAgentAzureMonitorArgs', 'IntegrationLogAgentAzureMonitorArgsDict']]] = None,
-                 cloudwatch: pulumi.Input[Optional[Union['IntegrationLogAgentCloudwatchArgs', 'IntegrationLogAgentCloudwatchArgsDict']]] = None,
-                 coralogix: pulumi.Input[Optional[Union['IntegrationLogAgentCoralogixArgs', 'IntegrationLogAgentCoralogixArgsDict']]] = None,
-                 datadog: pulumi.Input[Optional[Union['IntegrationLogAgentDatadogArgs', 'IntegrationLogAgentDatadogArgsDict']]] = None,
-                 google_cloud: pulumi.Input[Optional[Union['IntegrationLogAgentGoogleCloudArgs', 'IntegrationLogAgentGoogleCloudArgsDict']]] = None,
-                 grafana: pulumi.Input[Optional[Union['IntegrationLogAgentGrafanaArgs', 'IntegrationLogAgentGrafanaArgsDict']]] = None,
+                 azure_monitor: pulumi.Input[Optional[Union['IntegrationLogAgentAzureMonitorArgs', 'IntegrationLogAgentAzureMonitorArgsDict', 'outputs.IntegrationLogAgentAzureMonitor']]] = None,
+                 cloudwatch: pulumi.Input[Optional[Union['IntegrationLogAgentCloudwatchArgs', 'IntegrationLogAgentCloudwatchArgsDict', 'outputs.IntegrationLogAgentCloudwatch']]] = None,
+                 coralogix: pulumi.Input[Optional[Union['IntegrationLogAgentCoralogixArgs', 'IntegrationLogAgentCoralogixArgsDict', 'outputs.IntegrationLogAgentCoralogix']]] = None,
+                 datadog: pulumi.Input[Optional[Union['IntegrationLogAgentDatadogArgs', 'IntegrationLogAgentDatadogArgsDict', 'outputs.IntegrationLogAgentDatadog']]] = None,
+                 google_cloud: pulumi.Input[Optional[Union['IntegrationLogAgentGoogleCloudArgs', 'IntegrationLogAgentGoogleCloudArgsDict', 'outputs.IntegrationLogAgentGoogleCloud']]] = None,
+                 grafana: pulumi.Input[Optional[Union['IntegrationLogAgentGrafanaArgs', 'IntegrationLogAgentGrafanaArgsDict', 'outputs.IntegrationLogAgentGrafana']]] = None,
                  instance_id: pulumi.Input[Optional[_builtins.int]] = None,
-                 otlp: pulumi.Input[Optional[Union['IntegrationLogAgentOtlpArgs', 'IntegrationLogAgentOtlpArgsDict']]] = None,
-                 splunk: pulumi.Input[Optional[Union['IntegrationLogAgentSplunkArgs', 'IntegrationLogAgentSplunkArgsDict']]] = None,
-                 uptrace: pulumi.Input[Optional[Union['IntegrationLogAgentUptraceArgs', 'IntegrationLogAgentUptraceArgsDict']]] = None,
+                 otlp: pulumi.Input[Optional[Union['IntegrationLogAgentOtlpArgs', 'IntegrationLogAgentOtlpArgsDict', 'outputs.IntegrationLogAgentOtlp']]] = None,
+                 splunk: pulumi.Input[Optional[Union['IntegrationLogAgentSplunkArgs', 'IntegrationLogAgentSplunkArgsDict', 'outputs.IntegrationLogAgentSplunk']]] = None,
+                 uptrace: pulumi.Input[Optional[Union['IntegrationLogAgentUptraceArgs', 'IntegrationLogAgentUptraceArgsDict', 'outputs.IntegrationLogAgentUptrace']]] = None,
                  __props__=None):
         """
         <!-- markdownlint-disable MD033 -->
@@ -435,13 +435,13 @@ class IntegrationLogAgent(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         azure_monitor = cloudamqp.IntegrationLogAgent("azure_monitor",
-            instance_id=int(instance["id"]),
             azure_monitor={
                 "tenant_id": "00000000-0000-0000-0000-000000000000",
                 "application_id": "11111111-1111-1111-1111-111111111111",
                 "application_secret": azure_application_secret,
                 "logs_endpoint": "https://example.region-1.ingest.monitor.azure.com/datacollectionRules/dcr-example/streams/Microsoft-OTLP-Logs/otlp/v1/logs",
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         </details>
@@ -461,14 +461,14 @@ class IntegrationLogAgent(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         cloudwatch = cloudamqp.IntegrationLogAgent("cloudwatch",
-            instance_id=int(instance["id"]),
             cloudwatch={
                 "iam_role": aws_iam_role,
                 "iam_external_id": aws_iam_external_id,
                 "region": aws_region,
                 "log_group": "CloudAMQP",
                 "log_stream": instance["clusterName"],
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         </details>
@@ -493,14 +493,14 @@ class IntegrationLogAgent(pulumi.CustomResource):
             name=instance.cluster_name,
             log_group_name=cloudwatch_log_group)
         cloudwatch = cloudamqp.IntegrationLogAgent("cloudwatch",
-            instance_id=int(instance["id"]),
             cloudwatch={
                 "iam_role": aws_iam_role,
                 "iam_external_id": aws_iam_external_id,
                 "region": aws_region,
                 "log_group": cloudwatch_log_group,
                 "log_stream": this["name"],
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         </details>
@@ -517,13 +517,13 @@ class IntegrationLogAgent(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         coralogix = cloudamqp.IntegrationLogAgent("coralogix",
-            instance_id=int(instance["id"]),
             coralogix={
                 "private_key": coralogix_private_key,
                 "region": "eu2",
                 "application": "cloudamqp",
                 "subsystem": instance["host"],
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         </details>
@@ -540,11 +540,11 @@ class IntegrationLogAgent(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         datadog = cloudamqp.IntegrationLogAgent("datadog",
-            instance_id=int(instance["id"]),
             datadog={
                 "api_key": datadog_api_key,
                 "region": "us1",
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         </details>
@@ -562,11 +562,11 @@ class IntegrationLogAgent(pulumi.CustomResource):
         import pulumi_std as std
 
         google_cloud = cloudamqp.IntegrationLogAgent("google_cloud",
-            instance_id=int(instance["id"]),
             google_cloud={
                 "service_account_file": std.file(input="path/to/service_account_key.json")["result"],
                 "service_account_file_version": 1,
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         </details>
@@ -583,12 +583,12 @@ class IntegrationLogAgent(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         grafana = cloudamqp.IntegrationLogAgent("grafana",
-            instance_id=int(instance["id"]),
             grafana={
                 "endpoint": grafana_endpoint,
                 "grafana_instance_id": grafana_instance_id,
                 "api_token": grafana_api_token,
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         </details>
@@ -610,12 +610,12 @@ class IntegrationLogAgent(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         otlp = cloudamqp.IntegrationLogAgent("otlp",
-            instance_id=int(instance["id"]),
             otlp={
                 "endpoint": "https://api.honeycomb.io/v1/logs",
                 "auth_type": "headers",
                 "headers": f"x-honeycomb-team: {honeycomb_api_key}",
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         ```python
@@ -623,13 +623,13 @@ class IntegrationLogAgent(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         otlp = cloudamqp.IntegrationLogAgent("otlp",
-            instance_id=int(instance["id"]),
             otlp={
                 "endpoint": "https://otlp.example.com:4318/v1/logs",
                 "auth_type": "basic_auth",
                 "username": otlp_username,
                 "password": otlp_password,
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         ```python
@@ -637,7 +637,6 @@ class IntegrationLogAgent(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         otlp = cloudamqp.IntegrationLogAgent("otlp",
-            instance_id=int(instance["id"]),
             otlp={
                 "endpoint": "https://otlp.example.com:4318/v1/logs",
                 "auth_type": "oauth2",
@@ -645,7 +644,8 @@ class IntegrationLogAgent(pulumi.CustomResource):
                 "client_secret": otlp_client_secret,
                 "token_url": "https://auth.example.com/oauth2/token",
                 "scopes": "logs:write",
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         </details>
@@ -662,12 +662,12 @@ class IntegrationLogAgent(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         splunk = cloudamqp.IntegrationLogAgent("splunk",
-            instance_id=int(instance["id"]),
             splunk={
                 "endpoint": splunk_endpoint,
                 "token": splunk_token,
                 "source_type": "cloudamqp",
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         </details>
@@ -684,10 +684,10 @@ class IntegrationLogAgent(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         uptrace = cloudamqp.IntegrationLogAgent("uptrace",
-            instance_id=int(instance["id"]),
             uptrace={
                 "dsn": uptrace_dsn,
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         Find your DSN in the Uptrace project under **Settings → DSN**.
@@ -702,12 +702,12 @@ class IntegrationLogAgent(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['IntegrationLogAgentAzureMonitorArgs', 'IntegrationLogAgentAzureMonitorArgsDict']] azure_monitor: Azure Monitor native OTLP log integration configuration
-        :param pulumi.Input[Union['IntegrationLogAgentCloudwatchArgs', 'IntegrationLogAgentCloudwatchArgsDict']] cloudwatch: CloudWatch OTLP log integration configuration
-        :param pulumi.Input[Union['IntegrationLogAgentCoralogixArgs', 'IntegrationLogAgentCoralogixArgsDict']] coralogix: Coralogix log integration configuration
-        :param pulumi.Input[Union['IntegrationLogAgentDatadogArgs', 'IntegrationLogAgentDatadogArgsDict']] datadog: Datadog log integration configuration
-        :param pulumi.Input[Union['IntegrationLogAgentGoogleCloudArgs', 'IntegrationLogAgentGoogleCloudArgsDict']] google_cloud: Google Cloud log integration configuration
-        :param pulumi.Input[Union['IntegrationLogAgentGrafanaArgs', 'IntegrationLogAgentGrafanaArgsDict']] grafana: Grafana Cloud (Loki) log integration configuration
+        :param pulumi.Input[Union['IntegrationLogAgentAzureMonitorArgs', 'IntegrationLogAgentAzureMonitorArgsDict', 'outputs.IntegrationLogAgentAzureMonitor']] azure_monitor: Azure Monitor native OTLP log integration configuration
+        :param pulumi.Input[Union['IntegrationLogAgentCloudwatchArgs', 'IntegrationLogAgentCloudwatchArgsDict', 'outputs.IntegrationLogAgentCloudwatch']] cloudwatch: CloudWatch OTLP log integration configuration
+        :param pulumi.Input[Union['IntegrationLogAgentCoralogixArgs', 'IntegrationLogAgentCoralogixArgsDict', 'outputs.IntegrationLogAgentCoralogix']] coralogix: Coralogix log integration configuration
+        :param pulumi.Input[Union['IntegrationLogAgentDatadogArgs', 'IntegrationLogAgentDatadogArgsDict', 'outputs.IntegrationLogAgentDatadog']] datadog: Datadog log integration configuration
+        :param pulumi.Input[Union['IntegrationLogAgentGoogleCloudArgs', 'IntegrationLogAgentGoogleCloudArgsDict', 'outputs.IntegrationLogAgentGoogleCloud']] google_cloud: Google Cloud log integration configuration
+        :param pulumi.Input[Union['IntegrationLogAgentGrafanaArgs', 'IntegrationLogAgentGrafanaArgsDict', 'outputs.IntegrationLogAgentGrafana']] grafana: Grafana Cloud (Loki) log integration configuration
         :param pulumi.Input[_builtins.int] instance_id: Instance identifier for the CloudAMQP instance.
                
                Exactly one of the following integration blocks must be configured:
@@ -718,9 +718,9 @@ class IntegrationLogAgent(pulumi.CustomResource):
                </summary>
                
                The following arguments are used by the `azure_monitor` block.
-        :param pulumi.Input[Union['IntegrationLogAgentOtlpArgs', 'IntegrationLogAgentOtlpArgsDict']] otlp: OTLP log integration configuration for any OpenTelemetry-compatible backend
-        :param pulumi.Input[Union['IntegrationLogAgentSplunkArgs', 'IntegrationLogAgentSplunkArgsDict']] splunk: Splunk HEC log integration configuration
-        :param pulumi.Input[Union['IntegrationLogAgentUptraceArgs', 'IntegrationLogAgentUptraceArgsDict']] uptrace: Uptrace OTLP log integration configuration
+        :param pulumi.Input[Union['IntegrationLogAgentOtlpArgs', 'IntegrationLogAgentOtlpArgsDict', 'outputs.IntegrationLogAgentOtlp']] otlp: OTLP log integration configuration for any OpenTelemetry-compatible backend
+        :param pulumi.Input[Union['IntegrationLogAgentSplunkArgs', 'IntegrationLogAgentSplunkArgsDict', 'outputs.IntegrationLogAgentSplunk']] splunk: Splunk HEC log integration configuration
+        :param pulumi.Input[Union['IntegrationLogAgentUptraceArgs', 'IntegrationLogAgentUptraceArgsDict', 'outputs.IntegrationLogAgentUptrace']] uptrace: Uptrace OTLP log integration configuration
         """
         ...
     @overload
@@ -755,13 +755,13 @@ class IntegrationLogAgent(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         azure_monitor = cloudamqp.IntegrationLogAgent("azure_monitor",
-            instance_id=int(instance["id"]),
             azure_monitor={
                 "tenant_id": "00000000-0000-0000-0000-000000000000",
                 "application_id": "11111111-1111-1111-1111-111111111111",
                 "application_secret": azure_application_secret,
                 "logs_endpoint": "https://example.region-1.ingest.monitor.azure.com/datacollectionRules/dcr-example/streams/Microsoft-OTLP-Logs/otlp/v1/logs",
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         </details>
@@ -781,14 +781,14 @@ class IntegrationLogAgent(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         cloudwatch = cloudamqp.IntegrationLogAgent("cloudwatch",
-            instance_id=int(instance["id"]),
             cloudwatch={
                 "iam_role": aws_iam_role,
                 "iam_external_id": aws_iam_external_id,
                 "region": aws_region,
                 "log_group": "CloudAMQP",
                 "log_stream": instance["clusterName"],
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         </details>
@@ -813,14 +813,14 @@ class IntegrationLogAgent(pulumi.CustomResource):
             name=instance.cluster_name,
             log_group_name=cloudwatch_log_group)
         cloudwatch = cloudamqp.IntegrationLogAgent("cloudwatch",
-            instance_id=int(instance["id"]),
             cloudwatch={
                 "iam_role": aws_iam_role,
                 "iam_external_id": aws_iam_external_id,
                 "region": aws_region,
                 "log_group": cloudwatch_log_group,
                 "log_stream": this["name"],
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         </details>
@@ -837,13 +837,13 @@ class IntegrationLogAgent(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         coralogix = cloudamqp.IntegrationLogAgent("coralogix",
-            instance_id=int(instance["id"]),
             coralogix={
                 "private_key": coralogix_private_key,
                 "region": "eu2",
                 "application": "cloudamqp",
                 "subsystem": instance["host"],
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         </details>
@@ -860,11 +860,11 @@ class IntegrationLogAgent(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         datadog = cloudamqp.IntegrationLogAgent("datadog",
-            instance_id=int(instance["id"]),
             datadog={
                 "api_key": datadog_api_key,
                 "region": "us1",
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         </details>
@@ -882,11 +882,11 @@ class IntegrationLogAgent(pulumi.CustomResource):
         import pulumi_std as std
 
         google_cloud = cloudamqp.IntegrationLogAgent("google_cloud",
-            instance_id=int(instance["id"]),
             google_cloud={
                 "service_account_file": std.file(input="path/to/service_account_key.json")["result"],
                 "service_account_file_version": 1,
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         </details>
@@ -903,12 +903,12 @@ class IntegrationLogAgent(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         grafana = cloudamqp.IntegrationLogAgent("grafana",
-            instance_id=int(instance["id"]),
             grafana={
                 "endpoint": grafana_endpoint,
                 "grafana_instance_id": grafana_instance_id,
                 "api_token": grafana_api_token,
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         </details>
@@ -930,12 +930,12 @@ class IntegrationLogAgent(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         otlp = cloudamqp.IntegrationLogAgent("otlp",
-            instance_id=int(instance["id"]),
             otlp={
                 "endpoint": "https://api.honeycomb.io/v1/logs",
                 "auth_type": "headers",
                 "headers": f"x-honeycomb-team: {honeycomb_api_key}",
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         ```python
@@ -943,13 +943,13 @@ class IntegrationLogAgent(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         otlp = cloudamqp.IntegrationLogAgent("otlp",
-            instance_id=int(instance["id"]),
             otlp={
                 "endpoint": "https://otlp.example.com:4318/v1/logs",
                 "auth_type": "basic_auth",
                 "username": otlp_username,
                 "password": otlp_password,
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         ```python
@@ -957,7 +957,6 @@ class IntegrationLogAgent(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         otlp = cloudamqp.IntegrationLogAgent("otlp",
-            instance_id=int(instance["id"]),
             otlp={
                 "endpoint": "https://otlp.example.com:4318/v1/logs",
                 "auth_type": "oauth2",
@@ -965,7 +964,8 @@ class IntegrationLogAgent(pulumi.CustomResource):
                 "client_secret": otlp_client_secret,
                 "token_url": "https://auth.example.com/oauth2/token",
                 "scopes": "logs:write",
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         </details>
@@ -982,12 +982,12 @@ class IntegrationLogAgent(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         splunk = cloudamqp.IntegrationLogAgent("splunk",
-            instance_id=int(instance["id"]),
             splunk={
                 "endpoint": splunk_endpoint,
                 "token": splunk_token,
                 "source_type": "cloudamqp",
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         </details>
@@ -1004,10 +1004,10 @@ class IntegrationLogAgent(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         uptrace = cloudamqp.IntegrationLogAgent("uptrace",
-            instance_id=int(instance["id"]),
             uptrace={
                 "dsn": uptrace_dsn,
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         Find your DSN in the Uptrace project under **Settings → DSN**.
@@ -1035,16 +1035,16 @@ class IntegrationLogAgent(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 azure_monitor: pulumi.Input[Optional[Union['IntegrationLogAgentAzureMonitorArgs', 'IntegrationLogAgentAzureMonitorArgsDict']]] = None,
-                 cloudwatch: pulumi.Input[Optional[Union['IntegrationLogAgentCloudwatchArgs', 'IntegrationLogAgentCloudwatchArgsDict']]] = None,
-                 coralogix: pulumi.Input[Optional[Union['IntegrationLogAgentCoralogixArgs', 'IntegrationLogAgentCoralogixArgsDict']]] = None,
-                 datadog: pulumi.Input[Optional[Union['IntegrationLogAgentDatadogArgs', 'IntegrationLogAgentDatadogArgsDict']]] = None,
-                 google_cloud: pulumi.Input[Optional[Union['IntegrationLogAgentGoogleCloudArgs', 'IntegrationLogAgentGoogleCloudArgsDict']]] = None,
-                 grafana: pulumi.Input[Optional[Union['IntegrationLogAgentGrafanaArgs', 'IntegrationLogAgentGrafanaArgsDict']]] = None,
+                 azure_monitor: pulumi.Input[Optional[Union['IntegrationLogAgentAzureMonitorArgs', 'IntegrationLogAgentAzureMonitorArgsDict', 'outputs.IntegrationLogAgentAzureMonitor']]] = None,
+                 cloudwatch: pulumi.Input[Optional[Union['IntegrationLogAgentCloudwatchArgs', 'IntegrationLogAgentCloudwatchArgsDict', 'outputs.IntegrationLogAgentCloudwatch']]] = None,
+                 coralogix: pulumi.Input[Optional[Union['IntegrationLogAgentCoralogixArgs', 'IntegrationLogAgentCoralogixArgsDict', 'outputs.IntegrationLogAgentCoralogix']]] = None,
+                 datadog: pulumi.Input[Optional[Union['IntegrationLogAgentDatadogArgs', 'IntegrationLogAgentDatadogArgsDict', 'outputs.IntegrationLogAgentDatadog']]] = None,
+                 google_cloud: pulumi.Input[Optional[Union['IntegrationLogAgentGoogleCloudArgs', 'IntegrationLogAgentGoogleCloudArgsDict', 'outputs.IntegrationLogAgentGoogleCloud']]] = None,
+                 grafana: pulumi.Input[Optional[Union['IntegrationLogAgentGrafanaArgs', 'IntegrationLogAgentGrafanaArgsDict', 'outputs.IntegrationLogAgentGrafana']]] = None,
                  instance_id: pulumi.Input[Optional[_builtins.int]] = None,
-                 otlp: pulumi.Input[Optional[Union['IntegrationLogAgentOtlpArgs', 'IntegrationLogAgentOtlpArgsDict']]] = None,
-                 splunk: pulumi.Input[Optional[Union['IntegrationLogAgentSplunkArgs', 'IntegrationLogAgentSplunkArgsDict']]] = None,
-                 uptrace: pulumi.Input[Optional[Union['IntegrationLogAgentUptraceArgs', 'IntegrationLogAgentUptraceArgsDict']]] = None,
+                 otlp: pulumi.Input[Optional[Union['IntegrationLogAgentOtlpArgs', 'IntegrationLogAgentOtlpArgsDict', 'outputs.IntegrationLogAgentOtlp']]] = None,
+                 splunk: pulumi.Input[Optional[Union['IntegrationLogAgentSplunkArgs', 'IntegrationLogAgentSplunkArgsDict', 'outputs.IntegrationLogAgentSplunk']]] = None,
+                 uptrace: pulumi.Input[Optional[Union['IntegrationLogAgentUptraceArgs', 'IntegrationLogAgentUptraceArgsDict', 'outputs.IntegrationLogAgentUptrace']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1076,16 +1076,16 @@ class IntegrationLogAgent(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            azure_monitor: pulumi.Input[Optional[Union['IntegrationLogAgentAzureMonitorArgs', 'IntegrationLogAgentAzureMonitorArgsDict']]] = None,
-            cloudwatch: pulumi.Input[Optional[Union['IntegrationLogAgentCloudwatchArgs', 'IntegrationLogAgentCloudwatchArgsDict']]] = None,
-            coralogix: pulumi.Input[Optional[Union['IntegrationLogAgentCoralogixArgs', 'IntegrationLogAgentCoralogixArgsDict']]] = None,
-            datadog: pulumi.Input[Optional[Union['IntegrationLogAgentDatadogArgs', 'IntegrationLogAgentDatadogArgsDict']]] = None,
-            google_cloud: pulumi.Input[Optional[Union['IntegrationLogAgentGoogleCloudArgs', 'IntegrationLogAgentGoogleCloudArgsDict']]] = None,
-            grafana: pulumi.Input[Optional[Union['IntegrationLogAgentGrafanaArgs', 'IntegrationLogAgentGrafanaArgsDict']]] = None,
+            azure_monitor: pulumi.Input[Optional[Union['IntegrationLogAgentAzureMonitorArgs', 'IntegrationLogAgentAzureMonitorArgsDict', 'outputs.IntegrationLogAgentAzureMonitor']]] = None,
+            cloudwatch: pulumi.Input[Optional[Union['IntegrationLogAgentCloudwatchArgs', 'IntegrationLogAgentCloudwatchArgsDict', 'outputs.IntegrationLogAgentCloudwatch']]] = None,
+            coralogix: pulumi.Input[Optional[Union['IntegrationLogAgentCoralogixArgs', 'IntegrationLogAgentCoralogixArgsDict', 'outputs.IntegrationLogAgentCoralogix']]] = None,
+            datadog: pulumi.Input[Optional[Union['IntegrationLogAgentDatadogArgs', 'IntegrationLogAgentDatadogArgsDict', 'outputs.IntegrationLogAgentDatadog']]] = None,
+            google_cloud: pulumi.Input[Optional[Union['IntegrationLogAgentGoogleCloudArgs', 'IntegrationLogAgentGoogleCloudArgsDict', 'outputs.IntegrationLogAgentGoogleCloud']]] = None,
+            grafana: pulumi.Input[Optional[Union['IntegrationLogAgentGrafanaArgs', 'IntegrationLogAgentGrafanaArgsDict', 'outputs.IntegrationLogAgentGrafana']]] = None,
             instance_id: pulumi.Input[Optional[_builtins.int]] = None,
-            otlp: pulumi.Input[Optional[Union['IntegrationLogAgentOtlpArgs', 'IntegrationLogAgentOtlpArgsDict']]] = None,
-            splunk: pulumi.Input[Optional[Union['IntegrationLogAgentSplunkArgs', 'IntegrationLogAgentSplunkArgsDict']]] = None,
-            uptrace: pulumi.Input[Optional[Union['IntegrationLogAgentUptraceArgs', 'IntegrationLogAgentUptraceArgsDict']]] = None) -> 'IntegrationLogAgent':
+            otlp: pulumi.Input[Optional[Union['IntegrationLogAgentOtlpArgs', 'IntegrationLogAgentOtlpArgsDict', 'outputs.IntegrationLogAgentOtlp']]] = None,
+            splunk: pulumi.Input[Optional[Union['IntegrationLogAgentSplunkArgs', 'IntegrationLogAgentSplunkArgsDict', 'outputs.IntegrationLogAgentSplunk']]] = None,
+            uptrace: pulumi.Input[Optional[Union['IntegrationLogAgentUptraceArgs', 'IntegrationLogAgentUptraceArgsDict', 'outputs.IntegrationLogAgentUptrace']]] = None) -> 'IntegrationLogAgent':
         """
         Get an existing IntegrationLogAgent resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1093,12 +1093,12 @@ class IntegrationLogAgent(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['IntegrationLogAgentAzureMonitorArgs', 'IntegrationLogAgentAzureMonitorArgsDict']] azure_monitor: Azure Monitor native OTLP log integration configuration
-        :param pulumi.Input[Union['IntegrationLogAgentCloudwatchArgs', 'IntegrationLogAgentCloudwatchArgsDict']] cloudwatch: CloudWatch OTLP log integration configuration
-        :param pulumi.Input[Union['IntegrationLogAgentCoralogixArgs', 'IntegrationLogAgentCoralogixArgsDict']] coralogix: Coralogix log integration configuration
-        :param pulumi.Input[Union['IntegrationLogAgentDatadogArgs', 'IntegrationLogAgentDatadogArgsDict']] datadog: Datadog log integration configuration
-        :param pulumi.Input[Union['IntegrationLogAgentGoogleCloudArgs', 'IntegrationLogAgentGoogleCloudArgsDict']] google_cloud: Google Cloud log integration configuration
-        :param pulumi.Input[Union['IntegrationLogAgentGrafanaArgs', 'IntegrationLogAgentGrafanaArgsDict']] grafana: Grafana Cloud (Loki) log integration configuration
+        :param pulumi.Input[Union['IntegrationLogAgentAzureMonitorArgs', 'IntegrationLogAgentAzureMonitorArgsDict', 'outputs.IntegrationLogAgentAzureMonitor']] azure_monitor: Azure Monitor native OTLP log integration configuration
+        :param pulumi.Input[Union['IntegrationLogAgentCloudwatchArgs', 'IntegrationLogAgentCloudwatchArgsDict', 'outputs.IntegrationLogAgentCloudwatch']] cloudwatch: CloudWatch OTLP log integration configuration
+        :param pulumi.Input[Union['IntegrationLogAgentCoralogixArgs', 'IntegrationLogAgentCoralogixArgsDict', 'outputs.IntegrationLogAgentCoralogix']] coralogix: Coralogix log integration configuration
+        :param pulumi.Input[Union['IntegrationLogAgentDatadogArgs', 'IntegrationLogAgentDatadogArgsDict', 'outputs.IntegrationLogAgentDatadog']] datadog: Datadog log integration configuration
+        :param pulumi.Input[Union['IntegrationLogAgentGoogleCloudArgs', 'IntegrationLogAgentGoogleCloudArgsDict', 'outputs.IntegrationLogAgentGoogleCloud']] google_cloud: Google Cloud log integration configuration
+        :param pulumi.Input[Union['IntegrationLogAgentGrafanaArgs', 'IntegrationLogAgentGrafanaArgsDict', 'outputs.IntegrationLogAgentGrafana']] grafana: Grafana Cloud (Loki) log integration configuration
         :param pulumi.Input[_builtins.int] instance_id: Instance identifier for the CloudAMQP instance.
                
                Exactly one of the following integration blocks must be configured:
@@ -1109,9 +1109,9 @@ class IntegrationLogAgent(pulumi.CustomResource):
                </summary>
                
                The following arguments are used by the `azure_monitor` block.
-        :param pulumi.Input[Union['IntegrationLogAgentOtlpArgs', 'IntegrationLogAgentOtlpArgsDict']] otlp: OTLP log integration configuration for any OpenTelemetry-compatible backend
-        :param pulumi.Input[Union['IntegrationLogAgentSplunkArgs', 'IntegrationLogAgentSplunkArgsDict']] splunk: Splunk HEC log integration configuration
-        :param pulumi.Input[Union['IntegrationLogAgentUptraceArgs', 'IntegrationLogAgentUptraceArgsDict']] uptrace: Uptrace OTLP log integration configuration
+        :param pulumi.Input[Union['IntegrationLogAgentOtlpArgs', 'IntegrationLogAgentOtlpArgsDict', 'outputs.IntegrationLogAgentOtlp']] otlp: OTLP log integration configuration for any OpenTelemetry-compatible backend
+        :param pulumi.Input[Union['IntegrationLogAgentSplunkArgs', 'IntegrationLogAgentSplunkArgsDict', 'outputs.IntegrationLogAgentSplunk']] splunk: Splunk HEC log integration configuration
+        :param pulumi.Input[Union['IntegrationLogAgentUptraceArgs', 'IntegrationLogAgentUptraceArgsDict', 'outputs.IntegrationLogAgentUptrace']] uptrace: Uptrace OTLP log integration configuration
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

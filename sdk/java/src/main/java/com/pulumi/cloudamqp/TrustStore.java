@@ -69,10 +69,10 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var trustStore = new TrustStore("trustStore", TrustStoreArgs.builder()
- *             .instanceId(instance.id())
  *             .http(TrustStoreHttpArgs.builder()
  *                 .url("https://example.com/trust-store-certs")
  *                 .build())
+ *             .instanceId(instance.get("id"))
  *             .refreshInterval(30)
  *             .build());
  * 

@@ -203,7 +203,6 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var firewallSettings = new SecurityFirewall("firewallSettings", SecurityFirewallArgs.builder()
- *             .instanceId(instance.id())
  *             .rules(            
  *                 SecurityFirewallRuleArgs.builder()
  *                     .description("Custom PrivateLink setup")
@@ -222,6 +221,7 @@ import javax.annotation.Nullable;
  *                     .ports()
  *                     .services("HTTPS")
  *                     .build())
+ *             .instanceId(instance.id())
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(privatelink)
  *                 .build());

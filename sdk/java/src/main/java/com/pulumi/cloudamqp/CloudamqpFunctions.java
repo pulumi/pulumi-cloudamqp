@@ -264,7 +264,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var defaultCpuAlarm = CloudamqpFunctions.getAlarm(GetAlarmArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .type("cpu")
      *             .build());
      * 
@@ -316,7 +316,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var defaultCpuAlarm = CloudamqpFunctions.getAlarm(GetAlarmArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .type("cpu")
      *             .build());
      * 
@@ -368,7 +368,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var defaultCpuAlarm = CloudamqpFunctions.getAlarm(GetAlarmArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .type("cpu")
      *             .build());
      * 
@@ -420,7 +420,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var defaultCpuAlarm = CloudamqpFunctions.getAlarm(GetAlarmArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .type("cpu")
      *             .build());
      * 
@@ -472,7 +472,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var defaultCpuAlarm = CloudamqpFunctions.getAlarm(GetAlarmArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .type("cpu")
      *             .build());
      * 
@@ -523,7 +523,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var queueAlarms = CloudamqpFunctions.getAlarms(GetAlarmsArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .type("queue")
      *             .build());
      * 
@@ -574,7 +574,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var queueAlarms = CloudamqpFunctions.getAlarms(GetAlarmsArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .type("queue")
      *             .build());
      * 
@@ -625,7 +625,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var queueAlarms = CloudamqpFunctions.getAlarms(GetAlarmsArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .type("queue")
      *             .build());
      * 
@@ -676,7 +676,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var queueAlarms = CloudamqpFunctions.getAlarms(GetAlarmsArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .type("queue")
      *             .build());
      * 
@@ -727,7 +727,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var queueAlarms = CloudamqpFunctions.getAlarms(GetAlarmsArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .type("queue")
      *             .build());
      * 
@@ -779,7 +779,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var credentials = CloudamqpFunctions.getCredentials(GetCredentialsArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -869,7 +869,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var credentials = CloudamqpFunctions.getCredentials(GetCredentialsArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -959,7 +959,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var credentials = CloudamqpFunctions.getCredentials(GetCredentialsArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -1049,7 +1049,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var credentials = CloudamqpFunctions.getCredentials(GetCredentialsArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -1139,7 +1139,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var credentials = CloudamqpFunctions.getCredentials(GetCredentialsArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -1276,7 +1276,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -1320,7 +1320,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -1364,7 +1364,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -1408,7 +1408,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -1452,7 +1452,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -1498,7 +1498,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var defaultRecipient = CloudamqpFunctions.getNotification(GetNotificationArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .name("default")
      *             .build());
      * 
@@ -1545,7 +1545,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var defaultRecipient = CloudamqpFunctions.getNotification(GetNotificationArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .name("default")
      *             .build());
      * 
@@ -1592,7 +1592,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var defaultRecipient = CloudamqpFunctions.getNotification(GetNotificationArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .name("default")
      *             .build());
      * 
@@ -1639,7 +1639,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var defaultRecipient = CloudamqpFunctions.getNotification(GetNotificationArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .name("default")
      *             .build());
      * 
@@ -1686,7 +1686,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var defaultRecipient = CloudamqpFunctions.getNotification(GetNotificationArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .name("default")
      *             .build());
      * 
@@ -1734,7 +1734,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var defaultRecipient = CloudamqpFunctions.getNotifications(GetNotificationsArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -1781,7 +1781,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var defaultRecipient = CloudamqpFunctions.getNotifications(GetNotificationsArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -1828,7 +1828,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var defaultRecipient = CloudamqpFunctions.getNotifications(GetNotificationsArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -1875,7 +1875,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var defaultRecipient = CloudamqpFunctions.getNotifications(GetNotificationsArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -1922,7 +1922,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var defaultRecipient = CloudamqpFunctions.getNotifications(GetNotificationsArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -1967,7 +1967,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var plugins = CloudamqpFunctions.getPlugins(GetPluginsArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .enabled(true)
      *             .recommended(true)
      *             .build());
@@ -2014,7 +2014,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var plugins = CloudamqpFunctions.getPlugins(GetPluginsArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .enabled(true)
      *             .recommended(true)
      *             .build());
@@ -2061,7 +2061,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var plugins = CloudamqpFunctions.getPlugins(GetPluginsArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .enabled(true)
      *             .recommended(true)
      *             .build());
@@ -2108,7 +2108,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var plugins = CloudamqpFunctions.getPlugins(GetPluginsArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .enabled(true)
      *             .recommended(true)
      *             .build());
@@ -2155,7 +2155,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var plugins = CloudamqpFunctions.getPlugins(GetPluginsArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .enabled(true)
      *             .recommended(true)
      *             .build());
@@ -2202,7 +2202,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var communitPlugins = CloudamqpFunctions.getPluginsCommunity(GetPluginsCommunityArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -2247,7 +2247,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var communitPlugins = CloudamqpFunctions.getPluginsCommunity(GetPluginsCommunityArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -2292,7 +2292,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var communitPlugins = CloudamqpFunctions.getPluginsCommunity(GetPluginsCommunityArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -2337,7 +2337,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var communitPlugins = CloudamqpFunctions.getPluginsCommunity(GetPluginsCommunityArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -2382,7 +2382,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var communitPlugins = CloudamqpFunctions.getPluginsCommunity(GetPluginsCommunityArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -2427,7 +2427,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var versions = CloudamqpFunctions.getUpgradableVersions(GetUpgradableVersionsArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -2472,7 +2472,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var versions = CloudamqpFunctions.getUpgradableVersions(GetUpgradableVersionsArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -2517,7 +2517,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var versions = CloudamqpFunctions.getUpgradableVersions(GetUpgradableVersionsArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -2562,7 +2562,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var versions = CloudamqpFunctions.getUpgradableVersions(GetUpgradableVersionsArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -2607,7 +2607,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var versions = CloudamqpFunctions.getUpgradableVersions(GetUpgradableVersionsArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -2662,7 +2662,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -2702,7 +2702,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .vpcId(vpc.id())
+     *             .vpcId(vpc.get("id"))
      *             .build());
      * 
      *     }
@@ -2766,7 +2766,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -2806,7 +2806,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .vpcId(vpc.id())
+     *             .vpcId(vpc.get("id"))
      *             .build());
      * 
      *     }
@@ -2870,7 +2870,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -2910,7 +2910,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .vpcId(vpc.id())
+     *             .vpcId(vpc.get("id"))
      *             .build());
      * 
      *     }
@@ -2974,7 +2974,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -3014,7 +3014,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .vpcId(vpc.id())
+     *             .vpcId(vpc.get("id"))
      *             .build());
      * 
      *     }
@@ -3078,7 +3078,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -3118,7 +3118,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .vpcId(vpc.id())
+     *             .vpcId(vpc.get("id"))
      *             .build());
      * 
      *     }
@@ -3182,7 +3182,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -3222,7 +3222,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .vpcId(vpc.id())
+     *             .vpcId(vpc.get("id"))
      *             .build());
      * 
      *     }
@@ -3286,7 +3286,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -3326,7 +3326,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcGcpInfo(GetVpcGcpInfoArgs.builder()
-     *             .vpcId(vpc.id())
+     *             .vpcId(vpc.get("id"))
      *             .build());
      * 
      *     }
@@ -3390,7 +3390,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -3430,7 +3430,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .vpcId(vpc.id())
+     *             .vpcId(vpc.get("id"))
      *             .build());
      * 
      *     }
@@ -3494,7 +3494,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -3534,7 +3534,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .vpcId(vpc.id())
+     *             .vpcId(vpc.get("id"))
      *             .build());
      * 
      *     }
@@ -3598,7 +3598,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -3638,7 +3638,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .vpcId(vpc.id())
+     *             .vpcId(vpc.get("id"))
      *             .build());
      * 
      *     }
@@ -3702,7 +3702,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -3742,7 +3742,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .vpcId(vpc.id())
+     *             .vpcId(vpc.get("id"))
      *             .build());
      * 
      *     }
@@ -3806,7 +3806,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -3846,7 +3846,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .vpcId(vpc.id())
+     *             .vpcId(vpc.get("id"))
      *             .build());
      * 
      *     }
@@ -3910,7 +3910,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -3950,7 +3950,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .vpcId(vpc.id())
+     *             .vpcId(vpc.get("id"))
      *             .build());
      * 
      *     }
@@ -4014,7 +4014,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .instanceId(instance.id())
+     *             .instanceId(instance.get("id"))
      *             .build());
      * 
      *     }
@@ -4054,7 +4054,7 @@ public final class CloudamqpFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var vpcInfo = CloudamqpFunctions.getVpcInfo(GetVpcInfoArgs.builder()
-     *             .vpcId(vpc.id())
+     *             .vpcId(vpc.get("id"))
      *             .build());
      * 
      *     }

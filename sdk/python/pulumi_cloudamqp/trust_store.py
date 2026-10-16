@@ -325,8 +325,8 @@ class TrustStore(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 file: pulumi.Input[Optional[Union['TrustStoreFileArgs', 'TrustStoreFileArgsDict']]] = None,
-                 http: pulumi.Input[Optional[Union['TrustStoreHttpArgs', 'TrustStoreHttpArgsDict']]] = None,
+                 file: pulumi.Input[Optional[Union['TrustStoreFileArgs', 'TrustStoreFileArgsDict', 'outputs.TrustStoreFile']]] = None,
+                 http: pulumi.Input[Optional[Union['TrustStoreHttpArgs', 'TrustStoreHttpArgsDict', 'outputs.TrustStoreHttp']]] = None,
                  instance_id: pulumi.Input[Optional[_builtins.int]] = None,
                  key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  refresh_interval: pulumi.Input[Optional[_builtins.int]] = None,
@@ -367,10 +367,10 @@ class TrustStore(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         trust_store = cloudamqp.TrustStore("trust_store",
-            instance_id=int(instance["id"]),
             http={
                 "url": "https://example.com/trust-store-certs",
             },
+            instance_id=instance["id"],
             refresh_interval=30)
         ```
 
@@ -386,8 +386,8 @@ class TrustStore(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['TrustStoreFileArgs', 'TrustStoreFileArgsDict']] file: File trust store configuration block. See File Block below.
-        :param pulumi.Input[Union['TrustStoreHttpArgs', 'TrustStoreHttpArgsDict']] http: HTTP trust store configuration block. See HTTP Block below.
+        :param pulumi.Input[Union['TrustStoreFileArgs', 'TrustStoreFileArgsDict', 'outputs.TrustStoreFile']] file: File trust store configuration block. See File Block below.
+        :param pulumi.Input[Union['TrustStoreHttpArgs', 'TrustStoreHttpArgsDict', 'outputs.TrustStoreHttp']] http: HTTP trust store configuration block. See HTTP Block below.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier.
         :param pulumi.Input[_builtins.str] key_id: A string identifier to trigger updates of write-only certificate fields.
                Change this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: "").
@@ -441,10 +441,10 @@ class TrustStore(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         trust_store = cloudamqp.TrustStore("trust_store",
-            instance_id=int(instance["id"]),
             http={
                 "url": "https://example.com/trust-store-certs",
             },
+            instance_id=instance["id"],
             refresh_interval=30)
         ```
 
@@ -473,8 +473,8 @@ class TrustStore(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 file: pulumi.Input[Optional[Union['TrustStoreFileArgs', 'TrustStoreFileArgsDict']]] = None,
-                 http: pulumi.Input[Optional[Union['TrustStoreHttpArgs', 'TrustStoreHttpArgsDict']]] = None,
+                 file: pulumi.Input[Optional[Union['TrustStoreFileArgs', 'TrustStoreFileArgsDict', 'outputs.TrustStoreFile']]] = None,
+                 http: pulumi.Input[Optional[Union['TrustStoreHttpArgs', 'TrustStoreHttpArgsDict', 'outputs.TrustStoreHttp']]] = None,
                  instance_id: pulumi.Input[Optional[_builtins.int]] = None,
                  key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  refresh_interval: pulumi.Input[Optional[_builtins.int]] = None,
@@ -510,8 +510,8 @@ class TrustStore(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            file: pulumi.Input[Optional[Union['TrustStoreFileArgs', 'TrustStoreFileArgsDict']]] = None,
-            http: pulumi.Input[Optional[Union['TrustStoreHttpArgs', 'TrustStoreHttpArgsDict']]] = None,
+            file: pulumi.Input[Optional[Union['TrustStoreFileArgs', 'TrustStoreFileArgsDict', 'outputs.TrustStoreFile']]] = None,
+            http: pulumi.Input[Optional[Union['TrustStoreHttpArgs', 'TrustStoreHttpArgsDict', 'outputs.TrustStoreHttp']]] = None,
             instance_id: pulumi.Input[Optional[_builtins.int]] = None,
             key_id: pulumi.Input[Optional[_builtins.str]] = None,
             refresh_interval: pulumi.Input[Optional[_builtins.int]] = None,
@@ -525,8 +525,8 @@ class TrustStore(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['TrustStoreFileArgs', 'TrustStoreFileArgsDict']] file: File trust store configuration block. See File Block below.
-        :param pulumi.Input[Union['TrustStoreHttpArgs', 'TrustStoreHttpArgsDict']] http: HTTP trust store configuration block. See HTTP Block below.
+        :param pulumi.Input[Union['TrustStoreFileArgs', 'TrustStoreFileArgsDict', 'outputs.TrustStoreFile']] file: File trust store configuration block. See File Block below.
+        :param pulumi.Input[Union['TrustStoreHttpArgs', 'TrustStoreHttpArgsDict', 'outputs.TrustStoreHttp']] http: HTTP trust store configuration block. See HTTP Block below.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier.
         :param pulumi.Input[_builtins.str] key_id: A string identifier to trigger updates of write-only certificate fields.
                Change this value to apply changes to ***http.cacert*** or ***file.certificates*** (default: "").

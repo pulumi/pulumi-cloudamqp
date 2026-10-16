@@ -35,7 +35,7 @@ namespace Pulumi.CloudAmqp
     ///         Name = "&lt;VPC name&gt;",
     ///         Region = "amazon-web-services::us-east-1",
     ///         Subnet = "10.56.72.0/24",
-    ///         Tags = new[] {},
+    ///         Tags = new() {},
     ///     });
     /// 
     ///     //  New instance, need to be created with a vpc
@@ -45,7 +45,7 @@ namespace Pulumi.CloudAmqp
     ///         Plan = "penguin-1",
     ///         Region = "amazon-web-services::us-east-1",
     ///         Nodes = 1,
-    ///         Tags = new[] {},
+    ///         Tags = new() {},
     ///         VpcId = vpcCloudamqVpc.Id,
     ///         KeepAssociatedVpc = true,
     ///     });

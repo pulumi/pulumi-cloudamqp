@@ -394,11 +394,10 @@ class VpcPeering(pulumi.CustomResource):
         subnet = aws.subnet(id=aws_instance["subnetId"])
         # CloudAMQP - accept the peering request
         vpc_accept_peering = cloudamqp.VpcPeering("vpc_accept_peering",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             peering_id=aws_vpc_peering["id"])
         # Firewall rules
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=int(instance["id"]),
             rules=[
                 {
                     "ip": aws_instance["subnetId"],
@@ -426,6 +425,7 @@ class VpcPeering(pulumi.CustomResource):
                     ],
                 },
             ],
+            instance_id=instance["id"],
             opts = pulumi.ResourceOptions(depends_on=[vpc_accept_peering]))
         ```
 
@@ -455,7 +455,6 @@ class VpcPeering(pulumi.CustomResource):
         requester_vpc = aws.vpc(id=subnet["vpcId"])
         # CloudAMQP - Managed firewall rules
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=int(instance["id"]),
             rules=[
                 {
                     "ip": requester_vpc["cidrBlock"],
@@ -477,6 +476,7 @@ class VpcPeering(pulumi.CustomResource):
                     "description": "MGMT interface",
                 },
             ],
+            instance_id=instance["id"],
             opts = pulumi.ResourceOptions(depends_on=[vpc_accept_peering]))
         ```
 
@@ -689,11 +689,10 @@ class VpcPeering(pulumi.CustomResource):
         subnet = aws.subnet(id=aws_instance["subnetId"])
         # CloudAMQP - accept the peering request
         vpc_accept_peering = cloudamqp.VpcPeering("vpc_accept_peering",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             peering_id=aws_vpc_peering["id"])
         # Firewall rules
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=int(instance["id"]),
             rules=[
                 {
                     "ip": aws_instance["subnetId"],
@@ -721,6 +720,7 @@ class VpcPeering(pulumi.CustomResource):
                     ],
                 },
             ],
+            instance_id=instance["id"],
             opts = pulumi.ResourceOptions(depends_on=[vpc_accept_peering]))
         ```
 
@@ -750,7 +750,6 @@ class VpcPeering(pulumi.CustomResource):
         requester_vpc = aws.vpc(id=subnet["vpcId"])
         # CloudAMQP - Managed firewall rules
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=int(instance["id"]),
             rules=[
                 {
                     "ip": requester_vpc["cidrBlock"],
@@ -772,6 +771,7 @@ class VpcPeering(pulumi.CustomResource):
                     "description": "MGMT interface",
                 },
             ],
+            instance_id=instance["id"],
             opts = pulumi.ResourceOptions(depends_on=[vpc_accept_peering]))
         ```
 

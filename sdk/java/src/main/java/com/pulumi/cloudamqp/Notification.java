@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) }{{@code
  *         var emailRecipient = new Notification("emailRecipient", NotificationArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .type("email")
  *             .value("alarm}{@literal @}{@code example.com")
  *             .name("alarm")
@@ -99,10 +99,6 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var opsgenieRecipient = new Notification("opsgenieRecipient", NotificationArgs.builder()
- *             .instanceId(instance.id())
- *             .type("opsgenie")
- *             .value("<api-key>")
- *             .name("OpsGenie")
  *             .responders(            
  *                 NotificationResponderArgs.builder()
  *                     .type("team")
@@ -112,6 +108,10 @@ import javax.annotation.Nullable;
  *                     .type("user")
  *                     .username("<username>")
  *                     .build())
+ *             .instanceId(instance.get("id"))
+ *             .type("opsgenie")
+ *             .value("<api-key>")
+ *             .name("OpsGenie")
  *             .build());
  * 
  *     }
@@ -149,7 +149,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var pagerdutyRecipient = new Notification("pagerdutyRecipient", NotificationArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .type("pagerduty")
  *             .value("<integration-key>")
  *             .name("PagerDuty")
@@ -191,7 +191,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var signl4Recipient = new Notification("signl4Recipient", NotificationArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .type("signl4")
  *             .value("<team-secret>")
  *             .name("Signl4")
@@ -232,7 +232,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var teamsRecipient = new Notification("teamsRecipient", NotificationArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .type("teams")
  *             .value("<teams-webhook-url>")
  *             .name("Teams")
@@ -273,7 +273,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var victoropsRecipient = new Notification("victoropsRecipient", NotificationArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .type("victorops")
  *             .value("<integration-key>")
  *             .name("Victorops")
@@ -315,7 +315,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var slackRecipient = new Notification("slackRecipient", NotificationArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .type("slack")
  *             .value("<slack-webhook-url>")
  *             .name("Slack webhook recipient")
@@ -356,7 +356,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var webhookRecipient = new Notification("webhookRecipient", NotificationArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .type("webhook")
  *             .value("<webhook-url>")
  *             .name("Webhook")

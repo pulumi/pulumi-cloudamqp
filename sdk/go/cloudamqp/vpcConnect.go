@@ -173,10 +173,6 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := azurerm.NewPrivateEndpoint(ctx, "example", &azurerm.PrivateEndpointArgs{
-//				Name:              "example-endpoint",
-//				Location:          exampleAzurermResourceGroup.Location,
-//				ResourceGroupName: exampleAzurermResourceGroup.Name,
-//				SubnetId:          subnet.Id,
 //				PrivateServiceConnection: []map[string]interface{}{
 //					map[string]interface{}{
 //						"name":                           "example-privateserviceconnection",
@@ -185,6 +181,10 @@ import (
 //						"requestMessage":                 "PL",
 //					},
 //				},
+//				Name:              "example-endpoint",
+//				Location:          exampleAzurermResourceGroup.Location,
+//				ResourceGroupName: exampleAzurermResourceGroup.Name,
+//				SubnetId:          subnet.Id,
 //			})
 //			if err != nil {
 //				return err
@@ -315,7 +315,6 @@ import (
 //				return err
 //			}
 //			_, err = cloudamqp.NewSecurityFirewall(ctx, "firewall_settings", &cloudamqp.SecurityFirewallArgs{
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				Rules: cloudamqp.SecurityFirewallRuleArray{
 //					&cloudamqp.SecurityFirewallRuleArgs{
 //						Description: pulumi.String("Custom PrivateLink setup"),
@@ -336,6 +335,7 @@ import (
 //						},
 //					},
 //				},
+//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				vpcConnect,
 //			}))

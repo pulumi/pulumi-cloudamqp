@@ -58,7 +58,7 @@ namespace Pulumi.CloudAmqp
     /// 
     ///     var upgrade = new CloudAmqp.UpgradeRabbitmq("upgrade", new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         NewVersion = "3.13.2",
     ///     });
     /// 
@@ -94,12 +94,12 @@ namespace Pulumi.CloudAmqp
     /// 
     ///     var upgradableVersions = CloudAmqp.GetUpgradableVersions.Invoke(new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///     });
     /// 
     ///     var upgrade = new CloudAmqp.UpgradeRabbitmq("upgrade", new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         CurrentVersion = instance.RmqVersion,
     ///         NewVersion = upgradableVersions.Apply(getUpgradableVersionsResult =&gt; getUpgradableVersionsResult.NewRabbitmqVersion),
     ///     });

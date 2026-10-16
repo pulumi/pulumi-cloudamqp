@@ -198,7 +198,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()
- *             .vpcId(vpc.id())
+ *             .vpcId(vpc.get("id"))
  *             .peerNetworkUri("https://www.googleapis.com/compute/v1/projects/ROJECT-NAME/global/networks/VPC-NETWORK-NAME")
  *             .build());
  * 
@@ -233,7 +233,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()
- *             .vpcId(vpc.id())
+ *             .vpcId(vpc.get("id"))
  *             .waitOnPeeringStatus(true)
  *             .peerNetworkUri("https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME")
  *             .build());
@@ -282,13 +282,12 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // VPC peering configuration
  *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .peerNetworkUri(peerNetworkUri)
  *             .build());
  * 
  *         // Firewall rules
  *         var firewallSettings = new SecurityFirewall("firewallSettings", SecurityFirewallArgs.builder()
- *             .instanceId(instance.id())
  *             .rules(            
  *                 SecurityFirewallRuleArgs.builder()
  *                     .ip(peerSubnet)
@@ -311,6 +310,7 @@ import javax.annotation.Nullable;
  *                         "AMQPS",
  *                         "HTTPS")
  *                     .build())
+ *             .instanceId(instance.get("id"))
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(vpcPeeringRequest)
  *                 .build());
@@ -357,13 +357,12 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // VPC peering configuration
  *         var vpcPeeringRequest = new VpcGcpPeering("vpcPeeringRequest", VpcGcpPeeringArgs.builder()
- *             .vpcId(vpc.id())
+ *             .vpcId(vpc.get("id"))
  *             .peerNetworkUri(peerNetworkUri)
  *             .build());
  * 
  *         // Firewall rules
  *         var firewallSettings = new SecurityFirewall("firewallSettings", SecurityFirewallArgs.builder()
- *             .instanceId(instance.id())
  *             .rules(            
  *                 SecurityFirewallRuleArgs.builder()
  *                     .ip(peerSubnet)
@@ -382,6 +381,7 @@ import javax.annotation.Nullable;
  *                     .services("HTTPS")
  *                     .description("MGMT interface")
  *                     .build())
+ *             .instanceId(instance.get("id"))
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(vpcPeeringRequest)
  *                 .build());

@@ -64,7 +64,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var azureMonitor = new IntegrationLog("azureMonitor", IntegrationLogArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("azure_monitor")
  *             .tenantId(azmTentantId)
  *             .applicationId(azmApplicationId)
@@ -111,7 +111,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var cloudwatch = new IntegrationLog("cloudwatch", IntegrationLogArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("cloudwatchlog")
  *             .accessKeyId(awsAccessKeyId)
  *             .secretAccessKey(awsSecretAccessKey)
@@ -157,7 +157,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var cloudwatch = new IntegrationLog("cloudwatch", IntegrationLogArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("cloudwatchlog")
  *             .accessKeyId(awsAccessKeyId)
  *             .secretAccessKey(awsSecretAccessKey)
@@ -203,12 +203,12 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var coralogix = new IntegrationLog("coralogix", IntegrationLogArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("coralogix")
  *             .privateKey(coralogixSendDataKey)
  *             .endpoint(coralogixEndpoint)
  *             .application(coralogixApplication)
- *             .subsystem(instance.host())
+ *             .subsystem(instance.get("host"))
  *             .build());
  * 
  *     }
@@ -248,7 +248,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var datadog = new IntegrationLog("datadog", IntegrationLogArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("datadog")
  *             .region(datadogRegion)
  *             .apiKey(datadogApiKey)
@@ -292,7 +292,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var logentries = new IntegrationLog("logentries", IntegrationLogArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("logentries")
  *             .token(logentriesToken)
  *             .build());
@@ -334,7 +334,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var loggly = new IntegrationLog("loggly", IntegrationLogArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("loggly")
  *             .token(logglyToken)
  *             .build());
@@ -376,7 +376,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var papertrail = new IntegrationLog("papertrail", IntegrationLogArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("papertrail")
  *             .url(papertrailUrl)
  *             .build());
@@ -418,7 +418,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var scalyr = new IntegrationLog("scalyr", IntegrationLogArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("scalyr")
  *             .token(scalyrToken)
  *             .host(scalyrHost)
@@ -461,7 +461,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var splunk = new IntegrationLog("splunk", IntegrationLogArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("splunk")
  *             .token(splunkToken)
  *             .hostPort(splunkHostPort)
@@ -507,7 +507,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var stackdriver = new IntegrationLog("stackdriver", IntegrationLogArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("stackdriver")
  *             .projectId(stackdriverProjectId)
  *             .privateKey(stackdriverPrivateKey)
@@ -555,15 +555,15 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var serviceAccountKey = new ServiceAccountKey("serviceAccountKey", ServiceAccountKeyArgs.builder()
- *             .serviceAccountId(serviceAccount.name())
+ *             .serviceAccountId(serviceAccount.get("name"))
  *             .build());
  * 
  *         var stackdriver = new IntegrationLog("stackdriver", IntegrationLogArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("stackdriver")
- *             .projectId(StdFunctions.jsondecode(Map.of("input", StdFunctions.base64decode(Map.of("input", serviceAccountKey.privateKey())).result())).result().projectId())
- *             .privateKey(StdFunctions.jsondecode(Map.of("input", StdFunctions.base64decode(Map.of("input", serviceAccountKey.privateKey())).result())).result().privateKey())
- *             .clientEmail(StdFunctions.jsondecode(Map.of("input", StdFunctions.base64decode(Map.of("input", serviceAccountKey.privateKey())).result())).result().clientEmail())
+ *             .projectId(StdFunctions.jsondecode(Map.of("input", StdFunctions.base64decode(Map.of("input", serviceAccountKey.get("privateKey"))).get("result"))).get("result").get("projectId"))
+ *             .privateKey(StdFunctions.jsondecode(Map.of("input", StdFunctions.base64decode(Map.of("input", serviceAccountKey.get("privateKey"))).get("result"))).get("result").get("privateKey"))
+ *             .clientEmail(StdFunctions.jsondecode(Map.of("input", StdFunctions.base64decode(Map.of("input", serviceAccountKey.get("privateKey"))).get("result"))).get("result").get("clientEmail"))
  *             .build());
  * 
  *     }
@@ -616,13 +616,13 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var serviceAccountKey = new ServiceAccountKey("serviceAccountKey", ServiceAccountKeyArgs.builder()
- *             .serviceAccountId(serviceAccount.name())
+ *             .serviceAccountId(serviceAccount.get("name"))
  *             .build());
  * 
  *         var stackdriver = new IntegrationLog("stackdriver", IntegrationLogArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("stackdriver")
- *             .credentials(serviceAccountKey.privateKey())
+ *             .credentials(serviceAccountKey.get("privateKey"))
  *             .build());
  * 
  *     }
@@ -666,15 +666,15 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var serviceAccountKey = new ServiceAccountKey("serviceAccountKey", ServiceAccountKeyArgs.builder()
- *             .serviceAccountId(serviceAccount.name())
+ *             .serviceAccountId(serviceAccount.get("name"))
  *             .build());
  * 
  *         var stackdriver = new IntegrationLog("stackdriver", IntegrationLogArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("stackdriver")
- *             .projectId(StdFunctions.jsondecode(Map.of("input", StdFunctions.base64decode(Map.of("input", serviceAccountKey.privateKey())).result())).result().projectId())
- *             .privateKey(StdFunctions.jsondecode(Map.of("input", StdFunctions.base64decode(Map.of("input", serviceAccountKey.privateKey())).result())).result().privateKey())
- *             .clientEmail(StdFunctions.jsondecode(Map.of("input", StdFunctions.base64decode(Map.of("input", serviceAccountKey.privateKey())).result())).result().clientEmail())
+ *             .projectId(StdFunctions.jsondecode(Map.of("input", StdFunctions.base64decode(Map.of("input", serviceAccountKey.get("privateKey"))).get("result"))).get("result").get("projectId"))
+ *             .privateKey(StdFunctions.jsondecode(Map.of("input", StdFunctions.base64decode(Map.of("input", serviceAccountKey.get("privateKey"))).get("result"))).get("result").get("privateKey"))
+ *             .clientEmail(StdFunctions.jsondecode(Map.of("input", StdFunctions.base64decode(Map.of("input", serviceAccountKey.get("privateKey"))).get("result"))).get("result").get("clientEmail"))
  *             .build());
  * 
  *     }

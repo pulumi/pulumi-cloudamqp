@@ -149,14 +149,14 @@ namespace Pulumi.CloudAmqp
     /// 
     ///     var rabbitmqTop = new CloudAmqp.Plugin("rabbitmq_top", new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         Name = "rabbitmq_top",
     ///         Enabled = true,
     ///     });
     /// 
     ///     var rabbitmqAmqp10 = new CloudAmqp.Plugin("rabbitmq_amqp1_0", new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         Name = "rabbitmq_amqp1_0",
     ///         Enabled = true,
     ///     });

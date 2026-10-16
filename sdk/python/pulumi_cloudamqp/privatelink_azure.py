@@ -356,7 +356,6 @@ class PrivatelinkAzure(pulumi.CustomResource):
             instance_id=instance.id.apply(lambda x: int(x)),
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance.id.apply(lambda x: int(x)),
             rules=[
                 {
                     "description": "Custom PrivateLink setup",
@@ -377,6 +376,7 @@ class PrivatelinkAzure(pulumi.CustomResource):
                     "services": ["HTTPS"],
                 },
             ],
+            instance_id=instance.id.apply(lambda x: int(x)),
             opts = pulumi.ResourceOptions(depends_on=[privatelink]))
         ```
 
@@ -524,7 +524,6 @@ class PrivatelinkAzure(pulumi.CustomResource):
             instance_id=instance.id.apply(lambda x: int(x)),
             approved_subscriptions=["XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"])
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance.id.apply(lambda x: int(x)),
             rules=[
                 {
                     "description": "Custom PrivateLink setup",
@@ -545,6 +544,7 @@ class PrivatelinkAzure(pulumi.CustomResource):
                     "services": ["HTTPS"],
                 },
             ],
+            instance_id=instance.id.apply(lambda x: int(x)),
             opts = pulumi.ResourceOptions(depends_on=[privatelink]))
         ```
 

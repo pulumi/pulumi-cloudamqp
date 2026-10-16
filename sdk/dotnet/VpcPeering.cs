@@ -61,7 +61,7 @@ namespace Pulumi.CloudAmqp
     ///     // CloudAMQP - Extract vpc information
     ///     var vpcInfo = CloudAmqp.GetVpcInfo.Invoke(new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///     });
     /// 
     ///     // AWS - retrieve instance to get subnet identifier
@@ -94,7 +94,7 @@ namespace Pulumi.CloudAmqp
     ///     // CloudAMQP - accept the peering request
     ///     var vpcAcceptPeering = new CloudAmqp.VpcPeering("vpc_accept_peering", new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         PeeringId = awsVpcPeering.Id,
     ///     });
     /// 
@@ -161,7 +161,7 @@ namespace Pulumi.CloudAmqp
     ///         {
     ///             "terraform",
     ///         },
-    ///         VpcId = vpc.Id,
+    ///         VpcId = vpc.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         KeepAssociatedVpc = true,
     ///     });
     /// 
@@ -266,7 +266,6 @@ namespace Pulumi.CloudAmqp
     ///     // Firewall rules
     ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewall_settings", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         Rules = new[]
     ///         {
     ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
@@ -301,6 +300,7 @@ namespace Pulumi.CloudAmqp
     ///                 },
     ///             },
     ///         },
+    ///         InstanceId = instance.Id,
     ///     }, new CustomResourceOptions
     ///     {
     ///         DependsOn =
@@ -354,7 +354,6 @@ namespace Pulumi.CloudAmqp
     ///     // CloudAMQP - Managed firewall rules
     ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewall_settings", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         Rules = new[]
     ///         {
     ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
@@ -384,6 +383,7 @@ namespace Pulumi.CloudAmqp
     ///                 Description = "MGMT interface",
     ///             },
     ///         },
+    ///         InstanceId = instance.Id,
     ///     }, new CustomResourceOptions
     ///     {
     ///         DependsOn =

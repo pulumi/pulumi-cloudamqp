@@ -56,7 +56,7 @@ namespace Pulumi.CloudAmqp
     /// 
     ///     var @this = new CloudAmqp.IntegrationAwsEventbridge("this", new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         Vhost = instance.Vhost,
     ///         Queue = "&lt;QUEUE-NAME&gt;",
     ///         AwsAccountId = "&lt;AWS-ACCOUNT-ID&gt;",
@@ -98,7 +98,7 @@ namespace Pulumi.CloudAmqp
     /// 
     ///     var @this = new CloudAmqp.IntegrationAwsEventbridge("this", new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         Vhost = instance.Vhost,
     ///         Queue = "&lt;QUEUE-NAME&gt;",
     ///         AwsAccountId = "&lt;AWS-ACCOUNT-ID&gt;",
