@@ -44,12 +44,12 @@ namespace Pulumi.CloudAmqp
     ///         Name = "Instance 01",
     ///         Plan = "bunny-1",
     ///         Region = "azure-arm::westus",
-    ///         Tags = new[] {},
+    ///         Tags = new() {},
     ///     });
     /// 
     ///     var privatelink = new CloudAmqp.PrivatelinkAzure("privatelink", new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         ApprovedSubscriptions = new[]
     ///         {
     ///             "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
@@ -81,7 +81,7 @@ namespace Pulumi.CloudAmqp
     ///         Name = "Standalone VPC",
     ///         Region = "azure-arm::westus",
     ///         Subnet = "10.56.72.0/24",
-    ///         Tags = new[] {},
+    ///         Tags = new() {},
     ///     });
     /// 
     ///     var instance = new CloudAmqp.Instance("instance", new()
@@ -89,14 +89,14 @@ namespace Pulumi.CloudAmqp
     ///         Name = "Instance 01",
     ///         Plan = "bunny-1",
     ///         Region = "azure-arm::westus",
-    ///         Tags = new[] {},
-    ///         VpcId = vpc.Id,
+    ///         Tags = new() {},
+    ///         VpcId = vpc.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         KeepAssociatedVpc = true,
     ///     });
     /// 
     ///     var privatelink = new CloudAmqp.PrivatelinkAzure("privatelink", new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         ApprovedSubscriptions = new[]
     ///         {
     ///             "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
@@ -130,7 +130,7 @@ namespace Pulumi.CloudAmqp
     ///         Name = "Standalone VPC",
     ///         Region = "azure-arm::westus",
     ///         Subnet = "10.56.72.0/24",
-    ///         Tags = new[] {},
+    ///         Tags = new() {},
     ///     });
     /// 
     ///     var instance = new CloudAmqp.Instance("instance", new()
@@ -138,14 +138,14 @@ namespace Pulumi.CloudAmqp
     ///         Name = "Instance 01",
     ///         Plan = "bunny-1",
     ///         Region = "azure-arm::westus",
-    ///         Tags = new[] {},
-    ///         VpcId = vpc.Id,
+    ///         Tags = new() {},
+    ///         VpcId = vpc.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         KeepAssociatedVpc = true,
     ///     });
     /// 
     ///     var privatelink = new CloudAmqp.PrivatelinkAzure("privatelink", new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         ApprovedSubscriptions = new[]
     ///         {
     ///             "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
@@ -154,7 +154,6 @@ namespace Pulumi.CloudAmqp
     /// 
     ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewall_settings", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         Rules = new[]
     ///         {
     ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
@@ -182,6 +181,7 @@ namespace Pulumi.CloudAmqp
     ///                 },
     ///             },
     ///         },
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///     }, new CustomResourceOptions
     ///     {
     ///         DependsOn =

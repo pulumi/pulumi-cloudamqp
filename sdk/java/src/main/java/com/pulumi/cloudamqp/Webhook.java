@@ -58,8 +58,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var webhookQueue = new Webhook("webhookQueue", WebhookArgs.builder()
- *             .instanceId(instance.id())
- *             .vhost(instance.vhost())
+ *             .instanceId(instance.get("id"))
+ *             .vhost(instance.get("vhost"))
  *             .queue("webhook-queue")
  *             .webhookUri("https://example.com/webhook?key=secret")
  *             .concurrency(5)
@@ -104,8 +104,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var webhookQueue = new Webhook("webhookQueue", WebhookArgs.builder()
- *             .instanceId(instance.id())
- *             .vhost(instance.vhost())
+ *             .instanceId(instance.get("id"))
+ *             .vhost(instance.get("vhost"))
  *             .queue("webhook-queue")
  *             .webhookUri("https://example.com/webhook?key=secret")
  *             .retryInterval(5)
@@ -161,8 +161,8 @@ import javax.annotation.Nullable;
  * 
  *   public static void stack(Context ctx) {
  *       var webhookQueue = new Webhook("webhookQueue", WebhookArgs.builder()
- *           .instanceId(instance.id())
- *           .vhost(instance.vhost())
+ *           .instanceId(instance.get("id"))
+ *           .vhost(instance.get("vhost"))
  *           .queue("webhook-queue")
  *           .webhookUri("https://example.com/webhook?key=secret")
  *           .retryInterval(5)

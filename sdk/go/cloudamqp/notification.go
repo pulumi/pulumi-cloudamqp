@@ -76,10 +76,6 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewNotification(ctx, "opsgenie_recipient", &cloudamqp.NotificationArgs{
-//				InstanceId: pulumi.Any(instance.Id),
-//				Type:       pulumi.String("opsgenie"),
-//				Value:      pulumi.String("<api-key>"),
-//				Name:       pulumi.String("OpsGenie"),
 //				Responders: cloudamqp.NotificationResponderArray{
 //					&cloudamqp.NotificationResponderArgs{
 //						Type: pulumi.String("team"),
@@ -90,6 +86,10 @@ import (
 //						Username: pulumi.String("<username>"),
 //					},
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
+//				Type:       pulumi.String("opsgenie"),
+//				Value:      pulumi.String("<api-key>"),
+//				Name:       pulumi.String("OpsGenie"),
 //			})
 //			if err != nil {
 //				return err

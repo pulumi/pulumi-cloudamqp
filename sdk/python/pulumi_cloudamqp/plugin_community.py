@@ -275,7 +275,7 @@ class PluginCommunity(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         rabbitmq_delayed_message_exchange = cloudamqp.PluginCommunity("rabbitmq_delayed_message_exchange",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             name="rabbitmq_delayed_message_exchange",
             enabled=True)
         ```
@@ -358,7 +358,7 @@ class PluginCommunity(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         rabbitmq_delayed_message_exchange = cloudamqp.PluginCommunity("rabbitmq_delayed_message_exchange",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             name="rabbitmq_delayed_message_exchange",
             enabled=True)
         ```

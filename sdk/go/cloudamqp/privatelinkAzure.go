@@ -188,7 +188,6 @@ import (
 //				return err
 //			}
 //			_, err = cloudamqp.NewSecurityFirewall(ctx, "firewall_settings", &cloudamqp.SecurityFirewallArgs{
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				Rules: cloudamqp.SecurityFirewallRuleArray{
 //					&cloudamqp.SecurityFirewallRuleArgs{
 //						Description: pulumi.String("Custom PrivateLink setup"),
@@ -211,6 +210,7 @@ import (
 //						},
 //					},
 //				},
+//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				privatelink,
 //			}))

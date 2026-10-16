@@ -69,13 +69,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var azureMonitor = new IntegrationLogAgent("azureMonitor", IntegrationLogAgentArgs.builder()
- *             .instanceId(instance.id())
  *             .azureMonitor(IntegrationLogAgentAzureMonitorArgs.builder()
  *                 .tenantId("00000000-0000-0000-0000-000000000000")
  *                 .applicationId("11111111-1111-1111-1111-111111111111")
  *                 .applicationSecret(azureApplicationSecret)
  *                 .logsEndpoint("https://example.region-1.ingest.monitor.azure.com/datacollectionRules/dcr-example/streams/Microsoft-OTLP-Logs/otlp/v1/logs")
  *                 .build())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }
@@ -119,14 +119,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var cloudwatch = new IntegrationLogAgent("cloudwatch", IntegrationLogAgentArgs.builder()
- *             .instanceId(instance.id())
  *             .cloudwatch(IntegrationLogAgentCloudwatchArgs.builder()
  *                 .iamRole(awsIamRole)
  *                 .iamExternalId(awsIamExternalId)
  *                 .region(awsRegion)
  *                 .logGroup("CloudAMQP")
- *                 .logStream(instance.clusterName())
+ *                 .logStream(instance.get("clusterName"))
  *                 .build())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }
@@ -174,19 +174,19 @@ import javax.annotation.Nullable;
  *         final var cloudwatchLogGroup = "CloudAMQP";
  * 
  *         var this_ = new CloudwatchLogStream("this", CloudwatchLogStreamArgs.builder()
- *             .name(instance.clusterName())
+ *             .name(instance.get("clusterName"))
  *             .logGroupName(cloudwatchLogGroup)
  *             .build());
  * 
  *         var cloudwatch = new IntegrationLogAgent("cloudwatch", IntegrationLogAgentArgs.builder()
- *             .instanceId(instance.id())
  *             .cloudwatch(IntegrationLogAgentCloudwatchArgs.builder()
  *                 .iamRole(awsIamRole)
  *                 .iamExternalId(awsIamExternalId)
  *                 .region(awsRegion)
  *                 .logGroup(cloudwatchLogGroup)
- *                 .logStream(this_.name())
+ *                 .logStream(this_.get("name"))
  *                 .build())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }
@@ -227,13 +227,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var coralogix = new IntegrationLogAgent("coralogix", IntegrationLogAgentArgs.builder()
- *             .instanceId(instance.id())
  *             .coralogix(IntegrationLogAgentCoralogixArgs.builder()
  *                 .privateKey(coralogixPrivateKey)
  *                 .region("eu2")
  *                 .application("cloudamqp")
- *                 .subsystem(instance.host())
+ *                 .subsystem(instance.get("host"))
  *                 .build())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }
@@ -274,11 +274,11 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var datadog = new IntegrationLogAgent("datadog", IntegrationLogAgentArgs.builder()
- *             .instanceId(instance.id())
  *             .datadog(IntegrationLogAgentDatadogArgs.builder()
  *                 .apiKey(datadogApiKey)
  *                 .region("us1")
  *                 .build())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }
@@ -320,11 +320,11 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var googleCloud = new IntegrationLogAgent("googleCloud", IntegrationLogAgentArgs.builder()
- *             .instanceId(instance.id())
  *             .googleCloud(IntegrationLogAgentGoogleCloudArgs.builder()
- *                 .serviceAccountFile(StdFunctions.file(Map.of("input", "path/to/service_account_key.json")).result())
+ *                 .serviceAccountFile(StdFunctions.file(Map.of("input", "path/to/service_account_key.json")).get("result"))
  *                 .serviceAccountFileVersion(1)
  *                 .build())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }
@@ -365,12 +365,12 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var grafana = new IntegrationLogAgent("grafana", IntegrationLogAgentArgs.builder()
- *             .instanceId(instance.id())
  *             .grafana(IntegrationLogAgentGrafanaArgs.builder()
  *                 .endpoint(grafanaEndpoint)
  *                 .grafanaInstanceId(grafanaInstanceId)
  *                 .apiToken(grafanaApiToken)
  *                 .build())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }
@@ -416,12 +416,12 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var otlp = new IntegrationLogAgent("otlp", IntegrationLogAgentArgs.builder()
- *             .instanceId(instance.id())
  *             .otlp(IntegrationLogAgentOtlpArgs.builder()
  *                 .endpoint("https://api.honeycomb.io/v1/logs")
  *                 .authType("headers")
  *                 .headers(String.format("x-honeycomb-team: %s", honeycombApiKey))
  *                 .build())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }
@@ -453,13 +453,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var otlp = new IntegrationLogAgent("otlp", IntegrationLogAgentArgs.builder()
- *             .instanceId(instance.id())
  *             .otlp(IntegrationLogAgentOtlpArgs.builder()
  *                 .endpoint("https://otlp.example.com:4318/v1/logs")
  *                 .authType("basic_auth")
  *                 .username(otlpUsername)
  *                 .password(otlpPassword)
  *                 .build())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }
@@ -491,7 +491,6 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var otlp = new IntegrationLogAgent("otlp", IntegrationLogAgentArgs.builder()
- *             .instanceId(instance.id())
  *             .otlp(IntegrationLogAgentOtlpArgs.builder()
  *                 .endpoint("https://otlp.example.com:4318/v1/logs")
  *                 .authType("oauth2")
@@ -500,6 +499,7 @@ import javax.annotation.Nullable;
  *                 .tokenUrl("https://auth.example.com/oauth2/token")
  *                 .scopes("logs:write")
  *                 .build())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }
@@ -540,12 +540,12 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var splunk = new IntegrationLogAgent("splunk", IntegrationLogAgentArgs.builder()
- *             .instanceId(instance.id())
  *             .splunk(IntegrationLogAgentSplunkArgs.builder()
  *                 .endpoint(splunkEndpoint)
  *                 .token(splunkToken)
  *                 .sourceType("cloudamqp")
  *                 .build())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }
@@ -586,10 +586,10 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var uptrace = new IntegrationLogAgent("uptrace", IntegrationLogAgentArgs.builder()
- *             .instanceId(instance.id())
  *             .uptrace(IntegrationLogAgentUptraceArgs.builder()
  *                 .dsn(uptraceDsn)
  *                 .build())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }

@@ -183,12 +183,12 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Retrieve latest possible upgradable versions for RabbitMQ and Erlang
  *         final var versions = CloudamqpFunctions.getUpgradableVersions(GetUpgradableVersionsArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *         // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
  *         var upgrade = new UpgradeRabbitmq("upgrade", UpgradeRabbitmqArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }
@@ -220,7 +220,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Retrieve latest possible upgradable versions for RabbitMQ and Erlang
  *         final var versions = CloudamqpFunctions.getUpgradableVersions(GetUpgradableVersionsArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }
@@ -256,12 +256,12 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Retrieve latest possible upgradable versions for RabbitMQ and Erlang
  *         final var versions = CloudamqpFunctions.getUpgradableVersions(GetUpgradableVersionsArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *         // Invoke automatically upgrade to latest possible upgradable versions for RabbitMQ and Erlang
  *         var upgrade = new UpgradeRabbitmq("upgrade", UpgradeRabbitmqArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }

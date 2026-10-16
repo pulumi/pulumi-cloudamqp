@@ -142,7 +142,7 @@ def get_plugins(enabled: Optional[_builtins.bool] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    plugins = cloudamqp.get_plugins(instance_id=int(instance["id"]),
+    plugins = cloudamqp.get_plugins(instance_id=instance["id"],
         enabled=True,
         recommended=True)
     ```
@@ -197,7 +197,7 @@ def get_plugins_output(enabled: pulumi.Input[Optional[Optional[_builtins.bool]]]
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    plugins = cloudamqp.get_plugins(instance_id=int(instance["id"]),
+    plugins = cloudamqp.get_plugins(instance_id=instance["id"],
         enabled=True,
         recommended=True)
     ```

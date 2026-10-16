@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const oauth2Config = new cloudamqp.Oauth2Configuration("oauth2_config", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     resourceServerId: "test-resource-server",
  *     issuer: "https://test-issuer.example.com",
  *     verifyAud: true,
@@ -56,7 +56,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const oauth2Config = new cloudamqp.Oauth2Configuration("oauth2_config", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     resourceServerId: "test-resource-server",
  *     issuer: "https://test-issuer.example.com",
  *     preferredUsernameClaims: [
@@ -95,7 +95,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const oauth2Config = new cloudamqp.Oauth2Configuration("oauth2_config", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     resourceServerId: "test-resource-server",
  *     issuer: "https://test-issuer.example.com",
  * });
@@ -115,7 +115,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const oauth2Config = new cloudamqp.Oauth2Configuration("oauth2_config", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     issuer: "https://auth.example.com/realms/lavinmq",
  *     resourceServerId: "lavinmq",
  *     verifyAud: true,
@@ -139,7 +139,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const oauth2Config = new cloudamqp.Oauth2Configuration("oauth2_config", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     issuer: "https://auth.example.com/realms/lavinmq",
  *     resourceServerId: "lavinmq",
  *     additionalScopesKeys: ["roles"],

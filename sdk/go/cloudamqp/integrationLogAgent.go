@@ -47,13 +47,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationLogAgent(ctx, "azure_monitor", &cloudamqp.IntegrationLogAgentArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				AzureMonitor: &cloudamqp.IntegrationLogAgentAzureMonitorArgs{
 //					TenantId:          pulumi.String("00000000-0000-0000-0000-000000000000"),
 //					ApplicationId:     pulumi.String("11111111-1111-1111-1111-111111111111"),
 //					ApplicationSecret: pulumi.Any(azureApplicationSecret),
 //					LogsEndpoint:      pulumi.String("https://example.region-1.ingest.monitor.azure.com/datacollectionRules/dcr-example/streams/Microsoft-OTLP-Logs/otlp/v1/logs"),
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -90,7 +90,6 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationLogAgent(ctx, "cloudwatch", &cloudamqp.IntegrationLogAgentArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				Cloudwatch: &cloudamqp.IntegrationLogAgentCloudwatchArgs{
 //					IamRole:       pulumi.Any(awsIamRole),
 //					IamExternalId: pulumi.Any(awsIamExternalId),
@@ -98,6 +97,7 @@ import (
 //					LogGroup:      pulumi.String("CloudAMQP"),
 //					LogStream:     pulumi.Any(instance.ClusterName),
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -143,7 +143,6 @@ import (
 //				return err
 //			}
 //			_, err = cloudamqp.NewIntegrationLogAgent(ctx, "cloudwatch", &cloudamqp.IntegrationLogAgentArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				Cloudwatch: &cloudamqp.IntegrationLogAgentCloudwatchArgs{
 //					IamRole:       pulumi.Any(awsIamRole),
 //					IamExternalId: pulumi.Any(awsIamExternalId),
@@ -151,6 +150,7 @@ import (
 //					LogGroup:      pulumi.String(cloudwatchLogGroup),
 //					LogStream:     this.Name,
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -184,13 +184,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationLogAgent(ctx, "coralogix", &cloudamqp.IntegrationLogAgentArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				Coralogix: &cloudamqp.IntegrationLogAgentCoralogixArgs{
 //					PrivateKey:  pulumi.Any(coralogixPrivateKey),
 //					Region:      pulumi.String("eu2"),
 //					Application: pulumi.String("cloudamqp"),
 //					Subsystem:   pulumi.Any(instance.Host),
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -224,11 +224,11 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationLogAgent(ctx, "datadog", &cloudamqp.IntegrationLogAgentArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				Datadog: &cloudamqp.IntegrationLogAgentDatadogArgs{
 //					ApiKey: pulumi.Any(datadogApiKey),
 //					Region: pulumi.String("us1"),
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -269,11 +269,11 @@ import (
 //				return err
 //			}
 //			_, err = cloudamqp.NewIntegrationLogAgent(ctx, "google_cloud", &cloudamqp.IntegrationLogAgentArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				GoogleCloud: &cloudamqp.IntegrationLogAgentGoogleCloudArgs{
-//					ServiceAccountFile:        invokeFile.Result,
+//					ServiceAccountFile:        invokeFile.Result.(pulumi.String),
 //					ServiceAccountFileVersion: pulumi.Int(1),
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -307,12 +307,12 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationLogAgent(ctx, "grafana", &cloudamqp.IntegrationLogAgentArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				Grafana: &cloudamqp.IntegrationLogAgentGrafanaArgs{
 //					Endpoint:          pulumi.Any(grafanaEndpoint),
 //					GrafanaInstanceId: pulumi.Any(grafanaInstanceId),
 //					ApiToken:          pulumi.Any(grafanaApiToken),
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -351,12 +351,12 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationLogAgent(ctx, "otlp", &cloudamqp.IntegrationLogAgentArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				Otlp: &cloudamqp.IntegrationLogAgentOtlpArgs{
 //					Endpoint: pulumi.String("https://api.honeycomb.io/v1/logs"),
 //					AuthType: pulumi.String("headers"),
 //					Headers:  pulumi.Sprintf("x-honeycomb-team: %v", honeycombApiKey),
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -380,13 +380,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationLogAgent(ctx, "otlp", &cloudamqp.IntegrationLogAgentArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				Otlp: &cloudamqp.IntegrationLogAgentOtlpArgs{
 //					Endpoint: pulumi.String("https://otlp.example.com:4318/v1/logs"),
 //					AuthType: pulumi.String("basic_auth"),
 //					Username: pulumi.Any(otlpUsername),
 //					Password: pulumi.Any(otlpPassword),
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -410,7 +410,6 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationLogAgent(ctx, "otlp", &cloudamqp.IntegrationLogAgentArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				Otlp: &cloudamqp.IntegrationLogAgentOtlpArgs{
 //					Endpoint:     pulumi.String("https://otlp.example.com:4318/v1/logs"),
 //					AuthType:     pulumi.String("oauth2"),
@@ -419,6 +418,7 @@ import (
 //					TokenUrl:     pulumi.String("https://auth.example.com/oauth2/token"),
 //					Scopes:       pulumi.String("logs:write"),
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -452,12 +452,12 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationLogAgent(ctx, "splunk", &cloudamqp.IntegrationLogAgentArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				Splunk: &cloudamqp.IntegrationLogAgentSplunkArgs{
 //					Endpoint:   pulumi.Any(splunkEndpoint),
 //					Token:      pulumi.Any(splunkToken),
 //					SourceType: pulumi.String("cloudamqp"),
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -491,10 +491,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationLogAgent(ctx, "uptrace", &cloudamqp.IntegrationLogAgentArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				Uptrace: &cloudamqp.IntegrationLogAgentUptraceArgs{
 //					Dsn: pulumi.Any(uptraceDsn),
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			})
 //			if err != nil {
 //				return err

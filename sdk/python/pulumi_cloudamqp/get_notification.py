@@ -133,7 +133,7 @@ class AwaitableGetNotificationResult(GetNotificationResult):
 def get_notification(instance_id: Optional[_builtins.int] = None,
                      name: Optional[_builtins.str] = None,
                      recipient_id: Optional[_builtins.int] = None,
-                     responders: Optional[Sequence[Union['GetNotificationResponderArgs', 'GetNotificationResponderArgsDict']]] = None,
+                     responders: Optional[Sequence[Union['GetNotificationResponderArgs', 'GetNotificationResponderArgsDict', 'outputs.GetNotificationResponderResult']]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNotificationResult:
     """
     Use this data source to retrieve information about default or created recipients. The recipient will
@@ -146,7 +146,7 @@ def get_notification(instance_id: Optional[_builtins.int] = None,
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    default_recipient = cloudamqp.get_notification(instance_id=int(instance["id"]),
+    default_recipient = cloudamqp.get_notification(instance_id=instance["id"],
         name="default")
     ```
 
@@ -158,7 +158,7 @@ def get_notification(instance_id: Optional[_builtins.int] = None,
     :param _builtins.int instance_id: The CloudAMQP instance identifier.
     :param _builtins.str name: The name set for the recipient.
     :param _builtins.int recipient_id: The recipient identifier.
-    :param Sequence[Union['GetNotificationResponderArgs', 'GetNotificationResponderArgsDict']] responders: An array of reponders (only for OpsGenie). Each `responders` block
+    :param Sequence[Union['GetNotificationResponderArgs', 'GetNotificationResponderArgsDict', 'outputs.GetNotificationResponderResult']] responders: An array of reponders (only for OpsGenie). Each `responders` block
            consists of the field documented below.
     """
     __args__ = dict()
@@ -181,7 +181,7 @@ def get_notification(instance_id: Optional[_builtins.int] = None,
 def get_notification_output(instance_id: pulumi.Input[Optional[_builtins.int]] = None,
                             name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                             recipient_id: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
-                            responders: pulumi.Input[Optional[Optional[Sequence[Union['GetNotificationResponderArgs', 'GetNotificationResponderArgsDict']]]]] = None,
+                            responders: pulumi.Input[Optional[Optional[Sequence[Union['GetNotificationResponderArgs', 'GetNotificationResponderArgsDict', 'outputs.GetNotificationResponderResult']]]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNotificationResult]:
     """
     Use this data source to retrieve information about default or created recipients. The recipient will
@@ -194,7 +194,7 @@ def get_notification_output(instance_id: pulumi.Input[Optional[_builtins.int]] =
     import pulumi
     import pulumi_cloudamqp as cloudamqp
 
-    default_recipient = cloudamqp.get_notification(instance_id=int(instance["id"]),
+    default_recipient = cloudamqp.get_notification(instance_id=instance["id"],
         name="default")
     ```
 
@@ -206,7 +206,7 @@ def get_notification_output(instance_id: pulumi.Input[Optional[_builtins.int]] =
     :param _builtins.int instance_id: The CloudAMQP instance identifier.
     :param _builtins.str name: The name set for the recipient.
     :param _builtins.int recipient_id: The recipient identifier.
-    :param Sequence[Union['GetNotificationResponderArgs', 'GetNotificationResponderArgsDict']] responders: An array of reponders (only for OpsGenie). Each `responders` block
+    :param Sequence[Union['GetNotificationResponderArgs', 'GetNotificationResponderArgsDict', 'outputs.GetNotificationResponderResult']] responders: An array of reponders (only for OpsGenie). Each `responders` block
            consists of the field documented below.
     """
     __args__ = dict()

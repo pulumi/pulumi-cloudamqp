@@ -92,11 +92,11 @@ import javax.annotation.Nullable;
  *         final var awsInstance = AwsFunctions.Instance(Map.of("instanceTags", Map.of("name", awsInstanceName)));
  * 
  *         // AWS - retrieve subnet
- *         final var subnet = AwsFunctions.Subnet(Map.of("id", awsInstance.subnetId()));
+ *         final var subnet = AwsFunctions.Subnet(Map.of("id", awsInstance.get("subnetId")));
  * 
  *         // AWS - Create peering request
  *         var awsVpcPeering = new VpcPeeringConnection("awsVpcPeering", VpcPeeringConnectionArgs.builder()
- *             .vpcId(subnet.vpcId())
+ *             .vpcId(subnet.get("vpcId"))
  *             .peerVpcId(vpcInfo.id())
  *             .peerOwnerId(vpcInfo.ownerId())
  *             .tags(Map.of("name", awsPeeringName))
@@ -105,17 +105,17 @@ import javax.annotation.Nullable;
  *         // CloudAMQP - accept the peering request
  *         var vpcAcceptPeering = new VpcPeering("vpcAcceptPeering", VpcPeeringArgs.builder()
  *             .instanceId(instance.id())
- *             .peeringId(awsVpcPeering.id())
+ *             .peeringId(awsVpcPeering.get("id"))
  *             .build());
  * 
  *         // AWS - retrieve the route table created in AWS
- *         final var routeTable = AwsFunctions.RouteTable(Map.of("vpcId", subnet.vpcId()));
+ *         final var routeTable = AwsFunctions.RouteTable(Map.of("vpcId", subnet.get("vpcId")));
  * 
  *         // AWS - Once the peering request is accepted, configure routing table on accepter to allow traffic
  *         var accepterRoute = new Route("accepterRoute", RouteArgs.builder()
- *             .routeTableId(routeTable.routeTableId())
+ *             .routeTableId(routeTable.get("routeTableId"))
  *             .destinationCidrBlock(instance.vpcSubnet())
- *             .vpcPeeringConnectionId(awsVpcPeering.id())
+ *             .vpcPeeringConnectionId(awsVpcPeering.get("id"))
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(Arrays.asList(vpcAcceptPeering))
  *                 .build());
@@ -195,11 +195,11 @@ import javax.annotation.Nullable;
  *         final var awsInstance = AwsFunctions.Instance(Map.of("instanceTags", Map.of("name", awsInstanceName)));
  * 
  *         // AWS - retrieve subnet
- *         final var subnet = AwsFunctions.Subnet(Map.of("id", awsInstance.subnetId()));
+ *         final var subnet = AwsFunctions.Subnet(Map.of("id", awsInstance.get("subnetId")));
  * 
  *         // AWS - Create peering request
  *         var awsVpcPeering = new VpcPeeringConnection("awsVpcPeering", VpcPeeringConnectionArgs.builder()
- *             .vpcId(subnet.vpcId())
+ *             .vpcId(subnet.get("vpcId"))
  *             .peerVpcId(vpcInfo.id())
  *             .peerOwnerId(vpcInfo.ownerId())
  *             .tags(Map.of("name", awsPeeringName))
@@ -208,19 +208,19 @@ import javax.annotation.Nullable;
  *         // CloudAMQP - accept the peering request
  *         var vpcAcceptPeering = new VpcPeering("vpcAcceptPeering", VpcPeeringArgs.builder()
  *             .vpcId(vpc.id())
- *             .peeringId(awsVpcPeering.id())
+ *             .peeringId(awsVpcPeering.get("id"))
  *             .sleep(30)
  *             .timeout(600)
  *             .build());
  * 
  *         // AWS - retrieve the route table created in AWS
- *         final var routeTable = AwsFunctions.RouteTable(Map.of("vpcId", subnet.vpcId()));
+ *         final var routeTable = AwsFunctions.RouteTable(Map.of("vpcId", subnet.get("vpcId")));
  * 
  *         // AWS - Once the peering request is accepted, configure routing table on accepter to allow traffic
  *         var accepterRoute = new Route("accepterRoute", RouteArgs.builder()
- *             .routeTableId(routeTable.routeTableId())
+ *             .routeTableId(routeTable.get("routeTableId"))
  *             .destinationCidrBlock(instance.vpcSubnet())
- *             .vpcPeeringConnectionId(awsVpcPeering.id())
+ *             .vpcPeeringConnectionId(awsVpcPeering.get("id"))
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(Arrays.asList(vpcAcceptPeering))
  *                 .build());
@@ -269,20 +269,19 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // AWS - retrieve subnet
- *         final var subnet = AwsFunctions.Subnet(Map.of("id", awsInstance.subnetId()));
+ *         final var subnet = AwsFunctions.Subnet(Map.of("id", awsInstance.get("subnetId")));
  * 
  *         // CloudAMQP - accept the peering request
  *         var vpcAcceptPeering = new VpcPeering("vpcAcceptPeering", VpcPeeringArgs.builder()
- *             .instanceId(instance.id())
- *             .peeringId(awsVpcPeering.id())
+ *             .instanceId(instance.get("id"))
+ *             .peeringId(awsVpcPeering.get("id"))
  *             .build());
  * 
  *         // Firewall rules
  *         var firewallSettings = new SecurityFirewall("firewallSettings", SecurityFirewallArgs.builder()
- *             .instanceId(instance.id())
  *             .rules(            
  *                 SecurityFirewallRuleArgs.builder()
- *                     .ip(awsInstance.subnetId())
+ *                     .ip(awsInstance.get("subnetId"))
  *                     .ports(                    
  *                         15672,
  *                         5552,
@@ -302,6 +301,7 @@ import javax.annotation.Nullable;
  *                         "AMQPS",
  *                         "HTTPS")
  *                     .build())
+ *             .instanceId(instance.get("id"))
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(vpcAcceptPeering)
  *                 .build());
@@ -348,25 +348,24 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // AWS - retrieve subnet
- *         final var subnet = AwsFunctions.Subnet(Map.of("id", awsInstance.subnetId()));
+ *         final var subnet = AwsFunctions.Subnet(Map.of("id", awsInstance.get("subnetId")));
  * 
  *         // CloudAMQP - accept the peering request
  *         var vpcAcceptPeering = new VpcPeering("vpcAcceptPeering", VpcPeeringArgs.builder()
- *             .vpcId(vpc.id())
- *             .peeringId(awsVpcPeering.id())
+ *             .vpcId(vpc.get("id"))
+ *             .peeringId(awsVpcPeering.get("id"))
  *             .sleep(30)
  *             .timeout(600)
  *             .build());
  * 
  *         // AWS - VPC subnet for peering requester
- *         final var requesterVpc = AwsFunctions.Vpc(Map.of("id", subnet.vpcId()));
+ *         final var requesterVpc = AwsFunctions.Vpc(Map.of("id", subnet.get("vpcId")));
  * 
  *         // CloudAMQP - Managed firewall rules
  *         var firewallSettings = new SecurityFirewall("firewallSettings", SecurityFirewallArgs.builder()
- *             .instanceId(instance.id())
  *             .rules(            
  *                 SecurityFirewallRuleArgs.builder()
- *                     .ip(requesterVpc.cidrBlock())
+ *                     .ip(requesterVpc.get("cidrBlock"))
  *                     .ports(                    
  *                         15672,
  *                         5552,
@@ -382,6 +381,7 @@ import javax.annotation.Nullable;
  *                     .services("HTTPS")
  *                     .description("MGMT interface")
  *                     .build())
+ *             .instanceId(instance.get("id"))
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(vpcAcceptPeering)
  *                 .build());

@@ -21,12 +21,12 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const newrelicV3 = new cloudamqp.IntegrationMetricPrometheus("newrelic_v3", {
- *     instanceId: Number(instance.id),
  *     newrelicV3: {
  *         apiKey: newrelicApiKey,
  *         region: "us",
  *         tags: "key=value,key2=value2",
  *     },
+ *     instanceId: instance.id,
  * });
  * ```
  *
@@ -37,13 +37,13 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const datadogV3 = new cloudamqp.IntegrationMetricPrometheus("datadog_v3", {
- *     instanceId: Number(instance.id),
  *     datadogV3: {
  *         apiKey: datadogApiKey,
  *         region: "us1",
  *         tags: "key=value,key2=value2",
  *         rabbitmqDashboardMetricsFormat: true,
  *     },
+ *     instanceId: instance.id,
  * });
  * ```
  *
@@ -54,10 +54,10 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const azureMonitor = new cloudamqp.IntegrationMetricPrometheus("azure_monitor", {
- *     instanceId: Number(instance.id),
  *     azureMonitor: {
  *         connectionString: azureMonitorConnectionString,
  *     },
+ *     instanceId: instance.id,
  * });
  * ```
  *
@@ -68,12 +68,12 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const splunkV2 = new cloudamqp.IntegrationMetricPrometheus("splunk_v2", {
- *     instanceId: Number(instance.id),
  *     splunkV2: {
  *         token: splunkToken,
  *         endpoint: splunkEndpoint,
  *         tags: "key=value,key2=value2",
  *     },
+ *     instanceId: instance.id,
  * });
  * ```
  *
@@ -84,12 +84,12 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const dynatrace = new cloudamqp.IntegrationMetricPrometheus("dynatrace", {
- *     instanceId: Number(instance.id),
  *     dynatrace: {
  *         environmentId: dynatraceEnvironmentId,
  *         accessToken: dynatraceAccessToken,
  *         tags: "key=value,key2=value2",
  *     },
+ *     instanceId: instance.id,
  * });
  * ```
  *
@@ -100,13 +100,13 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const cloudwatchV3 = new cloudamqp.IntegrationMetricPrometheus("cloudwatch_v3", {
- *     instanceId: Number(instance.id),
  *     cloudwatchV3: {
  *         iamRole: cloudwatchIamRole,
  *         iamExternalId: cloudwatchIamExternalId,
  *         region: cloudwatchRegion,
  *         tags: "key=value,key2=value2",
  *     },
+ *     instanceId: instance.id,
  * });
  * ```
  *
@@ -117,11 +117,11 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const stackdriverV2 = new cloudamqp.IntegrationMetricPrometheus("stackdriver_v2", {
- *     instanceId: Number(instance.id),
  *     stackdriverV2: {
  *         credentialsFile: googleServiceAccountKey,
  *         tags: "key=value,key2=value2",
  *     },
+ *     instanceId: instance.id,
  * });
  * ```
  *
@@ -134,13 +134,13 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const grafana = new cloudamqp.IntegrationMetricPrometheus("grafana", {
- *     instanceId: Number(instance.id),
  *     grafana: {
  *         endpoint: grafanaEndpoint,
  *         instanceId: grafanaInstanceId,
  *         apiToken: grafanaApiToken,
  *         tags: "key=value,key2=value2",
  *     },
+ *     instanceId: instance.id,
  * });
  * ```
  *
@@ -153,7 +153,6 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const prometheusRemoteWrite = new cloudamqp.IntegrationMetricPrometheus("prometheus_remote_write", {
- *     instanceId: Number(instance.id),
  *     prometheusRemoteWrite: {
  *         endpoint: remoteWriteEndpoint,
  *         authType: "basic_auth",
@@ -162,6 +161,7 @@ import * as utilities from "./utilities";
  *         headers: "X-Scope-OrgID: my-tenant",
  *         tags: "key=value,key2=value2",
  *     },
+ *     instanceId: instance.id,
  * });
  * ```
  *
@@ -174,7 +174,6 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const prometheusRemoteWrite = new cloudamqp.IntegrationMetricPrometheus("prometheus_remote_write", {
- *     instanceId: Number(instance.id),
  *     prometheusRemoteWrite: {
  *         endpoint: remoteWriteEndpoint,
  *         authType: "oauth2",
@@ -183,6 +182,7 @@ import * as utilities from "./utilities";
  *         tokenUrl: "https://login.microsoftonline.com/<tenant-id>/oauth2/v2.0/token",
  *         scopes: "https://monitor.azure.com/.default",
  *     },
+ *     instanceId: instance.id,
  * });
  * ```
  *

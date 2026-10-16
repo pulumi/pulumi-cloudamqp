@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var rabbitmqTop = new Plugin("rabbitmqTop", PluginArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("rabbitmq_top")
  *             .enabled(true)
  *             .build());
@@ -93,13 +93,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var rabbitmqTop = new Plugin("rabbitmqTop", PluginArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("rabbitmq_top")
  *             .enabled(true)
  *             .build());
  * 
  *         var rabbitmqAmqp10 = new Plugin("rabbitmqAmqp10", PluginArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("rabbitmq_amqp1_0")
  *             .enabled(true)
  *             .build(), CustomResourceOptions.builder()
@@ -146,13 +146,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var rabbitmqTop = new Plugin("rabbitmqTop", PluginArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("rabbitmq_top")
  *             .enabled(true)
  *             .build());
  * 
  *         var rabbitmqAmqp10 = new Plugin("rabbitmqAmqp10", PluginArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("rabbitmq_amqp1_0")
  *             .enabled(true)
  *             .build());

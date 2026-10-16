@@ -290,7 +290,7 @@ class Notification(pulumi.CustomResource):
                  instance_id: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 responders: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NotificationResponderArgs', 'NotificationResponderArgsDict']]]]] = None,
+                 responders: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NotificationResponderArgs', 'NotificationResponderArgsDict', 'outputs.NotificationResponder']]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  value: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -315,7 +315,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         email_recipient = cloudamqp.Notification("email_recipient",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             type="email",
             value="alarm@example.com",
             name="alarm")
@@ -333,10 +333,6 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         opsgenie_recipient = cloudamqp.Notification("opsgenie_recipient",
-            instance_id=int(instance["id"]),
-            type="opsgenie",
-            value="<api-key>",
-            name="OpsGenie",
             responders=[
                 {
                     "type": "team",
@@ -346,7 +342,11 @@ class Notification(pulumi.CustomResource):
                     "type": "user",
                     "username": "<username>",
                 },
-            ])
+            ],
+            instance_id=instance["id"],
+            type="opsgenie",
+            value="<api-key>",
+            name="OpsGenie")
         ```
 
         </details>
@@ -361,7 +361,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         pagerduty_recipient = cloudamqp.Notification("pagerduty_recipient",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             type="pagerduty",
             value="<integration-key>",
             name="PagerDuty",
@@ -382,7 +382,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         signl4_recipient = cloudamqp.Notification("signl4_recipient",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             type="signl4",
             value="<team-secret>",
             name="Signl4")
@@ -400,7 +400,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         teams_recipient = cloudamqp.Notification("teams_recipient",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             type="teams",
             value="<teams-webhook-url>",
             name="Teams")
@@ -418,7 +418,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         victorops_recipient = cloudamqp.Notification("victorops_recipient",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             type="victorops",
             value="<integration-key>",
             name="Victorops",
@@ -439,7 +439,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         slack_recipient = cloudamqp.Notification("slack_recipient",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             type="slack",
             value="<slack-webhook-url>",
             name="Slack webhook recipient")
@@ -457,7 +457,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         webhook_recipient = cloudamqp.Notification("webhook_recipient",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             type="webhook",
             value="<webhook-url>",
             name="Webhook")
@@ -489,7 +489,7 @@ class Notification(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[_builtins.str] name: Name of the responder
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] options: Options argument (e.g. `rk` used for VictorOps routing key).
-        :param pulumi.Input[Sequence[pulumi.Input[Union['NotificationResponderArgs', 'NotificationResponderArgsDict']]]] responders: An array of reponders (only for OpsGenie). Each `responders` block
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NotificationResponderArgs', 'NotificationResponderArgsDict', 'outputs.NotificationResponder']]]] responders: An array of reponders (only for OpsGenie). Each `responders` block
                consists of the field documented below.
                
                ***
@@ -534,7 +534,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         email_recipient = cloudamqp.Notification("email_recipient",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             type="email",
             value="alarm@example.com",
             name="alarm")
@@ -552,10 +552,6 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         opsgenie_recipient = cloudamqp.Notification("opsgenie_recipient",
-            instance_id=int(instance["id"]),
-            type="opsgenie",
-            value="<api-key>",
-            name="OpsGenie",
             responders=[
                 {
                     "type": "team",
@@ -565,7 +561,11 @@ class Notification(pulumi.CustomResource):
                     "type": "user",
                     "username": "<username>",
                 },
-            ])
+            ],
+            instance_id=instance["id"],
+            type="opsgenie",
+            value="<api-key>",
+            name="OpsGenie")
         ```
 
         </details>
@@ -580,7 +580,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         pagerduty_recipient = cloudamqp.Notification("pagerduty_recipient",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             type="pagerduty",
             value="<integration-key>",
             name="PagerDuty",
@@ -601,7 +601,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         signl4_recipient = cloudamqp.Notification("signl4_recipient",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             type="signl4",
             value="<team-secret>",
             name="Signl4")
@@ -619,7 +619,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         teams_recipient = cloudamqp.Notification("teams_recipient",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             type="teams",
             value="<teams-webhook-url>",
             name="Teams")
@@ -637,7 +637,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         victorops_recipient = cloudamqp.Notification("victorops_recipient",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             type="victorops",
             value="<integration-key>",
             name="Victorops",
@@ -658,7 +658,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         slack_recipient = cloudamqp.Notification("slack_recipient",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             type="slack",
             value="<slack-webhook-url>",
             name="Slack webhook recipient")
@@ -676,7 +676,7 @@ class Notification(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         webhook_recipient = cloudamqp.Notification("webhook_recipient",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             type="webhook",
             value="<webhook-url>",
             name="Webhook")
@@ -721,7 +721,7 @@ class Notification(pulumi.CustomResource):
                  instance_id: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 responders: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NotificationResponderArgs', 'NotificationResponderArgsDict']]]]] = None,
+                 responders: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NotificationResponderArgs', 'NotificationResponderArgsDict', 'outputs.NotificationResponder']]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  value: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -758,7 +758,7 @@ class Notification(pulumi.CustomResource):
             instance_id: pulumi.Input[Optional[_builtins.int]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            responders: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NotificationResponderArgs', 'NotificationResponderArgsDict']]]]] = None,
+            responders: pulumi.Input[Optional[Sequence[pulumi.Input[Union['NotificationResponderArgs', 'NotificationResponderArgsDict', 'outputs.NotificationResponder']]]]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
             value: pulumi.Input[Optional[_builtins.str]] = None) -> 'Notification':
         """
@@ -771,7 +771,7 @@ class Notification(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[_builtins.str] name: Name of the responder
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] options: Options argument (e.g. `rk` used for VictorOps routing key).
-        :param pulumi.Input[Sequence[pulumi.Input[Union['NotificationResponderArgs', 'NotificationResponderArgsDict']]]] responders: An array of reponders (only for OpsGenie). Each `responders` block
+        :param pulumi.Input[Sequence[pulumi.Input[Union['NotificationResponderArgs', 'NotificationResponderArgsDict', 'outputs.NotificationResponder']]]] responders: An array of reponders (only for OpsGenie). Each `responders` block
                consists of the field documented below.
                
                ***

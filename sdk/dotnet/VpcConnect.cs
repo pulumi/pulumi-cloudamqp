@@ -55,7 +55,7 @@ namespace Pulumi.CloudAmqp
     ///         Name = "Standalone VPC",
     ///         Region = "amazon-web-services::us-west-1",
     ///         Subnet = "10.56.72.0/24",
-    ///         Tags = new[] {},
+    ///         Tags = new() {},
     ///     });
     /// 
     ///     var instance = new CloudAmqp.Instance("instance", new()
@@ -63,14 +63,14 @@ namespace Pulumi.CloudAmqp
     ///         Name = "Instance 01",
     ///         Plan = "penguin-1",
     ///         Region = "amazon-web-services::us-west-1",
-    ///         Tags = new[] {},
-    ///         VpcId = vpc.Id,
+    ///         Tags = new() {},
+    ///         VpcId = vpc.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         KeepAssociatedVpc = true,
     ///     });
     /// 
     ///     var vpcConnect = new CloudAmqp.VpcConnect("vpc_connect", new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         Region = instance.Region,
     ///         AllowedPrincipals = new[]
     ///         {
@@ -103,7 +103,7 @@ namespace Pulumi.CloudAmqp
     ///         Name = "Standalone VPC",
     ///         Region = "azure-arm::westus",
     ///         Subnet = "10.56.72.0/24",
-    ///         Tags = new[] {},
+    ///         Tags = new() {},
     ///     });
     /// 
     ///     var instance = new CloudAmqp.Instance("instance", new()
@@ -111,14 +111,14 @@ namespace Pulumi.CloudAmqp
     ///         Name = "Instance 01",
     ///         Plan = "penguin-1",
     ///         Region = "azure-arm::westus",
-    ///         Tags = new[] {},
-    ///         VpcId = vpc.Id,
+    ///         Tags = new() {},
+    ///         VpcId = vpc.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         KeepAssociatedVpc = true,
     ///     });
     /// 
     ///     var vpcConnect = new CloudAmqp.VpcConnect("vpc_connect", new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         Region = instance.Region,
     ///         ApprovedSubscriptions = new[]
     ///         {
@@ -143,10 +143,6 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var example = new Azurerm.PrivateEndpoint("example", new()
     ///     {
-    ///         Name = "example-endpoint",
-    ///         Location = exampleAzurermResourceGroup.Location,
-    ///         ResourceGroupName = exampleAzurermResourceGroup.Name,
-    ///         SubnetId = subnet.Id,
     ///         PrivateServiceConnection = new[]
     ///         {
     ///             
@@ -157,6 +153,10 @@ namespace Pulumi.CloudAmqp
     ///                 { "requestMessage", "PL" },
     ///             },
     ///         },
+    ///         Name = "example-endpoint",
+    ///         Location = exampleAzurermResourceGroup.Location,
+    ///         ResourceGroupName = exampleAzurermResourceGroup.Name,
+    ///         SubnetId = subnet.Id,
     ///     });
     /// 
     /// });
@@ -188,7 +188,7 @@ namespace Pulumi.CloudAmqp
     ///         Name = "Standalone VPC",
     ///         Region = "google-compute-engine::us-west1",
     ///         Subnet = "10.56.72.0/24",
-    ///         Tags = new[] {},
+    ///         Tags = new() {},
     ///     });
     /// 
     ///     var instance = new CloudAmqp.Instance("instance", new()
@@ -196,14 +196,14 @@ namespace Pulumi.CloudAmqp
     ///         Name = "Instance 01",
     ///         Plan = "penguin-1",
     ///         Region = "google-compute-engine::us-west1",
-    ///         Tags = new[] {},
-    ///         VpcId = vpc.Id,
+    ///         Tags = new() {},
+    ///         VpcId = vpc.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         KeepAssociatedVpc = true,
     ///     });
     /// 
     ///     var vpcConnect = new CloudAmqp.VpcConnect("vpc_connect", new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         Region = instance.Region,
     ///         AllowedProjects = new[]
     ///         {
@@ -238,7 +238,7 @@ namespace Pulumi.CloudAmqp
     ///         Name = "Standalone VPC",
     ///         Region = "amazon-web-services::us-west-1",
     ///         Subnet = "10.56.72.0/24",
-    ///         Tags = new[] {},
+    ///         Tags = new() {},
     ///     });
     /// 
     ///     var instance = new CloudAmqp.Instance("instance", new()
@@ -246,14 +246,14 @@ namespace Pulumi.CloudAmqp
     ///         Name = "Instance 01",
     ///         Plan = "penguin-1",
     ///         Region = "amazon-web-services::us-west-1",
-    ///         Tags = new[] {},
-    ///         VpcId = vpc.Id,
+    ///         Tags = new() {},
+    ///         VpcId = vpc.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         KeepAssociatedVpc = true,
     ///     });
     /// 
     ///     var vpcConnect = new CloudAmqp.VpcConnect("vpc_connect", new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         AllowedPrincipals = new[]
     ///         {
     ///             "arn:aws:iam::aws-account-id:user/user-name",
@@ -262,7 +262,6 @@ namespace Pulumi.CloudAmqp
     /// 
     ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewall_settings", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         Rules = new[]
     ///         {
     ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
@@ -288,6 +287,7 @@ namespace Pulumi.CloudAmqp
     ///                 },
     ///             },
     ///         },
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///     }, new CustomResourceOptions
     ///     {
     ///         DependsOn =

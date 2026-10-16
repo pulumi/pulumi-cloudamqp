@@ -274,7 +274,7 @@ class Plugin(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         rabbitmq_top = cloudamqp.Plugin("rabbitmq_top",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             name="rabbitmq_top",
             enabled=True)
         ```
@@ -295,11 +295,11 @@ class Plugin(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         rabbitmq_top = cloudamqp.Plugin("rabbitmq_top",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             name="rabbitmq_top",
             enabled=True)
         rabbitmq_amqp10 = cloudamqp.Plugin("rabbitmq_amqp1_0",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             name="rabbitmq_amqp1_0",
             enabled=True,
             opts = pulumi.ResourceOptions(depends_on=[rabbitmq_top]))
@@ -322,11 +322,11 @@ class Plugin(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         rabbitmq_top = cloudamqp.Plugin("rabbitmq_top",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             name="rabbitmq_top",
             enabled=True)
         rabbitmq_amqp10 = cloudamqp.Plugin("rabbitmq_amqp1_0",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             name="rabbitmq_amqp1_0",
             enabled=True)
         ```
@@ -431,7 +431,7 @@ class Plugin(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         rabbitmq_top = cloudamqp.Plugin("rabbitmq_top",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             name="rabbitmq_top",
             enabled=True)
         ```
@@ -452,11 +452,11 @@ class Plugin(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         rabbitmq_top = cloudamqp.Plugin("rabbitmq_top",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             name="rabbitmq_top",
             enabled=True)
         rabbitmq_amqp10 = cloudamqp.Plugin("rabbitmq_amqp1_0",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             name="rabbitmq_amqp1_0",
             enabled=True,
             opts = pulumi.ResourceOptions(depends_on=[rabbitmq_top]))
@@ -479,11 +479,11 @@ class Plugin(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         rabbitmq_top = cloudamqp.Plugin("rabbitmq_top",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             name="rabbitmq_top",
             enabled=True)
         rabbitmq_amqp10 = cloudamqp.Plugin("rabbitmq_amqp1_0",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             name="rabbitmq_amqp1_0",
             enabled=True)
         ```

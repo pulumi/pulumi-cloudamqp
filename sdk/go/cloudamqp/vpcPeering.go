@@ -291,7 +291,6 @@ import (
 //			}
 //			// Firewall rules
 //			_, err = cloudamqp.NewSecurityFirewall(ctx, "firewall_settings", &cloudamqp.SecurityFirewallArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				Rules: cloudamqp.SecurityFirewallRuleArray{
 //					&cloudamqp.SecurityFirewallRuleArgs{
 //						Ip: pulumi.Any(awsInstance.SubnetId),
@@ -319,6 +318,7 @@ import (
 //						},
 //					},
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				vpcAcceptPeering,
 //			}))
@@ -380,7 +380,6 @@ import (
 //			}
 //			// CloudAMQP - Managed firewall rules
 //			_, err = cloudamqp.NewSecurityFirewall(ctx, "firewall_settings", &cloudamqp.SecurityFirewallArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				Rules: cloudamqp.SecurityFirewallRuleArray{
 //					&cloudamqp.SecurityFirewallRuleArgs{
 //						Ip: pulumi.Any(requesterVpc.CidrBlock),
@@ -404,6 +403,7 @@ import (
 //						Description: pulumi.String("MGMT interface"),
 //					},
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				vpcAcceptPeering,
 //			}))

@@ -41,7 +41,7 @@ namespace Pulumi.CloudAmqp
     /// 
     ///     var plugins = new CloudAmqp.PluginBatch("plugins", new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         Plugins = 
     ///         {
     ///             { "rabbitmq_stomp", true },
@@ -85,7 +85,7 @@ namespace Pulumi.CloudAmqp
     /// 
     ///     var plugins = new CloudAmqp.PluginBatch("plugins", new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         Plugins = 
     ///         {
     ///             { "rabbitmq_stomp", true },

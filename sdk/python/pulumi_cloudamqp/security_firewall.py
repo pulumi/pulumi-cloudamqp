@@ -197,7 +197,7 @@ class SecurityFirewall(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_id: pulumi.Input[Optional[_builtins.int]] = None,
-                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityFirewallRuleArgs', 'SecurityFirewallRuleArgsDict']]]]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityFirewallRuleArgs', 'SecurityFirewallRuleArgsDict', 'outputs.SecurityFirewallRule']]]]] = None,
                  sleep: pulumi.Input[Optional[_builtins.int]] = None,
                  timeout: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
@@ -221,7 +221,6 @@ class SecurityFirewall(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         this = cloudamqp.SecurityFirewall("this",
-            instance_id=int(instance["id"]),
             rules=[
                 {
                     "ip": "192.168.0.0/24",
@@ -253,7 +252,8 @@ class SecurityFirewall(pulumi.CustomResource):
                         "HTTPS",
                     ],
                 },
-            ])
+            ],
+            instance_id=instance["id"])
         ```
 
         <details>
@@ -277,7 +277,6 @@ class SecurityFirewall(pulumi.CustomResource):
             region="amazon-web-services::us-west-1",
             tags=["terraform"])
         this = cloudamqp.SecurityFirewall("this",
-            instance_id=instance.id.apply(lambda x: int(x)),
             rules=[
                 {
                     "ip": "0.0.0.0/0",
@@ -295,7 +294,8 @@ class SecurityFirewall(pulumi.CustomResource):
                     ],
                     "description": "VPC subnet",
                 },
-            ])
+            ],
+            instance_id=instance.id.apply(lambda x: int(x)))
         ```
 
         </details>
@@ -330,12 +330,12 @@ class SecurityFirewall(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=int(instance["id"]),
             rules=[{
                 "ip": "192.168.0.0/24",
                 "ports": [5671],
                 "services": [],
-            }])
+            }],
+            instance_id=instance["id"])
         ```
 
         Will still create the firewall rule for the instance, but will trigger a new update each `plan` or
@@ -349,12 +349,12 @@ class SecurityFirewall(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=int(instance["id"]),
             rules=[{
                 "ip": "192.168.0.0/24",
                 "ports": [],
                 "services": ["AMQPS"],
-            }])
+            }],
+            instance_id=instance["id"])
         ```
 
         The provider from [v1.15.2] will start to warn about using this.
@@ -372,7 +372,7 @@ class SecurityFirewall(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecurityFirewallRuleArgs', 'SecurityFirewallRuleArgsDict']]]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules`
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecurityFirewallRuleArgs', 'SecurityFirewallRuleArgsDict', 'outputs.SecurityFirewallRule']]]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules`
                block consists of the field documented below.
         :param pulumi.Input[_builtins.int] sleep: Configurable sleep time in seconds between retries for firewall
                configuration. Default set to 30 seconds.
@@ -409,7 +409,6 @@ class SecurityFirewall(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         this = cloudamqp.SecurityFirewall("this",
-            instance_id=int(instance["id"]),
             rules=[
                 {
                     "ip": "192.168.0.0/24",
@@ -441,7 +440,8 @@ class SecurityFirewall(pulumi.CustomResource):
                         "HTTPS",
                     ],
                 },
-            ])
+            ],
+            instance_id=instance["id"])
         ```
 
         <details>
@@ -465,7 +465,6 @@ class SecurityFirewall(pulumi.CustomResource):
             region="amazon-web-services::us-west-1",
             tags=["terraform"])
         this = cloudamqp.SecurityFirewall("this",
-            instance_id=instance.id.apply(lambda x: int(x)),
             rules=[
                 {
                     "ip": "0.0.0.0/0",
@@ -483,7 +482,8 @@ class SecurityFirewall(pulumi.CustomResource):
                     ],
                     "description": "VPC subnet",
                 },
-            ])
+            ],
+            instance_id=instance.id.apply(lambda x: int(x)))
         ```
 
         </details>
@@ -518,12 +518,12 @@ class SecurityFirewall(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=int(instance["id"]),
             rules=[{
                 "ip": "192.168.0.0/24",
                 "ports": [5671],
                 "services": [],
-            }])
+            }],
+            instance_id=instance["id"])
         ```
 
         Will still create the firewall rule for the instance, but will trigger a new update each `plan` or
@@ -537,12 +537,12 @@ class SecurityFirewall(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=int(instance["id"]),
             rules=[{
                 "ip": "192.168.0.0/24",
                 "ports": [],
                 "services": ["AMQPS"],
-            }])
+            }],
+            instance_id=instance["id"])
         ```
 
         The provider from [v1.15.2] will start to warn about using this.
@@ -573,7 +573,7 @@ class SecurityFirewall(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  instance_id: pulumi.Input[Optional[_builtins.int]] = None,
-                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityFirewallRuleArgs', 'SecurityFirewallRuleArgsDict']]]]] = None,
+                 rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityFirewallRuleArgs', 'SecurityFirewallRuleArgsDict', 'outputs.SecurityFirewallRule']]]]] = None,
                  sleep: pulumi.Input[Optional[_builtins.int]] = None,
                  timeout: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
@@ -604,7 +604,7 @@ class SecurityFirewall(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             instance_id: pulumi.Input[Optional[_builtins.int]] = None,
-            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityFirewallRuleArgs', 'SecurityFirewallRuleArgsDict']]]]] = None,
+            rules: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecurityFirewallRuleArgs', 'SecurityFirewallRuleArgsDict', 'outputs.SecurityFirewallRule']]]]] = None,
             sleep: pulumi.Input[Optional[_builtins.int]] = None,
             timeout: pulumi.Input[Optional[_builtins.int]] = None) -> 'SecurityFirewall':
         """
@@ -615,7 +615,7 @@ class SecurityFirewall(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecurityFirewallRuleArgs', 'SecurityFirewallRuleArgsDict']]]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules`
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecurityFirewallRuleArgs', 'SecurityFirewallRuleArgsDict', 'outputs.SecurityFirewallRule']]]] rules: An array of rules, minimum of 1 needs to be configured. Each `rules`
                block consists of the field documented below.
         :param pulumi.Input[_builtins.int] sleep: Configurable sleep time in seconds between retries for firewall
                configuration. Default set to 30 seconds.

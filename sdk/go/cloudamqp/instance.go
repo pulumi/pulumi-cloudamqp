@@ -587,13 +587,6 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewInstance(ctx, "penguin_instance", &cloudamqp.InstanceArgs{
-//				Name:       pulumi.String("terraform-cloudamqp-instance-01"),
-//				Plan:       pulumi.String("penguin-1"),
-//				Region:     pulumi.String("amazon-web-services::us-west-1"),
-//				RmqVersion: pulumi.String("2.2.0"),
-//				Tags: pulumi.StringArray{
-//					pulumi.String("terraform"),
-//				},
 //				CopySettings: cloudamqp.InstanceCopySettingArray{
 //					&cloudamqp.InstanceCopySettingArgs{
 //						SubscriptionId: pulumi.Any(instanceId),
@@ -604,6 +597,13 @@ import (
 //							pulumi.String("metrics"),
 //						},
 //					},
+//				},
+//				Name:       pulumi.String("terraform-cloudamqp-instance-01"),
+//				Plan:       pulumi.String("penguin-1"),
+//				Region:     pulumi.String("amazon-web-services::us-west-1"),
+//				RmqVersion: pulumi.String("2.2.0"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("terraform"),
 //				},
 //			})
 //			if err != nil {
@@ -642,13 +642,6 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewInstance(ctx, "bunny_instance", &cloudamqp.InstanceArgs{
-//				Name:       pulumi.String("terraform-cloudamqp-instance-02"),
-//				Plan:       pulumi.String("bunny-1"),
-//				Region:     pulumi.String("amazon-web-services::us-west-1"),
-//				RmqVersion: pulumi.String("3.12.2"),
-//				Tags: pulumi.StringArray{
-//					pulumi.String("terraform"),
-//				},
 //				CopySettings: cloudamqp.InstanceCopySettingArray{
 //					&cloudamqp.InstanceCopySettingArgs{
 //						SubscriptionId: pulumi.Any(instanceId),
@@ -662,6 +655,13 @@ import (
 //							pulumi.String("plugins"),
 //						},
 //					},
+//				},
+//				Name:       pulumi.String("terraform-cloudamqp-instance-02"),
+//				Plan:       pulumi.String("bunny-1"),
+//				Region:     pulumi.String("amazon-web-services::us-west-1"),
+//				RmqVersion: pulumi.String("3.12.2"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("terraform"),
 //				},
 //			})
 //			if err != nil {

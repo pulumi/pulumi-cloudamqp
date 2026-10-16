@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var settings = new CustomDomain("settings", CustomDomainArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .hostname("myname.mydomain")
  *             .build());
  * 

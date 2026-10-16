@@ -105,16 +105,16 @@ import * as utilities from "./utilities";
  * import * as azurerm from "@pulumi/azurerm";
  *
  * const example = new azurerm.index.PrivateEndpoint("example", {
- *     name: "example-endpoint",
- *     location: exampleAzurermResourceGroup.location,
- *     resourceGroupName: exampleAzurermResourceGroup.name,
- *     subnetId: subnet.id,
  *     privateServiceConnection: [{
  *         name: "example-privateserviceconnection",
  *         privateConnectionResourceAlias: vpcConnect.serviceName,
  *         isManualConnection: true,
  *         requestMessage: "PL",
  *     }],
+ *     name: "example-endpoint",
+ *     location: exampleAzurermResourceGroup.location,
+ *     resourceGroupName: exampleAzurermResourceGroup.name,
+ *     subnetId: subnet.id,
  * });
  * ```
  *
@@ -190,7 +190,6 @@ import * as utilities from "./utilities";
  *     allowedPrincipals: ["arn:aws:iam::aws-account-id:user/user-name"],
  * });
  * const firewallSettings = new cloudamqp.SecurityFirewall("firewall_settings", {
- *     instanceId: instance.id.apply(x =>Number(x)),
  *     rules: [
  *         {
  *             description: "Custom PrivateLink setup",
@@ -209,6 +208,7 @@ import * as utilities from "./utilities";
  *             services: ["HTTPS"],
  *         },
  *     ],
+ *     instanceId: instance.id.apply(x =>Number(x)),
  * }, {
  *     dependsOn: [vpcConnect],
  * });

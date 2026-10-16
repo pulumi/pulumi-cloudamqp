@@ -343,11 +343,6 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const penguinInstance = new cloudamqp.Instance("penguin_instance", {
- *     name: "terraform-cloudamqp-instance-01",
- *     plan: "penguin-1",
- *     region: "amazon-web-services::us-west-1",
- *     rmqVersion: "2.2.0",
- *     tags: ["terraform"],
  *     copySettings: [{
  *         subscriptionId: instanceId,
  *         settings: [
@@ -357,6 +352,11 @@ import * as utilities from "./utilities";
  *             "metrics",
  *         ],
  *     }],
+ *     name: "terraform-cloudamqp-instance-01",
+ *     plan: "penguin-1",
+ *     region: "amazon-web-services::us-west-1",
+ *     rmqVersion: "2.2.0",
+ *     tags: ["terraform"],
  * });
  * ```
  *
@@ -378,11 +378,6 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const bunnyInstance = new cloudamqp.Instance("bunny_instance", {
- *     name: "terraform-cloudamqp-instance-02",
- *     plan: "bunny-1",
- *     region: "amazon-web-services::us-west-1",
- *     rmqVersion: "3.12.2",
- *     tags: ["terraform"],
  *     copySettings: [{
  *         subscriptionId: instanceId,
  *         settings: [
@@ -395,6 +390,11 @@ import * as utilities from "./utilities";
  *             "plugins",
  *         ],
  *     }],
+ *     name: "terraform-cloudamqp-instance-02",
+ *     plan: "bunny-1",
+ *     region: "amazon-web-services::us-west-1",
+ *     rmqVersion: "3.12.2",
+ *     tags: ["terraform"],
  * });
  * ```
  *

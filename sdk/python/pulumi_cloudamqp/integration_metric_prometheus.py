@@ -333,17 +333,17 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 azure_monitor: pulumi.Input[Optional[Union['IntegrationMetricPrometheusAzureMonitorArgs', 'IntegrationMetricPrometheusAzureMonitorArgsDict']]] = None,
-                 cloudwatch_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusCloudwatchV3Args', 'IntegrationMetricPrometheusCloudwatchV3ArgsDict']]] = None,
-                 datadog_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusDatadogV3Args', 'IntegrationMetricPrometheusDatadogV3ArgsDict']]] = None,
-                 dynatrace: pulumi.Input[Optional[Union['IntegrationMetricPrometheusDynatraceArgs', 'IntegrationMetricPrometheusDynatraceArgsDict']]] = None,
-                 grafana: pulumi.Input[Optional[Union['IntegrationMetricPrometheusGrafanaArgs', 'IntegrationMetricPrometheusGrafanaArgsDict']]] = None,
+                 azure_monitor: pulumi.Input[Optional[Union['IntegrationMetricPrometheusAzureMonitorArgs', 'IntegrationMetricPrometheusAzureMonitorArgsDict', 'outputs.IntegrationMetricPrometheusAzureMonitor']]] = None,
+                 cloudwatch_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusCloudwatchV3Args', 'IntegrationMetricPrometheusCloudwatchV3ArgsDict', 'outputs.IntegrationMetricPrometheusCloudwatchV3']]] = None,
+                 datadog_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusDatadogV3Args', 'IntegrationMetricPrometheusDatadogV3ArgsDict', 'outputs.IntegrationMetricPrometheusDatadogV3']]] = None,
+                 dynatrace: pulumi.Input[Optional[Union['IntegrationMetricPrometheusDynatraceArgs', 'IntegrationMetricPrometheusDynatraceArgsDict', 'outputs.IntegrationMetricPrometheusDynatrace']]] = None,
+                 grafana: pulumi.Input[Optional[Union['IntegrationMetricPrometheusGrafanaArgs', 'IntegrationMetricPrometheusGrafanaArgsDict', 'outputs.IntegrationMetricPrometheusGrafana']]] = None,
                  instance_id: pulumi.Input[Optional[_builtins.int]] = None,
                  metrics_filters: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 newrelic_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusNewrelicV3Args', 'IntegrationMetricPrometheusNewrelicV3ArgsDict']]] = None,
-                 prometheus_remote_write: pulumi.Input[Optional[Union['IntegrationMetricPrometheusPrometheusRemoteWriteArgs', 'IntegrationMetricPrometheusPrometheusRemoteWriteArgsDict']]] = None,
-                 splunk_v2: pulumi.Input[Optional[Union['IntegrationMetricPrometheusSplunkV2Args', 'IntegrationMetricPrometheusSplunkV2ArgsDict']]] = None,
-                 stackdriver_v2: pulumi.Input[Optional[Union['IntegrationMetricPrometheusStackdriverV2Args', 'IntegrationMetricPrometheusStackdriverV2ArgsDict']]] = None,
+                 newrelic_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusNewrelicV3Args', 'IntegrationMetricPrometheusNewrelicV3ArgsDict', 'outputs.IntegrationMetricPrometheusNewrelicV3']]] = None,
+                 prometheus_remote_write: pulumi.Input[Optional[Union['IntegrationMetricPrometheusPrometheusRemoteWriteArgs', 'IntegrationMetricPrometheusPrometheusRemoteWriteArgsDict', 'outputs.IntegrationMetricPrometheusPrometheusRemoteWrite']]] = None,
+                 splunk_v2: pulumi.Input[Optional[Union['IntegrationMetricPrometheusSplunkV2Args', 'IntegrationMetricPrometheusSplunkV2ArgsDict', 'outputs.IntegrationMetricPrometheusSplunkV2']]] = None,
+                 stackdriver_v2: pulumi.Input[Optional[Union['IntegrationMetricPrometheusStackdriverV2Args', 'IntegrationMetricPrometheusStackdriverV2ArgsDict', 'outputs.IntegrationMetricPrometheusStackdriverV2']]] = None,
                  __props__=None):
         """
         <!-- markdownlint-disable MD024 -->
@@ -360,12 +360,12 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         newrelic_v3 = cloudamqp.IntegrationMetricPrometheus("newrelic_v3",
-            instance_id=int(instance["id"]),
             newrelic_v3={
                 "api_key": newrelic_api_key,
                 "region": "us",
                 "tags": "key=value,key2=value2",
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         ### Datadog v3
@@ -375,13 +375,13 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         datadog_v3 = cloudamqp.IntegrationMetricPrometheus("datadog_v3",
-            instance_id=int(instance["id"]),
             datadog_v3={
                 "api_key": datadog_api_key,
                 "region": "us1",
                 "tags": "key=value,key2=value2",
                 "rabbitmq_dashboard_metrics_format": True,
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         ### Azure Monitor
@@ -391,10 +391,10 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         azure_monitor = cloudamqp.IntegrationMetricPrometheus("azure_monitor",
-            instance_id=int(instance["id"]),
             azure_monitor={
                 "connection_string": azure_monitor_connection_string,
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         ### Splunk v2
@@ -404,12 +404,12 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         splunk_v2 = cloudamqp.IntegrationMetricPrometheus("splunk_v2",
-            instance_id=int(instance["id"]),
             splunk_v2={
                 "token": splunk_token,
                 "endpoint": splunk_endpoint,
                 "tags": "key=value,key2=value2",
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         ### Dynatrace
@@ -419,12 +419,12 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         dynatrace = cloudamqp.IntegrationMetricPrometheus("dynatrace",
-            instance_id=int(instance["id"]),
             dynatrace={
                 "environment_id": dynatrace_environment_id,
                 "access_token": dynatrace_access_token,
                 "tags": "key=value,key2=value2",
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         ### CloudWatch v3
@@ -434,13 +434,13 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         cloudwatch_v3 = cloudamqp.IntegrationMetricPrometheus("cloudwatch_v3",
-            instance_id=int(instance["id"]),
             cloudwatch_v3={
                 "iam_role": cloudwatch_iam_role,
                 "iam_external_id": cloudwatch_iam_external_id,
                 "region": cloudwatch_region,
                 "tags": "key=value,key2=value2",
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         ### Stackdriver v2
@@ -450,11 +450,11 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         stackdriver_v2 = cloudamqp.IntegrationMetricPrometheus("stackdriver_v2",
-            instance_id=int(instance["id"]),
             stackdriver_v2={
                 "credentials_file": google_service_account_key,
                 "tags": "key=value,key2=value2",
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         **Note:** The `credentials_file` should contain a Base64-encoded Google service account key JSON file. You can create a service account in Google Cloud Console with the "Monitoring Metric Writer" role and download the key file. Then encode it with:
@@ -466,13 +466,13 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         grafana = cloudamqp.IntegrationMetricPrometheus("grafana",
-            instance_id=int(instance["id"]),
             grafana={
                 "endpoint": grafana_endpoint,
                 "instance_id": grafana_instance_id,
                 "api_token": grafana_api_token,
                 "tags": "key=value,key2=value2",
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         **Note:** Find all three values in the Grafana Cloud Portal, under **Send Metrics** on the **Prometheus** tile of your stack. The `instance_id` is the numeric Prometheus instance identifier, which is not the same as the Loki instance identifier used by the Grafana Cloud log integration.
@@ -484,7 +484,6 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         prometheus_remote_write = cloudamqp.IntegrationMetricPrometheus("prometheus_remote_write",
-            instance_id=int(instance["id"]),
             prometheus_remote_write={
                 "endpoint": remote_write_endpoint,
                 "auth_type": "basic_auth",
@@ -492,7 +491,8 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
                 "password": remote_write_password,
                 "headers": "X-Scope-OrgID: my-tenant",
                 "tags": "key=value,key2=value2",
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         **Note:** Headers are sent with every request whichever `auth_type` you pick, so a tenant header can accompany basic auth. Multi-tenant Mimir and Cortex read `X-Scope-OrgID`, Thanos reads `THANOS-TENANT`. Set `auth_type` to `headers` when the credentials themselves live in a header, for example `Authorization: Bearer your-token`.
@@ -504,7 +504,6 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         prometheus_remote_write = cloudamqp.IntegrationMetricPrometheus("prometheus_remote_write",
-            instance_id=int(instance["id"]),
             prometheus_remote_write={
                 "endpoint": remote_write_endpoint,
                 "auth_type": "oauth2",
@@ -512,7 +511,8 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
                 "client_secret": oauth2_client_secret,
                 "token_url": "https://login.microsoftonline.com/<tenant-id>/oauth2/v2.0/token",
                 "scopes": "https://monitor.azure.com/.default",
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         ## Dependency
@@ -555,12 +555,12 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         newrelic_v3 = cloudamqp.IntegrationMetricPrometheus("newrelic_v3",
-            instance_id=int(instance["id"]),
             newrelic_v3={
                 "api_key": newrelic_api_key,
                 "region": "us",
                 "tags": "key=value,key2=value2",
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         ### Datadog v3
@@ -570,13 +570,13 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         datadog_v3 = cloudamqp.IntegrationMetricPrometheus("datadog_v3",
-            instance_id=int(instance["id"]),
             datadog_v3={
                 "api_key": datadog_api_key,
                 "region": "us1",
                 "tags": "key=value,key2=value2",
                 "rabbitmq_dashboard_metrics_format": True,
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         ### Azure Monitor
@@ -586,10 +586,10 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         azure_monitor = cloudamqp.IntegrationMetricPrometheus("azure_monitor",
-            instance_id=int(instance["id"]),
             azure_monitor={
                 "connection_string": azure_monitor_connection_string,
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         ### Splunk v2
@@ -599,12 +599,12 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         splunk_v2 = cloudamqp.IntegrationMetricPrometheus("splunk_v2",
-            instance_id=int(instance["id"]),
             splunk_v2={
                 "token": splunk_token,
                 "endpoint": splunk_endpoint,
                 "tags": "key=value,key2=value2",
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         ### Dynatrace
@@ -614,12 +614,12 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         dynatrace = cloudamqp.IntegrationMetricPrometheus("dynatrace",
-            instance_id=int(instance["id"]),
             dynatrace={
                 "environment_id": dynatrace_environment_id,
                 "access_token": dynatrace_access_token,
                 "tags": "key=value,key2=value2",
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         ### CloudWatch v3
@@ -629,13 +629,13 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         cloudwatch_v3 = cloudamqp.IntegrationMetricPrometheus("cloudwatch_v3",
-            instance_id=int(instance["id"]),
             cloudwatch_v3={
                 "iam_role": cloudwatch_iam_role,
                 "iam_external_id": cloudwatch_iam_external_id,
                 "region": cloudwatch_region,
                 "tags": "key=value,key2=value2",
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         ### Stackdriver v2
@@ -645,11 +645,11 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         stackdriver_v2 = cloudamqp.IntegrationMetricPrometheus("stackdriver_v2",
-            instance_id=int(instance["id"]),
             stackdriver_v2={
                 "credentials_file": google_service_account_key,
                 "tags": "key=value,key2=value2",
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         **Note:** The `credentials_file` should contain a Base64-encoded Google service account key JSON file. You can create a service account in Google Cloud Console with the "Monitoring Metric Writer" role and download the key file. Then encode it with:
@@ -661,13 +661,13 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         grafana = cloudamqp.IntegrationMetricPrometheus("grafana",
-            instance_id=int(instance["id"]),
             grafana={
                 "endpoint": grafana_endpoint,
                 "instance_id": grafana_instance_id,
                 "api_token": grafana_api_token,
                 "tags": "key=value,key2=value2",
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         **Note:** Find all three values in the Grafana Cloud Portal, under **Send Metrics** on the **Prometheus** tile of your stack. The `instance_id` is the numeric Prometheus instance identifier, which is not the same as the Loki instance identifier used by the Grafana Cloud log integration.
@@ -679,7 +679,6 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         prometheus_remote_write = cloudamqp.IntegrationMetricPrometheus("prometheus_remote_write",
-            instance_id=int(instance["id"]),
             prometheus_remote_write={
                 "endpoint": remote_write_endpoint,
                 "auth_type": "basic_auth",
@@ -687,7 +686,8 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
                 "password": remote_write_password,
                 "headers": "X-Scope-OrgID: my-tenant",
                 "tags": "key=value,key2=value2",
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         **Note:** Headers are sent with every request whichever `auth_type` you pick, so a tenant header can accompany basic auth. Multi-tenant Mimir and Cortex read `X-Scope-OrgID`, Thanos reads `THANOS-TENANT`. Set `auth_type` to `headers` when the credentials themselves live in a header, for example `Authorization: Bearer your-token`.
@@ -699,7 +699,6 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         prometheus_remote_write = cloudamqp.IntegrationMetricPrometheus("prometheus_remote_write",
-            instance_id=int(instance["id"]),
             prometheus_remote_write={
                 "endpoint": remote_write_endpoint,
                 "auth_type": "oauth2",
@@ -707,7 +706,8 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
                 "client_secret": oauth2_client_secret,
                 "token_url": "https://login.microsoftonline.com/<tenant-id>/oauth2/v2.0/token",
                 "scopes": "https://monitor.azure.com/.default",
-            })
+            },
+            instance_id=instance["id"])
         ```
 
         ## Dependency
@@ -736,17 +736,17 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 azure_monitor: pulumi.Input[Optional[Union['IntegrationMetricPrometheusAzureMonitorArgs', 'IntegrationMetricPrometheusAzureMonitorArgsDict']]] = None,
-                 cloudwatch_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusCloudwatchV3Args', 'IntegrationMetricPrometheusCloudwatchV3ArgsDict']]] = None,
-                 datadog_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusDatadogV3Args', 'IntegrationMetricPrometheusDatadogV3ArgsDict']]] = None,
-                 dynatrace: pulumi.Input[Optional[Union['IntegrationMetricPrometheusDynatraceArgs', 'IntegrationMetricPrometheusDynatraceArgsDict']]] = None,
-                 grafana: pulumi.Input[Optional[Union['IntegrationMetricPrometheusGrafanaArgs', 'IntegrationMetricPrometheusGrafanaArgsDict']]] = None,
+                 azure_monitor: pulumi.Input[Optional[Union['IntegrationMetricPrometheusAzureMonitorArgs', 'IntegrationMetricPrometheusAzureMonitorArgsDict', 'outputs.IntegrationMetricPrometheusAzureMonitor']]] = None,
+                 cloudwatch_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusCloudwatchV3Args', 'IntegrationMetricPrometheusCloudwatchV3ArgsDict', 'outputs.IntegrationMetricPrometheusCloudwatchV3']]] = None,
+                 datadog_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusDatadogV3Args', 'IntegrationMetricPrometheusDatadogV3ArgsDict', 'outputs.IntegrationMetricPrometheusDatadogV3']]] = None,
+                 dynatrace: pulumi.Input[Optional[Union['IntegrationMetricPrometheusDynatraceArgs', 'IntegrationMetricPrometheusDynatraceArgsDict', 'outputs.IntegrationMetricPrometheusDynatrace']]] = None,
+                 grafana: pulumi.Input[Optional[Union['IntegrationMetricPrometheusGrafanaArgs', 'IntegrationMetricPrometheusGrafanaArgsDict', 'outputs.IntegrationMetricPrometheusGrafana']]] = None,
                  instance_id: pulumi.Input[Optional[_builtins.int]] = None,
                  metrics_filters: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 newrelic_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusNewrelicV3Args', 'IntegrationMetricPrometheusNewrelicV3ArgsDict']]] = None,
-                 prometheus_remote_write: pulumi.Input[Optional[Union['IntegrationMetricPrometheusPrometheusRemoteWriteArgs', 'IntegrationMetricPrometheusPrometheusRemoteWriteArgsDict']]] = None,
-                 splunk_v2: pulumi.Input[Optional[Union['IntegrationMetricPrometheusSplunkV2Args', 'IntegrationMetricPrometheusSplunkV2ArgsDict']]] = None,
-                 stackdriver_v2: pulumi.Input[Optional[Union['IntegrationMetricPrometheusStackdriverV2Args', 'IntegrationMetricPrometheusStackdriverV2ArgsDict']]] = None,
+                 newrelic_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusNewrelicV3Args', 'IntegrationMetricPrometheusNewrelicV3ArgsDict', 'outputs.IntegrationMetricPrometheusNewrelicV3']]] = None,
+                 prometheus_remote_write: pulumi.Input[Optional[Union['IntegrationMetricPrometheusPrometheusRemoteWriteArgs', 'IntegrationMetricPrometheusPrometheusRemoteWriteArgsDict', 'outputs.IntegrationMetricPrometheusPrometheusRemoteWrite']]] = None,
+                 splunk_v2: pulumi.Input[Optional[Union['IntegrationMetricPrometheusSplunkV2Args', 'IntegrationMetricPrometheusSplunkV2ArgsDict', 'outputs.IntegrationMetricPrometheusSplunkV2']]] = None,
+                 stackdriver_v2: pulumi.Input[Optional[Union['IntegrationMetricPrometheusStackdriverV2Args', 'IntegrationMetricPrometheusStackdriverV2ArgsDict', 'outputs.IntegrationMetricPrometheusStackdriverV2']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -779,17 +779,17 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            azure_monitor: pulumi.Input[Optional[Union['IntegrationMetricPrometheusAzureMonitorArgs', 'IntegrationMetricPrometheusAzureMonitorArgsDict']]] = None,
-            cloudwatch_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusCloudwatchV3Args', 'IntegrationMetricPrometheusCloudwatchV3ArgsDict']]] = None,
-            datadog_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusDatadogV3Args', 'IntegrationMetricPrometheusDatadogV3ArgsDict']]] = None,
-            dynatrace: pulumi.Input[Optional[Union['IntegrationMetricPrometheusDynatraceArgs', 'IntegrationMetricPrometheusDynatraceArgsDict']]] = None,
-            grafana: pulumi.Input[Optional[Union['IntegrationMetricPrometheusGrafanaArgs', 'IntegrationMetricPrometheusGrafanaArgsDict']]] = None,
+            azure_monitor: pulumi.Input[Optional[Union['IntegrationMetricPrometheusAzureMonitorArgs', 'IntegrationMetricPrometheusAzureMonitorArgsDict', 'outputs.IntegrationMetricPrometheusAzureMonitor']]] = None,
+            cloudwatch_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusCloudwatchV3Args', 'IntegrationMetricPrometheusCloudwatchV3ArgsDict', 'outputs.IntegrationMetricPrometheusCloudwatchV3']]] = None,
+            datadog_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusDatadogV3Args', 'IntegrationMetricPrometheusDatadogV3ArgsDict', 'outputs.IntegrationMetricPrometheusDatadogV3']]] = None,
+            dynatrace: pulumi.Input[Optional[Union['IntegrationMetricPrometheusDynatraceArgs', 'IntegrationMetricPrometheusDynatraceArgsDict', 'outputs.IntegrationMetricPrometheusDynatrace']]] = None,
+            grafana: pulumi.Input[Optional[Union['IntegrationMetricPrometheusGrafanaArgs', 'IntegrationMetricPrometheusGrafanaArgsDict', 'outputs.IntegrationMetricPrometheusGrafana']]] = None,
             instance_id: pulumi.Input[Optional[_builtins.int]] = None,
             metrics_filters: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            newrelic_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusNewrelicV3Args', 'IntegrationMetricPrometheusNewrelicV3ArgsDict']]] = None,
-            prometheus_remote_write: pulumi.Input[Optional[Union['IntegrationMetricPrometheusPrometheusRemoteWriteArgs', 'IntegrationMetricPrometheusPrometheusRemoteWriteArgsDict']]] = None,
-            splunk_v2: pulumi.Input[Optional[Union['IntegrationMetricPrometheusSplunkV2Args', 'IntegrationMetricPrometheusSplunkV2ArgsDict']]] = None,
-            stackdriver_v2: pulumi.Input[Optional[Union['IntegrationMetricPrometheusStackdriverV2Args', 'IntegrationMetricPrometheusStackdriverV2ArgsDict']]] = None) -> 'IntegrationMetricPrometheus':
+            newrelic_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusNewrelicV3Args', 'IntegrationMetricPrometheusNewrelicV3ArgsDict', 'outputs.IntegrationMetricPrometheusNewrelicV3']]] = None,
+            prometheus_remote_write: pulumi.Input[Optional[Union['IntegrationMetricPrometheusPrometheusRemoteWriteArgs', 'IntegrationMetricPrometheusPrometheusRemoteWriteArgsDict', 'outputs.IntegrationMetricPrometheusPrometheusRemoteWrite']]] = None,
+            splunk_v2: pulumi.Input[Optional[Union['IntegrationMetricPrometheusSplunkV2Args', 'IntegrationMetricPrometheusSplunkV2ArgsDict', 'outputs.IntegrationMetricPrometheusSplunkV2']]] = None,
+            stackdriver_v2: pulumi.Input[Optional[Union['IntegrationMetricPrometheusStackdriverV2Args', 'IntegrationMetricPrometheusStackdriverV2ArgsDict', 'outputs.IntegrationMetricPrometheusStackdriverV2']]] = None) -> 'IntegrationMetricPrometheus':
         """
         Get an existing IntegrationMetricPrometheus resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

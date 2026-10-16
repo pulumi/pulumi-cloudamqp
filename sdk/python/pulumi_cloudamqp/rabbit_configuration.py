@@ -765,7 +765,7 @@ class RabbitConfiguration(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmq_config",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             heartbeat=0)
         ```
 
@@ -783,7 +783,7 @@ class RabbitConfiguration(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmq_config",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             channel_max=0,
             connection_max=-1,
             consumer_timeout=7200000,
@@ -809,7 +809,7 @@ class RabbitConfiguration(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmq_config",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             channel_max=0,
             connection_max=-1,
             consumer_timeout=7200000,
@@ -819,9 +819,9 @@ class RabbitConfiguration(pulumi.CustomResource):
             queue_index_embed_msgs_below=4096,
             vm_memory_high_watermark=0.81,
             cluster_partition_handling="autoheal")
-        list_nodes = cloudamqp.get_nodes(instance_id=int(instance["id"]))
+        list_nodes = cloudamqp.get_nodes(instance_id=instance["id"])
         node_action = cloudamqp.NodeActions("node_action",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             action="cluster.restart",
             opts = pulumi.ResourceOptions(depends_on=[rabbitmq_config]))
         ```
@@ -843,7 +843,7 @@ class RabbitConfiguration(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         rabbit_config = cloudamqp.RabbitConfiguration("rabbit_config",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             log_exchange_level="info")
         ```
 
@@ -869,16 +869,16 @@ class RabbitConfiguration(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmq_config",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             mqtt_vhost=instance["vhost"],
             mqtt_exchange="amq.topic",
             mqtt_ssl_cert_login=True,
             mqtt_max_session_expiry_interval_seconds=1800,
             ssl_options_fail_if_no_peer_cert=True,
             ssl_options_verify="verify_peer")
-        nodes = cloudamqp.get_nodes(instance_id=int(instance["id"]))
+        nodes = cloudamqp.get_nodes(instance_id=instance["id"])
         node_action = cloudamqp.NodeActions("node_action",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             node_name=nodes.nodes[0].name,
             action="restart",
             opts = pulumi.ResourceOptions(depends_on=[rabbitmq_config]))
@@ -1112,7 +1112,7 @@ class RabbitConfiguration(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmq_config",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             heartbeat=0)
         ```
 
@@ -1130,7 +1130,7 @@ class RabbitConfiguration(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmq_config",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             channel_max=0,
             connection_max=-1,
             consumer_timeout=7200000,
@@ -1156,7 +1156,7 @@ class RabbitConfiguration(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmq_config",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             channel_max=0,
             connection_max=-1,
             consumer_timeout=7200000,
@@ -1166,9 +1166,9 @@ class RabbitConfiguration(pulumi.CustomResource):
             queue_index_embed_msgs_below=4096,
             vm_memory_high_watermark=0.81,
             cluster_partition_handling="autoheal")
-        list_nodes = cloudamqp.get_nodes(instance_id=int(instance["id"]))
+        list_nodes = cloudamqp.get_nodes(instance_id=instance["id"])
         node_action = cloudamqp.NodeActions("node_action",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             action="cluster.restart",
             opts = pulumi.ResourceOptions(depends_on=[rabbitmq_config]))
         ```
@@ -1190,7 +1190,7 @@ class RabbitConfiguration(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         rabbit_config = cloudamqp.RabbitConfiguration("rabbit_config",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             log_exchange_level="info")
         ```
 
@@ -1216,16 +1216,16 @@ class RabbitConfiguration(pulumi.CustomResource):
         import pulumi_cloudamqp as cloudamqp
 
         rabbitmq_config = cloudamqp.RabbitConfiguration("rabbitmq_config",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             mqtt_vhost=instance["vhost"],
             mqtt_exchange="amq.topic",
             mqtt_ssl_cert_login=True,
             mqtt_max_session_expiry_interval_seconds=1800,
             ssl_options_fail_if_no_peer_cert=True,
             ssl_options_verify="verify_peer")
-        nodes = cloudamqp.get_nodes(instance_id=int(instance["id"]))
+        nodes = cloudamqp.get_nodes(instance_id=instance["id"])
         node_action = cloudamqp.NodeActions("node_action",
-            instance_id=int(instance["id"]),
+            instance_id=instance["id"],
             node_name=nodes.nodes[0].name,
             action="restart",
             opts = pulumi.ResourceOptions(depends_on=[rabbitmq_config]))

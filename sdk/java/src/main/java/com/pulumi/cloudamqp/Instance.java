@@ -630,11 +630,6 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var penguinInstance = new Instance("penguinInstance", InstanceArgs.builder()
- *             .name("terraform-cloudamqp-instance-01")
- *             .plan("penguin-1")
- *             .region("amazon-web-services::us-west-1")
- *             .rmqVersion("2.2.0")
- *             .tags("terraform")
  *             .copySettings(InstanceCopySettingArgs.builder()
  *                 .subscriptionId(instanceId)
  *                 .settings(                
@@ -643,6 +638,11 @@ import javax.annotation.Nullable;
  *                     "firewall",
  *                     "metrics")
  *                 .build())
+ *             .name("terraform-cloudamqp-instance-01")
+ *             .plan("penguin-1")
+ *             .region("amazon-web-services::us-west-1")
+ *             .rmqVersion("2.2.0")
+ *             .tags("terraform")
  *             .build());
  * 
  *     }
@@ -687,11 +687,6 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var bunnyInstance = new Instance("bunnyInstance", InstanceArgs.builder()
- *             .name("terraform-cloudamqp-instance-02")
- *             .plan("bunny-1")
- *             .region("amazon-web-services::us-west-1")
- *             .rmqVersion("3.12.2")
- *             .tags("terraform")
  *             .copySettings(InstanceCopySettingArgs.builder()
  *                 .subscriptionId(instanceId)
  *                 .settings(                
@@ -703,6 +698,11 @@ import javax.annotation.Nullable;
  *                     "metrics",
  *                     "plugins")
  *                 .build())
+ *             .name("terraform-cloudamqp-instance-02")
+ *             .plan("bunny-1")
+ *             .region("amazon-web-services::us-west-1")
+ *             .rmqVersion("3.12.2")
+ *             .tags("terraform")
  *             .build());
  * 
  *     }

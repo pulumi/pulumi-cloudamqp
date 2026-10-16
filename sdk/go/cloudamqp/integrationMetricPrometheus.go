@@ -34,12 +34,12 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationMetricPrometheus(ctx, "newrelic_v3", &cloudamqp.IntegrationMetricPrometheusArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				NewrelicV3: &cloudamqp.IntegrationMetricPrometheusNewrelicV3Args{
 //					ApiKey: pulumi.Any(newrelicApiKey),
 //					Region: pulumi.String("us"),
 //					Tags:   pulumi.String("key=value,key2=value2"),
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -65,13 +65,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationMetricPrometheus(ctx, "datadog_v3", &cloudamqp.IntegrationMetricPrometheusArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				DatadogV3: &cloudamqp.IntegrationMetricPrometheusDatadogV3Args{
 //					ApiKey:                         pulumi.Any(datadogApiKey),
 //					Region:                         pulumi.String("us1"),
 //					Tags:                           pulumi.String("key=value,key2=value2"),
 //					RabbitmqDashboardMetricsFormat: pulumi.Bool(true),
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -97,10 +97,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationMetricPrometheus(ctx, "azure_monitor", &cloudamqp.IntegrationMetricPrometheusArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				AzureMonitor: &cloudamqp.IntegrationMetricPrometheusAzureMonitorArgs{
 //					ConnectionString: pulumi.Any(azureMonitorConnectionString),
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -126,12 +126,12 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationMetricPrometheus(ctx, "splunk_v2", &cloudamqp.IntegrationMetricPrometheusArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				SplunkV2: &cloudamqp.IntegrationMetricPrometheusSplunkV2Args{
 //					Token:    pulumi.Any(splunkToken),
 //					Endpoint: pulumi.Any(splunkEndpoint),
 //					Tags:     pulumi.String("key=value,key2=value2"),
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -157,12 +157,12 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationMetricPrometheus(ctx, "dynatrace", &cloudamqp.IntegrationMetricPrometheusArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				Dynatrace: &cloudamqp.IntegrationMetricPrometheusDynatraceArgs{
 //					EnvironmentId: pulumi.Any(dynatraceEnvironmentId),
 //					AccessToken:   pulumi.Any(dynatraceAccessToken),
 //					Tags:          pulumi.String("key=value,key2=value2"),
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -188,13 +188,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationMetricPrometheus(ctx, "cloudwatch_v3", &cloudamqp.IntegrationMetricPrometheusArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				CloudwatchV3: &cloudamqp.IntegrationMetricPrometheusCloudwatchV3Args{
 //					IamRole:       pulumi.Any(cloudwatchIamRole),
 //					IamExternalId: pulumi.Any(cloudwatchIamExternalId),
 //					Region:        pulumi.Any(cloudwatchRegion),
 //					Tags:          pulumi.String("key=value,key2=value2"),
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -220,11 +220,11 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationMetricPrometheus(ctx, "stackdriver_v2", &cloudamqp.IntegrationMetricPrometheusArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				StackdriverV2: &cloudamqp.IntegrationMetricPrometheusStackdriverV2Args{
 //					CredentialsFile: pulumi.Any(googleServiceAccountKey),
 //					Tags:            pulumi.String("key=value,key2=value2"),
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -252,13 +252,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationMetricPrometheus(ctx, "grafana", &cloudamqp.IntegrationMetricPrometheusArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				Grafana: &cloudamqp.IntegrationMetricPrometheusGrafanaArgs{
 //					Endpoint:   pulumi.Any(grafanaEndpoint),
 //					InstanceId: pulumi.Any(grafanaInstanceId),
 //					ApiToken:   pulumi.Any(grafanaApiToken),
 //					Tags:       pulumi.String("key=value,key2=value2"),
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -286,7 +286,6 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationMetricPrometheus(ctx, "prometheus_remote_write", &cloudamqp.IntegrationMetricPrometheusArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				PrometheusRemoteWrite: &cloudamqp.IntegrationMetricPrometheusPrometheusRemoteWriteArgs{
 //					Endpoint: pulumi.Any(remoteWriteEndpoint),
 //					AuthType: pulumi.String("basic_auth"),
@@ -295,6 +294,7 @@ import (
 //					Headers:  pulumi.String("X-Scope-OrgID: my-tenant"),
 //					Tags:     pulumi.String("key=value,key2=value2"),
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -322,7 +322,6 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewIntegrationMetricPrometheus(ctx, "prometheus_remote_write", &cloudamqp.IntegrationMetricPrometheusArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				PrometheusRemoteWrite: &cloudamqp.IntegrationMetricPrometheusPrometheusRemoteWriteArgs{
 //					Endpoint:     pulumi.Any(remoteWriteEndpoint),
 //					AuthType:     pulumi.String("oauth2"),
@@ -331,6 +330,7 @@ import (
 //					TokenUrl:     pulumi.String("https://login.microsoftonline.com/<tenant-id>/oauth2/v2.0/token"),
 //					Scopes:       pulumi.String("https://monitor.azure.com/.default"),
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			})
 //			if err != nil {
 //				return err
