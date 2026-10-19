@@ -34,7 +34,7 @@ import * as utilities from "./utilities";
  *     region: "amazon-web-services::us-east-1",
  *     nodes: 1,
  *     tags: [],
- *     vpcId: Number(vpcCloudamqVpc.id),
+ *     vpcId: vpcCloudamqVpc.id,
  *     keepAssociatedVpc: true,
  * });
  * // Additional VPC information

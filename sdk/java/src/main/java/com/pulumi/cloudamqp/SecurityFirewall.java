@@ -55,7 +55,6 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var this_ = new SecurityFirewall("this", SecurityFirewallArgs.builder()
- *             .instanceId(instance.id())
  *             .rules(            
  *                 SecurityFirewallRuleArgs.builder()
  *                     .ip("192.168.0.0/24")
@@ -83,6 +82,7 @@ import javax.annotation.Nullable;
  *                         "AMQPS",
  *                         "HTTPS")
  *                     .build())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }
@@ -134,7 +134,6 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var this_ = new SecurityFirewall("this", SecurityFirewallArgs.builder()
- *             .instanceId(instance.id())
  *             .rules(            
  *                 SecurityFirewallRuleArgs.builder()
  *                     .ip("0.0.0.0/0")
@@ -151,6 +150,7 @@ import javax.annotation.Nullable;
  *                         "HTTPS")
  *                     .description("VPC subnet")
  *                     .build())
+ *             .instanceId(instance.id())
  *             .build());
  * 
  *     }
@@ -209,12 +209,12 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var firewallSettings = new SecurityFirewall("firewallSettings", SecurityFirewallArgs.builder()
- *             .instanceId(instance.id())
  *             .rules(SecurityFirewallRuleArgs.builder()
  *                 .ip("192.168.0.0/24")
  *                 .ports(5671)
  *                 .services()
  *                 .build())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }
@@ -252,12 +252,12 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var firewallSettings = new SecurityFirewall("firewallSettings", SecurityFirewallArgs.builder()
- *             .instanceId(instance.id())
  *             .rules(SecurityFirewallRuleArgs.builder()
  *                 .ip("192.168.0.0/24")
  *                 .ports()
  *                 .services("AMQPS")
  *                 .build())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }

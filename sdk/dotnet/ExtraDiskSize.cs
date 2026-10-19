@@ -75,7 +75,7 @@ namespace Pulumi.CloudAmqp
     ///     // Resize disk with 25 extra GB
     ///     var resizeDisk = new CloudAmqp.ExtraDiskSize("resize_disk", new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         ExtraDiskSizeGb = 25,
     ///     });
     /// 
@@ -83,7 +83,7 @@ namespace Pulumi.CloudAmqp
     ///     // to cloudamqp_extra_disk_size.resize_disk resource
     ///     var nodes = CloudAmqp.GetNodes.Invoke(new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///     });
     /// 
     /// });
@@ -117,7 +117,7 @@ namespace Pulumi.CloudAmqp
     ///     // Resize disk with 25 extra GB, without downtime
     ///     var resizeDisk = new CloudAmqp.ExtraDiskSize("resize_disk", new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         ExtraDiskSizeGb = 25,
     ///     });
     /// 
@@ -125,7 +125,7 @@ namespace Pulumi.CloudAmqp
     ///     // to cloudamqp_extra_disk_size.resize_disk resource
     ///     var nodes = CloudAmqp.GetNodes.Invoke(new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///     });
     /// 
     /// });
@@ -159,7 +159,7 @@ namespace Pulumi.CloudAmqp
     ///     // Resize disk with 25 extra GB, without downtime
     ///     var resizeDisk = new CloudAmqp.ExtraDiskSize("resize_disk", new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         ExtraDiskSizeGb = 25,
     ///     });
     /// 
@@ -167,7 +167,7 @@ namespace Pulumi.CloudAmqp
     ///     // to cloudamqp_extra_disk_size.resize_disk resource
     ///     var nodes = CloudAmqp.GetNodes.Invoke(new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///     });
     /// 
     /// });
@@ -201,7 +201,7 @@ namespace Pulumi.CloudAmqp
     ///     // Resize disk with 25 extra GB, with downtime
     ///     var resizeDisk = new CloudAmqp.ExtraDiskSize("resize_disk", new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         ExtraDiskSizeGb = 25,
     ///     });
     /// 
@@ -209,7 +209,7 @@ namespace Pulumi.CloudAmqp
     ///     // to cloudamqp_extra_disk_size.resize_disk resource
     ///     var nodes = CloudAmqp.GetNodes.Invoke(new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///     });
     /// 
     /// });

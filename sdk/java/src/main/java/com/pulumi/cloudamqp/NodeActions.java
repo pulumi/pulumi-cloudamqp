@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var clusterRestart = new NodeActions("clusterRestart", NodeActionsArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .action("cluster.restart")
  *             .build());
  * 
@@ -104,11 +104,11 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *         var restartSubset = new NodeActions("restartSubset", NodeActionsArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .action("restart")
  *             .nodeNames(            
  *                 nodes.nodes()[0].name(),
@@ -156,11 +156,11 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *         var rebootNode = new NodeActions("rebootNode", NodeActionsArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .action("reboot")
  *             .nodeNames(nodes.nodes()[0].name())
  *             .build());
@@ -206,11 +206,11 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         final var nodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *         var mgmtRestart = new NodeActions("mgmtRestart", NodeActionsArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .action("mgmt.restart")
  *             .nodeNames(nodes.nodes()[0].name())
  *             .build());
@@ -257,12 +257,12 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var rabbitmqConfig = new RabbitConfiguration("rabbitmqConfig", RabbitConfigurationArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .logExchangeLevel("info")
  *             .build());
  * 
  *         var clusterRestart = new NodeActions("clusterRestart", NodeActionsArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .action("cluster.restart")
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(rabbitmqConfig)
@@ -309,7 +309,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var nodeAction = new NodeActions("nodeAction", NodeActionsArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .nodeName("<node name>")
  *             .action("restart")
  *             .build());
@@ -349,17 +349,17 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         final var listNodes = CloudamqpFunctions.getNodes(GetNodesArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *         var restart01 = new NodeActions("restart01", NodeActionsArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .action("restart")
  *             .nodeName(listNodes.nodes()[0].name())
  *             .build());
  * 
  *         var restart02 = new NodeActions("restart02", NodeActionsArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .action("restart")
  *             .nodeName(listNodes.nodes()[1].name())
  *             .build(), CustomResourceOptions.builder()
@@ -367,7 +367,7 @@ import javax.annotation.Nullable;
  *                 .build());
  * 
  *         var restart03 = new NodeActions("restart03", NodeActionsArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .action("restart")
  *             .nodeName(listNodes.nodes()[2].name())
  *             .build(), CustomResourceOptions.builder()

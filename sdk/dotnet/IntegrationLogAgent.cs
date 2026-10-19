@@ -41,7 +41,6 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var azureMonitor = new CloudAmqp.IntegrationLogAgent("azure_monitor", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         AzureMonitor = new CloudAmqp.Inputs.IntegrationLogAgentAzureMonitorArgs
     ///         {
     ///             TenantId = "00000000-0000-0000-0000-000000000000",
@@ -49,6 +48,7 @@ namespace Pulumi.CloudAmqp
     ///             ApplicationSecret = azureApplicationSecret,
     ///             LogsEndpoint = "https://example.region-1.ingest.monitor.azure.com/datacollectionRules/dcr-example/streams/Microsoft-OTLP-Logs/otlp/v1/logs",
     ///         },
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
     /// });
@@ -76,7 +76,6 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var cloudwatch = new CloudAmqp.IntegrationLogAgent("cloudwatch", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         Cloudwatch = new CloudAmqp.Inputs.IntegrationLogAgentCloudwatchArgs
     ///         {
     ///             IamRole = awsIamRole,
@@ -85,6 +84,7 @@ namespace Pulumi.CloudAmqp
     ///             LogGroup = "CloudAMQP",
     ///             LogStream = instance.ClusterName,
     ///         },
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
     /// });
@@ -121,7 +121,6 @@ namespace Pulumi.CloudAmqp
     /// 
     ///     var cloudwatch = new CloudAmqp.IntegrationLogAgent("cloudwatch", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         Cloudwatch = new CloudAmqp.Inputs.IntegrationLogAgentCloudwatchArgs
     ///         {
     ///             IamRole = awsIamRole,
@@ -130,6 +129,7 @@ namespace Pulumi.CloudAmqp
     ///             LogGroup = cloudwatchLogGroup,
     ///             LogStream = @this.Name,
     ///         },
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
     /// });
@@ -154,7 +154,6 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var coralogix = new CloudAmqp.IntegrationLogAgent("coralogix", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         Coralogix = new CloudAmqp.Inputs.IntegrationLogAgentCoralogixArgs
     ///         {
     ///             PrivateKey = coralogixPrivateKey,
@@ -162,6 +161,7 @@ namespace Pulumi.CloudAmqp
     ///             Application = "cloudamqp",
     ///             Subsystem = instance.Host,
     ///         },
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
     /// });
@@ -186,12 +186,12 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var datadog = new CloudAmqp.IntegrationLogAgent("datadog", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         Datadog = new CloudAmqp.Inputs.IntegrationLogAgentDatadogArgs
     ///         {
     ///             ApiKey = datadogApiKey,
     ///             Region = "us1",
     ///         },
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
     /// });
@@ -217,7 +217,6 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var googleCloud = new CloudAmqp.IntegrationLogAgent("google_cloud", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         GoogleCloud = new CloudAmqp.Inputs.IntegrationLogAgentGoogleCloudArgs
     ///         {
     ///             ServiceAccountFile = Std.File.Invoke(new()
@@ -226,6 +225,7 @@ namespace Pulumi.CloudAmqp
     ///             }).Result,
     ///             ServiceAccountFileVersion = 1,
     ///         },
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
     /// });
@@ -250,13 +250,13 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var grafana = new CloudAmqp.IntegrationLogAgent("grafana", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         Grafana = new CloudAmqp.Inputs.IntegrationLogAgentGrafanaArgs
     ///         {
     ///             Endpoint = grafanaEndpoint,
     ///             GrafanaInstanceId = grafanaInstanceId,
     ///             ApiToken = grafanaApiToken,
     ///         },
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
     /// });
@@ -286,13 +286,13 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var otlp = new CloudAmqp.IntegrationLogAgent("otlp", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         Otlp = new CloudAmqp.Inputs.IntegrationLogAgentOtlpArgs
     ///         {
     ///             Endpoint = "https://api.honeycomb.io/v1/logs",
     ///             AuthType = "headers",
     ///             Headers = $"x-honeycomb-team: {honeycombApiKey}",
     ///         },
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
     /// });
@@ -308,7 +308,6 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var otlp = new CloudAmqp.IntegrationLogAgent("otlp", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         Otlp = new CloudAmqp.Inputs.IntegrationLogAgentOtlpArgs
     ///         {
     ///             Endpoint = "https://otlp.example.com:4318/v1/logs",
@@ -316,6 +315,7 @@ namespace Pulumi.CloudAmqp
     ///             Username = otlpUsername,
     ///             Password = otlpPassword,
     ///         },
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
     /// });
@@ -331,7 +331,6 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var otlp = new CloudAmqp.IntegrationLogAgent("otlp", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         Otlp = new CloudAmqp.Inputs.IntegrationLogAgentOtlpArgs
     ///         {
     ///             Endpoint = "https://otlp.example.com:4318/v1/logs",
@@ -341,6 +340,7 @@ namespace Pulumi.CloudAmqp
     ///             TokenUrl = "https://auth.example.com/oauth2/token",
     ///             Scopes = "logs:write",
     ///         },
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
     /// });
@@ -365,13 +365,13 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var splunk = new CloudAmqp.IntegrationLogAgent("splunk", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         Splunk = new CloudAmqp.Inputs.IntegrationLogAgentSplunkArgs
     ///         {
     ///             Endpoint = splunkEndpoint,
     ///             Token = splunkToken,
     ///             SourceType = "cloudamqp",
     ///         },
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
     /// });
@@ -396,11 +396,11 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var uptrace = new CloudAmqp.IntegrationLogAgent("uptrace", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         Uptrace = new CloudAmqp.Inputs.IntegrationLogAgentUptraceArgs
     ///         {
     ///             Dsn = uptraceDsn,
     ///         },
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
     /// });

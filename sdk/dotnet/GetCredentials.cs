@@ -60,7 +60,7 @@ namespace Pulumi.CloudAmqp
         ///     // Old (deprecated)
         ///     var credentials = CloudAmqp.GetCredentials.Invoke(new()
         ///     {
-        ///         InstanceId = instance.Id,
+        ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
         ///     });
         /// 
         /// });
@@ -118,7 +118,7 @@ namespace Pulumi.CloudAmqp
         ///     // Old (deprecated)
         ///     var credentials = CloudAmqp.GetCredentials.Invoke(new()
         ///     {
-        ///         InstanceId = instance.Id,
+        ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
         ///     });
         /// 
         /// });
@@ -176,7 +176,7 @@ namespace Pulumi.CloudAmqp
         ///     // Old (deprecated)
         ///     var credentials = CloudAmqp.GetCredentials.Invoke(new()
         ///     {
-        ///         InstanceId = instance.Id,
+        ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
         ///     });
         /// 
         /// });

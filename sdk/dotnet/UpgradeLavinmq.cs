@@ -46,7 +46,7 @@ namespace Pulumi.CloudAmqp
     /// 
     ///     var upgrade = new CloudAmqp.UpgradeLavinmq("upgrade", new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         NewVersion = "1.3.1",
     ///     });
     /// 

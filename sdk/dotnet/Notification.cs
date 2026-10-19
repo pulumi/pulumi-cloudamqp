@@ -61,10 +61,6 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var opsgenieRecipient = new CloudAmqp.Notification("opsgenie_recipient", new()
     ///     {
-    ///         InstanceId = instance.Id,
-    ///         Type = "opsgenie",
-    ///         Value = "&lt;api-key&gt;",
-    ///         Name = "OpsGenie",
     ///         Responders = new[]
     ///         {
     ///             new CloudAmqp.Inputs.NotificationResponderArgs
@@ -78,6 +74,10 @@ namespace Pulumi.CloudAmqp
     ///                 Username = "&lt;username&gt;",
     ///             },
     ///         },
+    ///         InstanceId = instance.Id,
+    ///         Type = "opsgenie",
+    ///         Value = "&lt;api-key&gt;",
+    ///         Name = "OpsGenie",
     ///     });
     /// 
     /// });

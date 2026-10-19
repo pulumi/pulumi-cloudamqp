@@ -55,7 +55,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var this_ = new MaintenanceWindow("this", MaintenanceWindowArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .preferredDay("Monday")
  *             .preferredTime("23:00")
  *             .build());
@@ -98,7 +98,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var this_ = new MaintenanceWindow("this", MaintenanceWindowArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .preferredDay("Monday")
  *             .preferredTime("23:00")
  *             .automaticUpdates("on")
@@ -139,7 +139,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var this_ = new MaintenanceWindow("this", MaintenanceWindowArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .preferredTime("23:00")
  *             .build());
  * 
@@ -178,7 +178,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var this_ = new MaintenanceWindow("this", MaintenanceWindowArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .preferredDay("Monday")
  *             .build());
  * 

@@ -34,7 +34,6 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var @this = new CloudAmqp.SecurityFirewall("this", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         Rules = new[]
     ///         {
     ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
@@ -75,6 +74,7 @@ namespace Pulumi.CloudAmqp
     ///                 },
     ///             },
     ///         },
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
     /// });
@@ -112,7 +112,6 @@ namespace Pulumi.CloudAmqp
     /// 
     ///     var @this = new CloudAmqp.SecurityFirewall("this", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         Rules = new[]
     ///         {
     ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
@@ -138,6 +137,7 @@ namespace Pulumi.CloudAmqp
     ///                 Description = "VPC subnet",
     ///             },
     ///         },
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///     });
     /// 
     /// });
@@ -180,7 +180,6 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewall_settings", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         Rules = new[]
     ///         {
     ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
@@ -193,6 +192,7 @@ namespace Pulumi.CloudAmqp
     ///                 Services = new() { },
     ///             },
     ///         },
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
     /// });
@@ -214,7 +214,6 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var firewallSettings = new CloudAmqp.SecurityFirewall("firewall_settings", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         Rules = new[]
     ///         {
     ///             new CloudAmqp.Inputs.SecurityFirewallRuleArgs
@@ -227,6 +226,7 @@ namespace Pulumi.CloudAmqp
     ///                 },
     ///             },
     ///         },
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
     /// });

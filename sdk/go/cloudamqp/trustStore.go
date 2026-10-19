@@ -53,10 +53,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewTrustStore(ctx, "trust_store", &cloudamqp.TrustStoreArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				Http: &cloudamqp.TrustStoreHttpArgs{
 //					Url: pulumi.String("https://example.com/trust-store-certs"),
 //				},
+//				InstanceId:      pulumi.Any(instance.Id),
 //				RefreshInterval: pulumi.Int(30),
 //			})
 //			if err != nil {

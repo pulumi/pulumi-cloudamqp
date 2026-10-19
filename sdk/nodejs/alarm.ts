@@ -33,14 +33,14 @@ import * as utilities from "./utilities";
  *
  * // New recipient
  * const recipient01 = new cloudamqp.Notification("recipient_01", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     type: "email",
  *     value: "alarm@example.com",
  *     name: "alarm",
  * });
  * // New cpu alarm
  * const cpuAlarm = new cloudamqp.Alarm("cpu_alarm", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     type: "cpu",
  *     enabled: true,
  *     reminderInterval: 600,
@@ -50,7 +50,7 @@ import * as utilities from "./utilities";
  * });
  * // New memory alarm
  * const memoryAlarm = new cloudamqp.Alarm("memory_alarm", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     type: "memory",
  *     enabled: true,
  *     reminderInterval: 600,
@@ -78,14 +78,14 @@ import * as utilities from "./utilities";
  *
  * // New recipient
  * const recipient01 = new cloudamqp.Notification("recipient_01", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     type: "email",
  *     value: "alarm@example.com",
  *     name: "alarm",
  * });
  * // Update existing notice alarm
  * const notice = new cloudamqp.Alarm("notice", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     type: "notice",
  *     enabled: true,
  *     recipients: [recipient01.id.apply(x =>Number(x))],
@@ -109,7 +109,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const diskAutoscale = new cloudamqp.Alarm("disk_autoscale", {
- *     instanceId: Number(example.id),
+ *     instanceId: example.id,
  *     type: "disk_auto_resize",
  *     enabled: true,
  *     valueThreshold: 5,

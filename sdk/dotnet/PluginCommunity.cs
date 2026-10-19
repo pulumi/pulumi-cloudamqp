@@ -68,7 +68,7 @@ namespace Pulumi.CloudAmqp
     /// 
     ///     var rabbitmqDelayedMessageExchange = new CloudAmqp.PluginCommunity("rabbitmq_delayed_message_exchange", new()
     ///     {
-    ///         InstanceId = instance.Id,
+    ///         InstanceId = instance.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         Name = "rabbitmq_delayed_message_exchange",
     ///         Enabled = true,
     ///     });

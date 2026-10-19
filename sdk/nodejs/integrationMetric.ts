@@ -38,14 +38,14 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const cloudwatch = new cloudamqp.IntegrationMetric("cloudwatch", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     name: "cloudwatch",
  *     accessKeyId: awsAccessKeyId,
  *     secretAccessKey: varAwsSecretAcccessKey,
  *     region: awsRegion,
  * });
  * const cloudwatchV2 = new cloudamqp.IntegrationMetric("cloudwatch_v2", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     name: "cloudwatch_v2",
  *     accessKeyId: awsAccessKeyId,
  *     secretAccessKey: varAwsSecretAcccessKey,
@@ -60,14 +60,14 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const cloudwatch = new cloudamqp.IntegrationMetric("cloudwatch", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     name: "cloudwatch",
  *     iamRole: awsIamRole,
  *     iamExternalId: externalId,
  *     region: awsRegion,
  * });
  * const cloudwatchV2 = new cloudamqp.IntegrationMetric("cloudwatch_v2", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     name: "cloudwatch_v2",
  *     iamRole: awsIamRole,
  *     iamExternalId: externalId,
@@ -92,14 +92,14 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const datadog = new cloudamqp.IntegrationMetric("datadog", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     name: "datadog",
  *     apiKey: datadogApiKey,
  *     region: datadogRegion,
  *     tags: "env=prod,region=us1,version=v1.0",
  * });
  * const datadogV2 = new cloudamqp.IntegrationMetric("datadog_v2", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     name: "datadog_v2",
  *     apiKey: datadogApiKey,
  *     region: datadogRegion,
@@ -121,7 +121,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const librato = new cloudamqp.IntegrationMetric("librato", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     name: "librato",
  *     email: libratoEmail,
  *     apiKey: libratoApiKey,
@@ -142,7 +142,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const newrelic = new cloudamqp.IntegrationMetric("newrelic", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     name: "newrelic_v2",
  *     apiKey: newrelicApiKey,
  *     region: newrelicRegion,
@@ -165,7 +165,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const stackdriver = new cloudamqp.IntegrationMetric("stackdriver", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     name: "stackdriver",
  *     projectId: stackdriverProjectId,
  *     privateKey: stackdriverPrivateKey,
@@ -188,7 +188,7 @@ import * as utilities from "./utilities";
  * });
  * const serviceAccountKey = new google.index.ServiceAccountKey("service_account_key", {serviceAccountId: serviceAccount.name});
  * const stackdriver = new cloudamqp.IntegrationMetric("stackdriver", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     name: "stackdriver",
  *     projectId: std.jsondecode({
  *         input: std.base64decode({
@@ -232,7 +232,7 @@ import * as utilities from "./utilities";
  * });
  * const serviceAccountKey = new google.index.ServiceAccountKey("service_account_key", {serviceAccountId: serviceAccount.name});
  * const stackdriver = new cloudamqp.IntegrationMetric("stackdriver", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     name: "stackdriver",
  *     credentials: serviceAccountKey.privateKey,
  * });
@@ -253,7 +253,7 @@ import * as utilities from "./utilities";
  * });
  * const serviceAccountKey = new google.index.ServiceAccountKey("service_account_key", {serviceAccountId: serviceAccount.name});
  * const stackdriver = new cloudamqp.IntegrationMetric("stackdriver", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     name: "stackdriver",
  *     projectId: std.jsondecode({
  *         input: std.base64decode({

@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const queueAlarms = cloudamqp.getAlarms({
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     type: "queue",
  * });
  * ```
@@ -84,7 +84,7 @@ export interface GetAlarmsResult {
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const queueAlarms = cloudamqp.getAlarms({
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     type: "queue",
  * });
  * ```

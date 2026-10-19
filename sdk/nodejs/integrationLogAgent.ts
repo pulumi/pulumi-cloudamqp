@@ -33,13 +33,13 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const azureMonitor = new cloudamqp.IntegrationLogAgent("azure_monitor", {
- *     instanceId: Number(instance.id),
  *     azureMonitor: {
  *         tenantId: "00000000-0000-0000-0000-000000000000",
  *         applicationId: "11111111-1111-1111-1111-111111111111",
  *         applicationSecret: azureApplicationSecret,
  *         logsEndpoint: "https://example.region-1.ingest.monitor.azure.com/datacollectionRules/dcr-example/streams/Microsoft-OTLP-Logs/otlp/v1/logs",
  *     },
+ *     instanceId: instance.id,
  * });
  * ```
  *
@@ -60,7 +60,6 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const cloudwatch = new cloudamqp.IntegrationLogAgent("cloudwatch", {
- *     instanceId: Number(instance.id),
  *     cloudwatch: {
  *         iamRole: awsIamRole,
  *         iamExternalId: awsIamExternalId,
@@ -68,6 +67,7 @@ import * as utilities from "./utilities";
  *         logGroup: "CloudAMQP",
  *         logStream: instance.clusterName,
  *     },
+ *     instanceId: instance.id,
  * });
  * ```
  *
@@ -94,7 +94,6 @@ import * as utilities from "./utilities";
  *     logGroupName: cloudwatchLogGroup,
  * });
  * const cloudwatch = new cloudamqp.IntegrationLogAgent("cloudwatch", {
- *     instanceId: Number(instance.id),
  *     cloudwatch: {
  *         iamRole: awsIamRole,
  *         iamExternalId: awsIamExternalId,
@@ -102,6 +101,7 @@ import * as utilities from "./utilities";
  *         logGroup: cloudwatchLogGroup,
  *         logStream: _this.name,
  *     },
+ *     instanceId: instance.id,
  * });
  * ```
  *
@@ -119,13 +119,13 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const coralogix = new cloudamqp.IntegrationLogAgent("coralogix", {
- *     instanceId: Number(instance.id),
  *     coralogix: {
  *         privateKey: coralogixPrivateKey,
  *         region: "eu2",
  *         application: "cloudamqp",
  *         subsystem: instance.host,
  *     },
+ *     instanceId: instance.id,
  * });
  * ```
  *
@@ -143,11 +143,11 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const datadog = new cloudamqp.IntegrationLogAgent("datadog", {
- *     instanceId: Number(instance.id),
  *     datadog: {
  *         apiKey: datadogApiKey,
  *         region: "us1",
  *     },
+ *     instanceId: instance.id,
  * });
  * ```
  *
@@ -166,13 +166,13 @@ import * as utilities from "./utilities";
  * import * as std from "@pulumi/std";
  *
  * const googleCloud = new cloudamqp.IntegrationLogAgent("google_cloud", {
- *     instanceId: Number(instance.id),
  *     googleCloud: {
  *         serviceAccountFile: std.file({
  *             input: "path/to/service_account_key.json",
  *         }).result,
  *         serviceAccountFileVersion: 1,
  *     },
+ *     instanceId: instance.id,
  * });
  * ```
  *
@@ -190,12 +190,12 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const grafana = new cloudamqp.IntegrationLogAgent("grafana", {
- *     instanceId: Number(instance.id),
  *     grafana: {
  *         endpoint: grafanaEndpoint,
  *         grafanaInstanceId: grafanaInstanceId,
  *         apiToken: grafanaApiToken,
  *     },
+ *     instanceId: instance.id,
  * });
  * ```
  *
@@ -218,12 +218,12 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const otlp = new cloudamqp.IntegrationLogAgent("otlp", {
- *     instanceId: Number(instance.id),
  *     otlp: {
  *         endpoint: "https://api.honeycomb.io/v1/logs",
  *         authType: "headers",
  *         headers: `x-honeycomb-team: ${honeycombApiKey}`,
  *     },
+ *     instanceId: instance.id,
  * });
  * ```
  *
@@ -232,13 +232,13 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const otlp = new cloudamqp.IntegrationLogAgent("otlp", {
- *     instanceId: Number(instance.id),
  *     otlp: {
  *         endpoint: "https://otlp.example.com:4318/v1/logs",
  *         authType: "basic_auth",
  *         username: otlpUsername,
  *         password: otlpPassword,
  *     },
+ *     instanceId: instance.id,
  * });
  * ```
  *
@@ -247,7 +247,6 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const otlp = new cloudamqp.IntegrationLogAgent("otlp", {
- *     instanceId: Number(instance.id),
  *     otlp: {
  *         endpoint: "https://otlp.example.com:4318/v1/logs",
  *         authType: "oauth2",
@@ -256,6 +255,7 @@ import * as utilities from "./utilities";
  *         tokenUrl: "https://auth.example.com/oauth2/token",
  *         scopes: "logs:write",
  *     },
+ *     instanceId: instance.id,
  * });
  * ```
  *
@@ -273,12 +273,12 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const splunk = new cloudamqp.IntegrationLogAgent("splunk", {
- *     instanceId: Number(instance.id),
  *     splunk: {
  *         endpoint: splunkEndpoint,
  *         token: splunkToken,
  *         sourceType: "cloudamqp",
  *     },
+ *     instanceId: instance.id,
  * });
  * ```
  *
@@ -296,10 +296,10 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const uptrace = new cloudamqp.IntegrationLogAgent("uptrace", {
- *     instanceId: Number(instance.id),
  *     uptrace: {
  *         dsn: uptraceDsn,
  *     },
+ *     instanceId: instance.id,
  * });
  * ```
  *

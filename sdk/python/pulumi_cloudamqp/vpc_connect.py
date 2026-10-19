@@ -469,16 +469,16 @@ class VpcConnect(pulumi.CustomResource):
         import pulumi_azurerm as azurerm
 
         example = azurerm.PrivateEndpoint("example",
-            name=example-endpoint,
-            location=example_azurerm_resource_group.location,
-            resource_group_name=example_azurerm_resource_group.name,
-            subnet_id=subnet.id,
             private_service_connection=[{
                 name: example-privateserviceconnection,
                 privateConnectionResourceAlias: vpc_connect.service_name,
                 isManualConnection: True,
                 requestMessage: PL,
-            }])
+            }],
+            name=example-endpoint,
+            location=example_azurerm_resource_group.location,
+            resource_group_name=example_azurerm_resource_group.name,
+            subnet_id=subnet.id)
         ```
 
         More information about the resource and argument can be found here:
@@ -547,7 +547,6 @@ class VpcConnect(pulumi.CustomResource):
             instance_id=instance.id.apply(lambda x: int(x)),
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance.id.apply(lambda x: int(x)),
             rules=[
                 {
                     "description": "Custom PrivateLink setup",
@@ -566,6 +565,7 @@ class VpcConnect(pulumi.CustomResource):
                     "services": ["HTTPS"],
                 },
             ],
+            instance_id=instance.id.apply(lambda x: int(x)),
             opts = pulumi.ResourceOptions(depends_on=[vpc_connect]))
         ```
 
@@ -720,16 +720,16 @@ class VpcConnect(pulumi.CustomResource):
         import pulumi_azurerm as azurerm
 
         example = azurerm.PrivateEndpoint("example",
-            name=example-endpoint,
-            location=example_azurerm_resource_group.location,
-            resource_group_name=example_azurerm_resource_group.name,
-            subnet_id=subnet.id,
             private_service_connection=[{
                 name: example-privateserviceconnection,
                 privateConnectionResourceAlias: vpc_connect.service_name,
                 isManualConnection: True,
                 requestMessage: PL,
-            }])
+            }],
+            name=example-endpoint,
+            location=example_azurerm_resource_group.location,
+            resource_group_name=example_azurerm_resource_group.name,
+            subnet_id=subnet.id)
         ```
 
         More information about the resource and argument can be found here:
@@ -798,7 +798,6 @@ class VpcConnect(pulumi.CustomResource):
             instance_id=instance.id.apply(lambda x: int(x)),
             allowed_principals=["arn:aws:iam::aws-account-id:user/user-name"])
         firewall_settings = cloudamqp.SecurityFirewall("firewall_settings",
-            instance_id=instance.id.apply(lambda x: int(x)),
             rules=[
                 {
                     "description": "Custom PrivateLink setup",
@@ -817,6 +816,7 @@ class VpcConnect(pulumi.CustomResource):
                     "services": ["HTTPS"],
                 },
             ],
+            instance_id=instance.id.apply(lambda x: int(x)),
             opts = pulumi.ResourceOptions(depends_on=[vpc_connect]))
         ```
 

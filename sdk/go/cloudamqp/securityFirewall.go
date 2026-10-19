@@ -39,7 +39,6 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewSecurityFirewall(ctx, "this", &cloudamqp.SecurityFirewallArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				Rules: cloudamqp.SecurityFirewallRuleArray{
 //					&cloudamqp.SecurityFirewallRuleArgs{
 //						Ip: pulumi.String("192.168.0.0/24"),
@@ -72,6 +71,7 @@ import (
 //						},
 //					},
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -120,7 +120,6 @@ import (
 //				return err
 //			}
 //			_, err = cloudamqp.NewSecurityFirewall(ctx, "this", &cloudamqp.SecurityFirewallArgs{
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //				Rules: cloudamqp.SecurityFirewallRuleArray{
 //					&cloudamqp.SecurityFirewallRuleArgs{
 //						Ip:    pulumi.String("0.0.0.0/0"),
@@ -141,6 +140,7 @@ import (
 //						Description: pulumi.String("VPC subnet"),
 //					},
 //				},
+//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
 //			})
 //			if err != nil {
 //				return err
@@ -193,7 +193,6 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewSecurityFirewall(ctx, "firewall_settings", &cloudamqp.SecurityFirewallArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				Rules: cloudamqp.SecurityFirewallRuleArray{
 //					&cloudamqp.SecurityFirewallRuleArgs{
 //						Ip: pulumi.String("192.168.0.0/24"),
@@ -203,6 +202,7 @@ import (
 //						Services: pulumi.StringArray{},
 //					},
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -232,7 +232,6 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cloudamqp.NewSecurityFirewall(ctx, "firewall_settings", &cloudamqp.SecurityFirewallArgs{
-//				InstanceId: pulumi.Any(instance.Id),
 //				Rules: cloudamqp.SecurityFirewallRuleArray{
 //					&cloudamqp.SecurityFirewallRuleArgs{
 //						Ip:    pulumi.String("192.168.0.0/24"),
@@ -242,6 +241,7 @@ import (
 //						},
 //					},
 //				},
+//				InstanceId: pulumi.Any(instance.Id),
 //			})
 //			if err != nil {
 //				return err

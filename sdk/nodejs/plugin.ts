@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const rabbitmqTop = new cloudamqp.Plugin("rabbitmq_top", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     name: "rabbitmq_top",
  *     enabled: true,
  * });
@@ -40,12 +40,12 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const rabbitmqTop = new cloudamqp.Plugin("rabbitmq_top", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     name: "rabbitmq_top",
  *     enabled: true,
  * });
  * const rabbitmqAmqp10 = new cloudamqp.Plugin("rabbitmq_amqp1_0", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     name: "rabbitmq_amqp1_0",
  *     enabled: true,
  * }, {
@@ -70,12 +70,12 @@ import * as utilities from "./utilities";
  * import * as cloudamqp from "@pulumi/cloudamqp";
  *
  * const rabbitmqTop = new cloudamqp.Plugin("rabbitmq_top", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     name: "rabbitmq_top",
  *     enabled: true,
  * });
  * const rabbitmqAmqp10 = new cloudamqp.Plugin("rabbitmq_amqp1_0", {
- *     instanceId: Number(instance.id),
+ *     instanceId: instance.id,
  *     name: "rabbitmq_amqp1_0",
  *     enabled: true,
  * });

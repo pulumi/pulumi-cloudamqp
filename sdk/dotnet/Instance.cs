@@ -176,7 +176,7 @@ namespace Pulumi.CloudAmqp
     ///         Name = "&lt;vpc-name&gt;",
     ///         Region = "amazon-web-services::us-east-1",
     ///         Subnet = "10.56.72.0/24",
-    ///         Tags = new[] {},
+    ///         Tags = new() {},
     ///     });
     /// 
     ///     // Add vpc_id and keep_associated_vpc attributes
@@ -189,7 +189,7 @@ namespace Pulumi.CloudAmqp
     ///         {
     ///             "terraform",
     ///         },
-    ///         VpcId = vpc.Id,
+    ///         VpcId = vpc.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         KeepAssociatedVpc = true,
     ///     });
     /// 
@@ -219,7 +219,7 @@ namespace Pulumi.CloudAmqp
     ///         Name = "&lt;vpc-name&gt;",
     ///         Region = "amazon-web-services::us-east-1",
     ///         Subnet = "10.56.72.0/24",
-    ///         Tags = new[] {},
+    ///         Tags = new() {},
     ///     });
     /// 
     ///     // First instance added to managed VPC
@@ -232,7 +232,7 @@ namespace Pulumi.CloudAmqp
     ///         {
     ///             "terraform",
     ///         },
-    ///         VpcId = vpc.Id,
+    ///         VpcId = vpc.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         KeepAssociatedVpc = true,
     ///     });
     /// 
@@ -246,7 +246,7 @@ namespace Pulumi.CloudAmqp
     ///         {
     ///             "terraform",
     ///         },
-    ///         VpcId = vpc.Id,
+    ///         VpcId = vpc.Id.Apply(x =&gt; int.Parse(x, System.Globalization.CultureInfo.InvariantCulture)),
     ///         KeepAssociatedVpc = true,
     ///     });
     /// 
@@ -490,14 +490,6 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var penguinInstance = new CloudAmqp.Instance("penguin_instance", new()
     ///     {
-    ///         Name = "terraform-cloudamqp-instance-01",
-    ///         Plan = "penguin-1",
-    ///         Region = "amazon-web-services::us-west-1",
-    ///         RmqVersion = "2.2.0",
-    ///         Tags = new[]
-    ///         {
-    ///             "terraform",
-    ///         },
     ///         CopySettings = new[]
     ///         {
     ///             new CloudAmqp.Inputs.InstanceCopySettingArgs
@@ -511,6 +503,14 @@ namespace Pulumi.CloudAmqp
     ///                     "metrics",
     ///                 },
     ///             },
+    ///         },
+    ///         Name = "terraform-cloudamqp-instance-01",
+    ///         Plan = "penguin-1",
+    ///         Region = "amazon-web-services::us-west-1",
+    ///         RmqVersion = "2.2.0",
+    ///         Tags = new[]
+    ///         {
+    ///             "terraform",
     ///         },
     ///     });
     /// 
@@ -540,14 +540,6 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var bunnyInstance = new CloudAmqp.Instance("bunny_instance", new()
     ///     {
-    ///         Name = "terraform-cloudamqp-instance-02",
-    ///         Plan = "bunny-1",
-    ///         Region = "amazon-web-services::us-west-1",
-    ///         RmqVersion = "3.12.2",
-    ///         Tags = new[]
-    ///         {
-    ///             "terraform",
-    ///         },
     ///         CopySettings = new[]
     ///         {
     ///             new CloudAmqp.Inputs.InstanceCopySettingArgs
@@ -564,6 +556,14 @@ namespace Pulumi.CloudAmqp
     ///                     "plugins",
     ///                 },
     ///             },
+    ///         },
+    ///         Name = "terraform-cloudamqp-instance-02",
+    ///         Plan = "bunny-1",
+    ///         Region = "amazon-web-services::us-west-1",
+    ///         RmqVersion = "3.12.2",
+    ///         Tags = new[]
+    ///         {
+    ///             "terraform",
     ///         },
     ///     });
     /// 

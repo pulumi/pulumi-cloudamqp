@@ -69,7 +69,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var cloudwatch = new IntegrationMetric("cloudwatch", IntegrationMetricArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("cloudwatch")
  *             .accessKeyId(awsAccessKeyId)
  *             .secretAccessKey(varAwsSecretAcccessKey)
@@ -77,7 +77,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var cloudwatchV2 = new IntegrationMetric("cloudwatchV2", IntegrationMetricArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("cloudwatch_v2")
  *             .accessKeyId(awsAccessKeyId)
  *             .secretAccessKey(varAwsSecretAcccessKey)
@@ -114,7 +114,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var cloudwatch = new IntegrationMetric("cloudwatch", IntegrationMetricArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("cloudwatch")
  *             .iamRole(awsIamRole)
  *             .iamExternalId(externalId)
@@ -122,7 +122,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var cloudwatchV2 = new IntegrationMetric("cloudwatchV2", IntegrationMetricArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("cloudwatch_v2")
  *             .iamRole(awsIamRole)
  *             .iamExternalId(externalId)
@@ -169,7 +169,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var datadog = new IntegrationMetric("datadog", IntegrationMetricArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("datadog")
  *             .apiKey(datadogApiKey)
  *             .region(datadogRegion)
@@ -177,7 +177,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var datadogV2 = new IntegrationMetric("datadogV2", IntegrationMetricArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("datadog_v2")
  *             .apiKey(datadogApiKey)
  *             .region(datadogRegion)
@@ -221,7 +221,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var librato = new IntegrationMetric("librato", IntegrationMetricArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("librato")
  *             .email(libratoEmail)
  *             .apiKey(libratoApiKey)
@@ -264,7 +264,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var newrelic = new IntegrationMetric("newrelic", IntegrationMetricArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("newrelic_v2")
  *             .apiKey(newrelicApiKey)
  *             .region(newrelicRegion)
@@ -309,7 +309,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var stackdriver = new IntegrationMetric("stackdriver", IntegrationMetricArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("stackdriver")
  *             .projectId(stackdriverProjectId)
  *             .privateKey(stackdriverPrivateKey)
@@ -357,15 +357,15 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var serviceAccountKey = new ServiceAccountKey("serviceAccountKey", ServiceAccountKeyArgs.builder()
- *             .serviceAccountId(serviceAccount.name())
+ *             .serviceAccountId(serviceAccount.get("name"))
  *             .build());
  * 
  *         var stackdriver = new IntegrationMetric("stackdriver", IntegrationMetricArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("stackdriver")
- *             .projectId(StdFunctions.jsondecode(Map.of("input", StdFunctions.base64decode(Map.of("input", serviceAccountKey.privateKey())).result())).result().projectId())
- *             .privateKey(StdFunctions.jsondecode(Map.of("input", StdFunctions.base64decode(Map.of("input", serviceAccountKey.privateKey())).result())).result().privateKey())
- *             .clientEmail(StdFunctions.jsondecode(Map.of("input", StdFunctions.base64decode(Map.of("input", serviceAccountKey.privateKey())).result())).result().clientEmail())
+ *             .projectId(StdFunctions.jsondecode(Map.of("input", StdFunctions.base64decode(Map.of("input", serviceAccountKey.get("privateKey"))).get("result"))).get("result").get("projectId"))
+ *             .privateKey(StdFunctions.jsondecode(Map.of("input", StdFunctions.base64decode(Map.of("input", serviceAccountKey.get("privateKey"))).get("result"))).get("result").get("privateKey"))
+ *             .clientEmail(StdFunctions.jsondecode(Map.of("input", StdFunctions.base64decode(Map.of("input", serviceAccountKey.get("privateKey"))).get("result"))).get("result").get("clientEmail"))
  *             .build());
  * 
  *     }
@@ -418,13 +418,13 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var serviceAccountKey = new ServiceAccountKey("serviceAccountKey", ServiceAccountKeyArgs.builder()
- *             .serviceAccountId(serviceAccount.name())
+ *             .serviceAccountId(serviceAccount.get("name"))
  *             .build());
  * 
  *         var stackdriver = new IntegrationMetric("stackdriver", IntegrationMetricArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("stackdriver")
- *             .credentials(serviceAccountKey.privateKey())
+ *             .credentials(serviceAccountKey.get("privateKey"))
  *             .build());
  * 
  *     }
@@ -468,15 +468,15 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var serviceAccountKey = new ServiceAccountKey("serviceAccountKey", ServiceAccountKeyArgs.builder()
- *             .serviceAccountId(serviceAccount.name())
+ *             .serviceAccountId(serviceAccount.get("name"))
  *             .build());
  * 
  *         var stackdriver = new IntegrationMetric("stackdriver", IntegrationMetricArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .name("stackdriver")
- *             .projectId(StdFunctions.jsondecode(Map.of("input", StdFunctions.base64decode(Map.of("input", serviceAccountKey.privateKey())).result())).result().projectId())
- *             .privateKey(StdFunctions.jsondecode(Map.of("input", StdFunctions.base64decode(Map.of("input", serviceAccountKey.privateKey())).result())).result().privateKey())
- *             .clientEmail(StdFunctions.jsondecode(Map.of("input", StdFunctions.base64decode(Map.of("input", serviceAccountKey.privateKey())).result())).result().clientEmail())
+ *             .projectId(StdFunctions.jsondecode(Map.of("input", StdFunctions.base64decode(Map.of("input", serviceAccountKey.get("privateKey"))).get("result"))).get("result").get("projectId"))
+ *             .privateKey(StdFunctions.jsondecode(Map.of("input", StdFunctions.base64decode(Map.of("input", serviceAccountKey.get("privateKey"))).get("result"))).get("result").get("privateKey"))
+ *             .clientEmail(StdFunctions.jsondecode(Map.of("input", StdFunctions.base64decode(Map.of("input", serviceAccountKey.get("privateKey"))).get("result"))).get("result").get("clientEmail"))
  *             .build());
  * 
  *     }

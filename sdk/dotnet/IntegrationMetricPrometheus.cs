@@ -29,13 +29,13 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var newrelicV3 = new CloudAmqp.IntegrationMetricPrometheus("newrelic_v3", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         NewrelicV3 = new CloudAmqp.Inputs.IntegrationMetricPrometheusNewrelicV3Args
     ///         {
     ///             ApiKey = newrelicApiKey,
     ///             Region = "us",
     ///             Tags = "key=value,key2=value2",
     ///         },
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
     /// });
@@ -53,7 +53,6 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var datadogV3 = new CloudAmqp.IntegrationMetricPrometheus("datadog_v3", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         DatadogV3 = new CloudAmqp.Inputs.IntegrationMetricPrometheusDatadogV3Args
     ///         {
     ///             ApiKey = datadogApiKey,
@@ -61,6 +60,7 @@ namespace Pulumi.CloudAmqp
     ///             Tags = "key=value,key2=value2",
     ///             RabbitmqDashboardMetricsFormat = true,
     ///         },
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
     /// });
@@ -78,11 +78,11 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var azureMonitor = new CloudAmqp.IntegrationMetricPrometheus("azure_monitor", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         AzureMonitor = new CloudAmqp.Inputs.IntegrationMetricPrometheusAzureMonitorArgs
     ///         {
     ///             ConnectionString = azureMonitorConnectionString,
     ///         },
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
     /// });
@@ -100,13 +100,13 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var splunkV2 = new CloudAmqp.IntegrationMetricPrometheus("splunk_v2", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         SplunkV2 = new CloudAmqp.Inputs.IntegrationMetricPrometheusSplunkV2Args
     ///         {
     ///             Token = splunkToken,
     ///             Endpoint = splunkEndpoint,
     ///             Tags = "key=value,key2=value2",
     ///         },
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
     /// });
@@ -124,13 +124,13 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var dynatrace = new CloudAmqp.IntegrationMetricPrometheus("dynatrace", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         Dynatrace = new CloudAmqp.Inputs.IntegrationMetricPrometheusDynatraceArgs
     ///         {
     ///             EnvironmentId = dynatraceEnvironmentId,
     ///             AccessToken = dynatraceAccessToken,
     ///             Tags = "key=value,key2=value2",
     ///         },
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
     /// });
@@ -148,7 +148,6 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var cloudwatchV3 = new CloudAmqp.IntegrationMetricPrometheus("cloudwatch_v3", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         CloudwatchV3 = new CloudAmqp.Inputs.IntegrationMetricPrometheusCloudwatchV3Args
     ///         {
     ///             IamRole = cloudwatchIamRole,
@@ -156,6 +155,7 @@ namespace Pulumi.CloudAmqp
     ///             Region = cloudwatchRegion,
     ///             Tags = "key=value,key2=value2",
     ///         },
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
     /// });
@@ -173,12 +173,12 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var stackdriverV2 = new CloudAmqp.IntegrationMetricPrometheus("stackdriver_v2", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         StackdriverV2 = new CloudAmqp.Inputs.IntegrationMetricPrometheusStackdriverV2Args
     ///         {
     ///             CredentialsFile = googleServiceAccountKey,
     ///             Tags = "key=value,key2=value2",
     ///         },
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
     /// });
@@ -198,7 +198,6 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var grafana = new CloudAmqp.IntegrationMetricPrometheus("grafana", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         Grafana = new CloudAmqp.Inputs.IntegrationMetricPrometheusGrafanaArgs
     ///         {
     ///             Endpoint = grafanaEndpoint,
@@ -206,6 +205,7 @@ namespace Pulumi.CloudAmqp
     ///             ApiToken = grafanaApiToken,
     ///             Tags = "key=value,key2=value2",
     ///         },
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
     /// });
@@ -225,7 +225,6 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var prometheusRemoteWrite = new CloudAmqp.IntegrationMetricPrometheus("prometheus_remote_write", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         PrometheusRemoteWrite = new CloudAmqp.Inputs.IntegrationMetricPrometheusPrometheusRemoteWriteArgs
     ///         {
     ///             Endpoint = remoteWriteEndpoint,
@@ -235,6 +234,7 @@ namespace Pulumi.CloudAmqp
     ///             Headers = "X-Scope-OrgID: my-tenant",
     ///             Tags = "key=value,key2=value2",
     ///         },
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
     /// });
@@ -254,7 +254,6 @@ namespace Pulumi.CloudAmqp
     /// {
     ///     var prometheusRemoteWrite = new CloudAmqp.IntegrationMetricPrometheus("prometheus_remote_write", new()
     ///     {
-    ///         InstanceId = instance.Id,
     ///         PrometheusRemoteWrite = new CloudAmqp.Inputs.IntegrationMetricPrometheusPrometheusRemoteWriteArgs
     ///         {
     ///             Endpoint = remoteWriteEndpoint,
@@ -264,6 +263,7 @@ namespace Pulumi.CloudAmqp
     ///             TokenUrl = "https://login.microsoftonline.com/&lt;tenant-id&gt;/oauth2/v2.0/token",
     ///             Scopes = "https://monitor.azure.com/.default",
     ///         },
+    ///         InstanceId = instance.Id,
     ///     });
     /// 
     /// });

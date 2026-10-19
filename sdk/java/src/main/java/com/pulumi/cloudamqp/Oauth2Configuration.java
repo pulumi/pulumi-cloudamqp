@@ -62,7 +62,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var oauth2Config = new Oauth2Configuration("oauth2Config", Oauth2ConfigurationArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .resourceServerId("test-resource-server")
  *             .issuer("https://test-issuer.example.com")
  *             .verifyAud(true)
@@ -109,7 +109,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var oauth2Config = new Oauth2Configuration("oauth2Config", Oauth2ConfigurationArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .resourceServerId("test-resource-server")
  *             .issuer("https://test-issuer.example.com")
  *             .preferredUsernameClaims(            
@@ -168,7 +168,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var oauth2Config = new Oauth2Configuration("oauth2Config", Oauth2ConfigurationArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .resourceServerId("test-resource-server")
  *             .issuer("https://test-issuer.example.com")
  *             .build());
@@ -210,7 +210,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var oauth2Config = new Oauth2Configuration("oauth2Config", Oauth2ConfigurationArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .issuer("https://auth.example.com/realms/lavinmq")
  *             .resourceServerId("lavinmq")
  *             .verifyAud(true)
@@ -256,7 +256,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var oauth2Config = new Oauth2Configuration("oauth2Config", Oauth2ConfigurationArgs.builder()
- *             .instanceId(instance.id())
+ *             .instanceId(instance.get("id"))
  *             .issuer("https://auth.example.com/realms/lavinmq")
  *             .resourceServerId("lavinmq")
  *             .additionalScopesKeys("roles")

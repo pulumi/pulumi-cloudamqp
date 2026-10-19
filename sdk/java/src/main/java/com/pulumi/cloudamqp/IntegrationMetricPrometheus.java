@@ -59,12 +59,12 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var newrelicV3 = new IntegrationMetricPrometheus("newrelicV3", IntegrationMetricPrometheusArgs.builder()
- *             .instanceId(instance.id())
  *             .newrelicV3(IntegrationMetricPrometheusNewrelicV3Args.builder()
  *                 .apiKey(newrelicApiKey)
  *                 .region("us")
  *                 .tags("key=value,key2=value2")
  *                 .build())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }
@@ -98,13 +98,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var datadogV3 = new IntegrationMetricPrometheus("datadogV3", IntegrationMetricPrometheusArgs.builder()
- *             .instanceId(instance.id())
  *             .datadogV3(IntegrationMetricPrometheusDatadogV3Args.builder()
  *                 .apiKey(datadogApiKey)
  *                 .region("us1")
  *                 .tags("key=value,key2=value2")
  *                 .rabbitmqDashboardMetricsFormat(true)
  *                 .build())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }
@@ -138,10 +138,10 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var azureMonitor = new IntegrationMetricPrometheus("azureMonitor", IntegrationMetricPrometheusArgs.builder()
- *             .instanceId(instance.id())
  *             .azureMonitor(IntegrationMetricPrometheusAzureMonitorArgs.builder()
  *                 .connectionString(azureMonitorConnectionString)
  *                 .build())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }
@@ -175,12 +175,12 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var splunkV2 = new IntegrationMetricPrometheus("splunkV2", IntegrationMetricPrometheusArgs.builder()
- *             .instanceId(instance.id())
  *             .splunkV2(IntegrationMetricPrometheusSplunkV2Args.builder()
  *                 .token(splunkToken)
  *                 .endpoint(splunkEndpoint)
  *                 .tags("key=value,key2=value2")
  *                 .build())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }
@@ -214,12 +214,12 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var dynatrace = new IntegrationMetricPrometheus("dynatrace", IntegrationMetricPrometheusArgs.builder()
- *             .instanceId(instance.id())
  *             .dynatrace(IntegrationMetricPrometheusDynatraceArgs.builder()
  *                 .environmentId(dynatraceEnvironmentId)
  *                 .accessToken(dynatraceAccessToken)
  *                 .tags("key=value,key2=value2")
  *                 .build())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }
@@ -253,13 +253,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var cloudwatchV3 = new IntegrationMetricPrometheus("cloudwatchV3", IntegrationMetricPrometheusArgs.builder()
- *             .instanceId(instance.id())
  *             .cloudwatchV3(IntegrationMetricPrometheusCloudwatchV3Args.builder()
  *                 .iamRole(cloudwatchIamRole)
  *                 .iamExternalId(cloudwatchIamExternalId)
  *                 .region(cloudwatchRegion)
  *                 .tags("key=value,key2=value2")
  *                 .build())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }
@@ -293,11 +293,11 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var stackdriverV2 = new IntegrationMetricPrometheus("stackdriverV2", IntegrationMetricPrometheusArgs.builder()
- *             .instanceId(instance.id())
  *             .stackdriverV2(IntegrationMetricPrometheusStackdriverV2Args.builder()
  *                 .credentialsFile(googleServiceAccountKey)
  *                 .tags("key=value,key2=value2")
  *                 .build())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }
@@ -333,13 +333,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var grafana = new IntegrationMetricPrometheus("grafana", IntegrationMetricPrometheusArgs.builder()
- *             .instanceId(instance.id())
  *             .grafana(IntegrationMetricPrometheusGrafanaArgs.builder()
  *                 .endpoint(grafanaEndpoint)
  *                 .instanceId(grafanaInstanceId)
  *                 .apiToken(grafanaApiToken)
  *                 .tags("key=value,key2=value2")
  *                 .build())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }
@@ -375,7 +375,6 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var prometheusRemoteWrite = new IntegrationMetricPrometheus("prometheusRemoteWrite", IntegrationMetricPrometheusArgs.builder()
- *             .instanceId(instance.id())
  *             .prometheusRemoteWrite(IntegrationMetricPrometheusPrometheusRemoteWriteArgs.builder()
  *                 .endpoint(remoteWriteEndpoint)
  *                 .authType("basic_auth")
@@ -384,6 +383,7 @@ import javax.annotation.Nullable;
  *                 .headers("X-Scope-OrgID: my-tenant")
  *                 .tags("key=value,key2=value2")
  *                 .build())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }
@@ -419,7 +419,6 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var prometheusRemoteWrite = new IntegrationMetricPrometheus("prometheusRemoteWrite", IntegrationMetricPrometheusArgs.builder()
- *             .instanceId(instance.id())
  *             .prometheusRemoteWrite(IntegrationMetricPrometheusPrometheusRemoteWriteArgs.builder()
  *                 .endpoint(remoteWriteEndpoint)
  *                 .authType("oauth2")
@@ -428,6 +427,7 @@ import javax.annotation.Nullable;
  *                 .tokenUrl("https://login.microsoftonline.com/<tenant-id>/oauth2/v2.0/token")
  *                 .scopes("https://monitor.azure.com/.default")
  *                 .build())
+ *             .instanceId(instance.get("id"))
  *             .build());
  * 
  *     }
