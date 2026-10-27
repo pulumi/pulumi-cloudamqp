@@ -220,7 +220,7 @@ import (
 //				Tags: pulumi.StringArray{
 //					pulumi.String("terraform"),
 //				},
-//				VpcId:             vpc.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				VpcId:             vpc.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				KeepAssociatedVpc: pulumi.Bool(true),
 //			})
 //			if err != nil {
@@ -274,7 +274,7 @@ import (
 //				Tags: pulumi.StringArray{
 //					pulumi.String("terraform"),
 //				},
-//				VpcId:             vpc.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				VpcId:             vpc.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				KeepAssociatedVpc: pulumi.Bool(true),
 //			})
 //			if err != nil {
@@ -288,7 +288,7 @@ import (
 //				Tags: pulumi.StringArray{
 //					pulumi.String("terraform"),
 //				},
-//				VpcId:             vpc.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				VpcId:             vpc.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				KeepAssociatedVpc: pulumi.Bool(true),
 //			})
 //			if err != nil {

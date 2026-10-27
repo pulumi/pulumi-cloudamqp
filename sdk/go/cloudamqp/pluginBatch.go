@@ -48,7 +48,7 @@ import (
 //				return err
 //			}
 //			_, err = cloudamqp.NewPluginBatch(ctx, "plugins", &cloudamqp.PluginBatchArgs{
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId: instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				Plugins: pulumi.BoolMap{
 //					"rabbitmq_stomp":           pulumi.Bool(true),
 //					"rabbitmq_top":             pulumi.Bool(true),
@@ -102,7 +102,7 @@ import (
 //				return err
 //			}
 //			_, err = cloudamqp.NewPluginBatch(ctx, "plugins", &cloudamqp.PluginBatchArgs{
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId: instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				Plugins: pulumi.BoolMap{
 //					"rabbitmq_stomp":    pulumi.Bool(true),
 //					"rabbitmq_top":      pulumi.Bool(true),

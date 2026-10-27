@@ -84,7 +84,7 @@ import (
 //			}
 //			// Resize disk with 25 extra GB
 //			_, err = cloudamqp.NewExtraDiskSize(ctx, "resize_disk", &cloudamqp.ExtraDiskSizeArgs{
-//				InstanceId:    instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId:    instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				ExtraDiskSize: pulumi.Int(25),
 //			})
 //			if err != nil {
@@ -93,7 +93,7 @@ import (
 //			// Optional, refresh nodes info after disk resize by adding dependency
 //			// to cloudamqp_extra_disk_size.resize_disk resource
 //			_ = cloudamqp.GetNodesOutput(ctx, cloudamqp.GetNodesOutputArgs{
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId: instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //			}, nil)
 //			return nil
 //		})
@@ -136,7 +136,7 @@ import (
 //			}
 //			// Resize disk with 25 extra GB, without downtime
 //			_, err = cloudamqp.NewExtraDiskSize(ctx, "resize_disk", &cloudamqp.ExtraDiskSizeArgs{
-//				InstanceId:    instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId:    instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				ExtraDiskSize: pulumi.Int(25),
 //			})
 //			if err != nil {
@@ -145,7 +145,7 @@ import (
 //			// Optional, refresh nodes info after disk resize by adding dependency
 //			// to cloudamqp_extra_disk_size.resize_disk resource
 //			_ = cloudamqp.GetNodesOutput(ctx, cloudamqp.GetNodesOutputArgs{
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId: instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //			}, nil)
 //			return nil
 //		})
@@ -188,7 +188,7 @@ import (
 //			}
 //			// Resize disk with 25 extra GB, without downtime
 //			_, err = cloudamqp.NewExtraDiskSize(ctx, "resize_disk", &cloudamqp.ExtraDiskSizeArgs{
-//				InstanceId:    instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId:    instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				ExtraDiskSize: pulumi.Int(25),
 //			})
 //			if err != nil {
@@ -197,7 +197,7 @@ import (
 //			// Optional, refresh nodes info after disk resize by adding dependency
 //			// to cloudamqp_extra_disk_size.resize_disk resource
 //			_ = cloudamqp.GetNodesOutput(ctx, cloudamqp.GetNodesOutputArgs{
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId: instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //			}, nil)
 //			return nil
 //		})
@@ -240,7 +240,7 @@ import (
 //			}
 //			// Resize disk with 25 extra GB, with downtime
 //			_, err = cloudamqp.NewExtraDiskSize(ctx, "resize_disk", &cloudamqp.ExtraDiskSizeArgs{
-//				InstanceId:    instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId:    instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				ExtraDiskSize: pulumi.Int(25),
 //			})
 //			if err != nil {
@@ -249,7 +249,7 @@ import (
 //			// Optional, refresh nodes info after disk resize by adding dependency
 //			// to cloudamqp_extra_disk_size.resize_disk resource
 //			_ = cloudamqp.GetNodesOutput(ctx, cloudamqp.GetNodesOutputArgs{
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId: instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //			}, nil)
 //			return nil
 //		})

@@ -273,7 +273,7 @@ func main() {
 		}
 		// New recipient to receieve notifications
 		recipient01, err := cloudamqp.NewNotification(ctx, "recipient_01", &cloudamqp.NotificationArgs{
-			InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+			InstanceId: instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 			Type:       pulumi.String("email"),
 			Value:      pulumi.String("alarm@example.com"),
 			Name:       pulumi.String("alarm"),
@@ -283,13 +283,13 @@ func main() {
 		}
 		// New cpu alarm
 		_, err = cloudamqp.NewAlarm(ctx, "cpu_alarm", &cloudamqp.AlarmArgs{
-			InstanceId:     instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+			InstanceId:     instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 			Type:           pulumi.String("cpu"),
 			ValueThreshold: pulumi.Int(90),
 			TimeThreshold:  pulumi.Int(600),
 			Enabled:        pulumi.Bool(true),
 			Recipients: pulumi.IntArray{
-				recipient01.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+				recipient01.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 			},
 		})
 		if err != nil {
@@ -308,14 +308,14 @@ func main() {
 					},
 				},
 			},
-			InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+			InstanceId: instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 		})
 		if err != nil {
 			return err
 		}
 		// Cloudwatch metrics integration
 		_, err = cloudamqp.NewIntegrationMetric(ctx, "cloudwatch", &cloudamqp.IntegrationMetricArgs{
-			InstanceId:      instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+			InstanceId:      instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 			Name:            pulumi.String("cloudwatch"),
 			AccessKeyId:     pulumi.Any(awsAccessKey),
 			SecretAccessKey: pulumi.Any(awsSecretKey),

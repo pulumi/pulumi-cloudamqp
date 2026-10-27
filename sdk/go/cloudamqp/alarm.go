@@ -68,7 +68,7 @@ import (
 //				ValueThreshold:   pulumi.Int(95),
 //				TimeThreshold:    pulumi.Int(600),
 //				Recipients: pulumi.IntArray{
-//					recipient01.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//					recipient01.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				},
 //			})
 //			if err != nil {
@@ -83,7 +83,7 @@ import (
 //				ValueThreshold:   pulumi.Int(95),
 //				TimeThreshold:    pulumi.Int(600),
 //				Recipients: pulumi.IntArray{
-//					recipient01.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//					recipient01.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				},
 //			})
 //			if err != nil {
@@ -138,7 +138,7 @@ import (
 //				Type:       pulumi.String("notice"),
 //				Enabled:    pulumi.Bool(true),
 //				Recipients: pulumi.IntArray{
-//					recipient01.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//					recipient01.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				},
 //			})
 //			if err != nil {

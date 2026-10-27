@@ -59,7 +59,7 @@ import (
 //				return err
 //			}
 //			_, err = cloudamqp.NewPrivatelinkAws(ctx, "privatelink", &cloudamqp.PrivatelinkAwsArgs{
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId: instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				AllowedPrincipals: pulumi.StringArray{
 //					pulumi.String("arn:aws:iam::aws-account-id:user/user-name"),
 //				},
@@ -111,14 +111,14 @@ import (
 //				Plan:              pulumi.String("bunny-1"),
 //				Region:            pulumi.String("amazon-web-services::us-west-1"),
 //				Tags:              pulumi.StringArray{},
-//				VpcId:             vpc.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				VpcId:             vpc.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				KeepAssociatedVpc: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = cloudamqp.NewPrivatelinkAws(ctx, "privatelink", &cloudamqp.PrivatelinkAwsArgs{
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId: instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				AllowedPrincipals: pulumi.StringArray{
 //					pulumi.String("arn:aws:iam::aws-account-id:user/user-name"),
 //				},
@@ -172,14 +172,14 @@ import (
 //				Plan:              pulumi.String("bunny-1"),
 //				Region:            pulumi.String("amazon-web-services::us-west-1"),
 //				Tags:              pulumi.StringArray{},
-//				VpcId:             vpc.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				VpcId:             vpc.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				KeepAssociatedVpc: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			privatelink, err := cloudamqp.NewPrivatelinkAws(ctx, "privatelink", &cloudamqp.PrivatelinkAwsArgs{
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId: instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				AllowedPrincipals: pulumi.StringArray{
 //					pulumi.String("arn:aws:iam::aws-account-id:user/user-name"),
 //				},
@@ -210,7 +210,7 @@ import (
 //						},
 //					},
 //				},
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId: instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				privatelink,
 //			}))

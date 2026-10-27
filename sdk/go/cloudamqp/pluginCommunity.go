@@ -84,7 +84,7 @@ import (
 //				return err
 //			}
 //			_, err = cloudamqp.NewPluginCommunity(ctx, "rabbitmq_delayed_message_exchange", &cloudamqp.PluginCommunityArgs{
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId: instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				Name:       pulumi.String("rabbitmq_delayed_message_exchange"),
 //				Enabled:    pulumi.Bool(true),
 //			})

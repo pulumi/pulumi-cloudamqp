@@ -60,7 +60,7 @@ import (
 //			}
 //			// Additional VPC information
 //			_ = cloudamqp.GetVpcInfoOutput(ctx, cloudamqp.GetVpcInfoOutputArgs{
-//				VpcId: vpc.ID().ToIDOutput().ToStringOutput(),
+//				VpcId: vpc.ID(),
 //			}, nil)
 //			return nil
 //		})
