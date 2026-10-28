@@ -70,7 +70,7 @@ import (
 //			}
 //			// CloudAMQP - Extract vpc information
 //			vpcInfo := cloudamqp.GetVpcInfoOutput(ctx, cloudamqp.GetVpcInfoOutputArgs{
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId: instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //			}, nil)
 //			// AWS - retrieve instance to get subnet identifier
 //			awsInstance, err := aws.Instance(ctx, map[string]map[string]interface{}{
@@ -102,7 +102,7 @@ import (
 //			}
 //			// CloudAMQP - accept the peering request
 //			vpcAcceptPeering, err := cloudamqp.NewVpcPeering(ctx, "vpc_accept_peering", &cloudamqp.VpcPeeringArgs{
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId: instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				PeeringId:  awsVpcPeering.Id,
 //			})
 //			if err != nil {
@@ -177,7 +177,7 @@ import (
 //				Tags: pulumi.StringArray{
 //					pulumi.String("terraform"),
 //				},
-//				VpcId:             vpc.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				VpcId:             vpc.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				KeepAssociatedVpc: pulumi.Bool(true),
 //			})
 //			if err != nil {
@@ -185,7 +185,7 @@ import (
 //			}
 //			// CloudAMQP - Extract vpc information
 //			vpcInfo := cloudamqp.GetVpcInfoOutput(ctx, cloudamqp.GetVpcInfoOutputArgs{
-//				VpcId: vpc.ID().ToIDOutput().ToStringOutput(),
+//				VpcId: vpc.ID(),
 //			}, nil)
 //			// AWS - retrieve instance to get subnet identifier
 //			awsInstance, err := aws.Instance(ctx, map[string]map[string]interface{}{
@@ -217,7 +217,7 @@ import (
 //			}
 //			// CloudAMQP - accept the peering request
 //			vpcAcceptPeering, err := cloudamqp.NewVpcPeering(ctx, "vpc_accept_peering", &cloudamqp.VpcPeeringArgs{
-//				VpcId:     vpc.ID().ToIDOutput().ToStringOutput(),
+//				VpcId:     vpc.ID(),
 //				PeeringId: awsVpcPeering.Id,
 //				Sleep:     pulumi.Int(30),
 //				Timeout:   pulumi.Int(600),

@@ -74,14 +74,14 @@ import (
 //				Plan:              pulumi.String("penguin-1"),
 //				Region:            pulumi.String("amazon-web-services::us-west-1"),
 //				Tags:              pulumi.StringArray{},
-//				VpcId:             vpc.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				VpcId:             vpc.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				KeepAssociatedVpc: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = cloudamqp.NewVpcConnect(ctx, "vpc_connect", &cloudamqp.VpcConnectArgs{
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId: instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				Region:     instance.Region,
 //				AllowedPrincipals: pulumi.StringArray{
 //					pulumi.String("arn:aws:iam::aws-account-id:user/user-name"),
@@ -134,14 +134,14 @@ import (
 //				Plan:              pulumi.String("penguin-1"),
 //				Region:            pulumi.String("azure-arm::westus"),
 //				Tags:              pulumi.StringArray{},
-//				VpcId:             vpc.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				VpcId:             vpc.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				KeepAssociatedVpc: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = cloudamqp.NewVpcConnect(ctx, "vpc_connect", &cloudamqp.VpcConnectArgs{
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId: instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				Region:     instance.Region,
 //				ApprovedSubscriptions: pulumi.StringArray{
 //					pulumi.String("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"),
@@ -237,14 +237,14 @@ import (
 //				Plan:              pulumi.String("penguin-1"),
 //				Region:            pulumi.String("google-compute-engine::us-west1"),
 //				Tags:              pulumi.StringArray{},
-//				VpcId:             vpc.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				VpcId:             vpc.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				KeepAssociatedVpc: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = cloudamqp.NewVpcConnect(ctx, "vpc_connect", &cloudamqp.VpcConnectArgs{
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId: instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				Region:     instance.Region,
 //				AllowedProjects: pulumi.StringArray{
 //					pulumi.String("some-project-123456"),
@@ -299,14 +299,14 @@ import (
 //				Plan:              pulumi.String("penguin-1"),
 //				Region:            pulumi.String("amazon-web-services::us-west-1"),
 //				Tags:              pulumi.StringArray{},
-//				VpcId:             vpc.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				VpcId:             vpc.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				KeepAssociatedVpc: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			vpcConnect, err := cloudamqp.NewVpcConnect(ctx, "vpc_connect", &cloudamqp.VpcConnectArgs{
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId: instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				AllowedPrincipals: pulumi.StringArray{
 //					pulumi.String("arn:aws:iam::aws-account-id:user/user-name"),
 //				},
@@ -335,7 +335,7 @@ import (
 //						},
 //					},
 //				},
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId: instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				vpcConnect,
 //			}))

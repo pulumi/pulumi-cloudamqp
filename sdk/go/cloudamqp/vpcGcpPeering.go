@@ -67,11 +67,11 @@ import (
 //			}
 //			// VPC information
 //			_ = cloudamqp.GetVpcGcpInfoOutput(ctx, cloudamqp.GetVpcGcpInfoOutputArgs{
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId: instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //			}, nil)
 //			// VPC peering configuration
 //			_, err = cloudamqp.NewVpcGcpPeering(ctx, "vpc_peering_request", &cloudamqp.VpcGcpPeeringArgs{
-//				InstanceId:     instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId:     instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				PeerNetworkUri: pulumi.String("https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME"),
 //			})
 //			if err != nil {
@@ -125,7 +125,7 @@ import (
 //				Tags: pulumi.StringArray{
 //					pulumi.String("terraform"),
 //				},
-//				VpcId: vpc.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				VpcId: vpc.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //			})
 //			if err != nil {
 //				return err
@@ -139,7 +139,7 @@ import (
 //			}
 //			// VPC peering configuration
 //			_, err = cloudamqp.NewVpcGcpPeering(ctx, "vpc_peering_request", &cloudamqp.VpcGcpPeeringArgs{
-//				VpcId:          vpc.ID().ToIDOutput().ToStringOutput(),
+//				VpcId:          vpc.ID(),
 //				PeerNetworkUri: pulumi.String("https://www.googleapis.com/compute/v1/projects/PROJECT-NAME/global/networks/VPC-NETWORK-NAME"),
 //			})
 //			if err != nil {

@@ -59,7 +59,7 @@ import (
 //				return err
 //			}
 //			_, err = cloudamqp.NewPrivatelinkAzure(ctx, "privatelink", &cloudamqp.PrivatelinkAzureArgs{
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId: instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				ApprovedSubscriptions: pulumi.StringArray{
 //					pulumi.String("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"),
 //				},
@@ -111,14 +111,14 @@ import (
 //				Plan:              pulumi.String("bunny-1"),
 //				Region:            pulumi.String("azure-arm::westus"),
 //				Tags:              pulumi.StringArray{},
-//				VpcId:             vpc.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				VpcId:             vpc.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				KeepAssociatedVpc: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = cloudamqp.NewPrivatelinkAzure(ctx, "privatelink", &cloudamqp.PrivatelinkAzureArgs{
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId: instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				ApprovedSubscriptions: pulumi.StringArray{
 //					pulumi.String("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"),
 //				},
@@ -172,14 +172,14 @@ import (
 //				Plan:              pulumi.String("bunny-1"),
 //				Region:            pulumi.String("azure-arm::westus"),
 //				Tags:              pulumi.StringArray{},
-//				VpcId:             vpc.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				VpcId:             vpc.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				KeepAssociatedVpc: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			privatelink, err := cloudamqp.NewPrivatelinkAzure(ctx, "privatelink", &cloudamqp.PrivatelinkAzureArgs{
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId: instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //				ApprovedSubscriptions: pulumi.StringArray{
 //					pulumi.String("XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"),
 //				},
@@ -210,7 +210,7 @@ import (
 //						},
 //					},
 //				},
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId: instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				privatelink,
 //			}))

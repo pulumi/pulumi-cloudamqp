@@ -74,7 +74,7 @@ import (
 //			}
 //			// Old (deprecated)
 //			_ = cloudamqp.GetCredentialsOutput(ctx, cloudamqp.GetCredentialsOutputArgs{
-//				InstanceId: instance.ID().ToIDOutput().ApplyT(func(id pulumi.ID) (int, error) { return strconv.Atoi(string(id)) }).(pulumi.IntOutput),
+//				InstanceId: instance.ID().ToStringOutput().ApplyT(strconv.Atoi).(pulumi.IntOutput),
 //			}, nil)
 //			return nil
 //		})
