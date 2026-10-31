@@ -10,6 +10,7 @@
                     }
                 }
             },
+            "cloudamqp_custom_domain": {},
             "cloudamqp_integration_aws_eventbridge": {},
             "cloudamqp_integration_log": {},
             "cloudamqp_integration_log_agent": {},
@@ -30,7 +31,7 @@
             "cloudamqp:index/accountActions:AccountActions": 1,
             "cloudamqp:index/alarm:Alarm": 1,
             "cloudamqp:index/customCertificate:CustomCertificate": 1,
-            "cloudamqp:index/customDomain:CustomDomain": 0,
+            "cloudamqp:index/customDomain:CustomDomain": 1,
             "cloudamqp:index/extraDiskSize:ExtraDiskSize": 0,
             "cloudamqp:index/instance:Instance": 0,
             "cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge": 1,
