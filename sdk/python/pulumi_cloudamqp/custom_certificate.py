@@ -38,8 +38,8 @@ class CustomCertificateArgs:
                The PEM-encoded private key corresponding to the certificate.
         :param pulumi.Input[_builtins.str] sni_hosts: Hostname(s) (Server Name Indication) that this certificate
                applies to. Use a comma or space separated string for multiple hostnames.
-        :param pulumi.Input[_builtins.str] key_id: A string based argument to trigger force new (default: "").
-        :param pulumi.Input[_builtins.int] version: An integer based argument to trigger force new (default: 1).
+        :param pulumi.Input[_builtins.str] key_id: A string based argument to trigger a new certificate upload on change (default: "").
+        :param pulumi.Input[_builtins.int] version: An integer based argument to trigger a new certificate upload on change (default: 1).
         """
         pulumi.set(__self__, "ca", ca)
         pulumi.set(__self__, "cert", cert)
@@ -119,7 +119,7 @@ class CustomCertificateArgs:
     @pulumi.getter(name="keyId")
     def key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        A string based argument to trigger force new (default: "").
+        A string based argument to trigger a new certificate upload on change (default: "").
         """
         return pulumi.get(self, "key_id")
 
@@ -131,7 +131,7 @@ class CustomCertificateArgs:
     @pulumi.getter
     def version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        An integer based argument to trigger force new (default: 1).
+        An integer based argument to trigger a new certificate upload on change (default: 1).
         """
         return pulumi.get(self, "version")
 
@@ -158,12 +158,12 @@ class _CustomCertificateState:
         :param pulumi.Input[_builtins.str] cert: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The PEM-encoded server certificate.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier.
-        :param pulumi.Input[_builtins.str] key_id: A string based argument to trigger force new (default: "").
+        :param pulumi.Input[_builtins.str] key_id: A string based argument to trigger a new certificate upload on change (default: "").
         :param pulumi.Input[_builtins.str] private_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The PEM-encoded private key corresponding to the certificate.
         :param pulumi.Input[_builtins.str] sni_hosts: Hostname(s) (Server Name Indication) that this certificate
                applies to. Use a comma or space separated string for multiple hostnames.
-        :param pulumi.Input[_builtins.int] version: An integer based argument to trigger force new (default: 1).
+        :param pulumi.Input[_builtins.int] version: An integer based argument to trigger a new certificate upload on change (default: 1).
         """
         if ca is not None:
             pulumi.set(__self__, "ca", ca)
@@ -222,7 +222,7 @@ class _CustomCertificateState:
     @pulumi.getter(name="keyId")
     def key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        A string based argument to trigger force new (default: "").
+        A string based argument to trigger a new certificate upload on change (default: "").
         """
         return pulumi.get(self, "key_id")
 
@@ -260,7 +260,7 @@ class _CustomCertificateState:
     @pulumi.getter
     def version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        An integer based argument to trigger force new (default: 1).
+        An integer based argument to trigger a new certificate upload on change (default: 1).
         """
         return pulumi.get(self, "version")
 
@@ -286,15 +286,14 @@ class CustomCertificate(pulumi.CustomResource):
         """
         <!-- markdownlint-disable MD033 -->
 
-        This resource allows you to upload a custom certificate to all servers in your cluster. Update is
-        not supported, all changes require replacement. The certificate can be used for one or more SNI
-        hostnames. `ca`, `cert` and `private_key` all use **WriteOnly**, meaning no information is present
-        in plan phase, logs or stored in the state for security purposes.
-
-        > **WARNING:** Please note that when uploading a custom certificate or restoring to default certificate,
-        all current connections will be closed.
+        This resource allows you to upload a custom certificate to all servers in your cluster. The
+        certificate can be used for one or more SNI hostnames. `ca`, `cert` and `private_key` all use
+        **WriteOnly**, meaning no information is present in plan phase, logs or stored in the state for
+        security purposes.
 
         > **Note:** Destroying this resource will restore the cluster to use the default CloudAMQP certificate.
+
+        > **Note:** Updating the certificate (e.g. via `version` or `key_id`) hot-loads the new certificate on the AMQP/MQTT listeners without dropping existing connections.
 
         Only available for dedicated subscription plans running ***RabbitMQ***.
 
@@ -306,12 +305,12 @@ class CustomCertificate(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cert: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The PEM-encoded server certificate.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier.
-        :param pulumi.Input[_builtins.str] key_id: A string based argument to trigger force new (default: "").
+        :param pulumi.Input[_builtins.str] key_id: A string based argument to trigger a new certificate upload on change (default: "").
         :param pulumi.Input[_builtins.str] private_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The PEM-encoded private key corresponding to the certificate.
         :param pulumi.Input[_builtins.str] sni_hosts: Hostname(s) (Server Name Indication) that this certificate
                applies to. Use a comma or space separated string for multiple hostnames.
-        :param pulumi.Input[_builtins.int] version: An integer based argument to trigger force new (default: 1).
+        :param pulumi.Input[_builtins.int] version: An integer based argument to trigger a new certificate upload on change (default: 1).
         """
         ...
     @overload
@@ -322,15 +321,14 @@ class CustomCertificate(pulumi.CustomResource):
         """
         <!-- markdownlint-disable MD033 -->
 
-        This resource allows you to upload a custom certificate to all servers in your cluster. Update is
-        not supported, all changes require replacement. The certificate can be used for one or more SNI
-        hostnames. `ca`, `cert` and `private_key` all use **WriteOnly**, meaning no information is present
-        in plan phase, logs or stored in the state for security purposes.
-
-        > **WARNING:** Please note that when uploading a custom certificate or restoring to default certificate,
-        all current connections will be closed.
+        This resource allows you to upload a custom certificate to all servers in your cluster. The
+        certificate can be used for one or more SNI hostnames. `ca`, `cert` and `private_key` all use
+        **WriteOnly**, meaning no information is present in plan phase, logs or stored in the state for
+        security purposes.
 
         > **Note:** Destroying this resource will restore the cluster to use the default CloudAMQP certificate.
+
+        > **Note:** Updating the certificate (e.g. via `version` or `key_id`) hot-loads the new certificate on the AMQP/MQTT listeners without dropping existing connections.
 
         Only available for dedicated subscription plans running ***RabbitMQ***.
 
@@ -414,12 +412,12 @@ class CustomCertificate(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cert: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The PEM-encoded server certificate.
         :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance identifier.
-        :param pulumi.Input[_builtins.str] key_id: A string based argument to trigger force new (default: "").
+        :param pulumi.Input[_builtins.str] key_id: A string based argument to trigger a new certificate upload on change (default: "").
         :param pulumi.Input[_builtins.str] private_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The PEM-encoded private key corresponding to the certificate.
         :param pulumi.Input[_builtins.str] sni_hosts: Hostname(s) (Server Name Indication) that this certificate
                applies to. Use a comma or space separated string for multiple hostnames.
-        :param pulumi.Input[_builtins.int] version: An integer based argument to trigger force new (default: 1).
+        :param pulumi.Input[_builtins.int] version: An integer based argument to trigger a new certificate upload on change (default: 1).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -464,7 +462,7 @@ class CustomCertificate(pulumi.CustomResource):
     @pulumi.getter(name="keyId")
     def key_id(self) -> pulumi.Output[_builtins.str]:
         """
-        A string based argument to trigger force new (default: "").
+        A string based argument to trigger a new certificate upload on change (default: "").
         """
         return pulumi.get(self, "key_id")
 
@@ -490,7 +488,7 @@ class CustomCertificate(pulumi.CustomResource):
     @pulumi.getter
     def version(self) -> pulumi.Output[_builtins.int]:
         """
-        An integer based argument to trigger force new (default: 1).
+        An integer based argument to trigger a new certificate upload on change (default: 1).
         """
         return pulumi.get(self, "version")
 

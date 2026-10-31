@@ -16,9 +16,8 @@ namespace Pulumi.CloudAmqp
     /// the given hostname, and install it on all servers in your cluster. The certificate will be
     /// automatically renewed going forward.
     /// 
-    /// &gt; **WARNING:** Please note that when creating, changing or deleting the custom domain, the
-    /// listeners on your servers will be restarted in order to apply the changes. This will close your
-    /// current connections.
+    /// &gt; **Note:** Installing, changing or removing the custom domain hot-reloads the new certificate on
+    /// the AMQP, MQTT and other TLS listeners, without dropping existing connections.
     /// 
     /// Your custom domain name needs to point to your CloudAMQP hostname, preferably using a CNAME DNS
     /// record.
@@ -67,13 +66,13 @@ namespace Pulumi.CloudAmqp
         /// Configurable sleep time in seconds between retries for custom domain configuration
         /// </summary>
         [Output("sleep")]
-        public Output<int?> Sleep { get; private set; } = null!;
+        public Output<int> Sleep { get; private set; } = null!;
 
         /// <summary>
         /// Configurable timeout time in seconds for custom domain configuration
         /// </summary>
         [Output("timeout")]
-        public Output<int?> Timeout { get; private set; } = null!;
+        public Output<int> Timeout { get; private set; } = null!;
 
 
         /// <summary>

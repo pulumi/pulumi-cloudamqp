@@ -178,9 +178,8 @@ class CustomDomain(pulumi.CustomResource):
         the given hostname, and install it on all servers in your cluster. The certificate will be
         automatically renewed going forward.
 
-        > **WARNING:** Please note that when creating, changing or deleting the custom domain, the
-        listeners on your servers will be restarted in order to apply the changes. This will close your
-        current connections.
+        > **Note:** Installing, changing or removing the custom domain hot-reloads the new certificate on
+        the AMQP, MQTT and other TLS listeners, without dropping existing connections.
 
         Your custom domain name needs to point to your CloudAMQP hostname, preferably using a CNAME DNS
         record.
@@ -223,9 +222,8 @@ class CustomDomain(pulumi.CustomResource):
         the given hostname, and install it on all servers in your cluster. The certificate will be
         automatically renewed going forward.
 
-        > **WARNING:** Please note that when creating, changing or deleting the custom domain, the
-        listeners on your servers will be restarted in order to apply the changes. This will close your
-        current connections.
+        > **Note:** Installing, changing or removing the custom domain hot-reloads the new certificate on
+        the AMQP, MQTT and other TLS listeners, without dropping existing connections.
 
         Your custom domain name needs to point to your CloudAMQP hostname, preferably using a CNAME DNS
         record.
@@ -338,7 +336,7 @@ class CustomDomain(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def sleep(self) -> pulumi.Output[Optional[_builtins.int]]:
+    def sleep(self) -> pulumi.Output[_builtins.int]:
         """
         Configurable sleep time in seconds between retries for custom domain configuration
         """
@@ -346,7 +344,7 @@ class CustomDomain(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> pulumi.Output[Optional[_builtins.int]]:
+    def timeout(self) -> pulumi.Output[_builtins.int]:
         """
         Configurable timeout time in seconds for custom domain configuration
         """

@@ -67,14 +67,14 @@ public final class CustomCertificateArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * A string based argument to trigger force new (default: &#34;&#34;).
+     * A string based argument to trigger a new certificate upload on change (default: &#34;&#34;).
      * 
      */
     @Import(name="keyId")
     private @Nullable Output<String> keyId;
 
     /**
-     * @return A string based argument to trigger force new (default: &#34;&#34;).
+     * @return A string based argument to trigger a new certificate upload on change (default: &#34;&#34;).
      * 
      */
     public Optional<Output<String>> keyId() {
@@ -116,14 +116,14 @@ public final class CustomCertificateArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * An integer based argument to trigger force new (default: 1).
+     * An integer based argument to trigger a new certificate upload on change (default: 1).
      * 
      */
     @Import(name="version")
     private @Nullable Output<Integer> version;
 
     /**
-     * @return An integer based argument to trigger force new (default: 1).
+     * @return An integer based argument to trigger a new certificate upload on change (default: 1).
      * 
      */
     public Optional<Output<Integer>> version() {
@@ -228,7 +228,7 @@ public final class CustomCertificateArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param keyId A string based argument to trigger force new (default: &#34;&#34;).
+         * @param keyId A string based argument to trigger a new certificate upload on change (default: &#34;&#34;).
          * 
          * @return builder
          * 
@@ -239,7 +239,7 @@ public final class CustomCertificateArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param keyId A string based argument to trigger force new (default: &#34;&#34;).
+         * @param keyId A string based argument to trigger a new certificate upload on change (default: &#34;&#34;).
          * 
          * @return builder
          * 
@@ -295,7 +295,7 @@ public final class CustomCertificateArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param version An integer based argument to trigger force new (default: 1).
+         * @param version An integer based argument to trigger a new certificate upload on change (default: 1).
          * 
          * @return builder
          * 
@@ -306,7 +306,7 @@ public final class CustomCertificateArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param version An integer based argument to trigger force new (default: 1).
+         * @param version An integer based argument to trigger a new certificate upload on change (default: 1).
          * 
          * @return builder
          * 

@@ -12,15 +12,14 @@ namespace Pulumi.CloudAmqp
     /// <summary>
     /// &lt;!-- markdownlint-disable MD033 --&gt;
     /// 
-    /// This resource allows you to upload a custom certificate to all servers in your cluster. Update is
-    /// not supported, all changes require replacement. The certificate can be used for one or more SNI
-    /// hostnames. `Ca`, `Cert` and `PrivateKey` all use **WriteOnly**, meaning no information is present
-    /// in plan phase, logs or stored in the state for security purposes.
-    /// 
-    /// &gt; **WARNING:** Please note that when uploading a custom certificate or restoring to default certificate,
-    /// all current connections will be closed.
+    /// This resource allows you to upload a custom certificate to all servers in your cluster. The
+    /// certificate can be used for one or more SNI hostnames. `Ca`, `Cert` and `PrivateKey` all use
+    /// **WriteOnly**, meaning no information is present in plan phase, logs or stored in the state for
+    /// security purposes.
     /// 
     /// &gt; **Note:** Destroying this resource will restore the cluster to use the default CloudAMQP certificate.
+    /// 
+    /// &gt; **Note:** Updating the certificate (e.g. via `Version` or `KeyId`) hot-loads the new certificate on the AMQP/MQTT listeners without dropping existing connections.
     /// 
     /// Only available for dedicated subscription plans running ***RabbitMQ***.
     /// </summary>
@@ -48,7 +47,7 @@ namespace Pulumi.CloudAmqp
         public Output<int> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// A string based argument to trigger force new (default: "").
+        /// A string based argument to trigger a new certificate upload on change (default: "").
         /// </summary>
         [Output("keyId")]
         public Output<string> KeyId { get; private set; } = null!;
@@ -68,7 +67,7 @@ namespace Pulumi.CloudAmqp
         public Output<string> SniHosts { get; private set; } = null!;
 
         /// <summary>
-        /// An integer based argument to trigger force new (default: 1).
+        /// An integer based argument to trigger a new certificate upload on change (default: 1).
         /// </summary>
         [Output("version")]
         public Output<int> Version { get; private set; } = null!;
@@ -166,7 +165,7 @@ namespace Pulumi.CloudAmqp
         public Input<int> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// A string based argument to trigger force new (default: "").
+        /// A string based argument to trigger a new certificate upload on change (default: "").
         /// </summary>
         [Input("keyId")]
         public Input<string>? KeyId { get; set; }
@@ -196,7 +195,7 @@ namespace Pulumi.CloudAmqp
         public Input<string> SniHosts { get; set; } = null!;
 
         /// <summary>
-        /// An integer based argument to trigger force new (default: 1).
+        /// An integer based argument to trigger a new certificate upload on change (default: 1).
         /// </summary>
         [Input("version")]
         public Input<int>? Version { get; set; }
@@ -250,7 +249,7 @@ namespace Pulumi.CloudAmqp
         public Input<int>? InstanceId { get; set; }
 
         /// <summary>
-        /// A string based argument to trigger force new (default: "").
+        /// A string based argument to trigger a new certificate upload on change (default: "").
         /// </summary>
         [Input("keyId")]
         public Input<string>? KeyId { get; set; }
@@ -280,7 +279,7 @@ namespace Pulumi.CloudAmqp
         public Input<string>? SniHosts { get; set; }
 
         /// <summary>
-        /// An integer based argument to trigger force new (default: 1).
+        /// An integer based argument to trigger a new certificate upload on change (default: 1).
         /// </summary>
         [Input("version")]
         public Input<int>? Version { get; set; }
