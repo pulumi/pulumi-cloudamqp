@@ -7,15 +7,14 @@ import * as utilities from "./utilities";
 /**
  * <!-- markdownlint-disable MD033 -->
  *
- * This resource allows you to upload a custom certificate to all servers in your cluster. Update is
- * not supported, all changes require replacement. The certificate can be used for one or more SNI
- * hostnames. `ca`, `cert` and `privateKey` all use **WriteOnly**, meaning no information is present
- * in plan phase, logs or stored in the state for security purposes.
- *
- * > **WARNING:** Please note that when uploading a custom certificate or restoring to default certificate,
- * all current connections will be closed.
+ * This resource allows you to upload a custom certificate to all servers in your cluster. The
+ * certificate can be used for one or more SNI hostnames. `ca`, `cert` and `privateKey` all use
+ * **WriteOnly**, meaning no information is present in plan phase, logs or stored in the state for
+ * security purposes.
  *
  * > **Note:** Destroying this resource will restore the cluster to use the default CloudAMQP certificate.
+ *
+ * > **Note:** Updating the certificate (e.g. via `version` or `keyId`) hot-loads the new certificate on the AMQP/MQTT listeners without dropping existing connections.
  *
  * Only available for dedicated subscription plans running ***RabbitMQ***.
  */
@@ -62,7 +61,7 @@ export class CustomCertificate extends pulumi.CustomResource {
      */
     declare public readonly instanceId: pulumi.Output<number>;
     /**
-     * A string based argument to trigger force new (default: "").
+     * A string based argument to trigger a new certificate upload on change (default: "").
      */
     declare public readonly keyId: pulumi.Output<string>;
     /**
@@ -76,7 +75,7 @@ export class CustomCertificate extends pulumi.CustomResource {
      */
     declare public readonly sniHosts: pulumi.Output<string>;
     /**
-     * An integer based argument to trigger force new (default: 1).
+     * An integer based argument to trigger a new certificate upload on change (default: 1).
      */
     declare public readonly version: pulumi.Output<number>;
 
@@ -151,7 +150,7 @@ export interface CustomCertificateState {
      */
     instanceId?: pulumi.Input<number | undefined>;
     /**
-     * A string based argument to trigger force new (default: "").
+     * A string based argument to trigger a new certificate upload on change (default: "").
      */
     keyId?: pulumi.Input<string | undefined>;
     /**
@@ -165,7 +164,7 @@ export interface CustomCertificateState {
      */
     sniHosts?: pulumi.Input<string | undefined>;
     /**
-     * An integer based argument to trigger force new (default: 1).
+     * An integer based argument to trigger a new certificate upload on change (default: 1).
      */
     version?: pulumi.Input<number | undefined>;
 }
@@ -189,7 +188,7 @@ export interface CustomCertificateArgs {
      */
     instanceId: pulumi.Input<number>;
     /**
-     * A string based argument to trigger force new (default: "").
+     * A string based argument to trigger a new certificate upload on change (default: "").
      */
     keyId?: pulumi.Input<string | undefined>;
     /**
@@ -203,7 +202,7 @@ export interface CustomCertificateArgs {
      */
     sniHosts: pulumi.Input<string>;
     /**
-     * An integer based argument to trigger force new (default: 1).
+     * An integer based argument to trigger a new certificate upload on change (default: 1).
      */
     version?: pulumi.Input<number | undefined>;
 }

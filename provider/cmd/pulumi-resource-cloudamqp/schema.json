@@ -1430,7 +1430,7 @@
             }
         },
         "cloudamqp:index/customCertificate:CustomCertificate": {
-            "description": "\u003c!-- markdownlint-disable MD033 --\u003e\n\nThis resource allows you to upload a custom certificate to all servers in your cluster. Update is\nnot supported, all changes require replacement. The certificate can be used for one or more SNI\nhostnames. \u003cspan pulumi-lang-nodejs=\"`ca`\" pulumi-lang-dotnet=\"`Ca`\" pulumi-lang-go=\"`ca`\" pulumi-lang-python=\"`ca`\" pulumi-lang-yaml=\"`ca`\" pulumi-lang-java=\"`ca`\" pulumi-lang-hcl=\"`ca`\"\u003e`ca`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`cert`\" pulumi-lang-dotnet=\"`Cert`\" pulumi-lang-go=\"`cert`\" pulumi-lang-python=\"`cert`\" pulumi-lang-yaml=\"`cert`\" pulumi-lang-java=\"`cert`\" pulumi-lang-hcl=\"`cert`\"\u003e`cert`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`privateKey`\" pulumi-lang-dotnet=\"`PrivateKey`\" pulumi-lang-go=\"`privateKey`\" pulumi-lang-python=\"`private_key`\" pulumi-lang-yaml=\"`privateKey`\" pulumi-lang-java=\"`privateKey`\" pulumi-lang-hcl=\"`private_key`\"\u003e`privateKey`\u003c/span\u003e all use **WriteOnly**, meaning no information is present\nin plan phase, logs or stored in the state for security purposes.\n\n\u003e **WARNING:** Please note that when uploading a custom certificate or restoring to default certificate,\nall current connections will be closed.\n\n\u003e **Note:** Destroying this resource will restore the cluster to use the default CloudAMQP certificate.\n\nOnly available for dedicated subscription plans running ***RabbitMQ***.\n\n",
+            "description": "\u003c!-- markdownlint-disable MD033 --\u003e\n\nThis resource allows you to upload a custom certificate to all servers in your cluster. The\ncertificate can be used for one or more SNI hostnames. \u003cspan pulumi-lang-nodejs=\"`ca`\" pulumi-lang-dotnet=\"`Ca`\" pulumi-lang-go=\"`ca`\" pulumi-lang-python=\"`ca`\" pulumi-lang-yaml=\"`ca`\" pulumi-lang-java=\"`ca`\" pulumi-lang-hcl=\"`ca`\"\u003e`ca`\u003c/span\u003e, \u003cspan pulumi-lang-nodejs=\"`cert`\" pulumi-lang-dotnet=\"`Cert`\" pulumi-lang-go=\"`cert`\" pulumi-lang-python=\"`cert`\" pulumi-lang-yaml=\"`cert`\" pulumi-lang-java=\"`cert`\" pulumi-lang-hcl=\"`cert`\"\u003e`cert`\u003c/span\u003e and \u003cspan pulumi-lang-nodejs=\"`privateKey`\" pulumi-lang-dotnet=\"`PrivateKey`\" pulumi-lang-go=\"`privateKey`\" pulumi-lang-python=\"`private_key`\" pulumi-lang-yaml=\"`privateKey`\" pulumi-lang-java=\"`privateKey`\" pulumi-lang-hcl=\"`private_key`\"\u003e`privateKey`\u003c/span\u003e all use\n**WriteOnly**, meaning no information is present in plan phase, logs or stored in the state for\nsecurity purposes.\n\n\u003e **Note:** Destroying this resource will restore the cluster to use the default CloudAMQP certificate.\n\n\u003e **Note:** Updating the certificate (e.g. via \u003cspan pulumi-lang-nodejs=\"`version`\" pulumi-lang-dotnet=\"`Version`\" pulumi-lang-go=\"`version`\" pulumi-lang-python=\"`version`\" pulumi-lang-yaml=\"`version`\" pulumi-lang-java=\"`version`\" pulumi-lang-hcl=\"`version`\"\u003e`version`\u003c/span\u003e or \u003cspan pulumi-lang-nodejs=\"`keyId`\" pulumi-lang-dotnet=\"`KeyId`\" pulumi-lang-go=\"`keyId`\" pulumi-lang-python=\"`key_id`\" pulumi-lang-yaml=\"`keyId`\" pulumi-lang-java=\"`keyId`\" pulumi-lang-hcl=\"`key_id`\"\u003e`keyId`\u003c/span\u003e) hot-loads the new certificate on the AMQP/MQTT listeners without dropping existing connections.\n\nOnly available for dedicated subscription plans running ***RabbitMQ***.\n\n",
             "properties": {
                 "ca": {
                     "type": "string",
@@ -1448,7 +1448,7 @@
                 },
                 "keyId": {
                     "type": "string",
-                    "description": "A string based argument to trigger force new (default: \"\").\n"
+                    "description": "A string based argument to trigger a new certificate upload on change (default: \"\").\n"
                 },
                 "privateKey": {
                     "type": "string",
@@ -1461,7 +1461,7 @@
                 },
                 "version": {
                     "type": "integer",
-                    "description": "An integer based argument to trigger force new (default: 1).\n"
+                    "description": "An integer based argument to trigger a new certificate upload on change (default: 1).\n"
                 }
             },
             "required": [
@@ -1490,7 +1490,7 @@
                 },
                 "keyId": {
                     "type": "string",
-                    "description": "A string based argument to trigger force new (default: \"\").\n"
+                    "description": "A string based argument to trigger a new certificate upload on change (default: \"\").\n"
                 },
                 "privateKey": {
                     "type": "string",
@@ -1503,7 +1503,7 @@
                 },
                 "version": {
                     "type": "integer",
-                    "description": "An integer based argument to trigger force new (default: 1).\n"
+                    "description": "An integer based argument to trigger a new certificate upload on change (default: 1).\n"
                 }
             },
             "requiredInputs": [
@@ -1532,7 +1532,7 @@
                     },
                     "keyId": {
                         "type": "string",
-                        "description": "A string based argument to trigger force new (default: \"\").\n"
+                        "description": "A string based argument to trigger a new certificate upload on change (default: \"\").\n"
                     },
                     "privateKey": {
                         "type": "string",
@@ -1545,14 +1545,14 @@
                     },
                     "version": {
                         "type": "integer",
-                        "description": "An integer based argument to trigger force new (default: 1).\n"
+                        "description": "An integer based argument to trigger a new certificate upload on change (default: 1).\n"
                     }
                 },
                 "type": "object"
             }
         },
         "cloudamqp:index/customDomain:CustomDomain": {
-            "description": "This resource allows you to configure and manage your custom domain for the CloudAMQP instance.\n\nAdding a custom domain to your instance will generate a TLS certificate from [Let's Encrypt], for\nthe given hostname, and install it on all servers in your cluster. The certificate will be\nautomatically renewed going forward.\n\n\u003e **WARNING:** Please note that when creating, changing or deleting the custom domain, the\nlisteners on your servers will be restarted in order to apply the changes. This will close your\ncurrent connections.\n\nYour custom domain name needs to point to your CloudAMQP hostname, preferably using a CNAME DNS\nrecord.\n\nOnly available for dedicated subscription plans running ***RabbitMQ***.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst settings = new cloudamqp.CustomDomain(\"settings\", {\n    instanceId: instance.id,\n    hostname: \"myname.mydomain\",\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nsettings = cloudamqp.CustomDomain(\"settings\",\n    instance_id=instance[\"id\"],\n    hostname=\"myname.mydomain\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var settings = new CloudAmqp.CustomDomain(\"settings\", new()\n    {\n        InstanceId = instance.Id,\n        Hostname = \"myname.mydomain\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.NewCustomDomain(ctx, \"settings\", \u0026cloudamqp.CustomDomainArgs{\n\t\t\tInstanceId: pulumi.Any(instance.Id),\n\t\t\tHostname:   pulumi.String(\"myname.mydomain\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\nterraform {\n  required_providers {\n    cloudamqp = {\n      source = \"pulumi/cloudamqp\"\n    }\n  }\n}\n\nresource \"cloudamqp_custom_domain\" \"settings\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  instance_id = instance.id\n  hostname    = \"myname.mydomain\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.cloudamqp.CustomDomain;\nimport com.pulumi.cloudamqp.CustomDomainArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var settings = new CustomDomain(\"settings\", CustomDomainArgs.builder()\n            .instanceId(instance.get(\"id\"))\n            .hostname(\"myname.mydomain\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  settings:\n    type: cloudamqp:CustomDomain\n    properties:\n      instanceId: ${instance.id}\n      hostname: myname.mydomain\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Dependency\n\nThis resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n\n",
+            "description": "This resource allows you to configure and manage your custom domain for the CloudAMQP instance.\n\nAdding a custom domain to your instance will generate a TLS certificate from [Let's Encrypt], for\nthe given hostname, and install it on all servers in your cluster. The certificate will be\nautomatically renewed going forward.\n\n\u003e **Note:** Installing, changing or removing the custom domain hot-reloads the new certificate on\nthe AMQP, MQTT and other TLS listeners, without dropping existing connections.\n\nYour custom domain name needs to point to your CloudAMQP hostname, preferably using a CNAME DNS\nrecord.\n\nOnly available for dedicated subscription plans running ***RabbitMQ***.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as cloudamqp from \"@pulumi/cloudamqp\";\n\nconst settings = new cloudamqp.CustomDomain(\"settings\", {\n    instanceId: instance.id,\n    hostname: \"myname.mydomain\",\n});\n```\n```python\nimport pulumi\nimport pulumi_cloudamqp as cloudamqp\n\nsettings = cloudamqp.CustomDomain(\"settings\",\n    instance_id=instance[\"id\"],\n    hostname=\"myname.mydomain\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing CloudAmqp = Pulumi.CloudAmqp;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var settings = new CloudAmqp.CustomDomain(\"settings\", new()\n    {\n        InstanceId = instance.Id,\n        Hostname = \"myname.mydomain\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-cloudamqp/sdk/v3/go/cloudamqp\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudamqp.NewCustomDomain(ctx, \"settings\", \u0026cloudamqp.CustomDomainArgs{\n\t\t\tInstanceId: pulumi.Any(instance.Id),\n\t\t\tHostname:   pulumi.String(\"myname.mydomain\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\nterraform {\n  required_providers {\n    cloudamqp = {\n      source = \"pulumi/cloudamqp\"\n    }\n  }\n}\n\nresource \"cloudamqp_custom_domain\" \"settings\" {\n  lifecycle {\n    create_before_destroy = true\n  }\n  instance_id = instance.id\n  hostname    = \"myname.mydomain\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.cloudamqp.CustomDomain;\nimport com.pulumi.cloudamqp.CustomDomainArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var settings = new CustomDomain(\"settings\", CustomDomainArgs.builder()\n            .instanceId(instance.get(\"id\"))\n            .hostname(\"myname.mydomain\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  settings:\n    type: cloudamqp:CustomDomain\n    properties:\n      instanceId: ${instance.id}\n      hostname: myname.mydomain\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Dependency\n\nThis resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.\n\n",
             "properties": {
                 "hostname": {
                     "type": "string",
@@ -1573,7 +1573,9 @@
             },
             "required": [
                 "hostname",
-                "instanceId"
+                "instanceId",
+                "sleep",
+                "timeout"
             ],
             "inputProperties": {
                 "hostname": {
@@ -1582,8 +1584,7 @@
                 },
                 "instanceId": {
                     "type": "integer",
-                    "description": "The CloudAMQP instance ID.\n",
-                    "willReplaceOnChanges": true
+                    "description": "The CloudAMQP instance ID.\n"
                 },
                 "sleep": {
                     "type": "integer",
@@ -1607,8 +1608,7 @@
                     },
                     "instanceId": {
                         "type": "integer",
-                        "description": "The CloudAMQP instance ID.\n",
-                        "willReplaceOnChanges": true
+                        "description": "The CloudAMQP instance ID.\n"
                     },
                     "sleep": {
                         "type": "integer",

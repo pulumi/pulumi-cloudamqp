@@ -18,9 +18,8 @@ import (
 // the given hostname, and install it on all servers in your cluster. The certificate will be
 // automatically renewed going forward.
 //
-// > **WARNING:** Please note that when creating, changing or deleting the custom domain, the
-// listeners on your servers will be restarted in order to apply the changes. This will close your
-// current connections.
+// > **Note:** Installing, changing or removing the custom domain hot-reloads the new certificate on
+// the AMQP, MQTT and other TLS listeners, without dropping existing connections.
 //
 // Your custom domain name needs to point to your CloudAMQP hostname, preferably using a CNAME DNS
 // record.
@@ -65,9 +64,9 @@ type CustomDomain struct {
 	// The CloudAMQP instance ID.
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
 	// Configurable sleep time in seconds between retries for custom domain configuration
-	Sleep pulumi.IntPtrOutput `pulumi:"sleep"`
+	Sleep pulumi.IntOutput `pulumi:"sleep"`
 	// Configurable timeout time in seconds for custom domain configuration
-	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
+	Timeout pulumi.IntOutput `pulumi:"timeout"`
 }
 
 // NewCustomDomain registers a new resource with the given unique name, arguments, and options.
@@ -252,13 +251,13 @@ func (o CustomDomainOutput) InstanceId() pulumi.IntOutput {
 }
 
 // Configurable sleep time in seconds between retries for custom domain configuration
-func (o CustomDomainOutput) Sleep() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *CustomDomain) pulumi.IntPtrOutput { return v.Sleep }).(pulumi.IntPtrOutput)
+func (o CustomDomainOutput) Sleep() pulumi.IntOutput {
+	return o.ApplyT(func(v *CustomDomain) pulumi.IntOutput { return v.Sleep }).(pulumi.IntOutput)
 }
 
 // Configurable timeout time in seconds for custom domain configuration
-func (o CustomDomainOutput) Timeout() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *CustomDomain) pulumi.IntPtrOutput { return v.Timeout }).(pulumi.IntPtrOutput)
+func (o CustomDomainOutput) Timeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *CustomDomain) pulumi.IntOutput { return v.Timeout }).(pulumi.IntOutput)
 }
 
 type CustomDomainArrayOutput struct{ *pulumi.OutputState }
