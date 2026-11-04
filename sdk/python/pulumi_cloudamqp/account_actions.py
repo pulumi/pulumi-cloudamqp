@@ -184,6 +184,16 @@ class AccountActions(pulumi.CustomResource):
         __props__.__dict__["instance_id"] = instance_id
         return AccountActions(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            action: pulumi.Input[Optional[_builtins.str]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["action"] = action
+        __props__["instanceId"] = instance_id
+        return pulumi.runtime.exists_resource(None, 'cloudamqp:index/accountActions:AccountActions', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def action(self) -> pulumi.Output[_builtins.str]:

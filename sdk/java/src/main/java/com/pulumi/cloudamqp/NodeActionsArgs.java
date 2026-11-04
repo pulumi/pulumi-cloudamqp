@@ -51,22 +51,20 @@ public final class NodeActionsArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * The node name, e.g. `green-guinea-pig-01`. Use `nodeNames` instead. This attribute will be removed in a future version.
      * 
-     * @deprecated
-     * Use nodeNames instead. This attribute will be removed in a future version.
+     * @deprecated Use nodeNames instead. This attribute will be removed in a future version.
      * 
      */
-    @Deprecated /* Use nodeNames instead. This attribute will be removed in a future version. */
+    @Deprecated
     @Import(name="nodeName")
     private @Nullable Output<String> nodeName;
 
     /**
      * @return The node name, e.g. `green-guinea-pig-01`. Use `nodeNames` instead. This attribute will be removed in a future version.
      * 
-     * @deprecated
-     * Use nodeNames instead. This attribute will be removed in a future version.
+     * @deprecated Use nodeNames instead. This attribute will be removed in a future version.
      * 
      */
-    @Deprecated /* Use nodeNames instead. This attribute will be removed in a future version. */
+    @Deprecated
     public Optional<Output<String>> nodeName() {
         return Optional.ofNullable(this.nodeName);
     }
@@ -196,11 +194,10 @@ public final class NodeActionsArgs extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * Use nodeNames instead. This attribute will be removed in a future version.
+         * @deprecated Use nodeNames instead. This attribute will be removed in a future version.
          * 
          */
-        @Deprecated /* Use nodeNames instead. This attribute will be removed in a future version. */
+        @Deprecated
         public Builder nodeName(@Nullable Output<String> nodeName) {
             $.nodeName = nodeName;
             return this;
@@ -211,11 +208,10 @@ public final class NodeActionsArgs extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * Use nodeNames instead. This attribute will be removed in a future version.
+         * @deprecated Use nodeNames instead. This attribute will be removed in a future version.
          * 
          */
-        @Deprecated /* Use nodeNames instead. This attribute will be removed in a future version. */
+        @Deprecated
         public Builder nodeName(String nodeName) {
             return nodeName(Output.of(nodeName));
         }

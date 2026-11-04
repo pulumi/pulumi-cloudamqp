@@ -1417,6 +1417,48 @@ class IntegrationMetric(pulumi.CustomResource):
         __props__.__dict__["vhost_allowlist"] = vhost_allowlist
         return IntegrationMetric(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            api_key: pulumi.Input[Optional[_builtins.str]] = None,
+            client_email: pulumi.Input[Optional[_builtins.str]] = None,
+            credentials: pulumi.Input[Optional[_builtins.str]] = None,
+            email: pulumi.Input[Optional[_builtins.str]] = None,
+            iam_external_id: pulumi.Input[Optional[_builtins.str]] = None,
+            iam_role: pulumi.Input[Optional[_builtins.str]] = None,
+            include_ad_queues: pulumi.Input[Optional[_builtins.bool]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            queue_allowlist: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[_builtins.str]] = None,
+            vhost_allowlist: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessKeyId"] = access_key_id
+        __props__["apiKey"] = api_key
+        __props__["clientEmail"] = client_email
+        __props__["credentials"] = credentials
+        __props__["email"] = email
+        __props__["iamExternalId"] = iam_external_id
+        __props__["iamRole"] = iam_role
+        __props__["includeAdQueues"] = include_ad_queues
+        __props__["instanceId"] = instance_id
+        __props__["name"] = name
+        __props__["privateKey"] = private_key
+        __props__["privateKeyId"] = private_key_id
+        __props__["projectId"] = project_id
+        __props__["queueAllowlist"] = queue_allowlist
+        __props__["region"] = region
+        __props__["secretAccessKey"] = secret_access_key
+        __props__["tags"] = tags
+        __props__["vhostAllowlist"] = vhost_allowlist
+        return pulumi.runtime.exists_resource(None, 'cloudamqp:index/integrationMetric:IntegrationMetric', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="accessKeyId")
     def access_key_id(self) -> pulumi.Output[Optional[_builtins.str]]:

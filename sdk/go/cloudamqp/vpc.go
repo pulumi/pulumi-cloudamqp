@@ -147,6 +147,12 @@ func (VpcState) ElementType() reflect.Type {
 	return reflect.TypeOf((*vpcState)(nil)).Elem()
 }
 
+// VpcExists checks whether an existing Vpc resource with the given ID exists.
+func VpcExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *VpcState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("cloudamqp:index/vpc:Vpc", id, state, "", opts...)
+}
+
 type vpcArgs struct {
 	// The name of the VPC.
 	Name *string `pulumi:"name"`

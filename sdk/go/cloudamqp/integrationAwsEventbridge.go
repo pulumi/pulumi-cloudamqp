@@ -264,6 +264,12 @@ func (IntegrationAwsEventbridgeState) ElementType() reflect.Type {
 	return reflect.TypeOf((*integrationAwsEventbridgeState)(nil)).Elem()
 }
 
+// IntegrationAwsEventbridgeExists checks whether an existing IntegrationAwsEventbridge resource with the given ID exists.
+func IntegrationAwsEventbridgeExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IntegrationAwsEventbridgeState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge", id, state, "", opts...)
+}
+
 type integrationAwsEventbridgeArgs struct {
 	// The 12 digit AWS Account ID where you want the events to be sent to.
 	AwsAccountId string `pulumi:"awsAccountId"`

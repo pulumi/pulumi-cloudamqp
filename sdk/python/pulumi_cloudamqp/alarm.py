@@ -996,6 +996,36 @@ class Alarm(pulumi.CustomResource):
         __props__.__dict__["vhost_regex"] = vhost_regex
         return Alarm(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            allow_downtime: pulumi.Input[Optional[_builtins.bool]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            message_type: pulumi.Input[Optional[_builtins.str]] = None,
+            queue_regex: pulumi.Input[Optional[_builtins.str]] = None,
+            recipients: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+            reminder_interval: pulumi.Input[Optional[_builtins.int]] = None,
+            time_threshold: pulumi.Input[Optional[_builtins.int]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            value_calculation: pulumi.Input[Optional[_builtins.str]] = None,
+            value_threshold: pulumi.Input[Optional[_builtins.int]] = None,
+            vhost_regex: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["allowDowntime"] = allow_downtime
+        __props__["enabled"] = enabled
+        __props__["instanceId"] = instance_id
+        __props__["messageType"] = message_type
+        __props__["queueRegex"] = queue_regex
+        __props__["recipients"] = recipients
+        __props__["reminderInterval"] = reminder_interval
+        __props__["timeThreshold"] = time_threshold
+        __props__["type"] = type
+        __props__["valueCalculation"] = value_calculation
+        __props__["valueThreshold"] = value_threshold
+        __props__["vhostRegex"] = vhost_regex
+        return pulumi.runtime.exists_resource(None, 'cloudamqp:index/alarm:Alarm', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="allowDowntime")
     def allow_downtime(self) -> pulumi.Output[Optional[_builtins.bool]]:

@@ -743,6 +743,12 @@ func (IntegrationMetricState) ElementType() reflect.Type {
 	return reflect.TypeOf((*integrationMetricState)(nil)).Elem()
 }
 
+// IntegrationMetricExists checks whether an existing IntegrationMetric resource with the given ID exists.
+func IntegrationMetricExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IntegrationMetricState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("cloudamqp:index/integrationMetric:IntegrationMetric", id, state, "", opts...)
+}
+
 type integrationMetricArgs struct {
 	// AWS access key identifier. (Cloudwatch)
 	AccessKeyId *string `pulumi:"accessKeyId"`

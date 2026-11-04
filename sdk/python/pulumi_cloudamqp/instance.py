@@ -1818,6 +1818,56 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["vpc_subnet"] = vpc_subnet
         return Instance(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            apikey: pulumi.Input[Optional[_builtins.str]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+            copy_settings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['InstanceCopySettingArgs', 'InstanceCopySettingArgsDict', 'outputs.InstanceCopySetting']]]]] = None,
+            credentials: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            dedicated: pulumi.Input[Optional[_builtins.bool]] = None,
+            host: pulumi.Input[Optional[_builtins.str]] = None,
+            host_internal: pulumi.Input[Optional[_builtins.str]] = None,
+            keep_associated_vpc: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            no_default_alarms: pulumi.Input[Optional[_builtins.bool]] = None,
+            nodes: pulumi.Input[Optional[_builtins.int]] = None,
+            plan: pulumi.Input[Optional[_builtins.str]] = None,
+            preferred_azs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ready: pulumi.Input[Optional[_builtins.bool]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            rmq_version: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            url: pulumi.Input[Optional[_builtins.str]] = None,
+            vhost: pulumi.Input[Optional[_builtins.str]] = None,
+            vpc_id: pulumi.Input[Optional[_builtins.int]] = None,
+            vpc_subnet: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["apikey"] = apikey
+        __props__["backend"] = backend
+        __props__["clusterName"] = cluster_name
+        __props__["copySettings"] = copy_settings
+        __props__["credentials"] = credentials
+        __props__["dedicated"] = dedicated
+        __props__["host"] = host
+        __props__["hostInternal"] = host_internal
+        __props__["keepAssociatedVpc"] = keep_associated_vpc
+        __props__["name"] = name
+        __props__["noDefaultAlarms"] = no_default_alarms
+        __props__["nodes"] = nodes
+        __props__["plan"] = plan
+        __props__["preferredAzs"] = preferred_azs
+        __props__["ready"] = ready
+        __props__["region"] = region
+        __props__["rmqVersion"] = rmq_version
+        __props__["tags"] = tags
+        __props__["url"] = url
+        __props__["vhost"] = vhost
+        __props__["vpcId"] = vpc_id
+        __props__["vpcSubnet"] = vpc_subnet
+        return pulumi.runtime.exists_resource(None, 'cloudamqp:index/instance:Instance', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def apikey(self) -> pulumi.Output[_builtins.str]:

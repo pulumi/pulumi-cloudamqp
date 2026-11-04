@@ -485,6 +485,12 @@ func (Oauth2ConfigurationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*oauth2ConfigurationState)(nil)).Elem()
 }
 
+// Oauth2ConfigurationExists checks whether an existing Oauth2Configuration resource with the given ID exists.
+func Oauth2ConfigurationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *Oauth2ConfigurationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("cloudamqp:index/oauth2Configuration:Oauth2Configuration", id, state, "", opts...)
+}
+
 type oauth2ConfigurationArgs struct {
 	// List of additional JWT claim keys to extract OAuth2
 	// scopes from.

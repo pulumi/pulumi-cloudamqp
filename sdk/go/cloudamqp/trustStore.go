@@ -193,6 +193,12 @@ func (TrustStoreState) ElementType() reflect.Type {
 	return reflect.TypeOf((*trustStoreState)(nil)).Elem()
 }
 
+// TrustStoreExists checks whether an existing TrustStore resource with the given ID exists.
+func TrustStoreExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TrustStoreState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("cloudamqp:index/trustStore:TrustStore", id, state, "", opts...)
+}
+
 type trustStoreArgs struct {
 	// File trust store configuration block. See File Block below.
 	File *TrustStoreFile `pulumi:"file"`

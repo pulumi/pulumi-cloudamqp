@@ -273,6 +273,12 @@ func (WebhookState) ElementType() reflect.Type {
 	return reflect.TypeOf((*webhookState)(nil)).Elem()
 }
 
+// WebhookExists checks whether an existing Webhook resource with the given ID exists.
+func WebhookExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *WebhookState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("cloudamqp:index/webhook:Webhook", id, state, "", opts...)
+}
+
 type webhookArgs struct {
 	// Max simultaneous requests to the endpoint.
 	Concurrency int `pulumi:"concurrency"`

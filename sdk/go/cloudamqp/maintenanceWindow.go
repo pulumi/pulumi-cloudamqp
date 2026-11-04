@@ -239,6 +239,12 @@ func (MaintenanceWindowState) ElementType() reflect.Type {
 	return reflect.TypeOf((*maintenanceWindowState)(nil)).Elem()
 }
 
+// MaintenanceWindowExists checks whether an existing MaintenanceWindow resource with the given ID exists.
+func MaintenanceWindowExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *MaintenanceWindowState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("cloudamqp:index/maintenanceWindow:MaintenanceWindow", id, state, "", opts...)
+}
+
 type maintenanceWindowArgs struct {
 	// Allow scheduling of a maintenance for version update
 	// when a new LavinMQ version been released.

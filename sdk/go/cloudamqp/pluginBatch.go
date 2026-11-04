@@ -254,6 +254,12 @@ func (PluginBatchState) ElementType() reflect.Type {
 	return reflect.TypeOf((*pluginBatchState)(nil)).Elem()
 }
 
+// PluginBatchExists checks whether an existing PluginBatch resource with the given ID exists.
+func PluginBatchExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PluginBatchState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("cloudamqp:index/pluginBatch:PluginBatch", id, state, "", opts...)
+}
+
 type pluginBatchArgs struct {
 	// The CloudAMQP instance ID.
 	InstanceId int `pulumi:"instanceId"`

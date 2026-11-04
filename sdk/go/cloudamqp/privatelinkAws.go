@@ -370,6 +370,12 @@ func (PrivatelinkAwsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*privatelinkAwsState)(nil)).Elem()
 }
 
+// PrivatelinkAwsExists checks whether an existing PrivatelinkAws resource with the given ID exists.
+func PrivatelinkAwsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PrivatelinkAwsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("cloudamqp:index/privatelinkAws:PrivatelinkAws", id, state, "", opts...)
+}
+
 type privatelinkAwsArgs struct {
 	// Allowed principals to access the endpoint service.
 	AllowedPrincipals []string `pulumi:"allowedPrincipals"`

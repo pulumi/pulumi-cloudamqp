@@ -432,6 +432,26 @@ class CustomCertificate(pulumi.CustomResource):
         __props__.__dict__["version"] = version
         return CustomCertificate(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            ca: pulumi.Input[Optional[_builtins.str]] = None,
+            cert: pulumi.Input[Optional[_builtins.str]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key: pulumi.Input[Optional[_builtins.str]] = None,
+            sni_hosts: pulumi.Input[Optional[_builtins.str]] = None,
+            version: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["ca"] = ca
+        __props__["cert"] = cert
+        __props__["instanceId"] = instance_id
+        __props__["keyId"] = key_id
+        __props__["privateKey"] = private_key
+        __props__["sniHosts"] = sni_hosts
+        __props__["version"] = version
+        return pulumi.runtime.exists_resource(None, 'cloudamqp:index/customCertificate:CustomCertificate', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def ca(self) -> pulumi.Output[_builtins.str]:

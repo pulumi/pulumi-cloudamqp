@@ -1560,6 +1560,54 @@ class RabbitConfiguration(pulumi.CustomResource):
         __props__.__dict__["vm_memory_high_watermark"] = vm_memory_high_watermark
         return RabbitConfiguration(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            channel_max: pulumi.Input[Optional[_builtins.int]] = None,
+            cluster_partition_handling: pulumi.Input[Optional[_builtins.str]] = None,
+            connection_max: pulumi.Input[Optional[_builtins.int]] = None,
+            consumer_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+            heartbeat: pulumi.Input[Optional[_builtins.int]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            log_exchange_level: pulumi.Input[Optional[_builtins.str]] = None,
+            log_level: pulumi.Input[Optional[_builtins.str]] = None,
+            max_message_size: pulumi.Input[Optional[_builtins.int]] = None,
+            message_interceptors_timestamp_overwrite: pulumi.Input[Optional[_builtins.str]] = None,
+            mqtt_exchange: pulumi.Input[Optional[_builtins.str]] = None,
+            mqtt_max_session_expiry_interval_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+            mqtt_ssl_cert_login: pulumi.Input[Optional[_builtins.bool]] = None,
+            mqtt_vhost: pulumi.Input[Optional[_builtins.str]] = None,
+            queue_index_embed_msgs_below: pulumi.Input[Optional[_builtins.int]] = None,
+            sleep: pulumi.Input[Optional[_builtins.int]] = None,
+            ssl_cert_login_from: pulumi.Input[Optional[_builtins.str]] = None,
+            ssl_options_fail_if_no_peer_cert: pulumi.Input[Optional[_builtins.bool]] = None,
+            ssl_options_verify: pulumi.Input[Optional[_builtins.str]] = None,
+            timeout: pulumi.Input[Optional[_builtins.int]] = None,
+            vm_memory_high_watermark: pulumi.Input[Optional[_builtins.float]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["channelMax"] = channel_max
+        __props__["clusterPartitionHandling"] = cluster_partition_handling
+        __props__["connectionMax"] = connection_max
+        __props__["consumerTimeout"] = consumer_timeout
+        __props__["heartbeat"] = heartbeat
+        __props__["instanceId"] = instance_id
+        __props__["logExchangeLevel"] = log_exchange_level
+        __props__["logLevel"] = log_level
+        __props__["maxMessageSize"] = max_message_size
+        __props__["messageInterceptorsTimestampOverwrite"] = message_interceptors_timestamp_overwrite
+        __props__["mqttExchange"] = mqtt_exchange
+        __props__["mqttMaxSessionExpiryIntervalSeconds"] = mqtt_max_session_expiry_interval_seconds
+        __props__["mqttSslCertLogin"] = mqtt_ssl_cert_login
+        __props__["mqttVhost"] = mqtt_vhost
+        __props__["queueIndexEmbedMsgsBelow"] = queue_index_embed_msgs_below
+        __props__["sleep"] = sleep
+        __props__["sslCertLoginFrom"] = ssl_cert_login_from
+        __props__["sslOptionsFailIfNoPeerCert"] = ssl_options_fail_if_no_peer_cert
+        __props__["sslOptionsVerify"] = ssl_options_verify
+        __props__["timeout"] = timeout
+        __props__["vmMemoryHighWatermark"] = vm_memory_high_watermark
+        return pulumi.runtime.exists_resource(None, 'cloudamqp:index/rabbitConfiguration:RabbitConfiguration', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="channelMax")
     def channel_max(self) -> pulumi.Output[_builtins.int]:

@@ -384,7 +384,7 @@ namespace Pulumi.CloudAmqp
     /// The following arguments are supported:
     /// 
     /// * `Name`              - (Required) The name of the third party log integration. See
-    ///                       `Integration service reference`
+    ///                     `Integration service reference`
     /// * `Region`            - (Optional) Region hosting the integration service.
     /// * `AccessKeyId`     - (Optional) AWS access key identifier.
     /// * `SecretAccessKey` - (Optional) AWS secret access key.
@@ -399,12 +399,12 @@ namespace Pulumi.CloudAmqp
     /// * `Tags`              - (Optional) Tags. e.g. `env=prod,region=europe`.
     ///   
     ///   ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
-    ///             letter, read more about tags format in the [Datadog documentation].
+    ///           letter, read more about tags format in the [Datadog documentation].
     /// 
     /// * `QueueAllowlist`   - (Optional) Allowlist queues using regular expression. Leave empty to include
-    ///                       all queues.
+    ///                     all queues.
     /// * `VhostAllowlist`   - (Optional) Allowlist vhost using regular expression. Leave empty to include
-    ///                       all vhosts.
+    ///                     all vhosts.
     /// * `QueueWhitelist`   - **Deprecated** Use QueueAllowlist instead
     /// * `VhostWhitelist`   - **Deprecated** Use VhostAllowlist instead
     /// * `IncludeAdQueues` - (Optional) Include auto delete queues.

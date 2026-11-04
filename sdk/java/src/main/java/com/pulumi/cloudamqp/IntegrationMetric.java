@@ -491,7 +491,7 @@ import javax.annotation.Nullable;
  * The following arguments are supported:
  * 
  * * `name`              - (Required) The name of the third party log integration. See
- *                       `Integration service reference`
+ *                     `Integration service reference`
  * * `region`            - (Optional) Region hosting the integration service.
  * * `accessKeyId`     - (Optional) AWS access key identifier.
  * * `secretAccessKey` - (Optional) AWS secret access key.
@@ -506,12 +506,12 @@ import javax.annotation.Nullable;
  * * `tags`              - (Optional) Tags. e.g. `env=prod,region=europe`.
  *   
  *   ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
- *             letter, read more about tags format in the [Datadog documentation].
+ *           letter, read more about tags format in the [Datadog documentation].
  * 
  * * `queueAllowlist`   - (Optional) Allowlist queues using regular expression. Leave empty to include
- *                       all queues.
+ *                     all queues.
  * * `vhostAllowlist`   - (Optional) Allowlist vhost using regular expression. Leave empty to include
- *                       all vhosts.
+ *                     all vhosts.
  * * `queueWhitelist`   - **Deprecated** Use queueAllowlist instead
  * * `vhostWhitelist`   - **Deprecated** Use vhostAllowlist instead
  * * `includeAdQueues` - (Optional) Include auto delete queues.

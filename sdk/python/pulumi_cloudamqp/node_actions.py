@@ -806,6 +806,24 @@ class NodeActions(pulumi.CustomResource):
         __props__.__dict__["timeout"] = timeout
         return NodeActions(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            action: pulumi.Input[Optional[_builtins.str]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            node_name: pulumi.Input[Optional[_builtins.str]] = None,
+            node_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            sleep: pulumi.Input[Optional[_builtins.int]] = None,
+            timeout: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["action"] = action
+        __props__["instanceId"] = instance_id
+        __props__["nodeName"] = node_name
+        __props__["nodeNames"] = node_names
+        __props__["sleep"] = sleep
+        __props__["timeout"] = timeout
+        return pulumi.runtime.exists_resource(None, 'cloudamqp:index/nodeActions:NodeActions', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def action(self) -> pulumi.Output[_builtins.str]:

@@ -820,6 +820,34 @@ class IntegrationMetricPrometheus(pulumi.CustomResource):
         __props__.__dict__["stackdriver_v2"] = stackdriver_v2
         return IntegrationMetricPrometheus(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            azure_monitor: pulumi.Input[Optional[Union['IntegrationMetricPrometheusAzureMonitorArgs', 'IntegrationMetricPrometheusAzureMonitorArgsDict', 'outputs.IntegrationMetricPrometheusAzureMonitor']]] = None,
+            cloudwatch_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusCloudwatchV3Args', 'IntegrationMetricPrometheusCloudwatchV3ArgsDict', 'outputs.IntegrationMetricPrometheusCloudwatchV3']]] = None,
+            datadog_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusDatadogV3Args', 'IntegrationMetricPrometheusDatadogV3ArgsDict', 'outputs.IntegrationMetricPrometheusDatadogV3']]] = None,
+            dynatrace: pulumi.Input[Optional[Union['IntegrationMetricPrometheusDynatraceArgs', 'IntegrationMetricPrometheusDynatraceArgsDict', 'outputs.IntegrationMetricPrometheusDynatrace']]] = None,
+            grafana: pulumi.Input[Optional[Union['IntegrationMetricPrometheusGrafanaArgs', 'IntegrationMetricPrometheusGrafanaArgsDict', 'outputs.IntegrationMetricPrometheusGrafana']]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            metrics_filters: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            newrelic_v3: pulumi.Input[Optional[Union['IntegrationMetricPrometheusNewrelicV3Args', 'IntegrationMetricPrometheusNewrelicV3ArgsDict', 'outputs.IntegrationMetricPrometheusNewrelicV3']]] = None,
+            prometheus_remote_write: pulumi.Input[Optional[Union['IntegrationMetricPrometheusPrometheusRemoteWriteArgs', 'IntegrationMetricPrometheusPrometheusRemoteWriteArgsDict', 'outputs.IntegrationMetricPrometheusPrometheusRemoteWrite']]] = None,
+            splunk_v2: pulumi.Input[Optional[Union['IntegrationMetricPrometheusSplunkV2Args', 'IntegrationMetricPrometheusSplunkV2ArgsDict', 'outputs.IntegrationMetricPrometheusSplunkV2']]] = None,
+            stackdriver_v2: pulumi.Input[Optional[Union['IntegrationMetricPrometheusStackdriverV2Args', 'IntegrationMetricPrometheusStackdriverV2ArgsDict', 'outputs.IntegrationMetricPrometheusStackdriverV2']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["azureMonitor"] = azure_monitor
+        __props__["cloudwatchV3"] = cloudwatch_v3
+        __props__["datadogV3"] = datadog_v3
+        __props__["dynatrace"] = dynatrace
+        __props__["grafana"] = grafana
+        __props__["instanceId"] = instance_id
+        __props__["metricsFilters"] = metrics_filters
+        __props__["newrelicV3"] = newrelic_v3
+        __props__["prometheusRemoteWrite"] = prometheus_remote_write
+        __props__["splunkV2"] = splunk_v2
+        __props__["stackdriverV2"] = stackdriver_v2
+        return pulumi.runtime.exists_resource(None, 'cloudamqp:index/integrationMetricPrometheus:IntegrationMetricPrometheus', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="azureMonitor")
     def azure_monitor(self) -> pulumi.Output[Optional['outputs.IntegrationMetricPrometheusAzureMonitor']]:

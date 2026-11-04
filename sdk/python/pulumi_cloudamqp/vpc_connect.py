@@ -959,6 +959,32 @@ class VpcConnect(pulumi.CustomResource):
         __props__.__dict__["timeout"] = timeout
         return VpcConnect(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            active_zones: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_principals: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_projects: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            approved_subscriptions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            service_name: pulumi.Input[Optional[_builtins.str]] = None,
+            sleep: pulumi.Input[Optional[_builtins.int]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            timeout: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["activeZones"] = active_zones
+        __props__["allowedPrincipals"] = allowed_principals
+        __props__["allowedProjects"] = allowed_projects
+        __props__["approvedSubscriptions"] = approved_subscriptions
+        __props__["instanceId"] = instance_id
+        __props__["region"] = region
+        __props__["serviceName"] = service_name
+        __props__["sleep"] = sleep
+        __props__["status"] = status
+        __props__["timeout"] = timeout
+        return pulumi.runtime.exists_resource(None, 'cloudamqp:index/vpcConnect:VpcConnect', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="activeZones")
     def active_zones(self) -> pulumi.Output[Sequence[_builtins.str]]:
