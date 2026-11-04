@@ -336,6 +336,12 @@ func (UpgradeRabbitmqState) ElementType() reflect.Type {
 	return reflect.TypeOf((*upgradeRabbitmqState)(nil)).Elem()
 }
 
+// UpgradeRabbitmqExists checks whether an existing UpgradeRabbitmq resource with the given ID exists.
+func UpgradeRabbitmqExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *UpgradeRabbitmqState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("cloudamqp:index/upgradeRabbitmq:UpgradeRabbitmq", id, state, "", opts...)
+}
+
 type upgradeRabbitmqArgs struct {
 	// Helper argument to change upgrade behaviour to latest possible
 	// version

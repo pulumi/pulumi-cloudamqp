@@ -270,7 +270,7 @@ namespace Pulumi.CloudAmqp
         /// Configurable timeout time in seconds for firewall configuration.
         /// Default set to 1800 seconds.
         /// 
-        /// ___
+        /// ***
         /// 
         /// The `Rules` block consists of:
         /// </summary>
@@ -353,7 +353,7 @@ namespace Pulumi.CloudAmqp
         /// Configurable timeout time in seconds for firewall configuration.
         /// Default set to 1800 seconds.
         /// 
-        /// ___
+        /// ***
         /// 
         /// The `Rules` block consists of:
         /// </summary>
@@ -398,7 +398,7 @@ namespace Pulumi.CloudAmqp
         /// Configurable timeout time in seconds for firewall configuration.
         /// Default set to 1800 seconds.
         /// 
-        /// ___
+        /// ***
         /// 
         /// The `Rules` block consists of:
         /// </summary>

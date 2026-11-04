@@ -497,6 +497,26 @@ class PluginCommunity(pulumi.CustomResource):
         __props__.__dict__["timeout"] = timeout
         return PluginCommunity(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            require: pulumi.Input[Optional[_builtins.str]] = None,
+            sleep: pulumi.Input[Optional[_builtins.int]] = None,
+            timeout: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["description"] = description
+        __props__["enabled"] = enabled
+        __props__["instanceId"] = instance_id
+        __props__["name"] = name
+        __props__["require"] = require
+        __props__["sleep"] = sleep
+        __props__["timeout"] = timeout
+        return pulumi.runtime.exists_resource(None, 'cloudamqp:index/pluginCommunity:PluginCommunity', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def description(self) -> pulumi.Output[_builtins.str]:

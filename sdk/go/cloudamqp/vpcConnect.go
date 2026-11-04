@@ -524,6 +524,12 @@ func (VpcConnectState) ElementType() reflect.Type {
 	return reflect.TypeOf((*vpcConnectState)(nil)).Elem()
 }
 
+// VpcConnectExists checks whether an existing VpcConnect resource with the given ID exists.
+func VpcConnectExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *VpcConnectState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("cloudamqp:index/vpcConnect:VpcConnect", id, state, "", opts...)
+}
+
 type vpcConnectArgs struct {
 	// List of allowed prinicpals used by AWS, see below table.
 	AllowedPrincipals []string `pulumi:"allowedPrincipals"`

@@ -647,6 +647,12 @@ func (IntegrationLogAgentState) ElementType() reflect.Type {
 	return reflect.TypeOf((*integrationLogAgentState)(nil)).Elem()
 }
 
+// IntegrationLogAgentExists checks whether an existing IntegrationLogAgent resource with the given ID exists.
+func IntegrationLogAgentExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IntegrationLogAgentState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("cloudamqp:index/integrationLogAgent:IntegrationLogAgent", id, state, "", opts...)
+}
+
 type integrationLogAgentArgs struct {
 	// Azure Monitor native OTLP log integration configuration
 	AzureMonitor *IntegrationLogAgentAzureMonitor `pulumi:"azureMonitor"`

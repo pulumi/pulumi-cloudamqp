@@ -587,6 +587,28 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
         __props__.__dict__["with_headers"] = with_headers
         return IntegrationAwsEventbridge(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            aws_account_id: pulumi.Input[Optional[_builtins.str]] = None,
+            aws_region: pulumi.Input[Optional[_builtins.str]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            prefetch: pulumi.Input[Optional[_builtins.int]] = None,
+            queue: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            vhost: pulumi.Input[Optional[_builtins.str]] = None,
+            with_headers: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["awsAccountId"] = aws_account_id
+        __props__["awsRegion"] = aws_region
+        __props__["instanceId"] = instance_id
+        __props__["prefetch"] = prefetch
+        __props__["queue"] = queue
+        __props__["status"] = status
+        __props__["vhost"] = vhost
+        __props__["withHeaders"] = with_headers
+        return pulumi.runtime.exists_resource(None, 'cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="awsAccountId")
     def aws_account_id(self) -> pulumi.Output[_builtins.str]:

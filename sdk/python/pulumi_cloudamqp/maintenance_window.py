@@ -437,6 +437,20 @@ class MaintenanceWindow(pulumi.CustomResource):
         __props__.__dict__["preferred_time"] = preferred_time
         return MaintenanceWindow(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            automatic_updates: pulumi.Input[Optional[_builtins.str]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            preferred_day: pulumi.Input[Optional[_builtins.str]] = None,
+            preferred_time: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["automaticUpdates"] = automatic_updates
+        __props__["instanceId"] = instance_id
+        __props__["preferredDay"] = preferred_day
+        __props__["preferredTime"] = preferred_time
+        return pulumi.runtime.exists_resource(None, 'cloudamqp:index/maintenanceWindow:MaintenanceWindow', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="automaticUpdates")
     def automatic_updates(self) -> pulumi.Output[_builtins.str]:

@@ -1982,6 +1982,66 @@ class IntegrationLog(pulumi.CustomResource):
         __props__.__dict__["url"] = url
         return IntegrationLog(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            api_key: pulumi.Input[Optional[_builtins.str]] = None,
+            application: pulumi.Input[Optional[_builtins.str]] = None,
+            application_id: pulumi.Input[Optional[_builtins.str]] = None,
+            application_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            client_email: pulumi.Input[Optional[_builtins.str]] = None,
+            credentials: pulumi.Input[Optional[_builtins.str]] = None,
+            dce_uri: pulumi.Input[Optional[_builtins.str]] = None,
+            dcr_id: pulumi.Input[Optional[_builtins.str]] = None,
+            endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            host: pulumi.Input[Optional[_builtins.str]] = None,
+            host_port: pulumi.Input[Optional[_builtins.str]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            retention: pulumi.Input[Optional[_builtins.int]] = None,
+            secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+            sourcetype: pulumi.Input[Optional[_builtins.str]] = None,
+            subsystem: pulumi.Input[Optional[_builtins.str]] = None,
+            table: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[_builtins.str]] = None,
+            tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
+            token: pulumi.Input[Optional[_builtins.str]] = None,
+            url: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessKeyId"] = access_key_id
+        __props__["apiKey"] = api_key
+        __props__["application"] = application
+        __props__["applicationId"] = application_id
+        __props__["applicationSecret"] = application_secret
+        __props__["clientEmail"] = client_email
+        __props__["credentials"] = credentials
+        __props__["dceUri"] = dce_uri
+        __props__["dcrId"] = dcr_id
+        __props__["endpoint"] = endpoint
+        __props__["host"] = host
+        __props__["hostPort"] = host_port
+        __props__["instanceId"] = instance_id
+        __props__["name"] = name
+        __props__["privateKey"] = private_key
+        __props__["privateKeyId"] = private_key_id
+        __props__["projectId"] = project_id
+        __props__["region"] = region
+        __props__["retention"] = retention
+        __props__["secretAccessKey"] = secret_access_key
+        __props__["sourcetype"] = sourcetype
+        __props__["subsystem"] = subsystem
+        __props__["table"] = table
+        __props__["tags"] = tags
+        __props__["tenantId"] = tenant_id
+        __props__["token"] = token
+        __props__["url"] = url
+        return pulumi.runtime.exists_resource(None, 'cloudamqp:index/integrationLog:IntegrationLog', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="accessKeyId")
     def access_key_id(self) -> pulumi.Output[Optional[_builtins.str]]:

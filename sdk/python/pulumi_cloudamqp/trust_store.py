@@ -555,6 +555,28 @@ class TrustStore(pulumi.CustomResource):
         __props__.__dict__["version"] = version
         return TrustStore(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            file: pulumi.Input[Optional[Union['TrustStoreFileArgs', 'TrustStoreFileArgsDict', 'outputs.TrustStoreFile']]] = None,
+            http: pulumi.Input[Optional[Union['TrustStoreHttpArgs', 'TrustStoreHttpArgsDict', 'outputs.TrustStoreHttp']]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            refresh_interval: pulumi.Input[Optional[_builtins.int]] = None,
+            sleep: pulumi.Input[Optional[_builtins.int]] = None,
+            timeout: pulumi.Input[Optional[_builtins.int]] = None,
+            version: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["file"] = file
+        __props__["http"] = http
+        __props__["instanceId"] = instance_id
+        __props__["keyId"] = key_id
+        __props__["refreshInterval"] = refresh_interval
+        __props__["sleep"] = sleep
+        __props__["timeout"] = timeout
+        __props__["version"] = version
+        return pulumi.runtime.exists_resource(None, 'cloudamqp:index/trustStore:TrustStore', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def file(self) -> pulumi.Output[Optional['outputs.TrustStoreFile']]:

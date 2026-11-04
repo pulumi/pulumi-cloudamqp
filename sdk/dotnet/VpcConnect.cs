@@ -387,7 +387,7 @@ namespace Pulumi.CloudAmqp
         /// Configurable timeout time (seconds) when enable Private
         /// Service Connect. Default set to 1800 seconds.
         /// 
-        /// ___
+        /// ***
         /// 
         /// The `AllowedPrincipals`, `ApprovedSubscriptions` or `AllowedProjects` data depends on the
         /// provider platform:
@@ -507,7 +507,7 @@ namespace Pulumi.CloudAmqp
         /// Configurable timeout time (seconds) when enable Private
         /// Service Connect. Default set to 1800 seconds.
         /// 
-        /// ___
+        /// ***
         /// 
         /// The `AllowedPrincipals`, `ApprovedSubscriptions` or `AllowedProjects` data depends on the
         /// provider platform:
@@ -613,7 +613,7 @@ namespace Pulumi.CloudAmqp
         /// Configurable timeout time (seconds) when enable Private
         /// Service Connect. Default set to 1800 seconds.
         /// 
-        /// ___
+        /// ***
         /// 
         /// The `AllowedPrincipals`, `ApprovedSubscriptions` or `AllowedProjects` data depends on the
         /// provider platform:

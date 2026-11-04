@@ -978,6 +978,12 @@ func (IntegrationLogState) ElementType() reflect.Type {
 	return reflect.TypeOf((*integrationLogState)(nil)).Elem()
 }
 
+// IntegrationLogExists checks whether an existing IntegrationLog resource with the given ID exists.
+func IntegrationLogExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IntegrationLogState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("cloudamqp:index/integrationLog:IntegrationLog", id, state, "", opts...)
+}
+
 type integrationLogArgs struct {
 	// AWS access key identifier.
 	AccessKeyId *string `pulumi:"accessKeyId"`

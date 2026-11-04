@@ -1129,6 +1129,32 @@ class IntegrationLogAgent(pulumi.CustomResource):
         __props__.__dict__["uptrace"] = uptrace
         return IntegrationLogAgent(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            azure_monitor: pulumi.Input[Optional[Union['IntegrationLogAgentAzureMonitorArgs', 'IntegrationLogAgentAzureMonitorArgsDict', 'outputs.IntegrationLogAgentAzureMonitor']]] = None,
+            cloudwatch: pulumi.Input[Optional[Union['IntegrationLogAgentCloudwatchArgs', 'IntegrationLogAgentCloudwatchArgsDict', 'outputs.IntegrationLogAgentCloudwatch']]] = None,
+            coralogix: pulumi.Input[Optional[Union['IntegrationLogAgentCoralogixArgs', 'IntegrationLogAgentCoralogixArgsDict', 'outputs.IntegrationLogAgentCoralogix']]] = None,
+            datadog: pulumi.Input[Optional[Union['IntegrationLogAgentDatadogArgs', 'IntegrationLogAgentDatadogArgsDict', 'outputs.IntegrationLogAgentDatadog']]] = None,
+            google_cloud: pulumi.Input[Optional[Union['IntegrationLogAgentGoogleCloudArgs', 'IntegrationLogAgentGoogleCloudArgsDict', 'outputs.IntegrationLogAgentGoogleCloud']]] = None,
+            grafana: pulumi.Input[Optional[Union['IntegrationLogAgentGrafanaArgs', 'IntegrationLogAgentGrafanaArgsDict', 'outputs.IntegrationLogAgentGrafana']]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            otlp: pulumi.Input[Optional[Union['IntegrationLogAgentOtlpArgs', 'IntegrationLogAgentOtlpArgsDict', 'outputs.IntegrationLogAgentOtlp']]] = None,
+            splunk: pulumi.Input[Optional[Union['IntegrationLogAgentSplunkArgs', 'IntegrationLogAgentSplunkArgsDict', 'outputs.IntegrationLogAgentSplunk']]] = None,
+            uptrace: pulumi.Input[Optional[Union['IntegrationLogAgentUptraceArgs', 'IntegrationLogAgentUptraceArgsDict', 'outputs.IntegrationLogAgentUptrace']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["azureMonitor"] = azure_monitor
+        __props__["cloudwatch"] = cloudwatch
+        __props__["coralogix"] = coralogix
+        __props__["datadog"] = datadog
+        __props__["googleCloud"] = google_cloud
+        __props__["grafana"] = grafana
+        __props__["instanceId"] = instance_id
+        __props__["otlp"] = otlp
+        __props__["splunk"] = splunk
+        __props__["uptrace"] = uptrace
+        return pulumi.runtime.exists_resource(None, 'cloudamqp:index/integrationLogAgent:IntegrationLogAgent', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="azureMonitor")
     def azure_monitor(self) -> pulumi.Output[Optional['outputs.IntegrationLogAgentAzureMonitor']]:

@@ -74,6 +74,12 @@ func (AccountActionsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*accountActionsState)(nil)).Elem()
 }
 
+// AccountActionsExists checks whether an existing AccountActions resource with the given ID exists.
+func AccountActionsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AccountActionsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("cloudamqp:index/accountActions:AccountActions", id, state, "", opts...)
+}
+
 type accountActionsArgs struct {
 	// The action to perform on the node
 	Action string `pulumi:"action"`

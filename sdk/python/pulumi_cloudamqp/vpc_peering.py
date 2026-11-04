@@ -900,6 +900,24 @@ class VpcPeering(pulumi.CustomResource):
         __props__.__dict__["vpc_id"] = vpc_id
         return VpcPeering(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            peering_id: pulumi.Input[Optional[_builtins.str]] = None,
+            sleep: pulumi.Input[Optional[_builtins.int]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            timeout: pulumi.Input[Optional[_builtins.int]] = None,
+            vpc_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["instanceId"] = instance_id
+        __props__["peeringId"] = peering_id
+        __props__["sleep"] = sleep
+        __props__["status"] = status
+        __props__["timeout"] = timeout
+        __props__["vpcId"] = vpc_id
+        return pulumi.runtime.exists_resource(None, 'cloudamqp:index/vpcPeering:VpcPeering', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[Optional[_builtins.int]]:

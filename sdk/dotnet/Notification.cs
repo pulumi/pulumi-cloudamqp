@@ -292,16 +292,16 @@ namespace Pulumi.CloudAmqp
         /// An array of reponders (only for OpsGenie). Each `Responders` block
         /// consists of the field documented below.
         /// 
-        /// ___
+        /// ***
         /// 
         /// The options parameter:
         /// 
         /// * rk        - (Optional) Routing key to route alarm notification (can be used with Victorops).
         /// * dedupkey  - (Optional) If multiple alarms are triggered using a recipient with this key, only the
-        /// the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
-        /// to use the generated dedup key.
+        ///   the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
+        ///   to use the generated dedup key.
         /// 
-        /// ___
+        /// ***
         /// 
         /// The `Responders` block consists of:
         /// </summary>
@@ -397,16 +397,16 @@ namespace Pulumi.CloudAmqp
         /// An array of reponders (only for OpsGenie). Each `Responders` block
         /// consists of the field documented below.
         /// 
-        /// ___
+        /// ***
         /// 
         /// The options parameter:
         /// 
         /// * rk        - (Optional) Routing key to route alarm notification (can be used with Victorops).
         /// * dedupkey  - (Optional) If multiple alarms are triggered using a recipient with this key, only the
-        /// the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
-        /// to use the generated dedup key.
+        ///   the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
+        ///   to use the generated dedup key.
         /// 
-        /// ___
+        /// ***
         /// 
         /// The `Responders` block consists of:
         /// </summary>
@@ -467,16 +467,16 @@ namespace Pulumi.CloudAmqp
         /// An array of reponders (only for OpsGenie). Each `Responders` block
         /// consists of the field documented below.
         /// 
-        /// ___
+        /// ***
         /// 
         /// The options parameter:
         /// 
         /// * rk        - (Optional) Routing key to route alarm notification (can be used with Victorops).
         /// * dedupkey  - (Optional) If multiple alarms are triggered using a recipient with this key, only the
-        /// the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
-        /// to use the generated dedup key.
+        ///   the first alarm will trigger a notification (can be used with PagerDuty). Leave blank
+        ///   to use the generated dedup key.
         /// 
-        /// ___
+        /// ***
         /// 
         /// The `Responders` block consists of:
         /// </summary>

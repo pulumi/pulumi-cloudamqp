@@ -610,6 +610,12 @@ func (RabbitConfigurationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*rabbitConfigurationState)(nil)).Elem()
 }
 
+// RabbitConfigurationExists checks whether an existing RabbitConfiguration resource with the given ID exists.
+func RabbitConfigurationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RabbitConfigurationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("cloudamqp:index/rabbitConfiguration:RabbitConfiguration", id, state, "", opts...)
+}
+
 type rabbitConfigurationArgs struct {
 	// Set the maximum permissible number of channels per connection.
 	ChannelMax *int `pulumi:"channelMax"`

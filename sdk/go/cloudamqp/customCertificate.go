@@ -152,6 +152,12 @@ func (CustomCertificateState) ElementType() reflect.Type {
 	return reflect.TypeOf((*customCertificateState)(nil)).Elem()
 }
 
+// CustomCertificateExists checks whether an existing CustomCertificate resource with the given ID exists.
+func CustomCertificateExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CustomCertificateState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("cloudamqp:index/customCertificate:CustomCertificate", id, state, "", opts...)
+}
+
 type customCertificateArgs struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// The PEM-encoded Certificate Authority (CA).

@@ -555,6 +555,12 @@ func (VpcPeeringState) ElementType() reflect.Type {
 	return reflect.TypeOf((*vpcPeeringState)(nil)).Elem()
 }
 
+// VpcPeeringExists checks whether an existing VpcPeering resource with the given ID exists.
+func VpcPeeringExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *VpcPeeringState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("cloudamqp:index/vpcPeering:VpcPeering", id, state, "", opts...)
+}
+
 type vpcPeeringArgs struct {
 	// The CloudAMQP instance identifier.
 	//

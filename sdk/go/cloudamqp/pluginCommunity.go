@@ -224,6 +224,12 @@ func (PluginCommunityState) ElementType() reflect.Type {
 	return reflect.TypeOf((*pluginCommunityState)(nil)).Elem()
 }
 
+// PluginCommunityExists checks whether an existing PluginCommunity resource with the given ID exists.
+func PluginCommunityExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PluginCommunityState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("cloudamqp:index/pluginCommunity:PluginCommunity", id, state, "", opts...)
+}
+
 type pluginCommunityArgs struct {
 	// Enable or disable the plugins.
 	Enabled bool `pulumi:"enabled"`

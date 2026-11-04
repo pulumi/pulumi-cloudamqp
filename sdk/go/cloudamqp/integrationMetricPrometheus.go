@@ -445,6 +445,12 @@ func (IntegrationMetricPrometheusState) ElementType() reflect.Type {
 	return reflect.TypeOf((*integrationMetricPrometheusState)(nil)).Elem()
 }
 
+// IntegrationMetricPrometheusExists checks whether an existing IntegrationMetricPrometheus resource with the given ID exists.
+func IntegrationMetricPrometheusExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *IntegrationMetricPrometheusState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("cloudamqp:index/integrationMetricPrometheus:IntegrationMetricPrometheus", id, state, "", opts...)
+}
+
 type integrationMetricPrometheusArgs struct {
 	AzureMonitor *IntegrationMetricPrometheusAzureMonitor `pulumi:"azureMonitor"`
 	CloudwatchV3 *IntegrationMetricPrometheusCloudwatchV3 `pulumi:"cloudwatchV3"`

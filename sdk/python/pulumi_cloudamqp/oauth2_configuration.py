@@ -1197,6 +1197,44 @@ class Oauth2Configuration(pulumi.CustomResource):
         __props__.__dict__["verify_aud"] = verify_aud
         return Oauth2Configuration(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            additional_scopes_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            audience: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_basic_auth: pulumi.Input[Optional[_builtins.bool]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            issuer: pulumi.Input[Optional[_builtins.str]] = None,
+            jwks_cache_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            mgmt_scopes: pulumi.Input[Optional[_builtins.str]] = None,
+            oauth_client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            oauth_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            preferred_username_claims: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            resource_server_id: pulumi.Input[Optional[_builtins.str]] = None,
+            scope_aliases: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            scope_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+            sleep: pulumi.Input[Optional[_builtins.int]] = None,
+            timeout: pulumi.Input[Optional[_builtins.int]] = None,
+            verify_aud: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["additionalScopesKeys"] = additional_scopes_keys
+        __props__["audience"] = audience
+        __props__["disableBasicAuth"] = disable_basic_auth
+        __props__["instanceId"] = instance_id
+        __props__["issuer"] = issuer
+        __props__["jwksCacheTtl"] = jwks_cache_ttl
+        __props__["mgmtScopes"] = mgmt_scopes
+        __props__["oauthClientId"] = oauth_client_id
+        __props__["oauthScopes"] = oauth_scopes
+        __props__["preferredUsernameClaims"] = preferred_username_claims
+        __props__["resourceServerId"] = resource_server_id
+        __props__["scopeAliases"] = scope_aliases
+        __props__["scopePrefix"] = scope_prefix
+        __props__["sleep"] = sleep
+        __props__["timeout"] = timeout
+        __props__["verifyAud"] = verify_aud
+        return pulumi.runtime.exists_resource(None, 'cloudamqp:index/oauth2Configuration:Oauth2Configuration', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="additionalScopesKeys")
     def additional_scopes_keys(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:

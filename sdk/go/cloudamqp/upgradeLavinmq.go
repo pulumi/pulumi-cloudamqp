@@ -138,6 +138,12 @@ func (UpgradeLavinmqState) ElementType() reflect.Type {
 	return reflect.TypeOf((*upgradeLavinmqState)(nil)).Elem()
 }
 
+// UpgradeLavinmqExists checks whether an existing UpgradeLavinmq resource with the given ID exists.
+func UpgradeLavinmqExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *UpgradeLavinmqState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("cloudamqp:index/upgradeLavinmq:UpgradeLavinmq", id, state, "", opts...)
+}
+
 type upgradeLavinmqArgs struct {
 	// The CloudAMQP instance identifier
 	InstanceId int `pulumi:"instanceId"`

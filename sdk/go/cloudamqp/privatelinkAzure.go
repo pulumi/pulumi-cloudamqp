@@ -367,6 +367,12 @@ func (PrivatelinkAzureState) ElementType() reflect.Type {
 	return reflect.TypeOf((*privatelinkAzureState)(nil)).Elem()
 }
 
+// PrivatelinkAzureExists checks whether an existing PrivatelinkAzure resource with the given ID exists.
+func PrivatelinkAzureExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PrivatelinkAzureState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("cloudamqp:index/privatelinkAzure:PrivatelinkAzure", id, state, "", opts...)
+}
+
 type privatelinkAzureArgs struct {
 	// Approved subscriptions to access the endpoint service.
 	// See format below.

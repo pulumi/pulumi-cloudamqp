@@ -318,6 +318,20 @@ class CustomDomain(pulumi.CustomResource):
         __props__.__dict__["timeout"] = timeout
         return CustomDomain(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            hostname: pulumi.Input[Optional[_builtins.str]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            sleep: pulumi.Input[Optional[_builtins.int]] = None,
+            timeout: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["hostname"] = hostname
+        __props__["instanceId"] = instance_id
+        __props__["sleep"] = sleep
+        __props__["timeout"] = timeout
+        return pulumi.runtime.exists_resource(None, 'cloudamqp:index/customDomain:CustomDomain', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def hostname(self) -> pulumi.Output[_builtins.str]:

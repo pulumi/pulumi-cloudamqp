@@ -967,6 +967,30 @@ class VpcGcpPeering(pulumi.CustomResource):
         __props__.__dict__["wait_on_peering_status"] = wait_on_peering_status
         return VpcGcpPeering(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            auto_create_routes: pulumi.Input[Optional[_builtins.bool]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            peer_network_uri: pulumi.Input[Optional[_builtins.str]] = None,
+            sleep: pulumi.Input[Optional[_builtins.int]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            state_details: pulumi.Input[Optional[_builtins.str]] = None,
+            timeout: pulumi.Input[Optional[_builtins.int]] = None,
+            vpc_id: pulumi.Input[Optional[_builtins.str]] = None,
+            wait_on_peering_status: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["autoCreateRoutes"] = auto_create_routes
+        __props__["instanceId"] = instance_id
+        __props__["peerNetworkUri"] = peer_network_uri
+        __props__["sleep"] = sleep
+        __props__["state"] = state
+        __props__["stateDetails"] = state_details
+        __props__["timeout"] = timeout
+        __props__["vpcId"] = vpc_id
+        __props__["waitOnPeeringStatus"] = wait_on_peering_status
+        return pulumi.runtime.exists_resource(None, 'cloudamqp:index/vpcGcpPeering:VpcGcpPeering', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="autoCreateRoutes")
     def auto_create_routes(self) -> pulumi.Output[_builtins.bool]:

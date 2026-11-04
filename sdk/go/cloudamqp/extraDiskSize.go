@@ -381,6 +381,12 @@ func (ExtraDiskSizeState) ElementType() reflect.Type {
 	return reflect.TypeOf((*extraDiskSizeState)(nil)).Elem()
 }
 
+// ExtraDiskSizeExists checks whether an existing ExtraDiskSize resource with the given ID exists.
+func ExtraDiskSizeExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ExtraDiskSizeState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("cloudamqp:index/extraDiskSize:ExtraDiskSize", id, state, "", opts...)
+}
+
 type extraDiskSizeArgs struct {
 	// When resizing the disk, allow cluster downtime if necessary.
 	// Default set to false.

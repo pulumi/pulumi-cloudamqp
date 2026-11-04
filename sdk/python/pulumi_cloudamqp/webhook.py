@@ -598,6 +598,26 @@ class Webhook(pulumi.CustomResource):
         __props__.__dict__["webhook_uri"] = webhook_uri
         return Webhook(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            concurrency: pulumi.Input[Optional[_builtins.int]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            queue: pulumi.Input[Optional[_builtins.str]] = None,
+            sleep: pulumi.Input[Optional[_builtins.int]] = None,
+            timeout: pulumi.Input[Optional[_builtins.int]] = None,
+            vhost: pulumi.Input[Optional[_builtins.str]] = None,
+            webhook_uri: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["concurrency"] = concurrency
+        __props__["instanceId"] = instance_id
+        __props__["queue"] = queue
+        __props__["sleep"] = sleep
+        __props__["timeout"] = timeout
+        __props__["vhost"] = vhost
+        __props__["webhookUri"] = webhook_uri
+        return pulumi.runtime.exists_resource(None, 'cloudamqp:index/webhook:Webhook', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def concurrency(self) -> pulumi.Output[_builtins.int]:

@@ -467,11 +467,10 @@ public class NodeActions extends com.pulumi.resources.CustomResource {
     /**
      * The node name, e.g. `green-guinea-pig-01`. Use `nodeNames` instead. This attribute will be removed in a future version.
      * 
-     * @deprecated
-     * Use nodeNames instead. This attribute will be removed in a future version.
+     * @deprecated Use nodeNames instead. This attribute will be removed in a future version.
      * 
      */
-    @Deprecated /* Use nodeNames instead. This attribute will be removed in a future version. */
+    @Deprecated
     @Export(name="nodeName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> nodeName;
 

@@ -694,7 +694,7 @@ namespace Pulumi.CloudAmqp
         /// * GCP: zones in [gcp-region-zones]
         /// * Digital Ocean: Slug in [do-regional-availability]
         /// 
-        /// ___
+        /// ***
         /// 
         /// The `CopySettings` block consists of:
         /// </summary>
@@ -888,7 +888,7 @@ namespace Pulumi.CloudAmqp
         /// * GCP: zones in [gcp-region-zones]
         /// * Digital Ocean: Slug in [do-regional-availability]
         /// 
-        /// ___
+        /// ***
         /// 
         /// The `CopySettings` block consists of:
         /// </summary>
@@ -1091,7 +1091,7 @@ namespace Pulumi.CloudAmqp
         /// * GCP: zones in [gcp-region-zones]
         /// * Digital Ocean: Slug in [do-regional-availability]
         /// 
-        /// ___
+        /// ***
         /// 
         /// The `CopySettings` block consists of:
         /// </summary>

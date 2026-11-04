@@ -357,6 +357,12 @@ func (SecurityFirewallState) ElementType() reflect.Type {
 	return reflect.TypeOf((*securityFirewallState)(nil)).Elem()
 }
 
+// SecurityFirewallExists checks whether an existing SecurityFirewall resource with the given ID exists.
+func SecurityFirewallExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecurityFirewallState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("cloudamqp:index/securityFirewall:SecurityFirewall", id, state, "", opts...)
+}
+
 type securityFirewallArgs struct {
 	// The CloudAMQP instance ID.
 	InstanceId int `pulumi:"instanceId"`
