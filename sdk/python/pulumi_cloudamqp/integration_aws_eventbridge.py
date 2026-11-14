@@ -29,13 +29,17 @@ class IntegrationAwsEventbridgeArgs:
         """
         The set of arguments for constructing a IntegrationAwsEventbridge resource.
 
-        :param pulumi.Input[_builtins.str] aws_account_id: The 12 digit AWS Account ID where you want the events to be sent to.
-        :param pulumi.Input[_builtins.str] aws_region: The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
+        :param pulumi.Input[_builtins.str] aws_account_id: The 12 digit AWS Account ID where you want the events to
+               be sent to.
+        :param pulumi.Input[_builtins.str] aws_region: The AWS region where you the events to be sent to.
+               (e.g. us-west-1, us-west-2, ..., etc.)
         :param pulumi.Input[_builtins.int] instance_id: Instance identifier
         :param pulumi.Input[_builtins.str] queue: A (durable) queue on your RabbitMQ instance.
         :param pulumi.Input[_builtins.str] vhost: The VHost the queue resides in.
         :param pulumi.Input[_builtins.bool] with_headers: Include message headers in the event data.
-        :param pulumi.Input[_builtins.int] prefetch: Number of messages to prefetch. Default set to 1.
+               `({ "headers": { }, "body": { "your": "message" } })`
+        :param pulumi.Input[_builtins.int] prefetch: Set the prefetch for the Eventbrigde consumer to increase
+               throughput. Supported from [v1.38.0].
         """
         pulumi.set(__self__, "aws_account_id", aws_account_id)
         pulumi.set(__self__, "aws_region", aws_region)
@@ -50,7 +54,8 @@ class IntegrationAwsEventbridgeArgs:
     @pulumi.getter(name="awsAccountId")
     def aws_account_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The 12 digit AWS Account ID where you want the events to be sent to.
+        The 12 digit AWS Account ID where you want the events to
+        be sent to.
         """
         return pulumi.get(self, "aws_account_id")
 
@@ -62,7 +67,8 @@ class IntegrationAwsEventbridgeArgs:
     @pulumi.getter(name="awsRegion")
     def aws_region(self) -> pulumi.Input[_builtins.str]:
         """
-        The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
+        The AWS region where you the events to be sent to.
+        (e.g. us-west-1, us-west-2, ..., etc.)
         """
         return pulumi.get(self, "aws_region")
 
@@ -111,6 +117,7 @@ class IntegrationAwsEventbridgeArgs:
     def with_headers(self) -> pulumi.Input[_builtins.bool]:
         """
         Include message headers in the event data.
+        `({ "headers": { }, "body": { "your": "message" } })`
         """
         return pulumi.get(self, "with_headers")
 
@@ -122,7 +129,8 @@ class IntegrationAwsEventbridgeArgs:
     @pulumi.getter
     def prefetch(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Number of messages to prefetch. Default set to 1.
+        Set the prefetch for the Eventbrigde consumer to increase
+        throughput. Supported from [v1.38.0].
         """
         return pulumi.get(self, "prefetch")
 
@@ -145,14 +153,18 @@ class _IntegrationAwsEventbridgeState:
         """
         Input properties used for looking up and filtering IntegrationAwsEventbridge resources.
 
-        :param pulumi.Input[_builtins.str] aws_account_id: The 12 digit AWS Account ID where you want the events to be sent to.
-        :param pulumi.Input[_builtins.str] aws_region: The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
+        :param pulumi.Input[_builtins.str] aws_account_id: The 12 digit AWS Account ID where you want the events to
+               be sent to.
+        :param pulumi.Input[_builtins.str] aws_region: The AWS region where you the events to be sent to.
+               (e.g. us-west-1, us-west-2, ..., etc.)
         :param pulumi.Input[_builtins.int] instance_id: Instance identifier
-        :param pulumi.Input[_builtins.int] prefetch: Number of messages to prefetch. Default set to 1.
+        :param pulumi.Input[_builtins.int] prefetch: Set the prefetch for the Eventbrigde consumer to increase
+               throughput. Supported from [v1.38.0].
         :param pulumi.Input[_builtins.str] queue: A (durable) queue on your RabbitMQ instance.
         :param pulumi.Input[_builtins.str] status: Always set to null, unless there is an error starting the EventBridge.
         :param pulumi.Input[_builtins.str] vhost: The VHost the queue resides in.
         :param pulumi.Input[_builtins.bool] with_headers: Include message headers in the event data.
+               `({ "headers": { }, "body": { "your": "message" } })`
         """
         if aws_account_id is not None:
             pulumi.set(__self__, "aws_account_id", aws_account_id)
@@ -175,7 +187,8 @@ class _IntegrationAwsEventbridgeState:
     @pulumi.getter(name="awsAccountId")
     def aws_account_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The 12 digit AWS Account ID where you want the events to be sent to.
+        The 12 digit AWS Account ID where you want the events to
+        be sent to.
         """
         return pulumi.get(self, "aws_account_id")
 
@@ -187,7 +200,8 @@ class _IntegrationAwsEventbridgeState:
     @pulumi.getter(name="awsRegion")
     def aws_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
+        The AWS region where you the events to be sent to.
+        (e.g. us-west-1, us-west-2, ..., etc.)
         """
         return pulumi.get(self, "aws_region")
 
@@ -211,7 +225,8 @@ class _IntegrationAwsEventbridgeState:
     @pulumi.getter
     def prefetch(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Number of messages to prefetch. Default set to 1.
+        Set the prefetch for the Eventbrigde consumer to increase
+        throughput. Supported from [v1.38.0].
         """
         return pulumi.get(self, "prefetch")
 
@@ -260,6 +275,7 @@ class _IntegrationAwsEventbridgeState:
     def with_headers(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Include message headers in the event data.
+        `({ "headers": { }, "body": { "your": "message" } })`
         """
         return pulumi.get(self, "with_headers")
 
@@ -357,21 +373,6 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
 
         </details>
 
-        ## Argument References
-
-        The following arguments are supported:
-
-        * `aws_account_id`  - (ForceNew/Required) The 12 digit AWS Account ID where you want the events to
-                              be sent to.
-        * `aws_region`      - (ForceNew/Required) The AWS region where you the events to be sent to.
-                              (e.g. us-west-1, us-west-2, ..., etc.)
-        * `vhost`           - (ForceNew/Required) The VHost the queue resides in.
-        * `queue`           - (ForceNew/Required) A (durable) queue on your RabbitMQ instance.
-        * `with_headers`    - (ForceNew/Required) Include message headers in the event data.
-                              `({ "headers": { }, "body": { "your": "message" } })`
-        * `prefetch`        - (ForceNew/Optional) Set the prefetch for the Eventbrigde consumer to increase
-                              throughput. Supported from [v1.38.0].
-
         ## Dependency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -379,13 +380,17 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] aws_account_id: The 12 digit AWS Account ID where you want the events to be sent to.
-        :param pulumi.Input[_builtins.str] aws_region: The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
+        :param pulumi.Input[_builtins.str] aws_account_id: The 12 digit AWS Account ID where you want the events to
+               be sent to.
+        :param pulumi.Input[_builtins.str] aws_region: The AWS region where you the events to be sent to.
+               (e.g. us-west-1, us-west-2, ..., etc.)
         :param pulumi.Input[_builtins.int] instance_id: Instance identifier
-        :param pulumi.Input[_builtins.int] prefetch: Number of messages to prefetch. Default set to 1.
+        :param pulumi.Input[_builtins.int] prefetch: Set the prefetch for the Eventbrigde consumer to increase
+               throughput. Supported from [v1.38.0].
         :param pulumi.Input[_builtins.str] queue: A (durable) queue on your RabbitMQ instance.
         :param pulumi.Input[_builtins.str] vhost: The VHost the queue resides in.
         :param pulumi.Input[_builtins.bool] with_headers: Include message headers in the event data.
+               `({ "headers": { }, "body": { "your": "message" } })`
         """
         ...
     @overload
@@ -468,21 +473,6 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
 
         </details>
 
-        ## Argument References
-
-        The following arguments are supported:
-
-        * `aws_account_id`  - (ForceNew/Required) The 12 digit AWS Account ID where you want the events to
-                              be sent to.
-        * `aws_region`      - (ForceNew/Required) The AWS region where you the events to be sent to.
-                              (e.g. us-west-1, us-west-2, ..., etc.)
-        * `vhost`           - (ForceNew/Required) The VHost the queue resides in.
-        * `queue`           - (ForceNew/Required) A (durable) queue on your RabbitMQ instance.
-        * `with_headers`    - (ForceNew/Required) Include message headers in the event data.
-                              `({ "headers": { }, "body": { "your": "message" } })`
-        * `prefetch`        - (ForceNew/Optional) Set the prefetch for the Eventbrigde consumer to increase
-                              throughput. Supported from [v1.38.0].
-
         ## Dependency
 
         This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -564,14 +554,18 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] aws_account_id: The 12 digit AWS Account ID where you want the events to be sent to.
-        :param pulumi.Input[_builtins.str] aws_region: The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
+        :param pulumi.Input[_builtins.str] aws_account_id: The 12 digit AWS Account ID where you want the events to
+               be sent to.
+        :param pulumi.Input[_builtins.str] aws_region: The AWS region where you the events to be sent to.
+               (e.g. us-west-1, us-west-2, ..., etc.)
         :param pulumi.Input[_builtins.int] instance_id: Instance identifier
-        :param pulumi.Input[_builtins.int] prefetch: Number of messages to prefetch. Default set to 1.
+        :param pulumi.Input[_builtins.int] prefetch: Set the prefetch for the Eventbrigde consumer to increase
+               throughput. Supported from [v1.38.0].
         :param pulumi.Input[_builtins.str] queue: A (durable) queue on your RabbitMQ instance.
         :param pulumi.Input[_builtins.str] status: Always set to null, unless there is an error starting the EventBridge.
         :param pulumi.Input[_builtins.str] vhost: The VHost the queue resides in.
         :param pulumi.Input[_builtins.bool] with_headers: Include message headers in the event data.
+               `({ "headers": { }, "body": { "your": "message" } })`
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -613,7 +607,8 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
     @pulumi.getter(name="awsAccountId")
     def aws_account_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The 12 digit AWS Account ID where you want the events to be sent to.
+        The 12 digit AWS Account ID where you want the events to
+        be sent to.
         """
         return pulumi.get(self, "aws_account_id")
 
@@ -621,7 +616,8 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
     @pulumi.getter(name="awsRegion")
     def aws_region(self) -> pulumi.Output[_builtins.str]:
         """
-        The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
+        The AWS region where you the events to be sent to.
+        (e.g. us-west-1, us-west-2, ..., etc.)
         """
         return pulumi.get(self, "aws_region")
 
@@ -637,7 +633,8 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
     @pulumi.getter
     def prefetch(self) -> pulumi.Output[_builtins.int]:
         """
-        Number of messages to prefetch. Default set to 1.
+        Set the prefetch for the Eventbrigde consumer to increase
+        throughput. Supported from [v1.38.0].
         """
         return pulumi.get(self, "prefetch")
 
@@ -670,6 +667,7 @@ class IntegrationAwsEventbridge(pulumi.CustomResource):
     def with_headers(self) -> pulumi.Output[_builtins.bool]:
         """
         Include message headers in the event data.
+        `({ "headers": { }, "body": { "your": "message" } })`
         """
         return pulumi.get(self, "with_headers")
 

@@ -83,21 +83,6 @@ import * as utilities from "./utilities";
  *
  * </details>
  *
- * ## Argument References
- *
- * The following arguments are supported:
- *
- * * `awsAccountId`  - (ForceNew/Required) The 12 digit AWS Account ID where you want the events to
- *                       be sent to.
- * * `awsRegion`      - (ForceNew/Required) The AWS region where you the events to be sent to.
- *                       (e.g. us-west-1, us-west-2, ..., etc.)
- * * `vhost`           - (ForceNew/Required) The VHost the queue resides in.
- * * `queue`           - (ForceNew/Required) A (durable) queue on your RabbitMQ instance.
- * * `withHeaders`    - (ForceNew/Required) Include message headers in the event data.
- *                       `({ "headers": { }, "body": { "your": "message" } })`
- * * `prefetch`        - (ForceNew/Optional) Set the prefetch for the Eventbrigde consumer to increase
- *                       throughput. Supported from [v1.38.0].
- *
  * ## Dependency
  *
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -142,11 +127,13 @@ export class IntegrationAwsEventbridge extends pulumi.CustomResource {
     }
 
     /**
-     * The 12 digit AWS Account ID where you want the events to be sent to.
+     * The 12 digit AWS Account ID where you want the events to
+     * be sent to.
      */
     declare public readonly awsAccountId: pulumi.Output<string>;
     /**
-     * The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
+     * The AWS region where you the events to be sent to.
+     * (e.g. us-west-1, us-west-2, ..., etc.)
      */
     declare public readonly awsRegion: pulumi.Output<string>;
     /**
@@ -154,7 +141,8 @@ export class IntegrationAwsEventbridge extends pulumi.CustomResource {
      */
     declare public readonly instanceId: pulumi.Output<number>;
     /**
-     * Number of messages to prefetch. Default set to 1.
+     * Set the prefetch for the Eventbrigde consumer to increase
+     * throughput. Supported from [v1.38.0].
      */
     declare public readonly prefetch: pulumi.Output<number>;
     /**
@@ -171,6 +159,7 @@ export class IntegrationAwsEventbridge extends pulumi.CustomResource {
     declare public readonly vhost: pulumi.Output<string>;
     /**
      * Include message headers in the event data.
+     * `({ "headers": { }, "body": { "your": "message" } })`
      */
     declare public readonly withHeaders: pulumi.Output<boolean>;
 
@@ -234,11 +223,13 @@ export class IntegrationAwsEventbridge extends pulumi.CustomResource {
  */
 export interface IntegrationAwsEventbridgeState {
     /**
-     * The 12 digit AWS Account ID where you want the events to be sent to.
+     * The 12 digit AWS Account ID where you want the events to
+     * be sent to.
      */
     awsAccountId?: pulumi.Input<string | undefined>;
     /**
-     * The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
+     * The AWS region where you the events to be sent to.
+     * (e.g. us-west-1, us-west-2, ..., etc.)
      */
     awsRegion?: pulumi.Input<string | undefined>;
     /**
@@ -246,7 +237,8 @@ export interface IntegrationAwsEventbridgeState {
      */
     instanceId?: pulumi.Input<number | undefined>;
     /**
-     * Number of messages to prefetch. Default set to 1.
+     * Set the prefetch for the Eventbrigde consumer to increase
+     * throughput. Supported from [v1.38.0].
      */
     prefetch?: pulumi.Input<number | undefined>;
     /**
@@ -263,6 +255,7 @@ export interface IntegrationAwsEventbridgeState {
     vhost?: pulumi.Input<string | undefined>;
     /**
      * Include message headers in the event data.
+     * `({ "headers": { }, "body": { "your": "message" } })`
      */
     withHeaders?: pulumi.Input<boolean | undefined>;
 }
@@ -272,11 +265,13 @@ export interface IntegrationAwsEventbridgeState {
  */
 export interface IntegrationAwsEventbridgeArgs {
     /**
-     * The 12 digit AWS Account ID where you want the events to be sent to.
+     * The 12 digit AWS Account ID where you want the events to
+     * be sent to.
      */
     awsAccountId: pulumi.Input<string>;
     /**
-     * The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
+     * The AWS region where you the events to be sent to.
+     * (e.g. us-west-1, us-west-2, ..., etc.)
      */
     awsRegion: pulumi.Input<string>;
     /**
@@ -284,7 +279,8 @@ export interface IntegrationAwsEventbridgeArgs {
      */
     instanceId: pulumi.Input<number>;
     /**
-     * Number of messages to prefetch. Default set to 1.
+     * Set the prefetch for the Eventbrigde consumer to increase
+     * throughput. Supported from [v1.38.0].
      */
     prefetch?: pulumi.Input<number | undefined>;
     /**
@@ -297,6 +293,7 @@ export interface IntegrationAwsEventbridgeArgs {
     vhost: pulumi.Input<string>;
     /**
      * Include message headers in the event data.
+     * `({ "headers": { }, "body": { "your": "message" } })`
      */
     withHeaders: pulumi.Input<boolean>;
 }

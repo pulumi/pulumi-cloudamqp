@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetVpcInfoResult {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The identifier for this resource.
      * 
      */
     private String id;
@@ -43,7 +43,7 @@ public final class GetVpcInfoResult {
 
     private GetVpcInfoResult() {}
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The identifier for this resource.
      * 
      */
     public String id() {

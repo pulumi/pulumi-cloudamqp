@@ -136,34 +136,22 @@ import (
 //
 // </details>
 //
-// ## Argument References
-//
-// The following arguments are supported:
-//
-//   - `awsAccountId`  - (ForceNew/Required) The 12 digit AWS Account ID where you want the events to
-//     be sent to.
-//   - `awsRegion`      - (ForceNew/Required) The AWS region where you the events to be sent to.
-//     (e.g. us-west-1, us-west-2, ..., etc.)
-//   - `vhost`           - (ForceNew/Required) The VHost the queue resides in.
-//   - `queue`           - (ForceNew/Required) A (durable) queue on your RabbitMQ instance.
-//   - `withHeaders`    - (ForceNew/Required) Include message headers in the event data.
-//     `({ "headers": { }, "body": { "your": "message" } })`
-//   - `prefetch`        - (ForceNew/Optional) Set the prefetch for the Eventbrigde consumer to increase
-//     throughput. Supported from [v1.38.0].
-//
 // ## Dependency
 //
 // This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
 type IntegrationAwsEventbridge struct {
 	pulumi.CustomResourceState
 
-	// The 12 digit AWS Account ID where you want the events to be sent to.
+	// The 12 digit AWS Account ID where you want the events to
+	// be sent to.
 	AwsAccountId pulumi.StringOutput `pulumi:"awsAccountId"`
-	// The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
+	// The AWS region where you the events to be sent to.
+	// (e.g. us-west-1, us-west-2, ..., etc.)
 	AwsRegion pulumi.StringOutput `pulumi:"awsRegion"`
 	// Instance identifier
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
-	// Number of messages to prefetch. Default set to 1.
+	// Set the prefetch for the Eventbrigde consumer to increase
+	// throughput. Supported from [v1.38.0].
 	Prefetch pulumi.IntOutput `pulumi:"prefetch"`
 	// A (durable) queue on your RabbitMQ instance.
 	Queue pulumi.StringOutput `pulumi:"queue"`
@@ -172,6 +160,7 @@ type IntegrationAwsEventbridge struct {
 	// The VHost the queue resides in.
 	Vhost pulumi.StringOutput `pulumi:"vhost"`
 	// Include message headers in the event data.
+	// `({ "headers": { }, "body": { "your": "message" } })`
 	WithHeaders pulumi.BoolOutput `pulumi:"withHeaders"`
 }
 
@@ -223,13 +212,16 @@ func GetIntegrationAwsEventbridge(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IntegrationAwsEventbridge resources.
 type integrationAwsEventbridgeState struct {
-	// The 12 digit AWS Account ID where you want the events to be sent to.
+	// The 12 digit AWS Account ID where you want the events to
+	// be sent to.
 	AwsAccountId *string `pulumi:"awsAccountId"`
-	// The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
+	// The AWS region where you the events to be sent to.
+	// (e.g. us-west-1, us-west-2, ..., etc.)
 	AwsRegion *string `pulumi:"awsRegion"`
 	// Instance identifier
 	InstanceId *int `pulumi:"instanceId"`
-	// Number of messages to prefetch. Default set to 1.
+	// Set the prefetch for the Eventbrigde consumer to increase
+	// throughput. Supported from [v1.38.0].
 	Prefetch *int `pulumi:"prefetch"`
 	// A (durable) queue on your RabbitMQ instance.
 	Queue *string `pulumi:"queue"`
@@ -238,17 +230,21 @@ type integrationAwsEventbridgeState struct {
 	// The VHost the queue resides in.
 	Vhost *string `pulumi:"vhost"`
 	// Include message headers in the event data.
+	// `({ "headers": { }, "body": { "your": "message" } })`
 	WithHeaders *bool `pulumi:"withHeaders"`
 }
 
 type IntegrationAwsEventbridgeState struct {
-	// The 12 digit AWS Account ID where you want the events to be sent to.
+	// The 12 digit AWS Account ID where you want the events to
+	// be sent to.
 	AwsAccountId pulumi.StringPtrInput
-	// The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
+	// The AWS region where you the events to be sent to.
+	// (e.g. us-west-1, us-west-2, ..., etc.)
 	AwsRegion pulumi.StringPtrInput
 	// Instance identifier
 	InstanceId pulumi.IntPtrInput
-	// Number of messages to prefetch. Default set to 1.
+	// Set the prefetch for the Eventbrigde consumer to increase
+	// throughput. Supported from [v1.38.0].
 	Prefetch pulumi.IntPtrInput
 	// A (durable) queue on your RabbitMQ instance.
 	Queue pulumi.StringPtrInput
@@ -257,6 +253,7 @@ type IntegrationAwsEventbridgeState struct {
 	// The VHost the queue resides in.
 	Vhost pulumi.StringPtrInput
 	// Include message headers in the event data.
+	// `({ "headers": { }, "body": { "your": "message" } })`
 	WithHeaders pulumi.BoolPtrInput
 }
 
@@ -271,37 +268,45 @@ func IntegrationAwsEventbridgeExists(ctx *pulumi.Context,
 }
 
 type integrationAwsEventbridgeArgs struct {
-	// The 12 digit AWS Account ID where you want the events to be sent to.
+	// The 12 digit AWS Account ID where you want the events to
+	// be sent to.
 	AwsAccountId string `pulumi:"awsAccountId"`
-	// The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
+	// The AWS region where you the events to be sent to.
+	// (e.g. us-west-1, us-west-2, ..., etc.)
 	AwsRegion string `pulumi:"awsRegion"`
 	// Instance identifier
 	InstanceId int `pulumi:"instanceId"`
-	// Number of messages to prefetch. Default set to 1.
+	// Set the prefetch for the Eventbrigde consumer to increase
+	// throughput. Supported from [v1.38.0].
 	Prefetch *int `pulumi:"prefetch"`
 	// A (durable) queue on your RabbitMQ instance.
 	Queue string `pulumi:"queue"`
 	// The VHost the queue resides in.
 	Vhost string `pulumi:"vhost"`
 	// Include message headers in the event data.
+	// `({ "headers": { }, "body": { "your": "message" } })`
 	WithHeaders bool `pulumi:"withHeaders"`
 }
 
 // The set of arguments for constructing a IntegrationAwsEventbridge resource.
 type IntegrationAwsEventbridgeArgs struct {
-	// The 12 digit AWS Account ID where you want the events to be sent to.
+	// The 12 digit AWS Account ID where you want the events to
+	// be sent to.
 	AwsAccountId pulumi.StringInput
-	// The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
+	// The AWS region where you the events to be sent to.
+	// (e.g. us-west-1, us-west-2, ..., etc.)
 	AwsRegion pulumi.StringInput
 	// Instance identifier
 	InstanceId pulumi.IntInput
-	// Number of messages to prefetch. Default set to 1.
+	// Set the prefetch for the Eventbrigde consumer to increase
+	// throughput. Supported from [v1.38.0].
 	Prefetch pulumi.IntPtrInput
 	// A (durable) queue on your RabbitMQ instance.
 	Queue pulumi.StringInput
 	// The VHost the queue resides in.
 	Vhost pulumi.StringInput
 	// Include message headers in the event data.
+	// `({ "headers": { }, "body": { "your": "message" } })`
 	WithHeaders pulumi.BoolInput
 }
 
@@ -392,12 +397,14 @@ func (o IntegrationAwsEventbridgeOutput) ToIntegrationAwsEventbridgeOutputWithCo
 	return o
 }
 
-// The 12 digit AWS Account ID where you want the events to be sent to.
+// The 12 digit AWS Account ID where you want the events to
+// be sent to.
 func (o IntegrationAwsEventbridgeOutput) AwsAccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IntegrationAwsEventbridge) pulumi.StringOutput { return v.AwsAccountId }).(pulumi.StringOutput)
 }
 
-// The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
+// The AWS region where you the events to be sent to.
+// (e.g. us-west-1, us-west-2, ..., etc.)
 func (o IntegrationAwsEventbridgeOutput) AwsRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v *IntegrationAwsEventbridge) pulumi.StringOutput { return v.AwsRegion }).(pulumi.StringOutput)
 }
@@ -407,7 +414,8 @@ func (o IntegrationAwsEventbridgeOutput) InstanceId() pulumi.IntOutput {
 	return o.ApplyT(func(v *IntegrationAwsEventbridge) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
 }
 
-// Number of messages to prefetch. Default set to 1.
+// Set the prefetch for the Eventbrigde consumer to increase
+// throughput. Supported from [v1.38.0].
 func (o IntegrationAwsEventbridgeOutput) Prefetch() pulumi.IntOutput {
 	return o.ApplyT(func(v *IntegrationAwsEventbridge) pulumi.IntOutput { return v.Prefetch }).(pulumi.IntOutput)
 }
@@ -428,6 +436,7 @@ func (o IntegrationAwsEventbridgeOutput) Vhost() pulumi.StringOutput {
 }
 
 // Include message headers in the event data.
+// `({ "headers": { }, "body": { "your": "message" } })`
 func (o IntegrationAwsEventbridgeOutput) WithHeaders() pulumi.BoolOutput {
 	return o.ApplyT(func(v *IntegrationAwsEventbridge) pulumi.BoolOutput { return v.WithHeaders }).(pulumi.BoolOutput)
 }

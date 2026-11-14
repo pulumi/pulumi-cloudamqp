@@ -1960,7 +1960,7 @@ class GetAccountInstanceResult(dict):
                  name: _builtins.str,
                  plan: _builtins.str,
                  region: _builtins.str,
-                 tags: Optional[Sequence[_builtins.str]] = None):
+                 tags: Sequence[_builtins.str]):
         """
         :param _builtins.int id: The instance identifier.
         :param _builtins.str name: The name of the instance.
@@ -1972,8 +1972,7 @@ class GetAccountInstanceResult(dict):
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "plan", plan)
         pulumi.set(__self__, "region", region)
-        if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+        pulumi.set(__self__, "tags", tags)
 
     @_builtins.property
     @pulumi.getter
@@ -2009,7 +2008,7 @@ class GetAccountInstanceResult(dict):
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[Sequence[_builtins.str]]:
+    def tags(self) -> Sequence[_builtins.str]:
         """
         Optional tags set for the instance.
         """
@@ -2023,23 +2022,22 @@ class GetAccountVpcsVpcResult(dict):
                  name: _builtins.str,
                  region: _builtins.str,
                  subnet: _builtins.str,
-                 vpc_name: _builtins.str,
-                 tags: Optional[Sequence[_builtins.str]] = None):
+                 tags: Sequence[_builtins.str],
+                 vpc_name: _builtins.str):
         """
         :param _builtins.int id: The VPC identifier.
         :param _builtins.str name: The VPC instance name.
         :param _builtins.str region: The region the VPC is hosted in.
         :param _builtins.str subnet: The VPC subnet.
-        :param _builtins.str vpc_name: VPC name given when hosted at the cloud provider.
         :param Sequence[_builtins.str] tags: Optional tags set for the VPC.
+        :param _builtins.str vpc_name: VPC name given when hosted at the cloud provider.
         """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "region", region)
         pulumi.set(__self__, "subnet", subnet)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "vpc_name", vpc_name)
-        if tags is not None:
-            pulumi.set(__self__, "tags", tags)
 
     @_builtins.property
     @pulumi.getter
@@ -2074,20 +2072,20 @@ class GetAccountVpcsVpcResult(dict):
         return pulumi.get(self, "subnet")
 
     @_builtins.property
+    @pulumi.getter
+    def tags(self) -> Sequence[_builtins.str]:
+        """
+        Optional tags set for the VPC.
+        """
+        return pulumi.get(self, "tags")
+
+    @_builtins.property
     @pulumi.getter(name="vpcName")
     def vpc_name(self) -> _builtins.str:
         """
         VPC name given when hosted at the cloud provider.
         """
         return pulumi.get(self, "vpc_name")
-
-    @_builtins.property
-    @pulumi.getter
-    def tags(self) -> Optional[Sequence[_builtins.str]]:
-        """
-        Optional tags set for the VPC.
-        """
-        return pulumi.get(self, "tags")
 
 
 @pulumi.output_type

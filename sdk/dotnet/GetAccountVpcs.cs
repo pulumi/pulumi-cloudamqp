@@ -134,7 +134,7 @@ namespace Pulumi.CloudAmqp
     public sealed class GetAccountVpcsResult
     {
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// The VPC identifier.
         /// </summary>
         public readonly string Id;
         /// <summary>

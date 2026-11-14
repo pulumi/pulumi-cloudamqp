@@ -92,7 +92,7 @@ export interface GetVpcInfoArgs {
  */
 export interface GetVpcInfoResult {
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The identifier for this resource.
      */
     readonly id: string;
     readonly instanceId?: number;

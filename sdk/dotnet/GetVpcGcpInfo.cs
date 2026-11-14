@@ -313,7 +313,7 @@ namespace Pulumi.CloudAmqp
     public sealed class GetVpcGcpInfoResult
     {
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// The identifier for this resource.
         /// </summary>
         public readonly string Id;
         public readonly int? InstanceId;
@@ -325,8 +325,8 @@ namespace Pulumi.CloudAmqp
         /// VPC network uri.
         /// </summary>
         public readonly string Network;
-        public readonly int? Sleep;
-        public readonly int? Timeout;
+        public readonly int Sleep;
+        public readonly int Timeout;
         public readonly string? VpcId;
         /// <summary>
         /// Dedicated VPC subnet.
@@ -343,9 +343,9 @@ namespace Pulumi.CloudAmqp
 
             string network,
 
-            int? sleep,
+            int sleep,
 
-            int? timeout,
+            int timeout,
 
             string? vpcId,
 

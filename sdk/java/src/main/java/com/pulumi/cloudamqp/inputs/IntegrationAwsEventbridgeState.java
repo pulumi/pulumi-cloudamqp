@@ -18,14 +18,16 @@ public final class IntegrationAwsEventbridgeState extends com.pulumi.resources.R
     public static final IntegrationAwsEventbridgeState Empty = new IntegrationAwsEventbridgeState();
 
     /**
-     * The 12 digit AWS Account ID where you want the events to be sent to.
+     * The 12 digit AWS Account ID where you want the events to
+     * be sent to.
      * 
      */
     @Import(name="awsAccountId")
     private @Nullable Output<String> awsAccountId;
 
     /**
-     * @return The 12 digit AWS Account ID where you want the events to be sent to.
+     * @return The 12 digit AWS Account ID where you want the events to
+     * be sent to.
      * 
      */
     public Optional<Output<String>> awsAccountId() {
@@ -33,14 +35,16 @@ public final class IntegrationAwsEventbridgeState extends com.pulumi.resources.R
     }
 
     /**
-     * The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
+     * The AWS region where you the events to be sent to.
+     * (e.g. us-west-1, us-west-2, ..., etc.)
      * 
      */
     @Import(name="awsRegion")
     private @Nullable Output<String> awsRegion;
 
     /**
-     * @return The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
+     * @return The AWS region where you the events to be sent to.
+     * (e.g. us-west-1, us-west-2, ..., etc.)
      * 
      */
     public Optional<Output<String>> awsRegion() {
@@ -63,14 +67,16 @@ public final class IntegrationAwsEventbridgeState extends com.pulumi.resources.R
     }
 
     /**
-     * Number of messages to prefetch. Default set to 1.
+     * Set the prefetch for the Eventbrigde consumer to increase
+     * throughput. Supported from [v1.38.0].
      * 
      */
     @Import(name="prefetch")
     private @Nullable Output<Integer> prefetch;
 
     /**
-     * @return Number of messages to prefetch. Default set to 1.
+     * @return Set the prefetch for the Eventbrigde consumer to increase
+     * throughput. Supported from [v1.38.0].
      * 
      */
     public Optional<Output<Integer>> prefetch() {
@@ -124,6 +130,7 @@ public final class IntegrationAwsEventbridgeState extends com.pulumi.resources.R
 
     /**
      * Include message headers in the event data.
+     * `({ &#34;headers&#34;: { }, &#34;body&#34;: { &#34;your&#34;: &#34;message&#34; } })`
      * 
      */
     @Import(name="withHeaders")
@@ -131,6 +138,7 @@ public final class IntegrationAwsEventbridgeState extends com.pulumi.resources.R
 
     /**
      * @return Include message headers in the event data.
+     * `({ &#34;headers&#34;: { }, &#34;body&#34;: { &#34;your&#34;: &#34;message&#34; } })`
      * 
      */
     public Optional<Output<Boolean>> withHeaders() {
@@ -169,7 +177,8 @@ public final class IntegrationAwsEventbridgeState extends com.pulumi.resources.R
         }
 
         /**
-         * @param awsAccountId The 12 digit AWS Account ID where you want the events to be sent to.
+         * @param awsAccountId The 12 digit AWS Account ID where you want the events to
+         * be sent to.
          * 
          * @return builder
          * 
@@ -180,7 +189,8 @@ public final class IntegrationAwsEventbridgeState extends com.pulumi.resources.R
         }
 
         /**
-         * @param awsAccountId The 12 digit AWS Account ID where you want the events to be sent to.
+         * @param awsAccountId The 12 digit AWS Account ID where you want the events to
+         * be sent to.
          * 
          * @return builder
          * 
@@ -190,7 +200,8 @@ public final class IntegrationAwsEventbridgeState extends com.pulumi.resources.R
         }
 
         /**
-         * @param awsRegion The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
+         * @param awsRegion The AWS region where you the events to be sent to.
+         * (e.g. us-west-1, us-west-2, ..., etc.)
          * 
          * @return builder
          * 
@@ -201,7 +212,8 @@ public final class IntegrationAwsEventbridgeState extends com.pulumi.resources.R
         }
 
         /**
-         * @param awsRegion The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
+         * @param awsRegion The AWS region where you the events to be sent to.
+         * (e.g. us-west-1, us-west-2, ..., etc.)
          * 
          * @return builder
          * 
@@ -232,7 +244,8 @@ public final class IntegrationAwsEventbridgeState extends com.pulumi.resources.R
         }
 
         /**
-         * @param prefetch Number of messages to prefetch. Default set to 1.
+         * @param prefetch Set the prefetch for the Eventbrigde consumer to increase
+         * throughput. Supported from [v1.38.0].
          * 
          * @return builder
          * 
@@ -243,7 +256,8 @@ public final class IntegrationAwsEventbridgeState extends com.pulumi.resources.R
         }
 
         /**
-         * @param prefetch Number of messages to prefetch. Default set to 1.
+         * @param prefetch Set the prefetch for the Eventbrigde consumer to increase
+         * throughput. Supported from [v1.38.0].
          * 
          * @return builder
          * 
@@ -317,6 +331,7 @@ public final class IntegrationAwsEventbridgeState extends com.pulumi.resources.R
 
         /**
          * @param withHeaders Include message headers in the event data.
+         * `({ &#34;headers&#34;: { }, &#34;body&#34;: { &#34;your&#34;: &#34;message&#34; } })`
          * 
          * @return builder
          * 
@@ -328,6 +343,7 @@ public final class IntegrationAwsEventbridgeState extends com.pulumi.resources.R
 
         /**
          * @param withHeaders Include message headers in the event data.
+         * `({ &#34;headers&#34;: { }, &#34;body&#34;: { &#34;your&#34;: &#34;message&#34; } })`
          * 
          * @return builder
          * 

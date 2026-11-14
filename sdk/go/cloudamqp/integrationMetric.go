@@ -480,51 +480,6 @@ import (
 //
 // </details>
 //
-// ## Argument References
-//
-// The following arguments are supported:
-//
-//   - `name`              - (Required) The name of the third party log integration. See
-//     `Integration service reference`
-//
-//   - `region`            - (Optional) Region hosting the integration service.
-//
-//   - `accessKeyId`     - (Optional) AWS access key identifier.
-//
-//   - `secretAccessKey` - (Optional) AWS secret access key.
-//
-//   - `iamRole`          - (Optional) The ARN of the role to be assumed when publishing metrics.
-//
-//   - `iamExternalId`   - (Optional) External identifier that match the role you created.
-//
-//   - `apiKey`           - (Optional) The API key for the integration service.
-//
-//   - `email`             - (Optional) The email address registred for the integration service.
-//
-//   - `credentials`       - (Optional) Google Service Account private key credentials.
-//
-//   - `projectId`        - (Optional/Computed) The project identifier.
-//
-//   - `privateKey`       - (Optional/Computed) The private access key.
-//
-//   - `clientEmail`      - (Optional/Computed) The client email registered for the integration service.
-//
-//   - `tags`              - (Optional) Tags. e.g. `env=prod,region=europe`.
-//
-//     ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
-//     letter, read more about tags format in the [Datadog documentation].
-//
-//   - `queueAllowlist`   - (Optional) Allowlist queues using regular expression. Leave empty to include
-//     all queues.
-//   - `vhostAllowlist`   - (Optional) Allowlist vhost using regular expression. Leave empty to include
-//     all vhosts.
-//   - `queueWhitelist`   - **Deprecated** Use queueAllowlist instead
-//   - `vhostWhitelist`   - **Deprecated** Use vhostAllowlist instead
-//   - `includeAdQueues` - (Optional) Include auto delete queues.
-//
-// This is the full list of all arguments. Only a subset of arguments are used based on which type of
-// integration used. See [integration type reference] below for more information.
-//
 // ## Integration service references
 //
 // Valid names for third party log integration.
@@ -568,41 +523,50 @@ import (
 type IntegrationMetric struct {
 	pulumi.CustomResourceState
 
-	// AWS access key identifier. (Cloudwatch)
+	// AWS access key identifier.
 	AccessKeyId pulumi.StringPtrOutput `pulumi:"accessKeyId"`
-	// The API key for the integration service. (Librato, Data Dog, New Relic)
+	// The API key for the integration service.
 	ApiKey pulumi.StringPtrOutput `pulumi:"apiKey"`
-	// The client email. (Stackdriver)
+	// The client email registered for the integration service.
 	ClientEmail pulumi.StringOutput `pulumi:"clientEmail"`
-	// Base64Encoded credentials. (Stackdriver)
+	// Google Service Account private key credentials.
 	Credentials pulumi.StringPtrOutput `pulumi:"credentials"`
-	// The email address registred for the integration service. (Librato)
+	// The email address registred for the integration service.
 	Email pulumi.StringPtrOutput `pulumi:"email"`
-	// External identifier that match the role you created. (Cloudwatch)
+	// External identifier that match the role you created.
 	IamExternalId pulumi.StringPtrOutput `pulumi:"iamExternalId"`
-	// The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+	// The ARN of the role to be assumed when publishing metrics.
 	IamRole pulumi.StringPtrOutput `pulumi:"iamRole"`
-	// (optional) Include Auto-Delete queues
+	// Include auto delete queues.
+	//
+	// This is the full list of all arguments. Only a subset of arguments are used based on which type of
+	// integration used. See [integration type reference] below for more information.
 	IncludeAdQueues pulumi.BoolPtrOutput `pulumi:"includeAdQueues"`
 	// Instance identifier
 	InstanceId pulumi.IntOutput `pulumi:"instanceId"`
-	// The name of log integration
+	// The name of the third party log integration. See
+	// `Integration service reference`
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The private key. (Stackdriver)
+	// The private access key.
 	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
 	// Private key identifier. (Stackdriver)
 	PrivateKeyId pulumi.StringOutput `pulumi:"privateKeyId"`
-	// Project ID. (Stackdriver)
+	// The project identifier.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// (optional) allowlist using regular expression
+	// Allowlist queues using regular expression. Leave empty to include
+	// all queues.
 	QueueAllowlist pulumi.StringPtrOutput `pulumi:"queueAllowlist"`
-	// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
+	// Region hosting the integration service.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
-	// AWS secret key. (Cloudwatch)
+	// AWS secret access key.
 	SecretAccessKey pulumi.StringPtrOutput `pulumi:"secretAccessKey"`
-	// (optional) tags. E.g. env=prod,region=europe
+	// Tags. e.g. `env=prod,region=europe`.
+	//
+	// ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+	// letter, read more about tags format in the [Datadog documentation].
 	Tags pulumi.StringPtrOutput `pulumi:"tags"`
-	// (optional) allowlist using regular expression
+	// Allowlist vhost using regular expression. Leave empty to include
+	// all vhosts.
 	VhostAllowlist pulumi.StringPtrOutput `pulumi:"vhostAllowlist"`
 }
 
@@ -662,80 +626,98 @@ func GetIntegrationMetric(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IntegrationMetric resources.
 type integrationMetricState struct {
-	// AWS access key identifier. (Cloudwatch)
+	// AWS access key identifier.
 	AccessKeyId *string `pulumi:"accessKeyId"`
-	// The API key for the integration service. (Librato, Data Dog, New Relic)
+	// The API key for the integration service.
 	ApiKey *string `pulumi:"apiKey"`
-	// The client email. (Stackdriver)
+	// The client email registered for the integration service.
 	ClientEmail *string `pulumi:"clientEmail"`
-	// Base64Encoded credentials. (Stackdriver)
+	// Google Service Account private key credentials.
 	Credentials *string `pulumi:"credentials"`
-	// The email address registred for the integration service. (Librato)
+	// The email address registred for the integration service.
 	Email *string `pulumi:"email"`
-	// External identifier that match the role you created. (Cloudwatch)
+	// External identifier that match the role you created.
 	IamExternalId *string `pulumi:"iamExternalId"`
-	// The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+	// The ARN of the role to be assumed when publishing metrics.
 	IamRole *string `pulumi:"iamRole"`
-	// (optional) Include Auto-Delete queues
+	// Include auto delete queues.
+	//
+	// This is the full list of all arguments. Only a subset of arguments are used based on which type of
+	// integration used. See [integration type reference] below for more information.
 	IncludeAdQueues *bool `pulumi:"includeAdQueues"`
 	// Instance identifier
 	InstanceId *int `pulumi:"instanceId"`
-	// The name of log integration
+	// The name of the third party log integration. See
+	// `Integration service reference`
 	Name *string `pulumi:"name"`
-	// The private key. (Stackdriver)
+	// The private access key.
 	PrivateKey *string `pulumi:"privateKey"`
 	// Private key identifier. (Stackdriver)
 	PrivateKeyId *string `pulumi:"privateKeyId"`
-	// Project ID. (Stackdriver)
+	// The project identifier.
 	ProjectId *string `pulumi:"projectId"`
-	// (optional) allowlist using regular expression
+	// Allowlist queues using regular expression. Leave empty to include
+	// all queues.
 	QueueAllowlist *string `pulumi:"queueAllowlist"`
-	// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
+	// Region hosting the integration service.
 	Region *string `pulumi:"region"`
-	// AWS secret key. (Cloudwatch)
+	// AWS secret access key.
 	SecretAccessKey *string `pulumi:"secretAccessKey"`
-	// (optional) tags. E.g. env=prod,region=europe
+	// Tags. e.g. `env=prod,region=europe`.
+	//
+	// ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+	// letter, read more about tags format in the [Datadog documentation].
 	Tags *string `pulumi:"tags"`
-	// (optional) allowlist using regular expression
+	// Allowlist vhost using regular expression. Leave empty to include
+	// all vhosts.
 	VhostAllowlist *string `pulumi:"vhostAllowlist"`
 }
 
 type IntegrationMetricState struct {
-	// AWS access key identifier. (Cloudwatch)
+	// AWS access key identifier.
 	AccessKeyId pulumi.StringPtrInput
-	// The API key for the integration service. (Librato, Data Dog, New Relic)
+	// The API key for the integration service.
 	ApiKey pulumi.StringPtrInput
-	// The client email. (Stackdriver)
+	// The client email registered for the integration service.
 	ClientEmail pulumi.StringPtrInput
-	// Base64Encoded credentials. (Stackdriver)
+	// Google Service Account private key credentials.
 	Credentials pulumi.StringPtrInput
-	// The email address registred for the integration service. (Librato)
+	// The email address registred for the integration service.
 	Email pulumi.StringPtrInput
-	// External identifier that match the role you created. (Cloudwatch)
+	// External identifier that match the role you created.
 	IamExternalId pulumi.StringPtrInput
-	// The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+	// The ARN of the role to be assumed when publishing metrics.
 	IamRole pulumi.StringPtrInput
-	// (optional) Include Auto-Delete queues
+	// Include auto delete queues.
+	//
+	// This is the full list of all arguments. Only a subset of arguments are used based on which type of
+	// integration used. See [integration type reference] below for more information.
 	IncludeAdQueues pulumi.BoolPtrInput
 	// Instance identifier
 	InstanceId pulumi.IntPtrInput
-	// The name of log integration
+	// The name of the third party log integration. See
+	// `Integration service reference`
 	Name pulumi.StringPtrInput
-	// The private key. (Stackdriver)
+	// The private access key.
 	PrivateKey pulumi.StringPtrInput
 	// Private key identifier. (Stackdriver)
 	PrivateKeyId pulumi.StringPtrInput
-	// Project ID. (Stackdriver)
+	// The project identifier.
 	ProjectId pulumi.StringPtrInput
-	// (optional) allowlist using regular expression
+	// Allowlist queues using regular expression. Leave empty to include
+	// all queues.
 	QueueAllowlist pulumi.StringPtrInput
-	// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
+	// Region hosting the integration service.
 	Region pulumi.StringPtrInput
-	// AWS secret key. (Cloudwatch)
+	// AWS secret access key.
 	SecretAccessKey pulumi.StringPtrInput
-	// (optional) tags. E.g. env=prod,region=europe
+	// Tags. e.g. `env=prod,region=europe`.
+	//
+	// ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+	// letter, read more about tags format in the [Datadog documentation].
 	Tags pulumi.StringPtrInput
-	// (optional) allowlist using regular expression
+	// Allowlist vhost using regular expression. Leave empty to include
+	// all vhosts.
 	VhostAllowlist pulumi.StringPtrInput
 }
 
@@ -750,81 +732,99 @@ func IntegrationMetricExists(ctx *pulumi.Context,
 }
 
 type integrationMetricArgs struct {
-	// AWS access key identifier. (Cloudwatch)
+	// AWS access key identifier.
 	AccessKeyId *string `pulumi:"accessKeyId"`
-	// The API key for the integration service. (Librato, Data Dog, New Relic)
+	// The API key for the integration service.
 	ApiKey *string `pulumi:"apiKey"`
-	// The client email. (Stackdriver)
+	// The client email registered for the integration service.
 	ClientEmail *string `pulumi:"clientEmail"`
-	// Base64Encoded credentials. (Stackdriver)
+	// Google Service Account private key credentials.
 	Credentials *string `pulumi:"credentials"`
-	// The email address registred for the integration service. (Librato)
+	// The email address registred for the integration service.
 	Email *string `pulumi:"email"`
-	// External identifier that match the role you created. (Cloudwatch)
+	// External identifier that match the role you created.
 	IamExternalId *string `pulumi:"iamExternalId"`
-	// The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+	// The ARN of the role to be assumed when publishing metrics.
 	IamRole *string `pulumi:"iamRole"`
-	// (optional) Include Auto-Delete queues
+	// Include auto delete queues.
+	//
+	// This is the full list of all arguments. Only a subset of arguments are used based on which type of
+	// integration used. See [integration type reference] below for more information.
 	IncludeAdQueues *bool `pulumi:"includeAdQueues"`
 	// Instance identifier
 	InstanceId int `pulumi:"instanceId"`
-	// The name of log integration
+	// The name of the third party log integration. See
+	// `Integration service reference`
 	Name *string `pulumi:"name"`
-	// The private key. (Stackdriver)
+	// The private access key.
 	PrivateKey *string `pulumi:"privateKey"`
 	// Private key identifier. (Stackdriver)
 	PrivateKeyId *string `pulumi:"privateKeyId"`
-	// Project ID. (Stackdriver)
+	// The project identifier.
 	ProjectId *string `pulumi:"projectId"`
-	// (optional) allowlist using regular expression
+	// Allowlist queues using regular expression. Leave empty to include
+	// all queues.
 	QueueAllowlist *string `pulumi:"queueAllowlist"`
-	// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
+	// Region hosting the integration service.
 	Region *string `pulumi:"region"`
-	// AWS secret key. (Cloudwatch)
+	// AWS secret access key.
 	SecretAccessKey *string `pulumi:"secretAccessKey"`
-	// (optional) tags. E.g. env=prod,region=europe
+	// Tags. e.g. `env=prod,region=europe`.
+	//
+	// ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+	// letter, read more about tags format in the [Datadog documentation].
 	Tags *string `pulumi:"tags"`
-	// (optional) allowlist using regular expression
+	// Allowlist vhost using regular expression. Leave empty to include
+	// all vhosts.
 	VhostAllowlist *string `pulumi:"vhostAllowlist"`
 }
 
 // The set of arguments for constructing a IntegrationMetric resource.
 type IntegrationMetricArgs struct {
-	// AWS access key identifier. (Cloudwatch)
+	// AWS access key identifier.
 	AccessKeyId pulumi.StringPtrInput
-	// The API key for the integration service. (Librato, Data Dog, New Relic)
+	// The API key for the integration service.
 	ApiKey pulumi.StringPtrInput
-	// The client email. (Stackdriver)
+	// The client email registered for the integration service.
 	ClientEmail pulumi.StringPtrInput
-	// Base64Encoded credentials. (Stackdriver)
+	// Google Service Account private key credentials.
 	Credentials pulumi.StringPtrInput
-	// The email address registred for the integration service. (Librato)
+	// The email address registred for the integration service.
 	Email pulumi.StringPtrInput
-	// External identifier that match the role you created. (Cloudwatch)
+	// External identifier that match the role you created.
 	IamExternalId pulumi.StringPtrInput
-	// The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+	// The ARN of the role to be assumed when publishing metrics.
 	IamRole pulumi.StringPtrInput
-	// (optional) Include Auto-Delete queues
+	// Include auto delete queues.
+	//
+	// This is the full list of all arguments. Only a subset of arguments are used based on which type of
+	// integration used. See [integration type reference] below for more information.
 	IncludeAdQueues pulumi.BoolPtrInput
 	// Instance identifier
 	InstanceId pulumi.IntInput
-	// The name of log integration
+	// The name of the third party log integration. See
+	// `Integration service reference`
 	Name pulumi.StringPtrInput
-	// The private key. (Stackdriver)
+	// The private access key.
 	PrivateKey pulumi.StringPtrInput
 	// Private key identifier. (Stackdriver)
 	PrivateKeyId pulumi.StringPtrInput
-	// Project ID. (Stackdriver)
+	// The project identifier.
 	ProjectId pulumi.StringPtrInput
-	// (optional) allowlist using regular expression
+	// Allowlist queues using regular expression. Leave empty to include
+	// all queues.
 	QueueAllowlist pulumi.StringPtrInput
-	// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
+	// Region hosting the integration service.
 	Region pulumi.StringPtrInput
-	// AWS secret key. (Cloudwatch)
+	// AWS secret access key.
 	SecretAccessKey pulumi.StringPtrInput
-	// (optional) tags. E.g. env=prod,region=europe
+	// Tags. e.g. `env=prod,region=europe`.
+	//
+	// ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+	// letter, read more about tags format in the [Datadog documentation].
 	Tags pulumi.StringPtrInput
-	// (optional) allowlist using regular expression
+	// Allowlist vhost using regular expression. Leave empty to include
+	// all vhosts.
 	VhostAllowlist pulumi.StringPtrInput
 }
 
@@ -915,42 +915,45 @@ func (o IntegrationMetricOutput) ToIntegrationMetricOutputWithContext(ctx contex
 	return o
 }
 
-// AWS access key identifier. (Cloudwatch)
+// AWS access key identifier.
 func (o IntegrationMetricOutput) AccessKeyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.AccessKeyId }).(pulumi.StringPtrOutput)
 }
 
-// The API key for the integration service. (Librato, Data Dog, New Relic)
+// The API key for the integration service.
 func (o IntegrationMetricOutput) ApiKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.ApiKey }).(pulumi.StringPtrOutput)
 }
 
-// The client email. (Stackdriver)
+// The client email registered for the integration service.
 func (o IntegrationMetricOutput) ClientEmail() pulumi.StringOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringOutput { return v.ClientEmail }).(pulumi.StringOutput)
 }
 
-// Base64Encoded credentials. (Stackdriver)
+// Google Service Account private key credentials.
 func (o IntegrationMetricOutput) Credentials() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.Credentials }).(pulumi.StringPtrOutput)
 }
 
-// The email address registred for the integration service. (Librato)
+// The email address registred for the integration service.
 func (o IntegrationMetricOutput) Email() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.Email }).(pulumi.StringPtrOutput)
 }
 
-// External identifier that match the role you created. (Cloudwatch)
+// External identifier that match the role you created.
 func (o IntegrationMetricOutput) IamExternalId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.IamExternalId }).(pulumi.StringPtrOutput)
 }
 
-// The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+// The ARN of the role to be assumed when publishing metrics.
 func (o IntegrationMetricOutput) IamRole() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.IamRole }).(pulumi.StringPtrOutput)
 }
 
-// (optional) Include Auto-Delete queues
+// Include auto delete queues.
+//
+// This is the full list of all arguments. Only a subset of arguments are used based on which type of
+// integration used. See [integration type reference] below for more information.
 func (o IntegrationMetricOutput) IncludeAdQueues() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.BoolPtrOutput { return v.IncludeAdQueues }).(pulumi.BoolPtrOutput)
 }
@@ -960,12 +963,13 @@ func (o IntegrationMetricOutput) InstanceId() pulumi.IntOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.IntOutput { return v.InstanceId }).(pulumi.IntOutput)
 }
 
-// The name of log integration
+// The name of the third party log integration. See
+// `Integration service reference`
 func (o IntegrationMetricOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The private key. (Stackdriver)
+// The private access key.
 func (o IntegrationMetricOutput) PrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
 }
@@ -975,32 +979,37 @@ func (o IntegrationMetricOutput) PrivateKeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringOutput { return v.PrivateKeyId }).(pulumi.StringOutput)
 }
 
-// Project ID. (Stackdriver)
+// The project identifier.
 func (o IntegrationMetricOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// (optional) allowlist using regular expression
+// Allowlist queues using regular expression. Leave empty to include
+// all queues.
 func (o IntegrationMetricOutput) QueueAllowlist() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.QueueAllowlist }).(pulumi.StringPtrOutput)
 }
 
-// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
+// Region hosting the integration service.
 func (o IntegrationMetricOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// AWS secret key. (Cloudwatch)
+// AWS secret access key.
 func (o IntegrationMetricOutput) SecretAccessKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.SecretAccessKey }).(pulumi.StringPtrOutput)
 }
 
-// (optional) tags. E.g. env=prod,region=europe
+// Tags. e.g. `env=prod,region=europe`.
+//
+// ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+// letter, read more about tags format in the [Datadog documentation].
 func (o IntegrationMetricOutput) Tags() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.Tags }).(pulumi.StringPtrOutput)
 }
 
-// (optional) allowlist using regular expression
+// Allowlist vhost using regular expression. Leave empty to include
+// all vhosts.
 func (o IntegrationMetricOutput) VhostAllowlist() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IntegrationMetric) pulumi.StringPtrOutput { return v.VhostAllowlist }).(pulumi.StringPtrOutput)
 }

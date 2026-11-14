@@ -9,7 +9,6 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAccountVpcsVpc {
@@ -37,7 +36,7 @@ public final class GetAccountVpcsVpc {
      * @return Optional tags set for the VPC.
      * 
      */
-    private @Nullable List<String> tags;
+    private List<String> tags;
     /**
      * @return VPC name given when hosted at the cloud provider.
      * 
@@ -78,7 +77,7 @@ public final class GetAccountVpcsVpc {
      * 
      */
     public List<String> tags() {
-        return this.tags == null ? List.of() : this.tags;
+        return this.tags;
     }
     /**
      * @return VPC name given when hosted at the cloud provider.
@@ -101,7 +100,7 @@ public final class GetAccountVpcsVpc {
         private String name;
         private String region;
         private String subnet;
-        private @Nullable List<String> tags;
+        private List<String> tags;
         private String vpcName;
         public Builder() {}
         public Builder(GetAccountVpcsVpc defaults) {
@@ -147,8 +146,10 @@ public final class GetAccountVpcsVpc {
             return this;
         }
         @CustomType.Setter
-        public Builder tags(@Nullable List<String> tags) {
-
+        public Builder tags(List<String> tags) {
+            if (tags == null) {
+              throw new MissingRequiredPropertyException("GetAccountVpcsVpc", "tags");
+            }
             this.tags = tags;
             return this;
         }

@@ -39,7 +39,7 @@ class GetAccountVpcsResult:
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        The provider-assigned unique ID for this managed resource.
+        The VPC identifier.
         """
         return pulumi.get(self, "id")
 

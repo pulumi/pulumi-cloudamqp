@@ -19,14 +19,14 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
     public static final IntegrationMetricArgs Empty = new IntegrationMetricArgs();
 
     /**
-     * AWS access key identifier. (Cloudwatch)
+     * AWS access key identifier.
      * 
      */
     @Import(name="accessKeyId")
     private @Nullable Output<String> accessKeyId;
 
     /**
-     * @return AWS access key identifier. (Cloudwatch)
+     * @return AWS access key identifier.
      * 
      */
     public Optional<Output<String>> accessKeyId() {
@@ -34,14 +34,14 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The API key for the integration service. (Librato, Data Dog, New Relic)
+     * The API key for the integration service.
      * 
      */
     @Import(name="apiKey")
     private @Nullable Output<String> apiKey;
 
     /**
-     * @return The API key for the integration service. (Librato, Data Dog, New Relic)
+     * @return The API key for the integration service.
      * 
      */
     public Optional<Output<String>> apiKey() {
@@ -49,14 +49,14 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The client email. (Stackdriver)
+     * The client email registered for the integration service.
      * 
      */
     @Import(name="clientEmail")
     private @Nullable Output<String> clientEmail;
 
     /**
-     * @return The client email. (Stackdriver)
+     * @return The client email registered for the integration service.
      * 
      */
     public Optional<Output<String>> clientEmail() {
@@ -64,14 +64,14 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Base64Encoded credentials. (Stackdriver)
+     * Google Service Account private key credentials.
      * 
      */
     @Import(name="credentials")
     private @Nullable Output<String> credentials;
 
     /**
-     * @return Base64Encoded credentials. (Stackdriver)
+     * @return Google Service Account private key credentials.
      * 
      */
     public Optional<Output<String>> credentials() {
@@ -79,14 +79,14 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The email address registred for the integration service. (Librato)
+     * The email address registred for the integration service.
      * 
      */
     @Import(name="email")
     private @Nullable Output<String> email;
 
     /**
-     * @return The email address registred for the integration service. (Librato)
+     * @return The email address registred for the integration service.
      * 
      */
     public Optional<Output<String>> email() {
@@ -94,14 +94,14 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * External identifier that match the role you created. (Cloudwatch)
+     * External identifier that match the role you created.
      * 
      */
     @Import(name="iamExternalId")
     private @Nullable Output<String> iamExternalId;
 
     /**
-     * @return External identifier that match the role you created. (Cloudwatch)
+     * @return External identifier that match the role you created.
      * 
      */
     public Optional<Output<String>> iamExternalId() {
@@ -109,14 +109,14 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+     * The ARN of the role to be assumed when publishing metrics.
      * 
      */
     @Import(name="iamRole")
     private @Nullable Output<String> iamRole;
 
     /**
-     * @return The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+     * @return The ARN of the role to be assumed when publishing metrics.
      * 
      */
     public Optional<Output<String>> iamRole() {
@@ -124,14 +124,20 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * (optional) Include Auto-Delete queues
+     * Include auto delete queues.
+     * 
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of
+     * integration used. See [integration type reference] below for more information.
      * 
      */
     @Import(name="includeAdQueues")
     private @Nullable Output<Boolean> includeAdQueues;
 
     /**
-     * @return (optional) Include Auto-Delete queues
+     * @return Include auto delete queues.
+     * 
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of
+     * integration used. See [integration type reference] below for more information.
      * 
      */
     public Optional<Output<Boolean>> includeAdQueues() {
@@ -154,14 +160,16 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The name of log integration
+     * The name of the third party log integration. See
+     * `Integration service reference`
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The name of log integration
+     * @return The name of the third party log integration. See
+     * `Integration service reference`
      * 
      */
     public Optional<Output<String>> name() {
@@ -169,14 +177,14 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The private key. (Stackdriver)
+     * The private access key.
      * 
      */
     @Import(name="privateKey")
     private @Nullable Output<String> privateKey;
 
     /**
-     * @return The private key. (Stackdriver)
+     * @return The private access key.
      * 
      */
     public Optional<Output<String>> privateKey() {
@@ -199,14 +207,14 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Project ID. (Stackdriver)
+     * The project identifier.
      * 
      */
     @Import(name="projectId")
     private @Nullable Output<String> projectId;
 
     /**
-     * @return Project ID. (Stackdriver)
+     * @return The project identifier.
      * 
      */
     public Optional<Output<String>> projectId() {
@@ -214,14 +222,16 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * (optional) allowlist using regular expression
+     * Allowlist queues using regular expression. Leave empty to include
+     * all queues.
      * 
      */
     @Import(name="queueAllowlist")
     private @Nullable Output<String> queueAllowlist;
 
     /**
-     * @return (optional) allowlist using regular expression
+     * @return Allowlist queues using regular expression. Leave empty to include
+     * all queues.
      * 
      */
     public Optional<Output<String>> queueAllowlist() {
@@ -229,14 +239,14 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
+     * Region hosting the integration service.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
+     * @return Region hosting the integration service.
      * 
      */
     public Optional<Output<String>> region() {
@@ -244,14 +254,14 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * AWS secret key. (Cloudwatch)
+     * AWS secret access key.
      * 
      */
     @Import(name="secretAccessKey")
     private @Nullable Output<String> secretAccessKey;
 
     /**
-     * @return AWS secret key. (Cloudwatch)
+     * @return AWS secret access key.
      * 
      */
     public Optional<Output<String>> secretAccessKey() {
@@ -259,14 +269,20 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * (optional) tags. E.g. env=prod,region=europe
+     * Tags. e.g. `env=prod,region=europe`.
+     * 
+     * ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+     * letter, read more about tags format in the [Datadog documentation].
      * 
      */
     @Import(name="tags")
     private @Nullable Output<String> tags;
 
     /**
-     * @return (optional) tags. E.g. env=prod,region=europe
+     * @return Tags. e.g. `env=prod,region=europe`.
+     * 
+     * ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+     * letter, read more about tags format in the [Datadog documentation].
      * 
      */
     public Optional<Output<String>> tags() {
@@ -274,14 +290,16 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * (optional) allowlist using regular expression
+     * Allowlist vhost using regular expression. Leave empty to include
+     * all vhosts.
      * 
      */
     @Import(name="vhostAllowlist")
     private @Nullable Output<String> vhostAllowlist;
 
     /**
-     * @return (optional) allowlist using regular expression
+     * @return Allowlist vhost using regular expression. Leave empty to include
+     * all vhosts.
      * 
      */
     public Optional<Output<String>> vhostAllowlist() {
@@ -330,7 +348,7 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param accessKeyId AWS access key identifier. (Cloudwatch)
+         * @param accessKeyId AWS access key identifier.
          * 
          * @return builder
          * 
@@ -341,7 +359,7 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param accessKeyId AWS access key identifier. (Cloudwatch)
+         * @param accessKeyId AWS access key identifier.
          * 
          * @return builder
          * 
@@ -351,7 +369,7 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param apiKey The API key for the integration service. (Librato, Data Dog, New Relic)
+         * @param apiKey The API key for the integration service.
          * 
          * @return builder
          * 
@@ -362,7 +380,7 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param apiKey The API key for the integration service. (Librato, Data Dog, New Relic)
+         * @param apiKey The API key for the integration service.
          * 
          * @return builder
          * 
@@ -372,7 +390,7 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param clientEmail The client email. (Stackdriver)
+         * @param clientEmail The client email registered for the integration service.
          * 
          * @return builder
          * 
@@ -383,7 +401,7 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param clientEmail The client email. (Stackdriver)
+         * @param clientEmail The client email registered for the integration service.
          * 
          * @return builder
          * 
@@ -393,7 +411,7 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param credentials Base64Encoded credentials. (Stackdriver)
+         * @param credentials Google Service Account private key credentials.
          * 
          * @return builder
          * 
@@ -404,7 +422,7 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param credentials Base64Encoded credentials. (Stackdriver)
+         * @param credentials Google Service Account private key credentials.
          * 
          * @return builder
          * 
@@ -414,7 +432,7 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param email The email address registred for the integration service. (Librato)
+         * @param email The email address registred for the integration service.
          * 
          * @return builder
          * 
@@ -425,7 +443,7 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param email The email address registred for the integration service. (Librato)
+         * @param email The email address registred for the integration service.
          * 
          * @return builder
          * 
@@ -435,7 +453,7 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param iamExternalId External identifier that match the role you created. (Cloudwatch)
+         * @param iamExternalId External identifier that match the role you created.
          * 
          * @return builder
          * 
@@ -446,7 +464,7 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param iamExternalId External identifier that match the role you created. (Cloudwatch)
+         * @param iamExternalId External identifier that match the role you created.
          * 
          * @return builder
          * 
@@ -456,7 +474,7 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param iamRole The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+         * @param iamRole The ARN of the role to be assumed when publishing metrics.
          * 
          * @return builder
          * 
@@ -467,7 +485,7 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param iamRole The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+         * @param iamRole The ARN of the role to be assumed when publishing metrics.
          * 
          * @return builder
          * 
@@ -477,7 +495,10 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param includeAdQueues (optional) Include Auto-Delete queues
+         * @param includeAdQueues Include auto delete queues.
+         * 
+         * This is the full list of all arguments. Only a subset of arguments are used based on which type of
+         * integration used. See [integration type reference] below for more information.
          * 
          * @return builder
          * 
@@ -488,7 +509,10 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param includeAdQueues (optional) Include Auto-Delete queues
+         * @param includeAdQueues Include auto delete queues.
+         * 
+         * This is the full list of all arguments. Only a subset of arguments are used based on which type of
+         * integration used. See [integration type reference] below for more information.
          * 
          * @return builder
          * 
@@ -519,7 +543,8 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param name The name of log integration
+         * @param name The name of the third party log integration. See
+         * `Integration service reference`
          * 
          * @return builder
          * 
@@ -530,7 +555,8 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param name The name of log integration
+         * @param name The name of the third party log integration. See
+         * `Integration service reference`
          * 
          * @return builder
          * 
@@ -540,7 +566,7 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param privateKey The private key. (Stackdriver)
+         * @param privateKey The private access key.
          * 
          * @return builder
          * 
@@ -551,7 +577,7 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param privateKey The private key. (Stackdriver)
+         * @param privateKey The private access key.
          * 
          * @return builder
          * 
@@ -582,7 +608,7 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param projectId Project ID. (Stackdriver)
+         * @param projectId The project identifier.
          * 
          * @return builder
          * 
@@ -593,7 +619,7 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param projectId Project ID. (Stackdriver)
+         * @param projectId The project identifier.
          * 
          * @return builder
          * 
@@ -603,7 +629,8 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param queueAllowlist (optional) allowlist using regular expression
+         * @param queueAllowlist Allowlist queues using regular expression. Leave empty to include
+         * all queues.
          * 
          * @return builder
          * 
@@ -614,7 +641,8 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param queueAllowlist (optional) allowlist using regular expression
+         * @param queueAllowlist Allowlist queues using regular expression. Leave empty to include
+         * all queues.
          * 
          * @return builder
          * 
@@ -624,7 +652,7 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param region AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
+         * @param region Region hosting the integration service.
          * 
          * @return builder
          * 
@@ -635,7 +663,7 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param region AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
+         * @param region Region hosting the integration service.
          * 
          * @return builder
          * 
@@ -645,7 +673,7 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param secretAccessKey AWS secret key. (Cloudwatch)
+         * @param secretAccessKey AWS secret access key.
          * 
          * @return builder
          * 
@@ -656,7 +684,7 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param secretAccessKey AWS secret key. (Cloudwatch)
+         * @param secretAccessKey AWS secret access key.
          * 
          * @return builder
          * 
@@ -666,7 +694,10 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param tags (optional) tags. E.g. env=prod,region=europe
+         * @param tags Tags. e.g. `env=prod,region=europe`.
+         * 
+         * ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+         * letter, read more about tags format in the [Datadog documentation].
          * 
          * @return builder
          * 
@@ -677,7 +708,10 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param tags (optional) tags. E.g. env=prod,region=europe
+         * @param tags Tags. e.g. `env=prod,region=europe`.
+         * 
+         * ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+         * letter, read more about tags format in the [Datadog documentation].
          * 
          * @return builder
          * 
@@ -687,7 +721,8 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param vhostAllowlist (optional) allowlist using regular expression
+         * @param vhostAllowlist Allowlist vhost using regular expression. Leave empty to include
+         * all vhosts.
          * 
          * @return builder
          * 
@@ -698,7 +733,8 @@ public final class IntegrationMetricArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param vhostAllowlist (optional) allowlist using regular expression
+         * @param vhostAllowlist Allowlist vhost using regular expression. Leave empty to include
+         * all vhosts.
          * 
          * @return builder
          * 

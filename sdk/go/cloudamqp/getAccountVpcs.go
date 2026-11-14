@@ -35,7 +35,7 @@ func GetAccountVpcs(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetAccou
 
 // A collection of values returned by getAccountVpcs.
 type GetAccountVpcsResult struct {
-	// The provider-assigned unique ID for this managed resource.
+	// The VPC identifier.
 	Id string `pulumi:"id"`
 	// An array of VPCs. Each `vpcs` block consists of the fields documented below.
 	Vpcs []GetAccountVpcsVpc `pulumi:"vpcs"`
@@ -61,7 +61,7 @@ func (o GetAccountVpcsResultOutput) ToGetAccountVpcsResultOutputWithContext(ctx 
 	return o
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The VPC identifier.
 func (o GetAccountVpcsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccountVpcsResult) string { return v.Id }).(pulumi.StringOutput)
 }

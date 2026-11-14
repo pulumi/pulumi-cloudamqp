@@ -24,6 +24,7 @@ class AlarmArgs:
                  recipients: pulumi.Input[Sequence[pulumi.Input[_builtins.int]]],
                  type: pulumi.Input[_builtins.str],
                  allow_downtime: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_disk_size: pulumi.Input[Optional[_builtins.int]] = None,
                  message_type: pulumi.Input[Optional[_builtins.str]] = None,
                  queue_regex: pulumi.Input[Optional[_builtins.str]] = None,
                  reminder_interval: pulumi.Input[Optional[_builtins.int]] = None,
@@ -41,9 +42,14 @@ class AlarmArgs:
         :param pulumi.Input[_builtins.str] type: The alarm type, see valid options below.
         :param pulumi.Input[_builtins.bool] allow_downtime: For `disk_auto_resize`, allow the resize to proceed even if it
                requires brief downtime. The Default is `false`.
+        :param pulumi.Input[_builtins.int] max_disk_size: For `disk_auto_resize`, the maximum additional disk size (in GiB)
+               to resize up to. Valid values are `25, 50, 100, 250, 500, 1000, 2000`.
+               Leave unset to allow resizing up to the largest size (2000 GiB). Set it
+               larger than the instance's current additional disk size, otherwise auto
+               resize will not run.
                
-               Setting `value_calculation` on any other alarm type, or `allow_downtime` on a non
-               `disk_auto_resize` alarm, is rejected at plan time.
+               Setting `value_calculation` on any other alarm type, or `allow_downtime` and `max_disk_size` on a
+               non `disk_auto_resize` alarm, is rejected at plan time.
                
                > **Warning:** A `disk_auto_resize` alarm grows the instance's additional disk out of band from
                Terraform. Do not use it together with the `ExtraDiskSize` resource on the same instance;
@@ -71,6 +77,8 @@ class AlarmArgs:
         pulumi.set(__self__, "type", type)
         if allow_downtime is not None:
             pulumi.set(__self__, "allow_downtime", allow_downtime)
+        if max_disk_size is not None:
+            pulumi.set(__self__, "max_disk_size", max_disk_size)
         if message_type is not None:
             pulumi.set(__self__, "message_type", message_type)
         if queue_regex is not None:
@@ -141,9 +149,25 @@ class AlarmArgs:
         """
         For `disk_auto_resize`, allow the resize to proceed even if it
         requires brief downtime. The Default is `false`.
+        """
+        return pulumi.get(self, "allow_downtime")
 
-        Setting `value_calculation` on any other alarm type, or `allow_downtime` on a non
-        `disk_auto_resize` alarm, is rejected at plan time.
+    @allow_downtime.setter
+    def allow_downtime(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "allow_downtime", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxDiskSize")
+    def max_disk_size(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        For `disk_auto_resize`, the maximum additional disk size (in GiB)
+        to resize up to. Valid values are `25, 50, 100, 250, 500, 1000, 2000`.
+        Leave unset to allow resizing up to the largest size (2000 GiB). Set it
+        larger than the instance's current additional disk size, otherwise auto
+        resize will not run.
+
+        Setting `value_calculation` on any other alarm type, or `allow_downtime` and `max_disk_size` on a
+        non `disk_auto_resize` alarm, is rejected at plan time.
 
         > **Warning:** A `disk_auto_resize` alarm grows the instance's additional disk out of band from
         Terraform. Do not use it together with the `ExtraDiskSize` resource on the same instance;
@@ -153,11 +177,11 @@ class AlarmArgs:
 
         Based on alarm type, different arguments are flagged as required or optional.
         """
-        return pulumi.get(self, "allow_downtime")
+        return pulumi.get(self, "max_disk_size")
 
-    @allow_downtime.setter
-    def allow_downtime(self, value: pulumi.Input[Optional[_builtins.bool]]):
-        pulumi.set(self, "allow_downtime", value)
+    @max_disk_size.setter
+    def max_disk_size(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "max_disk_size", value)
 
     @_builtins.property
     @pulumi.getter(name="messageType")
@@ -255,6 +279,7 @@ class _AlarmState:
                  allow_downtime: pulumi.Input[Optional[_builtins.bool]] = None,
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_disk_size: pulumi.Input[Optional[_builtins.int]] = None,
                  message_type: pulumi.Input[Optional[_builtins.str]] = None,
                  queue_regex: pulumi.Input[Optional[_builtins.str]] = None,
                  recipients: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
@@ -269,9 +294,16 @@ class _AlarmState:
 
         :param pulumi.Input[_builtins.bool] allow_downtime: For `disk_auto_resize`, allow the resize to proceed even if it
                requires brief downtime. The Default is `false`.
+        :param pulumi.Input[_builtins.bool] enabled: Enable or disable the alarm to trigger.
+        :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[_builtins.int] max_disk_size: For `disk_auto_resize`, the maximum additional disk size (in GiB)
+               to resize up to. Valid values are `25, 50, 100, 250, 500, 1000, 2000`.
+               Leave unset to allow resizing up to the largest size (2000 GiB). Set it
+               larger than the instance's current additional disk size, otherwise auto
+               resize will not run.
                
-               Setting `value_calculation` on any other alarm type, or `allow_downtime` on a non
-               `disk_auto_resize` alarm, is rejected at plan time.
+               Setting `value_calculation` on any other alarm type, or `allow_downtime` and `max_disk_size` on a
+               non `disk_auto_resize` alarm, is rejected at plan time.
                
                > **Warning:** A `disk_auto_resize` alarm grows the instance's additional disk out of band from
                Terraform. Do not use it together with the `ExtraDiskSize` resource on the same instance;
@@ -280,8 +312,6 @@ class _AlarmState:
                `disk_auto_resize` alarm or `ExtraDiskSize`, not both.
                
                Based on alarm type, different arguments are flagged as required or optional.
-        :param pulumi.Input[_builtins.bool] enabled: Enable or disable the alarm to trigger.
-        :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[_builtins.str] message_type: Message type `(total, unacked, ready)` used by queue alarm type.
                
                Specific arguments for `disk` and `disk_auto_resize` alarms
@@ -304,6 +334,8 @@ class _AlarmState:
             pulumi.set(__self__, "enabled", enabled)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
+        if max_disk_size is not None:
+            pulumi.set(__self__, "max_disk_size", max_disk_size)
         if message_type is not None:
             pulumi.set(__self__, "message_type", message_type)
         if queue_regex is not None:
@@ -329,17 +361,6 @@ class _AlarmState:
         """
         For `disk_auto_resize`, allow the resize to proceed even if it
         requires brief downtime. The Default is `false`.
-
-        Setting `value_calculation` on any other alarm type, or `allow_downtime` on a non
-        `disk_auto_resize` alarm, is rejected at plan time.
-
-        > **Warning:** A `disk_auto_resize` alarm grows the instance's additional disk out of band from
-        Terraform. Do not use it together with the `ExtraDiskSize` resource on the same instance;
-        both control the same disk and will conflict, which can lead to Terraform shrinking the disk (with
-        downtime) back to the value declared on `ExtraDiskSize`. Manage the disk with either the
-        `disk_auto_resize` alarm or `ExtraDiskSize`, not both.
-
-        Based on alarm type, different arguments are flagged as required or optional.
         """
         return pulumi.get(self, "allow_downtime")
 
@@ -370,6 +391,33 @@ class _AlarmState:
     @instance_id.setter
     def instance_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "instance_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxDiskSize")
+    def max_disk_size(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        For `disk_auto_resize`, the maximum additional disk size (in GiB)
+        to resize up to. Valid values are `25, 50, 100, 250, 500, 1000, 2000`.
+        Leave unset to allow resizing up to the largest size (2000 GiB). Set it
+        larger than the instance's current additional disk size, otherwise auto
+        resize will not run.
+
+        Setting `value_calculation` on any other alarm type, or `allow_downtime` and `max_disk_size` on a
+        non `disk_auto_resize` alarm, is rejected at plan time.
+
+        > **Warning:** A `disk_auto_resize` alarm grows the instance's additional disk out of band from
+        Terraform. Do not use it together with the `ExtraDiskSize` resource on the same instance;
+        both control the same disk and will conflict, which can lead to Terraform shrinking the disk (with
+        downtime) back to the value declared on `ExtraDiskSize`. Manage the disk with either the
+        `disk_auto_resize` alarm or `ExtraDiskSize`, not both.
+
+        Based on alarm type, different arguments are flagged as required or optional.
+        """
+        return pulumi.get(self, "max_disk_size")
+
+    @max_disk_size.setter
+    def max_disk_size(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "max_disk_size", value)
 
     @_builtins.property
     @pulumi.getter(name="messageType")
@@ -495,6 +543,7 @@ class Alarm(pulumi.CustomResource):
                  allow_downtime: pulumi.Input[Optional[_builtins.bool]] = None,
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_disk_size: pulumi.Input[Optional[_builtins.int]] = None,
                  message_type: pulumi.Input[Optional[_builtins.str]] = None,
                  queue_regex: pulumi.Input[Optional[_builtins.str]] = None,
                  recipients: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
@@ -612,8 +661,11 @@ class Alarm(pulumi.CustomResource):
             value_calculation="percentage",
             time_threshold=600,
             allow_downtime=False,
+            max_disk_size=250,
             recipients=[recipient["id"]])
         ```
+
+        `max_disk_size` is available from v1.53.0.
 
         </details>
 
@@ -630,7 +682,7 @@ class Alarm(pulumi.CustomResource):
         | CPU | cpu | - | &#10004; | time_threshold, value_threshold |
         | Memory | memory | - | &#10004; | time_threshold, value_threshold |
         | Disk space | disk | - | &#10004; | time_threshold, value_threshold |
-        | Disk auto-resize | disk_auto_resize | - | &#10004; | time_threshold, value_threshold, value_calculation, allow_downtime |
+        | Disk auto-resize | disk_auto_resize | - | &#10004; | time_threshold, value_threshold, value_calculation, allow_downtime, max_disk_size |
         | Queue | queue | &#10004; | &#10004; | time_threshold, value_threshold, queue_regex, vhost_regex, message_type |
         | Connection | connection | &#10004; | &#10004; | time_threshold, value_threshold |
         | Connection flow | flow | &#10004; | &#10004; | time_threshold, value_threshold |
@@ -668,9 +720,16 @@ class Alarm(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] allow_downtime: For `disk_auto_resize`, allow the resize to proceed even if it
                requires brief downtime. The Default is `false`.
+        :param pulumi.Input[_builtins.bool] enabled: Enable or disable the alarm to trigger.
+        :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[_builtins.int] max_disk_size: For `disk_auto_resize`, the maximum additional disk size (in GiB)
+               to resize up to. Valid values are `25, 50, 100, 250, 500, 1000, 2000`.
+               Leave unset to allow resizing up to the largest size (2000 GiB). Set it
+               larger than the instance's current additional disk size, otherwise auto
+               resize will not run.
                
-               Setting `value_calculation` on any other alarm type, or `allow_downtime` on a non
-               `disk_auto_resize` alarm, is rejected at plan time.
+               Setting `value_calculation` on any other alarm type, or `allow_downtime` and `max_disk_size` on a
+               non `disk_auto_resize` alarm, is rejected at plan time.
                
                > **Warning:** A `disk_auto_resize` alarm grows the instance's additional disk out of band from
                Terraform. Do not use it together with the `ExtraDiskSize` resource on the same instance;
@@ -679,8 +738,6 @@ class Alarm(pulumi.CustomResource):
                `disk_auto_resize` alarm or `ExtraDiskSize`, not both.
                
                Based on alarm type, different arguments are flagged as required or optional.
-        :param pulumi.Input[_builtins.bool] enabled: Enable or disable the alarm to trigger.
-        :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[_builtins.str] message_type: Message type `(total, unacked, ready)` used by queue alarm type.
                
                Specific arguments for `disk` and `disk_auto_resize` alarms
@@ -810,8 +867,11 @@ class Alarm(pulumi.CustomResource):
             value_calculation="percentage",
             time_threshold=600,
             allow_downtime=False,
+            max_disk_size=250,
             recipients=[recipient["id"]])
         ```
+
+        `max_disk_size` is available from v1.53.0.
 
         </details>
 
@@ -828,7 +888,7 @@ class Alarm(pulumi.CustomResource):
         | CPU | cpu | - | &#10004; | time_threshold, value_threshold |
         | Memory | memory | - | &#10004; | time_threshold, value_threshold |
         | Disk space | disk | - | &#10004; | time_threshold, value_threshold |
-        | Disk auto-resize | disk_auto_resize | - | &#10004; | time_threshold, value_threshold, value_calculation, allow_downtime |
+        | Disk auto-resize | disk_auto_resize | - | &#10004; | time_threshold, value_threshold, value_calculation, allow_downtime, max_disk_size |
         | Queue | queue | &#10004; | &#10004; | time_threshold, value_threshold, queue_regex, vhost_regex, message_type |
         | Connection | connection | &#10004; | &#10004; | time_threshold, value_threshold |
         | Connection flow | flow | &#10004; | &#10004; | time_threshold, value_threshold |
@@ -880,6 +940,7 @@ class Alarm(pulumi.CustomResource):
                  allow_downtime: pulumi.Input[Optional[_builtins.bool]] = None,
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_disk_size: pulumi.Input[Optional[_builtins.int]] = None,
                  message_type: pulumi.Input[Optional[_builtins.str]] = None,
                  queue_regex: pulumi.Input[Optional[_builtins.str]] = None,
                  recipients: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
@@ -905,6 +966,7 @@ class Alarm(pulumi.CustomResource):
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
+            __props__.__dict__["max_disk_size"] = max_disk_size
             __props__.__dict__["message_type"] = message_type
             __props__.__dict__["queue_regex"] = queue_regex
             if recipients is None and not opts.urn:
@@ -931,6 +993,7 @@ class Alarm(pulumi.CustomResource):
             allow_downtime: pulumi.Input[Optional[_builtins.bool]] = None,
             enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            max_disk_size: pulumi.Input[Optional[_builtins.int]] = None,
             message_type: pulumi.Input[Optional[_builtins.str]] = None,
             queue_regex: pulumi.Input[Optional[_builtins.str]] = None,
             recipients: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
@@ -949,9 +1012,16 @@ class Alarm(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] allow_downtime: For `disk_auto_resize`, allow the resize to proceed even if it
                requires brief downtime. The Default is `false`.
+        :param pulumi.Input[_builtins.bool] enabled: Enable or disable the alarm to trigger.
+        :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
+        :param pulumi.Input[_builtins.int] max_disk_size: For `disk_auto_resize`, the maximum additional disk size (in GiB)
+               to resize up to. Valid values are `25, 50, 100, 250, 500, 1000, 2000`.
+               Leave unset to allow resizing up to the largest size (2000 GiB). Set it
+               larger than the instance's current additional disk size, otherwise auto
+               resize will not run.
                
-               Setting `value_calculation` on any other alarm type, or `allow_downtime` on a non
-               `disk_auto_resize` alarm, is rejected at plan time.
+               Setting `value_calculation` on any other alarm type, or `allow_downtime` and `max_disk_size` on a
+               non `disk_auto_resize` alarm, is rejected at plan time.
                
                > **Warning:** A `disk_auto_resize` alarm grows the instance's additional disk out of band from
                Terraform. Do not use it together with the `ExtraDiskSize` resource on the same instance;
@@ -960,8 +1030,6 @@ class Alarm(pulumi.CustomResource):
                `disk_auto_resize` alarm or `ExtraDiskSize`, not both.
                
                Based on alarm type, different arguments are flagged as required or optional.
-        :param pulumi.Input[_builtins.bool] enabled: Enable or disable the alarm to trigger.
-        :param pulumi.Input[_builtins.int] instance_id: The CloudAMQP instance ID.
         :param pulumi.Input[_builtins.str] message_type: Message type `(total, unacked, ready)` used by queue alarm type.
                
                Specific arguments for `disk` and `disk_auto_resize` alarms
@@ -985,6 +1053,7 @@ class Alarm(pulumi.CustomResource):
         __props__.__dict__["allow_downtime"] = allow_downtime
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["instance_id"] = instance_id
+        __props__.__dict__["max_disk_size"] = max_disk_size
         __props__.__dict__["message_type"] = message_type
         __props__.__dict__["queue_regex"] = queue_regex
         __props__.__dict__["recipients"] = recipients
@@ -1002,6 +1071,7 @@ class Alarm(pulumi.CustomResource):
             allow_downtime: pulumi.Input[Optional[_builtins.bool]] = None,
             enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             instance_id: pulumi.Input[Optional[_builtins.int]] = None,
+            max_disk_size: pulumi.Input[Optional[_builtins.int]] = None,
             message_type: pulumi.Input[Optional[_builtins.str]] = None,
             queue_regex: pulumi.Input[Optional[_builtins.str]] = None,
             recipients: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
@@ -1015,6 +1085,7 @@ class Alarm(pulumi.CustomResource):
         __props__["allowDowntime"] = allow_downtime
         __props__["enabled"] = enabled
         __props__["instanceId"] = instance_id
+        __props__["maxDiskSize"] = max_disk_size
         __props__["messageType"] = message_type
         __props__["queueRegex"] = queue_regex
         __props__["recipients"] = recipients
@@ -1032,17 +1103,6 @@ class Alarm(pulumi.CustomResource):
         """
         For `disk_auto_resize`, allow the resize to proceed even if it
         requires brief downtime. The Default is `false`.
-
-        Setting `value_calculation` on any other alarm type, or `allow_downtime` on a non
-        `disk_auto_resize` alarm, is rejected at plan time.
-
-        > **Warning:** A `disk_auto_resize` alarm grows the instance's additional disk out of band from
-        Terraform. Do not use it together with the `ExtraDiskSize` resource on the same instance;
-        both control the same disk and will conflict, which can lead to Terraform shrinking the disk (with
-        downtime) back to the value declared on `ExtraDiskSize`. Manage the disk with either the
-        `disk_auto_resize` alarm or `ExtraDiskSize`, not both.
-
-        Based on alarm type, different arguments are flagged as required or optional.
         """
         return pulumi.get(self, "allow_downtime")
 
@@ -1061,6 +1121,29 @@ class Alarm(pulumi.CustomResource):
         The CloudAMQP instance ID.
         """
         return pulumi.get(self, "instance_id")
+
+    @_builtins.property
+    @pulumi.getter(name="maxDiskSize")
+    def max_disk_size(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        For `disk_auto_resize`, the maximum additional disk size (in GiB)
+        to resize up to. Valid values are `25, 50, 100, 250, 500, 1000, 2000`.
+        Leave unset to allow resizing up to the largest size (2000 GiB). Set it
+        larger than the instance's current additional disk size, otherwise auto
+        resize will not run.
+
+        Setting `value_calculation` on any other alarm type, or `allow_downtime` and `max_disk_size` on a
+        non `disk_auto_resize` alarm, is rejected at plan time.
+
+        > **Warning:** A `disk_auto_resize` alarm grows the instance's additional disk out of band from
+        Terraform. Do not use it together with the `ExtraDiskSize` resource on the same instance;
+        both control the same disk and will conflict, which can lead to Terraform shrinking the disk (with
+        downtime) back to the value declared on `ExtraDiskSize`. Manage the disk with either the
+        `disk_auto_resize` alarm or `ExtraDiskSize`, not both.
+
+        Based on alarm type, different arguments are flagged as required or optional.
+        """
+        return pulumi.get(self, "max_disk_size")
 
     @_builtins.property
     @pulumi.getter(name="messageType")

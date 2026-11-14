@@ -379,39 +379,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// &lt;/details&gt;
     /// 
-    /// ## Argument References
-    /// 
-    /// The following arguments are supported:
-    /// 
-    /// * `Name`              - (Required) The name of the third party log integration. See
-    ///                     `Integration service reference`
-    /// * `Region`            - (Optional) Region hosting the integration service.
-    /// * `AccessKeyId`     - (Optional) AWS access key identifier.
-    /// * `SecretAccessKey` - (Optional) AWS secret access key.
-    /// * `IamRole`          - (Optional) The ARN of the role to be assumed when publishing metrics.
-    /// * `IamExternalId`   - (Optional) External identifier that match the role you created.
-    /// * `ApiKey`           - (Optional) The API key for the integration service.
-    /// * `Email`             - (Optional) The email address registred for the integration service.
-    /// * `Credentials`       - (Optional) Google Service Account private key credentials.
-    /// * `ProjectId`        - (Optional/Computed) The project identifier.
-    /// * `PrivateKey`       - (Optional/Computed) The private access key.
-    /// * `ClientEmail`      - (Optional/Computed) The client email registered for the integration service.
-    /// * `Tags`              - (Optional) Tags. e.g. `env=prod,region=europe`.
-    ///   
-    ///   ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
-    ///           letter, read more about tags format in the [Datadog documentation].
-    /// 
-    /// * `QueueAllowlist`   - (Optional) Allowlist queues using regular expression. Leave empty to include
-    ///                     all queues.
-    /// * `VhostAllowlist`   - (Optional) Allowlist vhost using regular expression. Leave empty to include
-    ///                     all vhosts.
-    /// * `QueueWhitelist`   - **Deprecated** Use QueueAllowlist instead
-    /// * `VhostWhitelist`   - **Deprecated** Use VhostAllowlist instead
-    /// * `IncludeAdQueues` - (Optional) Include auto delete queues.
-    /// 
-    /// This is the full list of all arguments. Only a subset of arguments are used based on which type of
-    /// integration used. See [integration type reference] below for more information.
-    /// 
     /// ## Integration service references
     /// 
     /// Valid names for third party log integration.
@@ -457,49 +424,52 @@ namespace Pulumi.CloudAmqp
     public partial class IntegrationMetric : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// AWS access key identifier. (Cloudwatch)
+        /// AWS access key identifier.
         /// </summary>
         [Output("accessKeyId")]
         public Output<string?> AccessKeyId { get; private set; } = null!;
 
         /// <summary>
-        /// The API key for the integration service. (Librato, Data Dog, New Relic)
+        /// The API key for the integration service.
         /// </summary>
         [Output("apiKey")]
         public Output<string?> ApiKey { get; private set; } = null!;
 
         /// <summary>
-        /// The client email. (Stackdriver)
+        /// The client email registered for the integration service.
         /// </summary>
         [Output("clientEmail")]
         public Output<string> ClientEmail { get; private set; } = null!;
 
         /// <summary>
-        /// Base64Encoded credentials. (Stackdriver)
+        /// Google Service Account private key credentials.
         /// </summary>
         [Output("credentials")]
         public Output<string?> Credentials { get; private set; } = null!;
 
         /// <summary>
-        /// The email address registred for the integration service. (Librato)
+        /// The email address registred for the integration service.
         /// </summary>
         [Output("email")]
         public Output<string?> Email { get; private set; } = null!;
 
         /// <summary>
-        /// External identifier that match the role you created. (Cloudwatch)
+        /// External identifier that match the role you created.
         /// </summary>
         [Output("iamExternalId")]
         public Output<string?> IamExternalId { get; private set; } = null!;
 
         /// <summary>
-        /// The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+        /// The ARN of the role to be assumed when publishing metrics.
         /// </summary>
         [Output("iamRole")]
         public Output<string?> IamRole { get; private set; } = null!;
 
         /// <summary>
-        /// (optional) Include Auto-Delete queues
+        /// Include auto delete queues.
+        /// 
+        /// This is the full list of all arguments. Only a subset of arguments are used based on which type of
+        /// integration used. See [integration type reference] below for more information.
         /// </summary>
         [Output("includeAdQueues")]
         public Output<bool?> IncludeAdQueues { get; private set; } = null!;
@@ -511,13 +481,14 @@ namespace Pulumi.CloudAmqp
         public Output<int> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of log integration
+        /// The name of the third party log integration. See
+        /// `Integration service reference`
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The private key. (Stackdriver)
+        /// The private access key.
         /// </summary>
         [Output("privateKey")]
         public Output<string> PrivateKey { get; private set; } = null!;
@@ -529,37 +500,42 @@ namespace Pulumi.CloudAmqp
         public Output<string> PrivateKeyId { get; private set; } = null!;
 
         /// <summary>
-        /// Project ID. (Stackdriver)
+        /// The project identifier.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// (optional) allowlist using regular expression
+        /// Allowlist queues using regular expression. Leave empty to include
+        /// all queues.
         /// </summary>
         [Output("queueAllowlist")]
         public Output<string?> QueueAllowlist { get; private set; } = null!;
 
         /// <summary>
-        /// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
+        /// Region hosting the integration service.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
-        /// AWS secret key. (Cloudwatch)
+        /// AWS secret access key.
         /// </summary>
         [Output("secretAccessKey")]
         public Output<string?> SecretAccessKey { get; private set; } = null!;
 
         /// <summary>
-        /// (optional) tags. E.g. env=prod,region=europe
+        /// Tags. e.g. `env=prod,region=europe`.
+        /// 
+        /// ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+        /// letter, read more about tags format in the [Datadog documentation].
         /// </summary>
         [Output("tags")]
         public Output<string?> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// (optional) allowlist using regular expression
+        /// Allowlist vhost using regular expression. Leave empty to include
+        /// all vhosts.
         /// </summary>
         [Output("vhostAllowlist")]
         public Output<string?> VhostAllowlist { get; private set; } = null!;
@@ -619,7 +595,7 @@ namespace Pulumi.CloudAmqp
     public sealed class IntegrationMetricArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// AWS access key identifier. (Cloudwatch)
+        /// AWS access key identifier.
         /// </summary>
         [Input("accessKeyId")]
         public Input<string>? AccessKeyId { get; set; }
@@ -628,7 +604,7 @@ namespace Pulumi.CloudAmqp
         private Input<string>? _apiKey;
 
         /// <summary>
-        /// The API key for the integration service. (Librato, Data Dog, New Relic)
+        /// The API key for the integration service.
         /// </summary>
         public Input<string>? ApiKey
         {
@@ -641,7 +617,7 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
-        /// The client email. (Stackdriver)
+        /// The client email registered for the integration service.
         /// </summary>
         [Input("clientEmail")]
         public Input<string>? ClientEmail { get; set; }
@@ -650,7 +626,7 @@ namespace Pulumi.CloudAmqp
         private Input<string>? _credentials;
 
         /// <summary>
-        /// Base64Encoded credentials. (Stackdriver)
+        /// Google Service Account private key credentials.
         /// </summary>
         public Input<string>? Credentials
         {
@@ -663,25 +639,28 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
-        /// The email address registred for the integration service. (Librato)
+        /// The email address registred for the integration service.
         /// </summary>
         [Input("email")]
         public Input<string>? Email { get; set; }
 
         /// <summary>
-        /// External identifier that match the role you created. (Cloudwatch)
+        /// External identifier that match the role you created.
         /// </summary>
         [Input("iamExternalId")]
         public Input<string>? IamExternalId { get; set; }
 
         /// <summary>
-        /// The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+        /// The ARN of the role to be assumed when publishing metrics.
         /// </summary>
         [Input("iamRole")]
         public Input<string>? IamRole { get; set; }
 
         /// <summary>
-        /// (optional) Include Auto-Delete queues
+        /// Include auto delete queues.
+        /// 
+        /// This is the full list of all arguments. Only a subset of arguments are used based on which type of
+        /// integration used. See [integration type reference] below for more information.
         /// </summary>
         [Input("includeAdQueues")]
         public Input<bool>? IncludeAdQueues { get; set; }
@@ -693,7 +672,8 @@ namespace Pulumi.CloudAmqp
         public Input<int> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// The name of log integration
+        /// The name of the third party log integration. See
+        /// `Integration service reference`
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -702,7 +682,7 @@ namespace Pulumi.CloudAmqp
         private Input<string>? _privateKey;
 
         /// <summary>
-        /// The private key. (Stackdriver)
+        /// The private access key.
         /// </summary>
         public Input<string>? PrivateKey
         {
@@ -731,19 +711,20 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
-        /// Project ID. (Stackdriver)
+        /// The project identifier.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// (optional) allowlist using regular expression
+        /// Allowlist queues using regular expression. Leave empty to include
+        /// all queues.
         /// </summary>
         [Input("queueAllowlist")]
         public Input<string>? QueueAllowlist { get; set; }
 
         /// <summary>
-        /// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
+        /// Region hosting the integration service.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -752,7 +733,7 @@ namespace Pulumi.CloudAmqp
         private Input<string>? _secretAccessKey;
 
         /// <summary>
-        /// AWS secret key. (Cloudwatch)
+        /// AWS secret access key.
         /// </summary>
         public Input<string>? SecretAccessKey
         {
@@ -765,13 +746,17 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
-        /// (optional) tags. E.g. env=prod,region=europe
+        /// Tags. e.g. `env=prod,region=europe`.
+        /// 
+        /// ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+        /// letter, read more about tags format in the [Datadog documentation].
         /// </summary>
         [Input("tags")]
         public Input<string>? Tags { get; set; }
 
         /// <summary>
-        /// (optional) allowlist using regular expression
+        /// Allowlist vhost using regular expression. Leave empty to include
+        /// all vhosts.
         /// </summary>
         [Input("vhostAllowlist")]
         public Input<string>? VhostAllowlist { get; set; }
@@ -785,7 +770,7 @@ namespace Pulumi.CloudAmqp
     public sealed class IntegrationMetricState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// AWS access key identifier. (Cloudwatch)
+        /// AWS access key identifier.
         /// </summary>
         [Input("accessKeyId")]
         public Input<string>? AccessKeyId { get; set; }
@@ -794,7 +779,7 @@ namespace Pulumi.CloudAmqp
         private Input<string>? _apiKey;
 
         /// <summary>
-        /// The API key for the integration service. (Librato, Data Dog, New Relic)
+        /// The API key for the integration service.
         /// </summary>
         public Input<string>? ApiKey
         {
@@ -807,7 +792,7 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
-        /// The client email. (Stackdriver)
+        /// The client email registered for the integration service.
         /// </summary>
         [Input("clientEmail")]
         public Input<string>? ClientEmail { get; set; }
@@ -816,7 +801,7 @@ namespace Pulumi.CloudAmqp
         private Input<string>? _credentials;
 
         /// <summary>
-        /// Base64Encoded credentials. (Stackdriver)
+        /// Google Service Account private key credentials.
         /// </summary>
         public Input<string>? Credentials
         {
@@ -829,25 +814,28 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
-        /// The email address registred for the integration service. (Librato)
+        /// The email address registred for the integration service.
         /// </summary>
         [Input("email")]
         public Input<string>? Email { get; set; }
 
         /// <summary>
-        /// External identifier that match the role you created. (Cloudwatch)
+        /// External identifier that match the role you created.
         /// </summary>
         [Input("iamExternalId")]
         public Input<string>? IamExternalId { get; set; }
 
         /// <summary>
-        /// The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+        /// The ARN of the role to be assumed when publishing metrics.
         /// </summary>
         [Input("iamRole")]
         public Input<string>? IamRole { get; set; }
 
         /// <summary>
-        /// (optional) Include Auto-Delete queues
+        /// Include auto delete queues.
+        /// 
+        /// This is the full list of all arguments. Only a subset of arguments are used based on which type of
+        /// integration used. See [integration type reference] below for more information.
         /// </summary>
         [Input("includeAdQueues")]
         public Input<bool>? IncludeAdQueues { get; set; }
@@ -859,7 +847,8 @@ namespace Pulumi.CloudAmqp
         public Input<int>? InstanceId { get; set; }
 
         /// <summary>
-        /// The name of log integration
+        /// The name of the third party log integration. See
+        /// `Integration service reference`
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -868,7 +857,7 @@ namespace Pulumi.CloudAmqp
         private Input<string>? _privateKey;
 
         /// <summary>
-        /// The private key. (Stackdriver)
+        /// The private access key.
         /// </summary>
         public Input<string>? PrivateKey
         {
@@ -897,19 +886,20 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
-        /// Project ID. (Stackdriver)
+        /// The project identifier.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// (optional) allowlist using regular expression
+        /// Allowlist queues using regular expression. Leave empty to include
+        /// all queues.
         /// </summary>
         [Input("queueAllowlist")]
         public Input<string>? QueueAllowlist { get; set; }
 
         /// <summary>
-        /// AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
+        /// Region hosting the integration service.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -918,7 +908,7 @@ namespace Pulumi.CloudAmqp
         private Input<string>? _secretAccessKey;
 
         /// <summary>
-        /// AWS secret key. (Cloudwatch)
+        /// AWS secret access key.
         /// </summary>
         public Input<string>? SecretAccessKey
         {
@@ -931,13 +921,17 @@ namespace Pulumi.CloudAmqp
         }
 
         /// <summary>
-        /// (optional) tags. E.g. env=prod,region=europe
+        /// Tags. e.g. `env=prod,region=europe`.
+        /// 
+        /// ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+        /// letter, read more about tags format in the [Datadog documentation].
         /// </summary>
         [Input("tags")]
         public Input<string>? Tags { get; set; }
 
         /// <summary>
-        /// (optional) allowlist using regular expression
+        /// Allowlist vhost using regular expression. Leave empty to include
+        /// all vhosts.
         /// </summary>
         [Input("vhostAllowlist")]
         public Input<string>? VhostAllowlist { get; set; }

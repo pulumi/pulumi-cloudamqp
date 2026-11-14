@@ -132,9 +132,6 @@ namespace Pulumi.CloudAmqp
     [OutputType]
     public sealed class GetUpgradableVersionsResult
     {
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
         public readonly string Id;
         public readonly int InstanceId;
         /// <summary>

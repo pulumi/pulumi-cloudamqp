@@ -13,7 +13,7 @@ import java.util.Objects;
 @CustomType
 public final class GetAccountResult {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The instance identifier.
      * 
      */
     private String id;
@@ -26,7 +26,7 @@ public final class GetAccountResult {
 
     private GetAccountResult() {}
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The instance identifier.
      * 
      */
     public String id() {

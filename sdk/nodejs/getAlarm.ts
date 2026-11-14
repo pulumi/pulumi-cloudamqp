@@ -80,6 +80,11 @@ export interface GetAlarmResult {
     readonly id: string;
     readonly instanceId: number;
     /**
+     * For `diskAutoResize`, the maximum additional disk size (in GiB) to resize
+     * up to. Not set means up to the largest size (2000 GiB).
+     */
+    readonly maxDiskSize: number;
+    /**
      * Message type `(total, unacked, ready)` used by queue alarm type.
      */
     readonly messageType: string;

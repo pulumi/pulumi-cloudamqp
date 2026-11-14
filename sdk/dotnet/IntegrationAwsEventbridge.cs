@@ -112,21 +112,6 @@ namespace Pulumi.CloudAmqp
     /// 
     /// &lt;/details&gt;
     /// 
-    /// ## Argument References
-    /// 
-    /// The following arguments are supported:
-    /// 
-    /// * `AwsAccountId`  - (ForceNew/Required) The 12 digit AWS Account ID where you want the events to
-    ///                       be sent to.
-    /// * `AwsRegion`      - (ForceNew/Required) The AWS region where you the events to be sent to.
-    ///                       (e.g. us-west-1, us-west-2, ..., etc.)
-    /// * `Vhost`           - (ForceNew/Required) The VHost the queue resides in.
-    /// * `Queue`           - (ForceNew/Required) A (durable) queue on your RabbitMQ instance.
-    /// * `WithHeaders`    - (ForceNew/Required) Include message headers in the event data.
-    ///                       `({ "headers": { }, "body": { "your": "message" } })`
-    /// * `Prefetch`        - (ForceNew/Optional) Set the prefetch for the Eventbrigde consumer to increase
-    ///                       throughput. Supported from [v1.38.0].
-    /// 
     /// ## Dependency
     /// 
     /// This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -135,13 +120,15 @@ namespace Pulumi.CloudAmqp
     public partial class IntegrationAwsEventbridge : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The 12 digit AWS Account ID where you want the events to be sent to.
+        /// The 12 digit AWS Account ID where you want the events to
+        /// be sent to.
         /// </summary>
         [Output("awsAccountId")]
         public Output<string> AwsAccountId { get; private set; } = null!;
 
         /// <summary>
-        /// The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
+        /// The AWS region where you the events to be sent to.
+        /// (e.g. us-west-1, us-west-2, ..., etc.)
         /// </summary>
         [Output("awsRegion")]
         public Output<string> AwsRegion { get; private set; } = null!;
@@ -153,7 +140,8 @@ namespace Pulumi.CloudAmqp
         public Output<int> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// Number of messages to prefetch. Default set to 1.
+        /// Set the prefetch for the Eventbrigde consumer to increase
+        /// throughput. Supported from [v1.38.0].
         /// </summary>
         [Output("prefetch")]
         public Output<int> Prefetch { get; private set; } = null!;
@@ -178,6 +166,7 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Include message headers in the event data.
+        /// `({ "headers": { }, "body": { "your": "message" } })`
         /// </summary>
         [Output("withHeaders")]
         public Output<bool> WithHeaders { get; private set; } = null!;
@@ -229,13 +218,15 @@ namespace Pulumi.CloudAmqp
     public sealed class IntegrationAwsEventbridgeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The 12 digit AWS Account ID where you want the events to be sent to.
+        /// The 12 digit AWS Account ID where you want the events to
+        /// be sent to.
         /// </summary>
         [Input("awsAccountId", required: true)]
         public Input<string> AwsAccountId { get; set; } = null!;
 
         /// <summary>
-        /// The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
+        /// The AWS region where you the events to be sent to.
+        /// (e.g. us-west-1, us-west-2, ..., etc.)
         /// </summary>
         [Input("awsRegion", required: true)]
         public Input<string> AwsRegion { get; set; } = null!;
@@ -247,7 +238,8 @@ namespace Pulumi.CloudAmqp
         public Input<int> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// Number of messages to prefetch. Default set to 1.
+        /// Set the prefetch for the Eventbrigde consumer to increase
+        /// throughput. Supported from [v1.38.0].
         /// </summary>
         [Input("prefetch")]
         public Input<int>? Prefetch { get; set; }
@@ -266,6 +258,7 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Include message headers in the event data.
+        /// `({ "headers": { }, "body": { "your": "message" } })`
         /// </summary>
         [Input("withHeaders", required: true)]
         public Input<bool> WithHeaders { get; set; } = null!;
@@ -279,13 +272,15 @@ namespace Pulumi.CloudAmqp
     public sealed class IntegrationAwsEventbridgeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The 12 digit AWS Account ID where you want the events to be sent to.
+        /// The 12 digit AWS Account ID where you want the events to
+        /// be sent to.
         /// </summary>
         [Input("awsAccountId")]
         public Input<string>? AwsAccountId { get; set; }
 
         /// <summary>
-        /// The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
+        /// The AWS region where you the events to be sent to.
+        /// (e.g. us-west-1, us-west-2, ..., etc.)
         /// </summary>
         [Input("awsRegion")]
         public Input<string>? AwsRegion { get; set; }
@@ -297,7 +292,8 @@ namespace Pulumi.CloudAmqp
         public Input<int>? InstanceId { get; set; }
 
         /// <summary>
-        /// Number of messages to prefetch. Default set to 1.
+        /// Set the prefetch for the Eventbrigde consumer to increase
+        /// throughput. Supported from [v1.38.0].
         /// </summary>
         [Input("prefetch")]
         public Input<int>? Prefetch { get; set; }
@@ -322,6 +318,7 @@ namespace Pulumi.CloudAmqp
 
         /// <summary>
         /// Include message headers in the event data.
+        /// `({ "headers": { }, "body": { "your": "message" } })`
         /// </summary>
         [Input("withHeaders")]
         public Input<bool>? WithHeaders { get; set; }

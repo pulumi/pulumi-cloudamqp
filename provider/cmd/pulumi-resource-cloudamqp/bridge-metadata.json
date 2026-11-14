@@ -21,7 +21,10 @@
             "cloudamqp_oauth2_configuration": {},
             "cloudamqp_plugin_batch": {},
             "cloudamqp_rabbitmq_configuration": {},
+            "cloudamqp_team_member": {},
             "cloudamqp_trust_store": {},
+            "cloudamqp_upgrade_lavinmq": {},
+            "cloudamqp_upgrade_rabbitmq": {},
             "cloudamqp_vpc": {},
             "cloudamqp_webhook": {}
         }
@@ -50,9 +53,10 @@
             "cloudamqp:index/privatelinkAzure:PrivatelinkAzure": 0,
             "cloudamqp:index/rabbitConfiguration:RabbitConfiguration": 1,
             "cloudamqp:index/securityFirewall:SecurityFirewall": 0,
+            "cloudamqp:index/teamMember:TeamMember": 1,
             "cloudamqp:index/trustStore:TrustStore": 1,
-            "cloudamqp:index/upgradeLavinmq:UpgradeLavinmq": 0,
-            "cloudamqp:index/upgradeRabbitmq:UpgradeRabbitmq": 0,
+            "cloudamqp:index/upgradeLavinmq:UpgradeLavinmq": 1,
+            "cloudamqp:index/upgradeRabbitmq:UpgradeRabbitmq": 1,
             "cloudamqp:index/vpc:Vpc": 1,
             "cloudamqp:index/vpcConnect:VpcConnect": 0,
             "cloudamqp:index/vpcGcpPeering:VpcGcpPeering": 0,
@@ -60,8 +64,8 @@
             "cloudamqp:index/webhook:Webhook": 1
         },
         "functions": {
-            "cloudamqp:index/getAccount:getAccount": 0,
-            "cloudamqp:index/getAccountVpcs:getAccountVpcs": 0,
+            "cloudamqp:index/getAccount:getAccount": 1,
+            "cloudamqp:index/getAccountVpcs:getAccountVpcs": 1,
             "cloudamqp:index/getAlarm:getAlarm": 1,
             "cloudamqp:index/getAlarms:getAlarms": 0,
             "cloudamqp:index/getCredentials:getCredentials": 0,
@@ -71,9 +75,9 @@
             "cloudamqp:index/getNotifications:getNotifications": 0,
             "cloudamqp:index/getPlugins:getPlugins": 0,
             "cloudamqp:index/getPluginsCommunity:getPluginsCommunity": 0,
-            "cloudamqp:index/getUpgradableVersions:getUpgradableVersions": 0,
-            "cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo": 0,
-            "cloudamqp:index/getVpcInfo:getVpcInfo": 0
+            "cloudamqp:index/getUpgradableVersions:getUpgradableVersions": 1,
+            "cloudamqp:index/getVpcGcpInfo:getVpcGcpInfo": 1,
+            "cloudamqp:index/getVpcInfo:getVpcInfo": 1
         }
     }
 }

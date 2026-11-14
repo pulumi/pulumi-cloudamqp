@@ -41,23 +41,32 @@ class IntegrationMetricArgs:
         The set of arguments for constructing a IntegrationMetric resource.
 
         :param pulumi.Input[_builtins.int] instance_id: Instance identifier
-        :param pulumi.Input[_builtins.str] access_key_id: AWS access key identifier. (Cloudwatch)
-        :param pulumi.Input[_builtins.str] api_key: The API key for the integration service. (Librato, Data Dog, New Relic)
-        :param pulumi.Input[_builtins.str] client_email: The client email. (Stackdriver)
-        :param pulumi.Input[_builtins.str] credentials: Base64Encoded credentials. (Stackdriver)
-        :param pulumi.Input[_builtins.str] email: The email address registred for the integration service. (Librato)
-        :param pulumi.Input[_builtins.str] iam_external_id: External identifier that match the role you created. (Cloudwatch)
-        :param pulumi.Input[_builtins.str] iam_role: The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
-        :param pulumi.Input[_builtins.bool] include_ad_queues: (optional) Include Auto-Delete queues
-        :param pulumi.Input[_builtins.str] name: The name of log integration
-        :param pulumi.Input[_builtins.str] private_key: The private key. (Stackdriver)
+        :param pulumi.Input[_builtins.str] access_key_id: AWS access key identifier.
+        :param pulumi.Input[_builtins.str] api_key: The API key for the integration service.
+        :param pulumi.Input[_builtins.str] client_email: The client email registered for the integration service.
+        :param pulumi.Input[_builtins.str] credentials: Google Service Account private key credentials.
+        :param pulumi.Input[_builtins.str] email: The email address registred for the integration service.
+        :param pulumi.Input[_builtins.str] iam_external_id: External identifier that match the role you created.
+        :param pulumi.Input[_builtins.str] iam_role: The ARN of the role to be assumed when publishing metrics.
+        :param pulumi.Input[_builtins.bool] include_ad_queues: Include auto delete queues.
+               
+               This is the full list of all arguments. Only a subset of arguments are used based on which type of
+               integration used. See [integration type reference] below for more information.
+        :param pulumi.Input[_builtins.str] name: The name of the third party log integration. See
+               `Integration service reference`
+        :param pulumi.Input[_builtins.str] private_key: The private access key.
         :param pulumi.Input[_builtins.str] private_key_id: Private key identifier. (Stackdriver)
-        :param pulumi.Input[_builtins.str] project_id: Project ID. (Stackdriver)
-        :param pulumi.Input[_builtins.str] queue_allowlist: (optional) allowlist using regular expression
-        :param pulumi.Input[_builtins.str] region: AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
-        :param pulumi.Input[_builtins.str] secret_access_key: AWS secret key. (Cloudwatch)
-        :param pulumi.Input[_builtins.str] tags: (optional) tags. E.g. env=prod,region=europe
-        :param pulumi.Input[_builtins.str] vhost_allowlist: (optional) allowlist using regular expression
+        :param pulumi.Input[_builtins.str] project_id: The project identifier.
+        :param pulumi.Input[_builtins.str] queue_allowlist: Allowlist queues using regular expression. Leave empty to include
+               all queues.
+        :param pulumi.Input[_builtins.str] region: Region hosting the integration service.
+        :param pulumi.Input[_builtins.str] secret_access_key: AWS secret access key.
+        :param pulumi.Input[_builtins.str] tags: Tags. e.g. `env=prod,region=europe`.
+               
+               ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+               letter, read more about tags format in the [Datadog documentation].
+        :param pulumi.Input[_builtins.str] vhost_allowlist: Allowlist vhost using regular expression. Leave empty to include
+               all vhosts.
         """
         pulumi.set(__self__, "instance_id", instance_id)
         if access_key_id is not None:
@@ -111,7 +120,7 @@ class IntegrationMetricArgs:
     @pulumi.getter(name="accessKeyId")
     def access_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        AWS access key identifier. (Cloudwatch)
+        AWS access key identifier.
         """
         return pulumi.get(self, "access_key_id")
 
@@ -123,7 +132,7 @@ class IntegrationMetricArgs:
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The API key for the integration service. (Librato, Data Dog, New Relic)
+        The API key for the integration service.
         """
         return pulumi.get(self, "api_key")
 
@@ -135,7 +144,7 @@ class IntegrationMetricArgs:
     @pulumi.getter(name="clientEmail")
     def client_email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The client email. (Stackdriver)
+        The client email registered for the integration service.
         """
         return pulumi.get(self, "client_email")
 
@@ -147,7 +156,7 @@ class IntegrationMetricArgs:
     @pulumi.getter
     def credentials(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Base64Encoded credentials. (Stackdriver)
+        Google Service Account private key credentials.
         """
         return pulumi.get(self, "credentials")
 
@@ -159,7 +168,7 @@ class IntegrationMetricArgs:
     @pulumi.getter
     def email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The email address registred for the integration service. (Librato)
+        The email address registred for the integration service.
         """
         return pulumi.get(self, "email")
 
@@ -171,7 +180,7 @@ class IntegrationMetricArgs:
     @pulumi.getter(name="iamExternalId")
     def iam_external_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        External identifier that match the role you created. (Cloudwatch)
+        External identifier that match the role you created.
         """
         return pulumi.get(self, "iam_external_id")
 
@@ -183,7 +192,7 @@ class IntegrationMetricArgs:
     @pulumi.getter(name="iamRole")
     def iam_role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+        The ARN of the role to be assumed when publishing metrics.
         """
         return pulumi.get(self, "iam_role")
 
@@ -195,7 +204,10 @@ class IntegrationMetricArgs:
     @pulumi.getter(name="includeAdQueues")
     def include_ad_queues(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        (optional) Include Auto-Delete queues
+        Include auto delete queues.
+
+        This is the full list of all arguments. Only a subset of arguments are used based on which type of
+        integration used. See [integration type reference] below for more information.
         """
         return pulumi.get(self, "include_ad_queues")
 
@@ -207,7 +219,8 @@ class IntegrationMetricArgs:
     @pulumi.getter
     def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The name of log integration
+        The name of the third party log integration. See
+        `Integration service reference`
         """
         return pulumi.get(self, "name")
 
@@ -219,7 +232,7 @@ class IntegrationMetricArgs:
     @pulumi.getter(name="privateKey")
     def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The private key. (Stackdriver)
+        The private access key.
         """
         return pulumi.get(self, "private_key")
 
@@ -243,7 +256,7 @@ class IntegrationMetricArgs:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Project ID. (Stackdriver)
+        The project identifier.
         """
         return pulumi.get(self, "project_id")
 
@@ -255,7 +268,8 @@ class IntegrationMetricArgs:
     @pulumi.getter(name="queueAllowlist")
     def queue_allowlist(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        (optional) allowlist using regular expression
+        Allowlist queues using regular expression. Leave empty to include
+        all queues.
         """
         return pulumi.get(self, "queue_allowlist")
 
@@ -267,7 +281,7 @@ class IntegrationMetricArgs:
     @pulumi.getter
     def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
+        Region hosting the integration service.
         """
         return pulumi.get(self, "region")
 
@@ -279,7 +293,7 @@ class IntegrationMetricArgs:
     @pulumi.getter(name="secretAccessKey")
     def secret_access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        AWS secret key. (Cloudwatch)
+        AWS secret access key.
         """
         return pulumi.get(self, "secret_access_key")
 
@@ -291,7 +305,10 @@ class IntegrationMetricArgs:
     @pulumi.getter
     def tags(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        (optional) tags. E.g. env=prod,region=europe
+        Tags. e.g. `env=prod,region=europe`.
+
+        ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+        letter, read more about tags format in the [Datadog documentation].
         """
         return pulumi.get(self, "tags")
 
@@ -303,7 +320,8 @@ class IntegrationMetricArgs:
     @pulumi.getter(name="vhostAllowlist")
     def vhost_allowlist(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        (optional) allowlist using regular expression
+        Allowlist vhost using regular expression. Leave empty to include
+        all vhosts.
         """
         return pulumi.get(self, "vhost_allowlist")
 
@@ -336,24 +354,33 @@ class _IntegrationMetricState:
         """
         Input properties used for looking up and filtering IntegrationMetric resources.
 
-        :param pulumi.Input[_builtins.str] access_key_id: AWS access key identifier. (Cloudwatch)
-        :param pulumi.Input[_builtins.str] api_key: The API key for the integration service. (Librato, Data Dog, New Relic)
-        :param pulumi.Input[_builtins.str] client_email: The client email. (Stackdriver)
-        :param pulumi.Input[_builtins.str] credentials: Base64Encoded credentials. (Stackdriver)
-        :param pulumi.Input[_builtins.str] email: The email address registred for the integration service. (Librato)
-        :param pulumi.Input[_builtins.str] iam_external_id: External identifier that match the role you created. (Cloudwatch)
-        :param pulumi.Input[_builtins.str] iam_role: The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
-        :param pulumi.Input[_builtins.bool] include_ad_queues: (optional) Include Auto-Delete queues
+        :param pulumi.Input[_builtins.str] access_key_id: AWS access key identifier.
+        :param pulumi.Input[_builtins.str] api_key: The API key for the integration service.
+        :param pulumi.Input[_builtins.str] client_email: The client email registered for the integration service.
+        :param pulumi.Input[_builtins.str] credentials: Google Service Account private key credentials.
+        :param pulumi.Input[_builtins.str] email: The email address registred for the integration service.
+        :param pulumi.Input[_builtins.str] iam_external_id: External identifier that match the role you created.
+        :param pulumi.Input[_builtins.str] iam_role: The ARN of the role to be assumed when publishing metrics.
+        :param pulumi.Input[_builtins.bool] include_ad_queues: Include auto delete queues.
+               
+               This is the full list of all arguments. Only a subset of arguments are used based on which type of
+               integration used. See [integration type reference] below for more information.
         :param pulumi.Input[_builtins.int] instance_id: Instance identifier
-        :param pulumi.Input[_builtins.str] name: The name of log integration
-        :param pulumi.Input[_builtins.str] private_key: The private key. (Stackdriver)
+        :param pulumi.Input[_builtins.str] name: The name of the third party log integration. See
+               `Integration service reference`
+        :param pulumi.Input[_builtins.str] private_key: The private access key.
         :param pulumi.Input[_builtins.str] private_key_id: Private key identifier. (Stackdriver)
-        :param pulumi.Input[_builtins.str] project_id: Project ID. (Stackdriver)
-        :param pulumi.Input[_builtins.str] queue_allowlist: (optional) allowlist using regular expression
-        :param pulumi.Input[_builtins.str] region: AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
-        :param pulumi.Input[_builtins.str] secret_access_key: AWS secret key. (Cloudwatch)
-        :param pulumi.Input[_builtins.str] tags: (optional) tags. E.g. env=prod,region=europe
-        :param pulumi.Input[_builtins.str] vhost_allowlist: (optional) allowlist using regular expression
+        :param pulumi.Input[_builtins.str] project_id: The project identifier.
+        :param pulumi.Input[_builtins.str] queue_allowlist: Allowlist queues using regular expression. Leave empty to include
+               all queues.
+        :param pulumi.Input[_builtins.str] region: Region hosting the integration service.
+        :param pulumi.Input[_builtins.str] secret_access_key: AWS secret access key.
+        :param pulumi.Input[_builtins.str] tags: Tags. e.g. `env=prod,region=europe`.
+               
+               ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+               letter, read more about tags format in the [Datadog documentation].
+        :param pulumi.Input[_builtins.str] vhost_allowlist: Allowlist vhost using regular expression. Leave empty to include
+               all vhosts.
         """
         if access_key_id is not None:
             pulumi.set(__self__, "access_key_id", access_key_id)
@@ -396,7 +423,7 @@ class _IntegrationMetricState:
     @pulumi.getter(name="accessKeyId")
     def access_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        AWS access key identifier. (Cloudwatch)
+        AWS access key identifier.
         """
         return pulumi.get(self, "access_key_id")
 
@@ -408,7 +435,7 @@ class _IntegrationMetricState:
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The API key for the integration service. (Librato, Data Dog, New Relic)
+        The API key for the integration service.
         """
         return pulumi.get(self, "api_key")
 
@@ -420,7 +447,7 @@ class _IntegrationMetricState:
     @pulumi.getter(name="clientEmail")
     def client_email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The client email. (Stackdriver)
+        The client email registered for the integration service.
         """
         return pulumi.get(self, "client_email")
 
@@ -432,7 +459,7 @@ class _IntegrationMetricState:
     @pulumi.getter
     def credentials(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Base64Encoded credentials. (Stackdriver)
+        Google Service Account private key credentials.
         """
         return pulumi.get(self, "credentials")
 
@@ -444,7 +471,7 @@ class _IntegrationMetricState:
     @pulumi.getter
     def email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The email address registred for the integration service. (Librato)
+        The email address registred for the integration service.
         """
         return pulumi.get(self, "email")
 
@@ -456,7 +483,7 @@ class _IntegrationMetricState:
     @pulumi.getter(name="iamExternalId")
     def iam_external_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        External identifier that match the role you created. (Cloudwatch)
+        External identifier that match the role you created.
         """
         return pulumi.get(self, "iam_external_id")
 
@@ -468,7 +495,7 @@ class _IntegrationMetricState:
     @pulumi.getter(name="iamRole")
     def iam_role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+        The ARN of the role to be assumed when publishing metrics.
         """
         return pulumi.get(self, "iam_role")
 
@@ -480,7 +507,10 @@ class _IntegrationMetricState:
     @pulumi.getter(name="includeAdQueues")
     def include_ad_queues(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        (optional) Include Auto-Delete queues
+        Include auto delete queues.
+
+        This is the full list of all arguments. Only a subset of arguments are used based on which type of
+        integration used. See [integration type reference] below for more information.
         """
         return pulumi.get(self, "include_ad_queues")
 
@@ -504,7 +534,8 @@ class _IntegrationMetricState:
     @pulumi.getter
     def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The name of log integration
+        The name of the third party log integration. See
+        `Integration service reference`
         """
         return pulumi.get(self, "name")
 
@@ -516,7 +547,7 @@ class _IntegrationMetricState:
     @pulumi.getter(name="privateKey")
     def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The private key. (Stackdriver)
+        The private access key.
         """
         return pulumi.get(self, "private_key")
 
@@ -540,7 +571,7 @@ class _IntegrationMetricState:
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Project ID. (Stackdriver)
+        The project identifier.
         """
         return pulumi.get(self, "project_id")
 
@@ -552,7 +583,8 @@ class _IntegrationMetricState:
     @pulumi.getter(name="queueAllowlist")
     def queue_allowlist(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        (optional) allowlist using regular expression
+        Allowlist queues using regular expression. Leave empty to include
+        all queues.
         """
         return pulumi.get(self, "queue_allowlist")
 
@@ -564,7 +596,7 @@ class _IntegrationMetricState:
     @pulumi.getter
     def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
+        Region hosting the integration service.
         """
         return pulumi.get(self, "region")
 
@@ -576,7 +608,7 @@ class _IntegrationMetricState:
     @pulumi.getter(name="secretAccessKey")
     def secret_access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        AWS secret key. (Cloudwatch)
+        AWS secret access key.
         """
         return pulumi.get(self, "secret_access_key")
 
@@ -588,7 +620,10 @@ class _IntegrationMetricState:
     @pulumi.getter
     def tags(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        (optional) tags. E.g. env=prod,region=europe
+        Tags. e.g. `env=prod,region=europe`.
+
+        ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+        letter, read more about tags format in the [Datadog documentation].
         """
         return pulumi.get(self, "tags")
 
@@ -600,7 +635,8 @@ class _IntegrationMetricState:
     @pulumi.getter(name="vhostAllowlist")
     def vhost_allowlist(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        (optional) allowlist using regular expression
+        Allowlist vhost using regular expression. Leave empty to include
+        all vhosts.
         """
         return pulumi.get(self, "vhost_allowlist")
 
@@ -866,39 +902,6 @@ class IntegrationMetric(pulumi.CustomResource):
 
         </details>
 
-        ## Argument References
-
-        The following arguments are supported:
-
-        * `name`              - (Required) The name of the third party log integration. See
-                            `Integration service reference`
-        * `region`            - (Optional) Region hosting the integration service.
-        * `access_key_id`     - (Optional) AWS access key identifier.
-        * `secret_access_key` - (Optional) AWS secret access key.
-        * `iam_role`          - (Optional) The ARN of the role to be assumed when publishing metrics.
-        * `iam_external_id`   - (Optional) External identifier that match the role you created.
-        * `api_key`           - (Optional) The API key for the integration service.
-        * `email`             - (Optional) The email address registred for the integration service.
-        * `credentials`       - (Optional) Google Service Account private key credentials.
-        * `project_id`        - (Optional/Computed) The project identifier.
-        * `private_key`       - (Optional/Computed) The private access key.
-        * `client_email`      - (Optional/Computed) The client email registered for the integration service.
-        * `tags`              - (Optional) Tags. e.g. `env=prod,region=europe`.
-          
-          ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
-                  letter, read more about tags format in the [Datadog documentation].
-
-        * `queue_allowlist`   - (Optional) Allowlist queues using regular expression. Leave empty to include
-                            all queues.
-        * `vhost_allowlist`   - (Optional) Allowlist vhost using regular expression. Leave empty to include
-                            all vhosts.
-        * `queue_whitelist`   - **Deprecated** Use queue_allowlist instead
-        * `vhost_whitelist`   - **Deprecated** Use vhost_allowlist instead
-        * `include_ad_queues` - (Optional) Include auto delete queues.
-
-        This is the full list of all arguments. Only a subset of arguments are used based on which type of
-        integration used. See [integration type reference] below for more information.
-
         ## Integration service references
 
         Valid names for third party log integration.
@@ -943,24 +946,33 @@ class IntegrationMetric(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] access_key_id: AWS access key identifier. (Cloudwatch)
-        :param pulumi.Input[_builtins.str] api_key: The API key for the integration service. (Librato, Data Dog, New Relic)
-        :param pulumi.Input[_builtins.str] client_email: The client email. (Stackdriver)
-        :param pulumi.Input[_builtins.str] credentials: Base64Encoded credentials. (Stackdriver)
-        :param pulumi.Input[_builtins.str] email: The email address registred for the integration service. (Librato)
-        :param pulumi.Input[_builtins.str] iam_external_id: External identifier that match the role you created. (Cloudwatch)
-        :param pulumi.Input[_builtins.str] iam_role: The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
-        :param pulumi.Input[_builtins.bool] include_ad_queues: (optional) Include Auto-Delete queues
+        :param pulumi.Input[_builtins.str] access_key_id: AWS access key identifier.
+        :param pulumi.Input[_builtins.str] api_key: The API key for the integration service.
+        :param pulumi.Input[_builtins.str] client_email: The client email registered for the integration service.
+        :param pulumi.Input[_builtins.str] credentials: Google Service Account private key credentials.
+        :param pulumi.Input[_builtins.str] email: The email address registred for the integration service.
+        :param pulumi.Input[_builtins.str] iam_external_id: External identifier that match the role you created.
+        :param pulumi.Input[_builtins.str] iam_role: The ARN of the role to be assumed when publishing metrics.
+        :param pulumi.Input[_builtins.bool] include_ad_queues: Include auto delete queues.
+               
+               This is the full list of all arguments. Only a subset of arguments are used based on which type of
+               integration used. See [integration type reference] below for more information.
         :param pulumi.Input[_builtins.int] instance_id: Instance identifier
-        :param pulumi.Input[_builtins.str] name: The name of log integration
-        :param pulumi.Input[_builtins.str] private_key: The private key. (Stackdriver)
+        :param pulumi.Input[_builtins.str] name: The name of the third party log integration. See
+               `Integration service reference`
+        :param pulumi.Input[_builtins.str] private_key: The private access key.
         :param pulumi.Input[_builtins.str] private_key_id: Private key identifier. (Stackdriver)
-        :param pulumi.Input[_builtins.str] project_id: Project ID. (Stackdriver)
-        :param pulumi.Input[_builtins.str] queue_allowlist: (optional) allowlist using regular expression
-        :param pulumi.Input[_builtins.str] region: AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
-        :param pulumi.Input[_builtins.str] secret_access_key: AWS secret key. (Cloudwatch)
-        :param pulumi.Input[_builtins.str] tags: (optional) tags. E.g. env=prod,region=europe
-        :param pulumi.Input[_builtins.str] vhost_allowlist: (optional) allowlist using regular expression
+        :param pulumi.Input[_builtins.str] project_id: The project identifier.
+        :param pulumi.Input[_builtins.str] queue_allowlist: Allowlist queues using regular expression. Leave empty to include
+               all queues.
+        :param pulumi.Input[_builtins.str] region: Region hosting the integration service.
+        :param pulumi.Input[_builtins.str] secret_access_key: AWS secret access key.
+        :param pulumi.Input[_builtins.str] tags: Tags. e.g. `env=prod,region=europe`.
+               
+               ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+               letter, read more about tags format in the [Datadog documentation].
+        :param pulumi.Input[_builtins.str] vhost_allowlist: Allowlist vhost using regular expression. Leave empty to include
+               all vhosts.
         """
         ...
     @overload
@@ -1200,39 +1212,6 @@ class IntegrationMetric(pulumi.CustomResource):
 
         </details>
 
-        ## Argument References
-
-        The following arguments are supported:
-
-        * `name`              - (Required) The name of the third party log integration. See
-                            `Integration service reference`
-        * `region`            - (Optional) Region hosting the integration service.
-        * `access_key_id`     - (Optional) AWS access key identifier.
-        * `secret_access_key` - (Optional) AWS secret access key.
-        * `iam_role`          - (Optional) The ARN of the role to be assumed when publishing metrics.
-        * `iam_external_id`   - (Optional) External identifier that match the role you created.
-        * `api_key`           - (Optional) The API key for the integration service.
-        * `email`             - (Optional) The email address registred for the integration service.
-        * `credentials`       - (Optional) Google Service Account private key credentials.
-        * `project_id`        - (Optional/Computed) The project identifier.
-        * `private_key`       - (Optional/Computed) The private access key.
-        * `client_email`      - (Optional/Computed) The client email registered for the integration service.
-        * `tags`              - (Optional) Tags. e.g. `env=prod,region=europe`.
-          
-          ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
-                  letter, read more about tags format in the [Datadog documentation].
-
-        * `queue_allowlist`   - (Optional) Allowlist queues using regular expression. Leave empty to include
-                            all queues.
-        * `vhost_allowlist`   - (Optional) Allowlist vhost using regular expression. Leave empty to include
-                            all vhosts.
-        * `queue_whitelist`   - **Deprecated** Use queue_allowlist instead
-        * `vhost_whitelist`   - **Deprecated** Use vhost_allowlist instead
-        * `include_ad_queues` - (Optional) Include auto delete queues.
-
-        This is the full list of all arguments. Only a subset of arguments are used based on which type of
-        integration used. See [integration type reference] below for more information.
-
         ## Integration service references
 
         Valid names for third party log integration.
@@ -1374,24 +1353,33 @@ class IntegrationMetric(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] access_key_id: AWS access key identifier. (Cloudwatch)
-        :param pulumi.Input[_builtins.str] api_key: The API key for the integration service. (Librato, Data Dog, New Relic)
-        :param pulumi.Input[_builtins.str] client_email: The client email. (Stackdriver)
-        :param pulumi.Input[_builtins.str] credentials: Base64Encoded credentials. (Stackdriver)
-        :param pulumi.Input[_builtins.str] email: The email address registred for the integration service. (Librato)
-        :param pulumi.Input[_builtins.str] iam_external_id: External identifier that match the role you created. (Cloudwatch)
-        :param pulumi.Input[_builtins.str] iam_role: The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
-        :param pulumi.Input[_builtins.bool] include_ad_queues: (optional) Include Auto-Delete queues
+        :param pulumi.Input[_builtins.str] access_key_id: AWS access key identifier.
+        :param pulumi.Input[_builtins.str] api_key: The API key for the integration service.
+        :param pulumi.Input[_builtins.str] client_email: The client email registered for the integration service.
+        :param pulumi.Input[_builtins.str] credentials: Google Service Account private key credentials.
+        :param pulumi.Input[_builtins.str] email: The email address registred for the integration service.
+        :param pulumi.Input[_builtins.str] iam_external_id: External identifier that match the role you created.
+        :param pulumi.Input[_builtins.str] iam_role: The ARN of the role to be assumed when publishing metrics.
+        :param pulumi.Input[_builtins.bool] include_ad_queues: Include auto delete queues.
+               
+               This is the full list of all arguments. Only a subset of arguments are used based on which type of
+               integration used. See [integration type reference] below for more information.
         :param pulumi.Input[_builtins.int] instance_id: Instance identifier
-        :param pulumi.Input[_builtins.str] name: The name of log integration
-        :param pulumi.Input[_builtins.str] private_key: The private key. (Stackdriver)
+        :param pulumi.Input[_builtins.str] name: The name of the third party log integration. See
+               `Integration service reference`
+        :param pulumi.Input[_builtins.str] private_key: The private access key.
         :param pulumi.Input[_builtins.str] private_key_id: Private key identifier. (Stackdriver)
-        :param pulumi.Input[_builtins.str] project_id: Project ID. (Stackdriver)
-        :param pulumi.Input[_builtins.str] queue_allowlist: (optional) allowlist using regular expression
-        :param pulumi.Input[_builtins.str] region: AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
-        :param pulumi.Input[_builtins.str] secret_access_key: AWS secret key. (Cloudwatch)
-        :param pulumi.Input[_builtins.str] tags: (optional) tags. E.g. env=prod,region=europe
-        :param pulumi.Input[_builtins.str] vhost_allowlist: (optional) allowlist using regular expression
+        :param pulumi.Input[_builtins.str] project_id: The project identifier.
+        :param pulumi.Input[_builtins.str] queue_allowlist: Allowlist queues using regular expression. Leave empty to include
+               all queues.
+        :param pulumi.Input[_builtins.str] region: Region hosting the integration service.
+        :param pulumi.Input[_builtins.str] secret_access_key: AWS secret access key.
+        :param pulumi.Input[_builtins.str] tags: Tags. e.g. `env=prod,region=europe`.
+               
+               ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+               letter, read more about tags format in the [Datadog documentation].
+        :param pulumi.Input[_builtins.str] vhost_allowlist: Allowlist vhost using regular expression. Leave empty to include
+               all vhosts.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1463,7 +1451,7 @@ class IntegrationMetric(pulumi.CustomResource):
     @pulumi.getter(name="accessKeyId")
     def access_key_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        AWS access key identifier. (Cloudwatch)
+        AWS access key identifier.
         """
         return pulumi.get(self, "access_key_id")
 
@@ -1471,7 +1459,7 @@ class IntegrationMetric(pulumi.CustomResource):
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The API key for the integration service. (Librato, Data Dog, New Relic)
+        The API key for the integration service.
         """
         return pulumi.get(self, "api_key")
 
@@ -1479,7 +1467,7 @@ class IntegrationMetric(pulumi.CustomResource):
     @pulumi.getter(name="clientEmail")
     def client_email(self) -> pulumi.Output[_builtins.str]:
         """
-        The client email. (Stackdriver)
+        The client email registered for the integration service.
         """
         return pulumi.get(self, "client_email")
 
@@ -1487,7 +1475,7 @@ class IntegrationMetric(pulumi.CustomResource):
     @pulumi.getter
     def credentials(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Base64Encoded credentials. (Stackdriver)
+        Google Service Account private key credentials.
         """
         return pulumi.get(self, "credentials")
 
@@ -1495,7 +1483,7 @@ class IntegrationMetric(pulumi.CustomResource):
     @pulumi.getter
     def email(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The email address registred for the integration service. (Librato)
+        The email address registred for the integration service.
         """
         return pulumi.get(self, "email")
 
@@ -1503,7 +1491,7 @@ class IntegrationMetric(pulumi.CustomResource):
     @pulumi.getter(name="iamExternalId")
     def iam_external_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        External identifier that match the role you created. (Cloudwatch)
+        External identifier that match the role you created.
         """
         return pulumi.get(self, "iam_external_id")
 
@@ -1511,7 +1499,7 @@ class IntegrationMetric(pulumi.CustomResource):
     @pulumi.getter(name="iamRole")
     def iam_role(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+        The ARN of the role to be assumed when publishing metrics.
         """
         return pulumi.get(self, "iam_role")
 
@@ -1519,7 +1507,10 @@ class IntegrationMetric(pulumi.CustomResource):
     @pulumi.getter(name="includeAdQueues")
     def include_ad_queues(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        (optional) Include Auto-Delete queues
+        Include auto delete queues.
+
+        This is the full list of all arguments. Only a subset of arguments are used based on which type of
+        integration used. See [integration type reference] below for more information.
         """
         return pulumi.get(self, "include_ad_queues")
 
@@ -1535,7 +1526,8 @@ class IntegrationMetric(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         """
-        The name of log integration
+        The name of the third party log integration. See
+        `Integration service reference`
         """
         return pulumi.get(self, "name")
 
@@ -1543,7 +1535,7 @@ class IntegrationMetric(pulumi.CustomResource):
     @pulumi.getter(name="privateKey")
     def private_key(self) -> pulumi.Output[_builtins.str]:
         """
-        The private key. (Stackdriver)
+        The private access key.
         """
         return pulumi.get(self, "private_key")
 
@@ -1559,7 +1551,7 @@ class IntegrationMetric(pulumi.CustomResource):
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Project ID. (Stackdriver)
+        The project identifier.
         """
         return pulumi.get(self, "project_id")
 
@@ -1567,7 +1559,8 @@ class IntegrationMetric(pulumi.CustomResource):
     @pulumi.getter(name="queueAllowlist")
     def queue_allowlist(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        (optional) allowlist using regular expression
+        Allowlist queues using regular expression. Leave empty to include
+        all queues.
         """
         return pulumi.get(self, "queue_allowlist")
 
@@ -1575,7 +1568,7 @@ class IntegrationMetric(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
+        Region hosting the integration service.
         """
         return pulumi.get(self, "region")
 
@@ -1583,7 +1576,7 @@ class IntegrationMetric(pulumi.CustomResource):
     @pulumi.getter(name="secretAccessKey")
     def secret_access_key(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        AWS secret key. (Cloudwatch)
+        AWS secret access key.
         """
         return pulumi.get(self, "secret_access_key")
 
@@ -1591,7 +1584,10 @@ class IntegrationMetric(pulumi.CustomResource):
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        (optional) tags. E.g. env=prod,region=europe
+        Tags. e.g. `env=prod,region=europe`.
+
+        ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+        letter, read more about tags format in the [Datadog documentation].
         """
         return pulumi.get(self, "tags")
 
@@ -1599,7 +1595,8 @@ class IntegrationMetric(pulumi.CustomResource):
     @pulumi.getter(name="vhostAllowlist")
     def vhost_allowlist(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        (optional) allowlist using regular expression
+        Allowlist vhost using regular expression. Leave empty to include
+        all vhosts.
         """
         return pulumi.get(self, "vhost_allowlist")
 
