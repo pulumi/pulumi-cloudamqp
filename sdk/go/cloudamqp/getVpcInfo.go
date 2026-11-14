@@ -121,7 +121,7 @@ type GetVpcInfoArgs struct {
 
 // A collection of values returned by getVpcInfo.
 type GetVpcInfoResult struct {
-	// The provider-assigned unique ID for this managed resource.
+	// The identifier for this resource.
 	Id         string `pulumi:"id"`
 	InstanceId *int   `pulumi:"instanceId"`
 	// The name of the CloudAMQP instance.
@@ -171,7 +171,7 @@ func (o GetVpcInfoResultOutput) ToGetVpcInfoResultOutputWithContext(ctx context.
 	return o
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The identifier for this resource.
 func (o GetVpcInfoResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcInfoResult) string { return v.Id }).(pulumi.StringOutput)
 }

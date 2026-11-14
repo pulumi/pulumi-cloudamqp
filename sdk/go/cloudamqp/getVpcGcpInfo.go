@@ -127,15 +127,15 @@ type GetVpcGcpInfoArgs struct {
 
 // A collection of values returned by getVpcGcpInfo.
 type GetVpcGcpInfoResult struct {
-	// The provider-assigned unique ID for this managed resource.
+	// The identifier for this resource.
 	Id         string `pulumi:"id"`
 	InstanceId *int   `pulumi:"instanceId"`
 	// The name of the VPC.
 	Name string `pulumi:"name"`
 	// VPC network uri.
 	Network string  `pulumi:"network"`
-	Sleep   *int    `pulumi:"sleep"`
-	Timeout *int    `pulumi:"timeout"`
+	Sleep   int     `pulumi:"sleep"`
+	Timeout int     `pulumi:"timeout"`
 	VpcId   *string `pulumi:"vpcId"`
 	// Dedicated VPC subnet.
 	VpcSubnet string `pulumi:"vpcSubnet"`
@@ -183,7 +183,7 @@ func (o GetVpcGcpInfoResultOutput) ToGetVpcGcpInfoResultOutputWithContext(ctx co
 	return o
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The identifier for this resource.
 func (o GetVpcGcpInfoResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcGcpInfoResult) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -202,12 +202,12 @@ func (o GetVpcGcpInfoResultOutput) Network() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcGcpInfoResult) string { return v.Network }).(pulumi.StringOutput)
 }
 
-func (o GetVpcGcpInfoResultOutput) Sleep() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v GetVpcGcpInfoResult) *int { return v.Sleep }).(pulumi.IntPtrOutput)
+func (o GetVpcGcpInfoResultOutput) Sleep() pulumi.IntOutput {
+	return o.ApplyT(func(v GetVpcGcpInfoResult) int { return v.Sleep }).(pulumi.IntOutput)
 }
 
-func (o GetVpcGcpInfoResultOutput) Timeout() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v GetVpcGcpInfoResult) *int { return v.Timeout }).(pulumi.IntPtrOutput)
+func (o GetVpcGcpInfoResultOutput) Timeout() pulumi.IntOutput {
+	return o.ApplyT(func(v GetVpcGcpInfoResult) int { return v.Timeout }).(pulumi.IntOutput)
 }
 
 func (o GetVpcGcpInfoResultOutput) VpcId() pulumi.StringPtrOutput {

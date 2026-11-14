@@ -39,7 +39,7 @@ class GetAccountResult:
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        The provider-assigned unique ID for this managed resource.
+        The instance identifier.
         """
         return pulumi.get(self, "id")
 

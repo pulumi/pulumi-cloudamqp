@@ -59,6 +59,7 @@
         "provider.ts",
         "rabbitConfiguration.ts",
         "securityFirewall.ts",
+        "teamMember.ts",
         "trustStore.ts",
         "types/index.ts",
         "types/input.ts",

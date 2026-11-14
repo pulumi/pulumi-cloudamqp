@@ -486,39 +486,6 @@ import javax.annotation.Nullable;
  * 
  * &lt;/details&gt;
  * 
- * ## Argument References
- * 
- * The following arguments are supported:
- * 
- * * `name`              - (Required) The name of the third party log integration. See
- *                     `Integration service reference`
- * * `region`            - (Optional) Region hosting the integration service.
- * * `accessKeyId`     - (Optional) AWS access key identifier.
- * * `secretAccessKey` - (Optional) AWS secret access key.
- * * `iamRole`          - (Optional) The ARN of the role to be assumed when publishing metrics.
- * * `iamExternalId`   - (Optional) External identifier that match the role you created.
- * * `apiKey`           - (Optional) The API key for the integration service.
- * * `email`             - (Optional) The email address registred for the integration service.
- * * `credentials`       - (Optional) Google Service Account private key credentials.
- * * `projectId`        - (Optional/Computed) The project identifier.
- * * `privateKey`       - (Optional/Computed) The private access key.
- * * `clientEmail`      - (Optional/Computed) The client email registered for the integration service.
- * * `tags`              - (Optional) Tags. e.g. `env=prod,region=europe`.
- *   
- *   ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
- *           letter, read more about tags format in the [Datadog documentation].
- * 
- * * `queueAllowlist`   - (Optional) Allowlist queues using regular expression. Leave empty to include
- *                     all queues.
- * * `vhostAllowlist`   - (Optional) Allowlist vhost using regular expression. Leave empty to include
- *                     all vhosts.
- * * `queueWhitelist`   - **Deprecated** Use queueAllowlist instead
- * * `vhostWhitelist`   - **Deprecated** Use vhostAllowlist instead
- * * `includeAdQueues` - (Optional) Include auto delete queues.
- * 
- * This is the full list of all arguments. Only a subset of arguments are used based on which type of
- * integration used. See [integration type reference] below for more information.
- * 
  * ## Integration service references
  * 
  * Valid names for third party log integration.
@@ -564,112 +531,118 @@ import javax.annotation.Nullable;
 @ResourceType(type="cloudamqp:index/integrationMetric:IntegrationMetric")
 public class IntegrationMetric extends com.pulumi.resources.CustomResource {
     /**
-     * AWS access key identifier. (Cloudwatch)
+     * AWS access key identifier.
      * 
      */
     @Export(name="accessKeyId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> accessKeyId;
 
     /**
-     * @return AWS access key identifier. (Cloudwatch)
+     * @return AWS access key identifier.
      * 
      */
     public Output<Optional<String>> accessKeyId() {
         return Codegen.optional(this.accessKeyId);
     }
     /**
-     * The API key for the integration service. (Librato, Data Dog, New Relic)
+     * The API key for the integration service.
      * 
      */
     @Export(name="apiKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> apiKey;
 
     /**
-     * @return The API key for the integration service. (Librato, Data Dog, New Relic)
+     * @return The API key for the integration service.
      * 
      */
     public Output<Optional<String>> apiKey() {
         return Codegen.optional(this.apiKey);
     }
     /**
-     * The client email. (Stackdriver)
+     * The client email registered for the integration service.
      * 
      */
     @Export(name="clientEmail", refs={String.class}, tree="[0]")
     private Output<String> clientEmail;
 
     /**
-     * @return The client email. (Stackdriver)
+     * @return The client email registered for the integration service.
      * 
      */
     public Output<String> clientEmail() {
         return this.clientEmail;
     }
     /**
-     * Base64Encoded credentials. (Stackdriver)
+     * Google Service Account private key credentials.
      * 
      */
     @Export(name="credentials", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> credentials;
 
     /**
-     * @return Base64Encoded credentials. (Stackdriver)
+     * @return Google Service Account private key credentials.
      * 
      */
     public Output<Optional<String>> credentials() {
         return Codegen.optional(this.credentials);
     }
     /**
-     * The email address registred for the integration service. (Librato)
+     * The email address registred for the integration service.
      * 
      */
     @Export(name="email", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> email;
 
     /**
-     * @return The email address registred for the integration service. (Librato)
+     * @return The email address registred for the integration service.
      * 
      */
     public Output<Optional<String>> email() {
         return Codegen.optional(this.email);
     }
     /**
-     * External identifier that match the role you created. (Cloudwatch)
+     * External identifier that match the role you created.
      * 
      */
     @Export(name="iamExternalId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> iamExternalId;
 
     /**
-     * @return External identifier that match the role you created. (Cloudwatch)
+     * @return External identifier that match the role you created.
      * 
      */
     public Output<Optional<String>> iamExternalId() {
         return Codegen.optional(this.iamExternalId);
     }
     /**
-     * The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+     * The ARN of the role to be assumed when publishing metrics.
      * 
      */
     @Export(name="iamRole", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> iamRole;
 
     /**
-     * @return The ARN of the role to be assumed when publishing metrics. (Cloudwatch)
+     * @return The ARN of the role to be assumed when publishing metrics.
      * 
      */
     public Output<Optional<String>> iamRole() {
         return Codegen.optional(this.iamRole);
     }
     /**
-     * (optional) Include Auto-Delete queues
+     * Include auto delete queues.
+     * 
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of
+     * integration used. See [integration type reference] below for more information.
      * 
      */
     @Export(name="includeAdQueues", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> includeAdQueues;
 
     /**
-     * @return (optional) Include Auto-Delete queues
+     * @return Include auto delete queues.
+     * 
+     * This is the full list of all arguments. Only a subset of arguments are used based on which type of
+     * integration used. See [integration type reference] below for more information.
      * 
      */
     public Output<Optional<Boolean>> includeAdQueues() {
@@ -690,28 +663,30 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
         return this.instanceId;
     }
     /**
-     * The name of log integration
+     * The name of the third party log integration. See
+     * `Integration service reference`
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return The name of log integration
+     * @return The name of the third party log integration. See
+     * `Integration service reference`
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * The private key. (Stackdriver)
+     * The private access key.
      * 
      */
     @Export(name="privateKey", refs={String.class}, tree="[0]")
     private Output<String> privateKey;
 
     /**
-     * @return The private key. (Stackdriver)
+     * @return The private access key.
      * 
      */
     public Output<String> privateKey() {
@@ -732,84 +707,94 @@ public class IntegrationMetric extends com.pulumi.resources.CustomResource {
         return this.privateKeyId;
     }
     /**
-     * Project ID. (Stackdriver)
+     * The project identifier.
      * 
      */
     @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
-     * @return Project ID. (Stackdriver)
+     * @return The project identifier.
      * 
      */
     public Output<String> projectId() {
         return this.projectId;
     }
     /**
-     * (optional) allowlist using regular expression
+     * Allowlist queues using regular expression. Leave empty to include
+     * all queues.
      * 
      */
     @Export(name="queueAllowlist", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> queueAllowlist;
 
     /**
-     * @return (optional) allowlist using regular expression
+     * @return Allowlist queues using regular expression. Leave empty to include
+     * all queues.
      * 
      */
     public Output<Optional<String>> queueAllowlist() {
         return Codegen.optional(this.queueAllowlist);
     }
     /**
-     * AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
+     * Region hosting the integration service.
      * 
      */
     @Export(name="region", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> region;
 
     /**
-     * @return AWS region for Cloudwatch and [US/EU] for Data dog/New relic. (Cloudwatch, Data Dog, New Relic)
+     * @return Region hosting the integration service.
      * 
      */
     public Output<Optional<String>> region() {
         return Codegen.optional(this.region);
     }
     /**
-     * AWS secret key. (Cloudwatch)
+     * AWS secret access key.
      * 
      */
     @Export(name="secretAccessKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> secretAccessKey;
 
     /**
-     * @return AWS secret key. (Cloudwatch)
+     * @return AWS secret access key.
      * 
      */
     public Output<Optional<String>> secretAccessKey() {
         return Codegen.optional(this.secretAccessKey);
     }
     /**
-     * (optional) tags. E.g. env=prod,region=europe
+     * Tags. e.g. `env=prod,region=europe`.
+     * 
+     * ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+     * letter, read more about tags format in the [Datadog documentation].
      * 
      */
     @Export(name="tags", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tags;
 
     /**
-     * @return (optional) tags. E.g. env=prod,region=europe
+     * @return Tags. e.g. `env=prod,region=europe`.
+     * 
+     * ***Note:*** If tags are used with Datadog. The value part (prod, europe, ...) must start with a
+     * letter, read more about tags format in the [Datadog documentation].
      * 
      */
     public Output<Optional<String>> tags() {
         return Codegen.optional(this.tags);
     }
     /**
-     * (optional) allowlist using regular expression
+     * Allowlist vhost using regular expression. Leave empty to include
+     * all vhosts.
      * 
      */
     @Export(name="vhostAllowlist", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> vhostAllowlist;
 
     /**
-     * @return (optional) allowlist using regular expression
+     * @return Allowlist vhost using regular expression. Leave empty to include
+     * all vhosts.
      * 
      */
     public Output<Optional<String>> vhostAllowlist() {

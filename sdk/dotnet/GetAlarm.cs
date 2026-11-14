@@ -199,6 +199,11 @@ namespace Pulumi.CloudAmqp
         public readonly string Id;
         public readonly int InstanceId;
         /// <summary>
+        /// For `DiskAutoResize`, the maximum additional disk size (in GiB) to resize
+        /// up to. Not set means up to the largest size (2000 GiB).
+        /// </summary>
+        public readonly int MaxDiskSize;
+        /// <summary>
         /// Message type `(total, unacked, ready)` used by queue alarm type.
         /// </summary>
         public readonly string MessageType;
@@ -247,6 +252,8 @@ namespace Pulumi.CloudAmqp
 
             int instanceId,
 
+            int maxDiskSize,
+
             string messageType,
 
             string queueRegex,
@@ -270,6 +277,7 @@ namespace Pulumi.CloudAmqp
             Enabled = enabled;
             Id = id;
             InstanceId = instanceId;
+            MaxDiskSize = maxDiskSize;
             MessageType = messageType;
             QueueRegex = queueRegex;
             Recipients = recipients;

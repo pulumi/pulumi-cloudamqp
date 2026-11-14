@@ -13,7 +13,7 @@ import java.util.Objects;
 @CustomType
 public final class GetAccountVpcsResult {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The VPC identifier.
      * 
      */
     private String id;
@@ -25,7 +25,7 @@ public final class GetAccountVpcsResult {
 
     private GetAccountVpcsResult() {}
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The VPC identifier.
      * 
      */
     public String id() {

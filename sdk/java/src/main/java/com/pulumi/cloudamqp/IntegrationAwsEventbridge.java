@@ -144,21 +144,6 @@ import javax.annotation.Nullable;
  * 
  * &lt;/details&gt;
  * 
- * ## Argument References
- * 
- * The following arguments are supported:
- * 
- * * `awsAccountId`  - (ForceNew/Required) The 12 digit AWS Account ID where you want the events to
- *                       be sent to.
- * * `awsRegion`      - (ForceNew/Required) The AWS region where you the events to be sent to.
- *                       (e.g. us-west-1, us-west-2, ..., etc.)
- * * `vhost`           - (ForceNew/Required) The VHost the queue resides in.
- * * `queue`           - (ForceNew/Required) A (durable) queue on your RabbitMQ instance.
- * * `withHeaders`    - (ForceNew/Required) Include message headers in the event data.
- *                       `({ &#34;headers&#34;: { }, &#34;body&#34;: { &#34;your&#34;: &#34;message&#34; } })`
- * * `prefetch`        - (ForceNew/Optional) Set the prefetch for the Eventbrigde consumer to increase
- *                       throughput. Supported from [v1.38.0].
- * 
  * ## Dependency
  * 
  * This resource depends on CloudAMQP instance identifier, `cloudamqp_instance.instance.id`.
@@ -167,28 +152,32 @@ import javax.annotation.Nullable;
 @ResourceType(type="cloudamqp:index/integrationAwsEventbridge:IntegrationAwsEventbridge")
 public class IntegrationAwsEventbridge extends com.pulumi.resources.CustomResource {
     /**
-     * The 12 digit AWS Account ID where you want the events to be sent to.
+     * The 12 digit AWS Account ID where you want the events to
+     * be sent to.
      * 
      */
     @Export(name="awsAccountId", refs={String.class}, tree="[0]")
     private Output<String> awsAccountId;
 
     /**
-     * @return The 12 digit AWS Account ID where you want the events to be sent to.
+     * @return The 12 digit AWS Account ID where you want the events to
+     * be sent to.
      * 
      */
     public Output<String> awsAccountId() {
         return this.awsAccountId;
     }
     /**
-     * The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
+     * The AWS region where you the events to be sent to.
+     * (e.g. us-west-1, us-west-2, ..., etc.)
      * 
      */
     @Export(name="awsRegion", refs={String.class}, tree="[0]")
     private Output<String> awsRegion;
 
     /**
-     * @return The AWS region where you the events to be sent to. (e.g. us-west-1, us-west-2, ..., etc.)
+     * @return The AWS region where you the events to be sent to.
+     * (e.g. us-west-1, us-west-2, ..., etc.)
      * 
      */
     public Output<String> awsRegion() {
@@ -209,14 +198,16 @@ public class IntegrationAwsEventbridge extends com.pulumi.resources.CustomResour
         return this.instanceId;
     }
     /**
-     * Number of messages to prefetch. Default set to 1.
+     * Set the prefetch for the Eventbrigde consumer to increase
+     * throughput. Supported from [v1.38.0].
      * 
      */
     @Export(name="prefetch", refs={Integer.class}, tree="[0]")
     private Output<Integer> prefetch;
 
     /**
-     * @return Number of messages to prefetch. Default set to 1.
+     * @return Set the prefetch for the Eventbrigde consumer to increase
+     * throughput. Supported from [v1.38.0].
      * 
      */
     public Output<Integer> prefetch() {
@@ -266,6 +257,7 @@ public class IntegrationAwsEventbridge extends com.pulumi.resources.CustomResour
     }
     /**
      * Include message headers in the event data.
+     * `({ &#34;headers&#34;: { }, &#34;body&#34;: { &#34;your&#34;: &#34;message&#34; } })`
      * 
      */
     @Export(name="withHeaders", refs={Boolean.class}, tree="[0]")
@@ -273,6 +265,7 @@ public class IntegrationAwsEventbridge extends com.pulumi.resources.CustomResour
 
     /**
      * @return Include message headers in the event data.
+     * `({ &#34;headers&#34;: { }, &#34;body&#34;: { &#34;your&#34;: &#34;message&#34; } })`
      * 
      */
     public Output<Boolean> withHeaders() {

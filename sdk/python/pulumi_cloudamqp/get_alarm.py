@@ -26,7 +26,7 @@ class GetAlarmResult:
     """
     A collection of values returned by getAlarm.
     """
-    def __init__(__self__, alarm_id=None, allow_downtime=None, enabled=None, id=None, instance_id=None, message_type=None, queue_regex=None, recipients=None, reminder_interval=None, time_threshold=None, type=None, value_calculation=None, value_threshold=None, vhost_regex=None):
+    def __init__(__self__, alarm_id=None, allow_downtime=None, enabled=None, id=None, instance_id=None, max_disk_size=None, message_type=None, queue_regex=None, recipients=None, reminder_interval=None, time_threshold=None, type=None, value_calculation=None, value_threshold=None, vhost_regex=None):
         if alarm_id and not isinstance(alarm_id, int):
             raise TypeError("Expected argument 'alarm_id' to be a int")
         pulumi.set(__self__, "alarm_id", alarm_id)
@@ -42,6 +42,9 @@ class GetAlarmResult:
         if instance_id and not isinstance(instance_id, int):
             raise TypeError("Expected argument 'instance_id' to be a int")
         pulumi.set(__self__, "instance_id", instance_id)
+        if max_disk_size and not isinstance(max_disk_size, int):
+            raise TypeError("Expected argument 'max_disk_size' to be a int")
+        pulumi.set(__self__, "max_disk_size", max_disk_size)
         if message_type and not isinstance(message_type, str):
             raise TypeError("Expected argument 'message_type' to be a str")
         pulumi.set(__self__, "message_type", message_type)
@@ -104,6 +107,15 @@ class GetAlarmResult:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> _builtins.int:
         return pulumi.get(self, "instance_id")
+
+    @_builtins.property
+    @pulumi.getter(name="maxDiskSize")
+    def max_disk_size(self) -> _builtins.int:
+        """
+        For `disk_auto_resize`, the maximum additional disk size (in GiB) to resize
+        up to. Not set means up to the largest size (2000 GiB).
+        """
+        return pulumi.get(self, "max_disk_size")
 
     @_builtins.property
     @pulumi.getter(name="messageType")
@@ -189,6 +201,7 @@ class AwaitableGetAlarmResult(GetAlarmResult):
             enabled=self.enabled,
             id=self.id,
             instance_id=self.instance_id,
+            max_disk_size=self.max_disk_size,
             message_type=self.message_type,
             queue_regex=self.queue_regex,
             recipients=self.recipients,
@@ -249,6 +262,7 @@ def get_alarm(alarm_id: Optional[_builtins.int] = None,
         enabled=pulumi.get(__ret__, 'enabled'),
         id=pulumi.get(__ret__, 'id'),
         instance_id=pulumi.get(__ret__, 'instance_id'),
+        max_disk_size=pulumi.get(__ret__, 'max_disk_size'),
         message_type=pulumi.get(__ret__, 'message_type'),
         queue_regex=pulumi.get(__ret__, 'queue_regex'),
         recipients=pulumi.get(__ret__, 'recipients'),
@@ -306,6 +320,7 @@ def get_alarm_output(alarm_id: pulumi.Input[Optional[Optional[_builtins.int]]] =
         enabled=pulumi.get(__response__, 'enabled'),
         id=pulumi.get(__response__, 'id'),
         instance_id=pulumi.get(__response__, 'instance_id'),
+        max_disk_size=pulumi.get(__response__, 'max_disk_size'),
         message_type=pulumi.get(__response__, 'message_type'),
         queue_regex=pulumi.get(__response__, 'queue_regex'),
         recipients=pulumi.get(__response__, 'recipients'),

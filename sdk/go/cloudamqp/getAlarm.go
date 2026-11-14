@@ -84,6 +84,9 @@ type LookupAlarmResult struct {
 	// The identifier for this resource.
 	Id         string `pulumi:"id"`
 	InstanceId int    `pulumi:"instanceId"`
+	// For `diskAutoResize`, the maximum additional disk size (in GiB) to resize
+	// up to. Not set means up to the largest size (2000 GiB).
+	MaxDiskSize int `pulumi:"maxDiskSize"`
 	// Message type `(total, unacked, ready)` used by queue alarm type.
 	MessageType string `pulumi:"messageType"`
 	// Regular expression for which queue to check.
@@ -165,6 +168,12 @@ func (o LookupAlarmResultOutput) Id() pulumi.StringOutput {
 
 func (o LookupAlarmResultOutput) InstanceId() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupAlarmResult) int { return v.InstanceId }).(pulumi.IntOutput)
+}
+
+// For `diskAutoResize`, the maximum additional disk size (in GiB) to resize
+// up to. Not set means up to the largest size (2000 GiB).
+func (o LookupAlarmResultOutput) MaxDiskSize() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupAlarmResult) int { return v.MaxDiskSize }).(pulumi.IntOutput)
 }
 
 // Message type `(total, unacked, ready)` used by queue alarm type.

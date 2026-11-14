@@ -21,7 +21,7 @@ export function getAccount(opts?: pulumi.InvokeOptions): Promise<GetAccountResul
  */
 export interface GetAccountResult {
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The instance identifier.
      */
     readonly id: string;
     /**

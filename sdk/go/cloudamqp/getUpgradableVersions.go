@@ -61,7 +61,6 @@ type GetUpgradableVersionsArgs struct {
 
 // A collection of values returned by getUpgradableVersions.
 type GetUpgradableVersionsResult struct {
-	// The provider-assigned unique ID for this managed resource.
 	Id         string `pulumi:"id"`
 	InstanceId int    `pulumi:"instanceId"`
 	// Possible upgradable version for Erlang.
@@ -100,7 +99,6 @@ func (o GetUpgradableVersionsResultOutput) ToGetUpgradableVersionsResultOutputWi
 	return o
 }
 
-// The provider-assigned unique ID for this managed resource.
 func (o GetUpgradableVersionsResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetUpgradableVersionsResult) string { return v.Id }).(pulumi.StringOutput)
 }

@@ -40,7 +40,7 @@ export interface GetAccountInstance {
     /**
      * Optional tags set for the instance.
      */
-    tags?: string[];
+    tags: string[];
 }
 
 export interface GetAccountVpcsVpc {
@@ -63,7 +63,7 @@ export interface GetAccountVpcsVpc {
     /**
      * Optional tags set for the VPC.
      */
-    tags?: string[];
+    tags: string[];
     /**
      * VPC name given when hosted at the cloud provider.
      */

@@ -188,6 +188,11 @@ export type SecurityFirewall = import("./securityFirewall").SecurityFirewall;
 export const SecurityFirewall: typeof import("./securityFirewall").SecurityFirewall = null as any;
 utilities.lazyLoad(exports, ["SecurityFirewall"], () => require("./securityFirewall"));
 
+export { TeamMemberArgs, TeamMemberState } from "./teamMember";
+export type TeamMember = import("./teamMember").TeamMember;
+export const TeamMember: typeof import("./teamMember").TeamMember = null as any;
+utilities.lazyLoad(exports, ["TeamMember"], () => require("./teamMember"));
+
 export { TrustStoreArgs, TrustStoreState } from "./trustStore";
 export type TrustStore = import("./trustStore").TrustStore;
 export const TrustStore: typeof import("./trustStore").TrustStore = null as any;
@@ -286,6 +291,8 @@ const _module = {
                 return new RabbitConfiguration(name, <any>undefined, { urn })
             case "cloudamqp:index/securityFirewall:SecurityFirewall":
                 return new SecurityFirewall(name, <any>undefined, { urn })
+            case "cloudamqp:index/teamMember:TeamMember":
+                return new TeamMember(name, <any>undefined, { urn })
             case "cloudamqp:index/trustStore:TrustStore":
                 return new TrustStore(name, <any>undefined, { urn })
             case "cloudamqp:index/upgradeLavinmq:UpgradeLavinmq":
@@ -329,6 +336,7 @@ pulumi.runtime.registerResourceModule("cloudamqp", "index/privatelinkAws", _modu
 pulumi.runtime.registerResourceModule("cloudamqp", "index/privatelinkAzure", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/rabbitConfiguration", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/securityFirewall", _module)
+pulumi.runtime.registerResourceModule("cloudamqp", "index/teamMember", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/trustStore", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/upgradeLavinmq", _module)
 pulumi.runtime.registerResourceModule("cloudamqp", "index/upgradeRabbitmq", _module)

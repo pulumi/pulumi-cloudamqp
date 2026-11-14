@@ -65,6 +65,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RabbitConfiguration{}
 	case "cloudamqp:index/securityFirewall:SecurityFirewall":
 		r = &SecurityFirewall{}
+	case "cloudamqp:index/teamMember:TeamMember":
+		r = &TeamMember{}
 	case "cloudamqp:index/trustStore:TrustStore":
 		r = &TrustStore{}
 	case "cloudamqp:index/upgradeLavinmq:UpgradeLavinmq":
@@ -220,6 +222,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"cloudamqp",
 		"index/securityFirewall",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"cloudamqp",
+		"index/teamMember",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

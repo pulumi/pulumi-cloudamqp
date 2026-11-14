@@ -56,7 +56,7 @@ class GetVpcGcpInfoResult:
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        The provider-assigned unique ID for this managed resource.
+        The identifier for this resource.
         """
         return pulumi.get(self, "id")
 
@@ -83,12 +83,12 @@ class GetVpcGcpInfoResult:
 
     @_builtins.property
     @pulumi.getter
-    def sleep(self) -> Optional[_builtins.int]:
+    def sleep(self) -> _builtins.int:
         return pulumi.get(self, "sleep")
 
     @_builtins.property
     @pulumi.getter
-    def timeout(self) -> Optional[_builtins.int]:
+    def timeout(self) -> _builtins.int:
         return pulumi.get(self, "timeout")
 
     @_builtins.property

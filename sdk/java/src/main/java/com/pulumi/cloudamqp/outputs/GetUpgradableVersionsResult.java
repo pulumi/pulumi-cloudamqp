@@ -11,10 +11,6 @@ import java.util.Objects;
 
 @CustomType
 public final class GetUpgradableVersionsResult {
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
     private String id;
     private Integer instanceId;
     /**
@@ -29,10 +25,6 @@ public final class GetUpgradableVersionsResult {
     private String newRabbitmqVersion;
 
     private GetUpgradableVersionsResult() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
     public String id() {
         return this.id;
     }

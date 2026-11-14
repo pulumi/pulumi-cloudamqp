@@ -34,6 +34,12 @@ public final class GetAlarmResult {
     private String id;
     private Integer instanceId;
     /**
+     * @return For `diskAutoResize`, the maximum additional disk size (in GiB) to resize
+     * up to. Not set means up to the largest size (2000 GiB).
+     * 
+     */
+    private Integer maxDiskSize;
+    /**
      * @return Message type `(total, unacked, ready)` used by queue alarm type.
      * 
      */
@@ -106,6 +112,14 @@ public final class GetAlarmResult {
     }
     public Integer instanceId() {
         return this.instanceId;
+    }
+    /**
+     * @return For `diskAutoResize`, the maximum additional disk size (in GiB) to resize
+     * up to. Not set means up to the largest size (2000 GiB).
+     * 
+     */
+    public Integer maxDiskSize() {
+        return this.maxDiskSize;
     }
     /**
      * @return Message type `(total, unacked, ready)` used by queue alarm type.
@@ -184,6 +198,7 @@ public final class GetAlarmResult {
         private Boolean enabled;
         private String id;
         private Integer instanceId;
+        private Integer maxDiskSize;
         private String messageType;
         private String queueRegex;
         private List<Integer> recipients;
@@ -201,6 +216,7 @@ public final class GetAlarmResult {
     	      this.enabled = defaults.enabled;
     	      this.id = defaults.id;
     	      this.instanceId = defaults.instanceId;
+    	      this.maxDiskSize = defaults.maxDiskSize;
     	      this.messageType = defaults.messageType;
     	      this.queueRegex = defaults.queueRegex;
     	      this.recipients = defaults.recipients;
@@ -248,6 +264,14 @@ public final class GetAlarmResult {
               throw new MissingRequiredPropertyException("GetAlarmResult", "instanceId");
             }
             this.instanceId = instanceId;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder maxDiskSize(Integer maxDiskSize) {
+            if (maxDiskSize == null) {
+              throw new MissingRequiredPropertyException("GetAlarmResult", "maxDiskSize");
+            }
+            this.maxDiskSize = maxDiskSize;
             return this;
         }
         @CustomType.Setter
@@ -330,6 +354,7 @@ public final class GetAlarmResult {
             _resultValue.enabled = enabled;
             _resultValue.id = id;
             _resultValue.instanceId = instanceId;
+            _resultValue.maxDiskSize = maxDiskSize;
             _resultValue.messageType = messageType;
             _resultValue.queueRegex = queueRegex;
             _resultValue.recipients = recipients;

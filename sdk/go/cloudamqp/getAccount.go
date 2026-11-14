@@ -25,7 +25,7 @@ func GetAccount(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetAccountRe
 
 // A collection of values returned by getAccount.
 type GetAccountResult struct {
-	// The provider-assigned unique ID for this managed resource.
+	// The instance identifier.
 	Id string `pulumi:"id"`
 	// An array of instances. Each `instances` block consists of the fields documented
 	// below.
@@ -52,7 +52,7 @@ func (o GetAccountResultOutput) ToGetAccountResultOutputWithContext(ctx context.
 	return o
 }
 
-// The provider-assigned unique ID for this managed resource.
+// The instance identifier.
 func (o GetAccountResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAccountResult) string { return v.Id }).(pulumi.StringOutput)
 }

@@ -104,7 +104,7 @@ export interface GetVpcGcpInfoArgs {
  */
 export interface GetVpcGcpInfoResult {
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The identifier for this resource.
      */
     readonly id: string;
     readonly instanceId?: number;
@@ -116,8 +116,8 @@ export interface GetVpcGcpInfoResult {
      * VPC network uri.
      */
     readonly network: string;
-    readonly sleep?: number;
-    readonly timeout?: number;
+    readonly sleep: number;
+    readonly timeout: number;
     readonly vpcId?: string;
     /**
      * Dedicated VPC subnet.

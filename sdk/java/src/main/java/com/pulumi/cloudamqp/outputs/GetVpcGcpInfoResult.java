@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetVpcGcpInfoResult {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The identifier for this resource.
      * 
      */
     private String id;
@@ -29,8 +29,8 @@ public final class GetVpcGcpInfoResult {
      * 
      */
     private String network;
-    private @Nullable Integer sleep;
-    private @Nullable Integer timeout;
+    private Integer sleep;
+    private Integer timeout;
     private @Nullable String vpcId;
     /**
      * @return Dedicated VPC subnet.
@@ -40,7 +40,7 @@ public final class GetVpcGcpInfoResult {
 
     private GetVpcGcpInfoResult() {}
     /**
-     * @return The provider-assigned unique ID for this managed resource.
+     * @return The identifier for this resource.
      * 
      */
     public String id() {
@@ -63,11 +63,11 @@ public final class GetVpcGcpInfoResult {
     public String network() {
         return this.network;
     }
-    public Optional<Integer> sleep() {
-        return Optional.ofNullable(this.sleep);
+    public Integer sleep() {
+        return this.sleep;
     }
-    public Optional<Integer> timeout() {
-        return Optional.ofNullable(this.timeout);
+    public Integer timeout() {
+        return this.timeout;
     }
     public Optional<String> vpcId() {
         return Optional.ofNullable(this.vpcId);
@@ -93,8 +93,8 @@ public final class GetVpcGcpInfoResult {
         private @Nullable Integer instanceId;
         private String name;
         private String network;
-        private @Nullable Integer sleep;
-        private @Nullable Integer timeout;
+        private Integer sleep;
+        private Integer timeout;
         private @Nullable String vpcId;
         private String vpcSubnet;
         public Builder() {}
@@ -141,14 +141,18 @@ public final class GetVpcGcpInfoResult {
             return this;
         }
         @CustomType.Setter
-        public Builder sleep(@Nullable Integer sleep) {
-
+        public Builder sleep(Integer sleep) {
+            if (sleep == null) {
+              throw new MissingRequiredPropertyException("GetVpcGcpInfoResult", "sleep");
+            }
             this.sleep = sleep;
             return this;
         }
         @CustomType.Setter
-        public Builder timeout(@Nullable Integer timeout) {
-
+        public Builder timeout(Integer timeout) {
+            if (timeout == null) {
+              throw new MissingRequiredPropertyException("GetVpcGcpInfoResult", "timeout");
+            }
             this.timeout = timeout;
             return this;
         }

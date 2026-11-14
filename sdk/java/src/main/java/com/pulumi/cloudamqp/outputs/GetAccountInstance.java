@@ -9,7 +9,6 @@ import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
-import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAccountInstance {
@@ -37,7 +36,7 @@ public final class GetAccountInstance {
      * @return Optional tags set for the instance.
      * 
      */
-    private @Nullable List<String> tags;
+    private List<String> tags;
 
     private GetAccountInstance() {}
     /**
@@ -73,7 +72,7 @@ public final class GetAccountInstance {
      * 
      */
     public List<String> tags() {
-        return this.tags == null ? List.of() : this.tags;
+        return this.tags;
     }
 
     public static Builder builder() {
@@ -89,7 +88,7 @@ public final class GetAccountInstance {
         private String name;
         private String plan;
         private String region;
-        private @Nullable List<String> tags;
+        private List<String> tags;
         public Builder() {}
         public Builder(GetAccountInstance defaults) {
     	      Objects.requireNonNull(defaults);
@@ -133,8 +132,10 @@ public final class GetAccountInstance {
             return this;
         }
         @CustomType.Setter
-        public Builder tags(@Nullable List<String> tags) {
-
+        public Builder tags(List<String> tags) {
+            if (tags == null) {
+              throw new MissingRequiredPropertyException("GetAccountInstance", "tags");
+            }
             this.tags = tags;
             return this;
         }

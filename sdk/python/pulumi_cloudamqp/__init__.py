@@ -43,6 +43,7 @@ from .privatelink_azure import *
 from .provider import *
 from .rabbit_configuration import *
 from .security_firewall import *
+from .team_member import *
 from .trust_store import *
 from .upgrade_lavinmq import *
 from .upgrade_rabbitmq import *
@@ -238,6 +239,14 @@ _utilities.register(
   "fqn": "pulumi_cloudamqp",
   "classes": {
    "cloudamqp:index/securityFirewall:SecurityFirewall": "SecurityFirewall"
+  }
+ },
+ {
+  "pkg": "cloudamqp",
+  "mod": "index/teamMember",
+  "fqn": "pulumi_cloudamqp",
+  "classes": {
+   "cloudamqp:index/teamMember:TeamMember": "TeamMember"
   }
  },
  {

@@ -40,7 +40,7 @@ export function getAccountVpcs(opts?: pulumi.InvokeOptions): Promise<GetAccountV
  */
 export interface GetAccountVpcsResult {
     /**
-     * The provider-assigned unique ID for this managed resource.
+     * The VPC identifier.
      */
     readonly id: string;
     /**

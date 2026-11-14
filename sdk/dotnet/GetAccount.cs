@@ -38,7 +38,7 @@ namespace Pulumi.CloudAmqp
     public sealed class GetAccountResult
     {
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
+        /// The instance identifier.
         /// </summary>
         public readonly string Id;
         /// <summary>
