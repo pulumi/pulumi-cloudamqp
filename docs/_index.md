@@ -577,7 +577,7 @@ The following configuration inputs are supported:
   `CLOUDAMQP_ENABLE_FASTER_INSTANCE_DESTROY`, default set to
   false.
 
-  ***Note:*** Available from [v1.27.0](https://github.com/cloudamqp/pulumi-provider-cloudamqp/releases/tag/v1.27.0).
+  ***Note:*** Available from [v1.27.0](https://github.com/cloudamqp/terraform-provider-cloudamqp/releases/tag/v1.27.0).
 
 ---
 
