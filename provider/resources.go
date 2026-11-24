@@ -27,7 +27,6 @@ import (
 
 	pf "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/info"
 	tfbridgetokens "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	tfshim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
@@ -153,7 +152,6 @@ func docEditRules(defaults []tfbridge.DocsEdit) []tfbridge.DocsEdit {
 	return append(
 		defaults,
 		removeBlockReference,
-		restoreUpstreamRepoLinks,
 	)
 }
 
@@ -163,17 +161,5 @@ var removeBlockReference = tfbridge.DocsEdit{
 	Edit: func(_ string, content []byte) ([]byte, error) {
 		content = bytes.ReplaceAll(content, []byte(" in the `provider` block"), nil)
 		return content, nil
-	},
-}
-
-// The bridge rewrites "terraform" to "pulumi" in installation docs, which turns links to the
-// upstream repository into links to a repository that does not exist.
-var restoreUpstreamRepoLinks = tfbridge.DocsEdit{
-	Path:  "index.md",
-	Phase: info.PostCodeTranslation,
-	Edit: func(_ string, content []byte) ([]byte, error) {
-		return bytes.ReplaceAll(content,
-			[]byte("github.com/cloudamqp/pulumi-provider-cloudamqp"),
-			[]byte("github.com/cloudamqp/terraform-provider-cloudamqp")), nil
 	},
 }
